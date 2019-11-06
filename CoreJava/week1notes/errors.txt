@@ -1,0 +1,16 @@
+exceptions and exceptions handling
+                throwable
+    Error                   exceptions
+
+
+    Error = outside from our controle....
+            null pointer, no memory, stackoverflow, cannot do anything
+
+        something that goes so wrong with our code excecution that we either should not or could not do anything to prevent it or about it
+
+        ex. stackoverflow, outofmemory
+
+
+    exceptions:
+        runtime exceptions (unchecked) - null pointer, divide by zero, array index out of bounds
+        checked exceptions
