@@ -19,6 +19,9 @@ public class Driver {
 		s2.draw();
 		System.out.println(s2.calculateArea());
 		
+		s2.setNumOfSides(-4);
+		System.out.println(s2.getNumOfSides());
+		
 		
 	}
 
