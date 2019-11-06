@@ -1,5 +1,7 @@
 package com.revature.shapes;
 
+import com.revature.exceptions.NegativeSidesException;
+
 public abstract class Shape implements Drawable, Calculatable {
 	
 	private int numOfSides;
@@ -13,7 +15,12 @@ public abstract class Shape implements Drawable, Calculatable {
 	}
 	
 	public void setNumOfSides(int numOfSides) {
-		this.numOfSides = numOfSides;
+//		this.numOfSides = numOfSides;
+		if(numOfSides>0) {
+			this.numOfSides = numOfSides;
+		} else {
+			throw new NegativeSidesException("Cannot have a shape with negative sides; "+numOfSides+" is invalid");
+		}
 	}
 
 }
