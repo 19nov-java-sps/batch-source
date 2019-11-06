@@ -1,6 +1,6 @@
 package com.revature.pillars;
 
-public class Vehicle {
+public abstract class Vehicle {
 
 	private int numWheels;
 	private int numSeats;
@@ -8,6 +8,8 @@ public class Vehicle {
 	public Vehicle() {
 		super();
 	}
+	
+	public abstract void push();
 	
 	public int getNumWheels() {
 		return numWheels;
