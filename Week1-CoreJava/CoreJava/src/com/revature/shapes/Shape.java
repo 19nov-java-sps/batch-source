@@ -1,6 +1,6 @@
 package com.revature.shapes;
 
-public abstract class Shape {
+public abstract class Shape implements Drawable, Calculatable {
 	
 	private int numOfSides;
 	

@@ -37,6 +37,23 @@ public class Rectangle extends Shape {
 	public String toString() {
 		return "Rectangle [height=" + height + ", width=" + width + "]";
 	}
+
+	@Override
+	public void draw() {
+		System.out.println("drawing rectangle");
+		
+	}
+
+	@Override
+	public int calculateArea() {
+		return width*height;
+	}
+
+	@Override
+	public int calculatePerimeter() {
+		return 2*(width+height);
+	}
+	
 	
 	
 
