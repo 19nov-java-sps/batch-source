@@ -1,0 +1,53 @@
+exceptions and exceptions handling
+                throwable
+    Error                   exceptions
+
+
+    Error = outside from our controle....
+            null pointer, no memory, stackoverflow, cannot do anything
+
+        something that goes so wrong with our code excecution that we either should not or could not do anything to prevent it or about it
+
+        ex. stackoverflow, outofmemory
+
+
+    exceptions:
+        runtime exceptions (unchecked) - null pointer, divide by zero, array index out of bounds
+        checked exceptions: File not found, IO exception, servlet exception, sql exception
+
+
+    unchecked excceptions: exception that with good coding practices would be prevented, so complier will not insist we handle them.
+                          These are runtime exceptions is not the only type of excceptions at runtime.
+    
+    checked exceptions: Exceptions generally involving something outside of the developer controle
+
+
+    handling exceptions
+
+    try {
+        //some code
+    } catch(error// Exception e) {
+
+    } catch (FileNotFoundException e1) {
+
+    } finally 
+
+    add a throw clause to a method 
+
+    public void method1() throws Exception {
+        method2() 
+    }
+
+    public void method2() throws Exception{
+        throw new Exception()
+    }
+
+    CUSTOM Exceptions
+     
+    public class MyCoolExperience extends Exception {
+
+    }
+
+    
+
+
