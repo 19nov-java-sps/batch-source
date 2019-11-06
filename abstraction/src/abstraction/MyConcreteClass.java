@@ -1,9 +1,7 @@
 package abstraction;
 
 
-public class MyConcreteClass extends MyAbstractClass 
-							 implements InterfaceA, InterfaceB 
-{
+public class MyConcreteClass extends MyAbstractClass implements InterfaceA, InterfaceB {
 
 	@Override
 	public void myAbstractMethod() {

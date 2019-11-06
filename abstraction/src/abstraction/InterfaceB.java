@@ -1,13 +1,11 @@
 package abstraction;
 
 
-public interface InterfaceB 
-{
+public interface InterfaceB {
 
 	void doSomething();
 	
-	default void doSomethingElse() 
-	{
+	default void doSomethingElse() {
 		System.out.println("InterfaceB is doing something else");
 	}
 	
