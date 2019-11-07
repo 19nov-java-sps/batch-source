@@ -40,11 +40,12 @@ BufferedReader br = new BufferedReader(fr);
 
 #### BufferedWriter
 ```java
-FileWriter fw = new FileWriter(file);
+FileWriter fw = new FileWriter("output.txt");
 BufferedWriter bw = new BufferedWriter(fw);
 // write or append 
 // write will only take a String which must not be null and returns void
 // append will take any CharSequence which can be null and return the Writer so it can be chained.
+// FileWriter constructor is overloaded with a second parameter allow us to designate whether we want to rewrite the whole file or just append to the existing contents
 ```
 
 # Serialization
