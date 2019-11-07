@@ -9,17 +9,23 @@ public class Feline implements Animal {
 	@Override
 	public void eat() {
 		System.out.println("the animal is eating");
-		
+		health = health + 1;
+		happiness = happiness + 1;
 	}
 	
 	@Override 
 	public void play() {
 		System.out.println("the animal is playing");
+		happiness = happiness + 1;
+		tireness = tireness + 2;
 	}
 	
 	@Override
 	public void sleep() {
 		System.out.println("the animal is sleeping");
+		happiness = happiness + 2;
+		health = health + 1;
+		
 	}
 
 	public int getHealth() {
