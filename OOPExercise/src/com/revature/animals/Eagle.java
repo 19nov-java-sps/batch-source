@@ -28,15 +28,15 @@ public class Eagle extends Bird implements AnimalInterface, BirdInterface {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
+	public boolean equals(Object obj) { //declared & defined in Object class
+		if (this == obj) { // compares the current object to object passed in
+			return true;  // checks to see if they are the same object
 		}
-		if (obj == null) {
+		if (obj == null) { // checks to make sure the obj passed in is not empty
 			return false;
 		}
-		if (!(obj instanceof Eagle)) {
-			return false;
+		if (!(obj instanceof Eagle)) { // checks if a object passed in  
+			return false; // is an instance of the object being compared or not
 		}
 		Eagle other = (Eagle) obj;
 		if (name == null) {
