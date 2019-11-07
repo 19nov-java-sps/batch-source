@@ -1,0 +1,110 @@
+// Generics allows us to use type as a parameter
+
+List <Pen> penlist = new ArrayList<>();
+
+List generalList = new ArrayList();
+
+generalList.add( //any object// );
+
+generalList.get(0) ==> return the type of type object
+
+penlist.add() //can only take a pen
+
+
+
+//why use generics...allows compile time safety
+
+generalList.add("hello");
+Pen p = (Pen) generalList.get(o)
+// ====> classcastexception
+
+// ===========================//
+penlist.add('hello');
+// cannot compile....
+
+// parameterization of type using angle brackets <> allows us to ensure type safety at compile time
+
+
+============================================================================
+
+Collection Framework
+
+    comparing to Arrays....
+        collections are dynamic sized
+
+
+    List <Int> === ok
+    List <int> !!! no
+
+
+
+    int[] someArray
+    object[] someObject 
+
+    NOT APART OF THe COLLECTION Framework
+    Arrays ( java.util)  utility class working w/ arrays Static
+
+        Iterable 
+        forEach()
+        iterator()
+        add()
+        remove()
+    collection (interface)                            Map(interface)
+       |    \           \                               (key, values)
+                                                            /\
+       |       \            \                           hashMap  treeMap
+     List       Queue        Set
+    (index      helpful     cannot have duplicate 
+    based       method for      elemnts
+    methods)    processing data
+    /     \         /|          /  \
+                            hashSet  treeSet
+ArrayList  \       / |
+            \    /   |
+                    priority
+             \  /   Queue
+            LinkedList
+
+ArrayList = dynamic size Array....data structure is an Array
+
+ArrayList
+
+|_|_|_|_|_|_|
+
+LinkedList
+
+|_| - |_| -|_|
+
+priority Queue = allows us to define processing order based on comparision 
+
+hashMap (key, value)
+
+
+
+
+
+Collections : a utility class for working with object implementing the collection interface
+
+
+Comparing Objects
+    -- just as we can define equality between two objects, we can define comparison
+
+    1. 
+    implements Comparable interfact 
+        contains 
+            abstract compareTo()
+            
+        public class Pen implement Comparable<Pen> {
+            comparteTo(Pen p)
+        }
+
+    2.
+     create an object which implents the comaprator interface
+
+        compare(Object o1, Object o2)
+
+        public class PenComparator implements Comparator <Pen> {
+            compare(Pen p1, Pen p2)
+        }
+
+
