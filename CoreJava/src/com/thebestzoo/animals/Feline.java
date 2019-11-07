@@ -6,6 +6,19 @@ public class Feline implements Animal {
 	private int happiness;
 	private int tireness;
 	
+	public Feline(int health, int happiness, int tireness) {
+		this();
+		this.health = health;
+		this.happiness = happiness;
+		this.tireness = tireness;
+		
+		
+	}
+	
+	public Feline() {
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public void eat() {
 		System.out.println("the animal is eating");
@@ -28,29 +41,21 @@ public class Feline implements Animal {
 		
 	}
 
-	public int getHealth() {
-		return health;
+	public void getHealth() {
+		System.out.println(health);
 	}
 
-	public void setHealth(int health) {
-		this.health = health;
+
+	public void getHappiness() {
+		System.out.println(happiness);
 	}
 
-	public int getHappiness() {
-		return happiness;
+
+
+	public void getTireness() {
+		System.out.println(tireness);
 	}
 
-	public void setHappiness(int happiness) {
-		this.happiness = happiness;
-	}
-
-	public int getTireness() {
-		return tireness;
-	}
-
-	public void setTireness(int tireness) {
-		this.tireness = tireness;
-	}
 	
 
 }
