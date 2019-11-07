@@ -1,6 +1,6 @@
 package com.revature.exercise1;
 
-public interface SubwayInterface {
+public interface Interface {
 	
 	double PRICE = 2.75;
 	

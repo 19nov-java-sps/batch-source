@@ -1,6 +1,9 @@
 package com.revature.exercise1;
 
-public abstract class PublicTransportation extends Transportation {
+import com.revature.exceptions.NegativeSpeedExceptions;
+
+// abstract class
+public abstract class PublicTransportation extends Transportation implements Interface {
 	
 	private int speed;
 	
@@ -13,10 +16,17 @@ public abstract class PublicTransportation extends Transportation {
 	}
 	
 	public void setSpeed(int speed) {
+		// custom exception
 		if (speed < 0) {
-			this.speed = 0;
+			throw new NegativeSpeedExceptions("Speed Cannot Be NEGATIVE");
 		}
 		this.speed = speed;
+	}
+	
+	// polymorphism, method overriding
+	@Override
+	public void getNextStop() {
+		System.out.println("The Next Stop Is ...");
 	}
 	
 	// abstract methods

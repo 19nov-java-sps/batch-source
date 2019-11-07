@@ -1,7 +1,8 @@
 package com.revature.exercise1;
 
-public class Subway extends PublicTransportation implements SubwayInterface {
+public class Subway extends PublicTransportation {
 	
+	private String subwayLine;
 	private String destination;
 	
 	public Subway() {
@@ -9,12 +10,36 @@ public class Subway extends PublicTransportation implements SubwayInterface {
 		setType("Subway");
 	}
 	
+	// Constructor overloading
+	public Subway(String subwayLine) {
+		this();
+		this.subwayLine = subwayLine;
+	}
+	
 	public void speedIncrease() {
-		this.setSpeed(this.getSpeed() + 2);
+		int speed = this.getSpeed() + 2;
+		if (speed <= 30) {
+			this.setSpeed(speed);
+		} else {
+			this.setSpeed(30);
+		}
 	}
 	
 	public void speedDecrease() {
-		this.setSpeed(this.getSpeed() - 3);
+		int speed = this.getSpeed() - 3;
+		if (speed >= 0) {
+			this.setSpeed(speed);
+		} else {
+			this.setSpeed(0);
+		}
+	}
+	
+	public String getSubwayLine() {
+		return subwayLine;
+	}
+	
+	public void setSubwayLine(String subwayLine) {
+		this.subwayLine = subwayLine;
 	}
 	
 	public String getDestination() {
@@ -27,12 +52,30 @@ public class Subway extends PublicTransportation implements SubwayInterface {
 	
 	// polymorphism, method overloading
 	public void setDestination() {
-		this.destination = "No destination";
+		this.destination = "Not In Service";
 	}
 	
-	// polymorphism, method overriding
-	@Override
-	public void getNextStop() {
-		System.out.println("The next stop is ...");
+
+	// hashcode and equals methods
+	public int hashcode() {
+		final int hash = 8;
+		int res = hash * this.destination.hashCode() + this.subwayLine.hashCode() * 6;
+		return res;
 	}
+	
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+		if (this == obj) {
+			return true;
+		}
+		if (obj.getClass() == Subway.class) {
+			Subway subwayObj = (Subway) obj;
+			return subwayObj.getSubwayLine() == this.getSubwayLine() && subwayObj.getDestination() == this.getDestination();
+		}
+		
+		return false;
+	}
+	
 }
