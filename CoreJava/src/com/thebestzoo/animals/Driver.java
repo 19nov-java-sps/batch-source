@@ -1,5 +1,7 @@
 package com.thebestzoo.animals;
 
+import java.lang.invoke.ConstantCallSite;
+
 public class Driver {
 
 	public static void main(String[] args) {
@@ -10,28 +12,23 @@ public class Driver {
 		int max = 10; 
 	    int min = 1; 
 	    int range = max - min + 1; 
+	    //prevents values less than zero
 		final int randomHealth = (int)(Math.random() * range) + min; 
 		final int randomTireness = (int)(Math.random() * range) + min;
 		final int randomHappiness = (int)(Math.random() * range) + min;
 
-		
-		//create animal tomogatchi either feline or bird type
-		
-//		if (randomNumber % 2 == 0) {
-//			Animal[] myPetAnimal = new Animal[1];
-//			myPetAnimal[0] = new Feline();
-//			//set happiness, tireness, sleepiness
-//		} else {
-//			Animal[] myPetAnimal = new Animal[1];
-//			myPetAnimal[0] = new Bird();
-			//set happiness, tireness, sleepiness
 
-
-		
+		System.out.println("==================================================");
 		Feline lion = new Feline(randomHealth, randomHappiness, randomTireness);
 		
-		lion.getHappiness();
+		int x = lion.getHappiness();
+		System.out.println(x);
 		
+		
+//		if  (lion.getHappiness()  0) {
+//			System.out.println("blah");
+//		}
+//		
 		System.out.println("==========");
 		lion.getHealth();
 

@@ -8,6 +8,10 @@ public class Feline implements Animal {
 	
 	public Feline(int health, int happiness, int tireness) {
 		this();
+		
+		if (health < 2 || happiness < 2 && tireness < 2 ) 
+		
+		
 		this.health = health;
 		this.happiness = happiness;
 		this.tireness = tireness;
@@ -46,8 +50,8 @@ public class Feline implements Animal {
 	}
 
 
-	public void getHappiness() {
-		System.out.println(happiness);
+	public int getHappiness() {
+		return this.happiness;
 	}
 
 
