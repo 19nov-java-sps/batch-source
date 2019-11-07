@@ -98,3 +98,6 @@ Servers/
 .sts4-cache
 
 Week1-CoreJava/TheGame/src/main/resources/Associates.txt
+#MacOs file
+
+.DS_Store
