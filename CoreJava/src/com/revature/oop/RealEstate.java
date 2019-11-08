@@ -3,25 +3,29 @@ package com.revature.oop;
 public abstract class RealEstate implements AddressBuilder, AreaCalculation {
 	
 	
-	private int stockNumber;
-	private double length;
-	private double width;
-	private String zipCode;
-	private String state;
-	private String city;
-	private String street;
-	private String number;
+	/*public int stockNumber;
+	public double length;
+	public double width;
+	public String zipCode;
+	public String state;
+	public String city;
+	public String street;
+	public String number;*/
 	
 	public RealEstate() {
-		super();
+		super();		
 	}
 	
+
+
 	public  double totalArea(double length, double width, int stockNumber) {
-		return this.length*this.width*this.stockNumber;
+		 double totalArea=length*width*stockNumber;
+		 System.out.println(totalArea);
+		 return totalArea;
 	}
 	
-	public String buildAddress (String zipCode, String state, String city, String street, String number) {
-		return  this.zipCode + this.state + this.city + this.street + this.number;
+	public void buildAddress (String zipCode, String state, String city, String street, String number) {
+		System.out.println(zipCode + state + city + street + number);
 		}
 	}
 
