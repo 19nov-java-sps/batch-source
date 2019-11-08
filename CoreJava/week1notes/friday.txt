@@ -1,0 +1,70 @@
+Threads  
+    a path of execution in our application
+    a subprocess to the process associated with our program
+
+    USER thread : like our main thread, determines the liifecycles of our application
+    DAEMON thread : a thread that runs in the background and whose lifecycle is not 
+                    determinining the lifecycle of the jvm
+            Garbage Collection
+                    automatic de-allocationiing of memory when iits no longer needed
+                    System.gc() to run the GC, not guarentee
+
+                    finalize() will be invoked before GC
+
+Creating a thread
+    1. Create a Class which extends the thread class and override the run()
+
+        public Class myThread extends Thread {
+            
+            @override
+            public void run()
+        }
+
+        main()
+
+        Thread t = new myThread();
+        t.start();
+
+
+    2. create a class that implement Runnable interface (functional interface)
+    and provide it to an instance of the thread class
+ 
+
+    public class MyRunnable implements Runnable {
+        public void run() {
+
+        }
+    }
+
+    main() {
+        Runnable myRunnable = new myRunnable()
+        Thread t2 = new Thread(job)
+        t2.start()
+    }
+
+
+thread methods 
+    start()
+    run()
+    getPriority()
+    getState();
+    join()
+    isDaemon
+
+thread states
+    NEW - thread has been instantiated but was not yet begain execution
+    RUNNABLE - a thrrerad is currently running 
+    TERMINATED - everything is done executing or exception errors
+    BLOCK - waiting for the use of a Synchronization resource
+    WAITING AND TIME WAITING
+
+
+
+Synchronization - limits access to a method or block to one thread at a TIME
+
+Deadlock - this occurs when two threads are 'stuck' waiting on each other, often 
+            times with shared resources
+
+Starvation - a lower priority thread thread not able to access resources it needs because 
+            they are in use by higher priorty threads
+
