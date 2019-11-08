@@ -55,6 +55,12 @@ public class MyStack<E> extends Vector<E> {
 	}
 	
 	public static void main(String[] args) {
+		
+//		MyStack stack1 = new MyStack();
+//		stack1.add(5);
+//		String str = (String) stack1.pop();
+		
+		
 		MyStack<String> stack = new MyStack<>();
 		System.out.println(stack.isEmpty());
 		stack.push("red");

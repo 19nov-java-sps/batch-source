@@ -59,7 +59,7 @@ public class SetDemo {
 		
 		/*
 		 * TreeSet 
-		 * - sorted using natural ordering
+		 * - sorted using natural ordering (or that provided by a comparator)
 		 * - uses a binary search tree to maintain order
 		 */
 		
