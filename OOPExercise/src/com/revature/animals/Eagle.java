@@ -27,7 +27,7 @@ public class Eagle extends Bird implements AnimalInterface, BirdInterface {
 		return result;
 	}
 
-	@Override
+	@Override // we override the .equals method to determine value equality
 	public boolean equals(Object obj) { //declared & defined in Object class
 		if (this == obj) { // compares the current object to object passed in
 			return true;  // checks to see if they are the same object
@@ -38,16 +38,16 @@ public class Eagle extends Bird implements AnimalInterface, BirdInterface {
 		if (!(obj instanceof Eagle)) { // checks if a object passed in  
 			return false; // is an instance of the object being compared or not
 		}
-		Eagle other = (Eagle) obj;
+		Eagle other = (Eagle) obj; // type casts obj to an Eagle object and stores it in other
 		if (name == null) {
-			if (other.name!= null) {
+			if (other.name!= null) { 
 				return false;
-			}
-		} else if (!name.equals(other.name)) {
-			return false;
-		}
-		if (lifespan != other.lifespan) {
-			return false;
+			}										// now we can compare the
+		} else if (!name.equals(other.name)) {		// properties of each object to 
+			return false;							// determine value equality
+		}											// if the values of the properties 
+		if (lifespan != other.lifespan) {			// are the same the two objects are
+			return false;							// equal by value
 		}
 		return true;
 	}
