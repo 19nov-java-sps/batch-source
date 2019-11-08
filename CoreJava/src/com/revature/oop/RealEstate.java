@@ -24,8 +24,9 @@ public abstract class RealEstate implements AddressBuilder, AreaCalculation {
 		 return totalArea;
 	}
 	
-	public void buildAddress (String zipCode, String state, String city, String street, String number) {
-		System.out.println(zipCode + state + city + street + number);
+	public String buildAddress (String zipCode, String state, String city, String street, String number) {
+		String address = zipCode + state + city + street + number;
+		return address;
 		}
 	}
 

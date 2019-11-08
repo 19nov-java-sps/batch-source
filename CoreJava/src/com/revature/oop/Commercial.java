@@ -49,6 +49,6 @@ public abstract  class Commercial extends RealEstate implements RentCalculation{
 	
 
 	public double ROI(double totalRent, int investment) {
-		return totalRent/this.investment;		
+		return totalRent/investment;		
 	}
 }

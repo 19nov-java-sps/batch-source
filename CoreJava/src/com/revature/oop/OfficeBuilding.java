@@ -12,13 +12,14 @@ public class OfficeBuilding extends Commercial {
 	String number;
 	int investment;
 	double vacancyRate;
+	double rentRatePerSquareFeet; 
 	
 	public OfficeBuilding () {
 		super();		
 	}
 	
-	/*public OfficeBuilding (int stockNumber,double length, double width, String zipCode, String state, 
-			String city,String street, String number, int investment, double vacancyRate  ) {
+	public OfficeBuilding (int stockNumber,double length, double width, String zipCode, String state, 
+			String city,String street, String number, int investment, double vacancyRate, double rentRatePerSquareFeet  ) {
 		this();
 		this.stockNumber=stockNumber;
 		this.length=length;
@@ -30,13 +31,14 @@ public class OfficeBuilding extends Commercial {
 		this.number=number;
 		this.investment=investment;
 		this.vacancyRate=vacancyRate;
+		this.rentRatePerSquareFeet=rentRatePerSquareFeet;
 		
-	}*/
+	}
 	
-	public OfficeBuilding(int i, double d, double e, String string, String string2, String string3, String string4,
+	/*public OfficeBuilding(int i, double d, double e, String string, String string2, String string3, String string4,
 			String string5, double f, double g) {
 		// TODO Auto-generated constructor stub
-	}
+	}*/
 
 	public int getStockNumber() {
 		return stockNumber;
@@ -109,6 +111,24 @@ public class OfficeBuilding extends Commercial {
 
 	public void setInvestment(int investment) {
 		this.investment = investment;
+	}
+	
+	
+
+	public double getVacancyRate() {
+		return vacancyRate;
+	}
+
+	public void setVacancyRate(double vacancyRate) {
+		this.vacancyRate = vacancyRate;
+	}
+
+	public double getRentRatePerSquareFeet() {
+		return rentRatePerSquareFeet;
+	}
+
+	public void setRentRatePerSquareFeet(double rentRatePerSquareFeet) {
+		this.rentRatePerSquareFeet = rentRatePerSquareFeet;
 	}
 
 	public double officeROI(double totalRent, double vacancyRate, double investment) {
