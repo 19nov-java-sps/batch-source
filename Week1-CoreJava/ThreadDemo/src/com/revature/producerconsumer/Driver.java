@@ -1,4 +1,4 @@
-package com.revature.producerconsumer;
+package ThreadDemo.src.com.revature.producerconsumer;
 
 public class Driver {
 
