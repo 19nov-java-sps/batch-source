@@ -4,7 +4,7 @@ public class Driver{
 
 	public static void main(String[] args) {
 		
-	
+	//creates new object Car,Bicycle,Ford,RacingBicycle with inputs
 		Car c = new Car(2000,2);
 		c.riding();
 		System.out.println(c);
