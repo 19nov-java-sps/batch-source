@@ -9,9 +9,9 @@ public class Driver {
 		
 		
 		
-		//office1.buildAddress(zipCode, state, city, street, number);
-		//System.out.println("Building address is " + address);
-		//System.out.println("Total incestments" + investment);
+		//office1.buildAddress();
+		System.out.println("Building address is " + address);
+		System.out.println("Total incestments" + investment);
 		//System.out.println("Total area" + office1.totalArea);
 		//System.out.println("Total rent" + office1.totalRent);		
 		//System.out.println("Calculated ROI" + office1.officeROI);	
