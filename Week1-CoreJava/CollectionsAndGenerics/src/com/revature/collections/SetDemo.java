@@ -2,6 +2,7 @@ package com.revature.collections;
 
 import java.util.Comparator;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.TreeSet;
 
@@ -127,9 +128,20 @@ public class SetDemo {
 		tSet4.add(new Book(76, "20th Century Boys", "Naoki Urasawa"));
 		tSet4.add(new Book(4, "Brave New World", "Aldous Huxley"));
 		tSet4.add(new Book(12, "Island", "Aldous Huxley"));
+		
+		// we can use a dynamic for loop or a "for each" loop to iterate
 		for(Book b: tSet4) {
 			System.out.println(b);
 		}
+		
+		// we can also use the iterator
+		Iterator<Book> i = tSet4.iterator();
+		while(i.hasNext()) {
+			System.out.println(i.next());
+		}
+		
+		
+		
 	}
 	
 }
