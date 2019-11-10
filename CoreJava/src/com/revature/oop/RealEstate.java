@@ -1,56 +1,46 @@
 package com.revature.oop;
 
+//Here is my abstract class Real Estate which declares  varuables and methods that are obligatory to use in
+//all child classes like Commercial and OfficeBuilding
+
 public abstract class RealEstate implements AddressBuilder, AreaCalculation {
 	
-	
-	int stockNumber;
-	double length;
-	double width;
-	public String zipCode;
-	public String state;
-	public String city;
-	public String street;
-	public String number;
-	int investment;
-	double vacancyRate;
-	double rentRatePerSquareFeet; 
-	
+	//Here I declare variables of a RealEstate object. I use a protected key word 
+	//for the variables to implement encapsulation - the access prevention to the variables from the outside the package.
+	//private doesn't work because OfficeBuilding class's method need an access to these variables
+
+	protected String zipCode;
+	protected String state;
+	protected String city;
+	protected String street;
+	protected String number;
+	private int length;
+	private int width;
+
+	//The default constructor for a RealEstate object
 	public RealEstate() {
 		super();		
 	}	
 
-	public  double totalArea() {
-		 double totalArea=this.length*this.width*this.stockNumber;
+	//An abstract method
+
+	public double totalArea() {
+		double totalArea=this.length*this.width*3;
 		 return totalArea;
-	}
+	};
 	
-	public String buildAddress () {
-		String address = this.zipCode + this.state + this.city + this.street + this.number;
+	
+	//A concrete method
+	
+	public String[] buildAddress () {
+		String [] address = {this.number,this.street,this.city,this.state,this.zipCode}; //the key word "this" refers to the variables, declared in the same class
 		return address;
-		}
-
+			}
+	
+	//Getters and setters for the variables
+	
 	public int getStockNumber() {
-		return stockNumber;
-	}
-
-	public void setStockNumber(int stockNumber) {
-		this.stockNumber = stockNumber;
-	}
-
-	public double getLength() {
-		return length;
-	}
-
-	public void setLength(double length) {
-		this.length = length;
-	}
-
-	public double getWidth() {
-		return width;
-	}
-
-	public void setWidth(double width) {
-		this.width = width;
+		return getStockNumber();
 	}
 
 	public String getZipCode() {
@@ -93,30 +83,6 @@ public abstract class RealEstate implements AddressBuilder, AreaCalculation {
 		this.number = number;
 	}
 
-	public int getInvestment() {
-		return investment;
-	}
-
-	public void setInvestment(int investment) {
-		this.investment = investment;
-	}
-
-	public double getVacancyRate() {
-		return vacancyRate;
-	}
-
-	public void setVacancyRate(double vacancyRate) {
-		this.vacancyRate = vacancyRate;
-	}
-
-	public double getRentRatePerSquareFeet() {
-		return rentRatePerSquareFeet;
-	}
-
-	public void setRentRatePerSquareFeet(double rentRatePerSquareFeet) {
-		this.rentRatePerSquareFeet = rentRatePerSquareFeet;
-	}	
-	
 }
 
 	

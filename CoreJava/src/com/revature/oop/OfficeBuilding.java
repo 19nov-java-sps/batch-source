@@ -1,8 +1,14 @@
 package com.revature.oop;
 
-public class OfficeBuilding extends Commercial {
-	
+import java.io.IOException;
 
+public class OfficeBuilding extends Commercial implements RoomNumberAssigner {
+	
+	
+	public int stockNumber;
+	public double length;
+	public double width;
+	double vacancyRate;
 	
 	public OfficeBuilding () {
 		super();		
@@ -25,10 +31,50 @@ public class OfficeBuilding extends Commercial {
 		
 	}
 	
-	public double officeROI() {
-		double officeROI =  (this.totalRent()*this.vacancyRate)/this.investment;		
-		 return officeROI;
+	public double officeROI() throws IOException  {
+		
+		double officeROI =  (this.totalRent()*this.vacancyRate)/this.investment;
+		return officeROI;
 	}
 
+	public double getVacancyRate() {
+		return vacancyRate;
+	}
+
+	public void setVacancyRate(double vacancyRate) {
+		this.vacancyRate = vacancyRate;
+	}
+
+	@Override
+	public  double totalArea() {
+		// double totalArea=this.length*this.width;
+		 return RentCalculation.totalArea(length, width);
+	}
+
+	public int getStockNumber() {
+		return stockNumber;
+	}
+
+	public void setStockNumber(int stockNumber) {
+		this.stockNumber = stockNumber;
+	}
+
+	public double getLength() {
+		return length;
+	}
+
+	public void setLength(double length) {
+		this.length = length;
+	}
+
+	public double getWidth() {
+		return width;
+	}
+
+	public void setWidth(double width) {
+		this.width = width;
+	}	
+	
+	
 
 }
