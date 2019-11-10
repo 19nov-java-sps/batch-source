@@ -50,6 +50,7 @@ public class OfficeBuilding extends Commercial implements RoomNumberAssigner {
 		// double totalArea=this.length*this.width;
 		 return RentCalculation.totalArea(length, width);
 	}
+	
 
 	public int getStockNumber() {
 		return stockNumber;

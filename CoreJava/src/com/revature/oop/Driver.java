@@ -1,6 +1,5 @@
 package com.revature.oop;
 
-import java.io.EOFException;
 import java.io.IOException;
 import java.util.Arrays;
 
@@ -34,6 +33,8 @@ public class Driver {
 			e.printStackTrace();
 		}	
 		
+		System.out.println("Is the plot a square? " + office1.isSquare());
+		
 		System.out.println("Office 2 -----------------------------------------------");	
 
 		//Instantiate new OfficeBuilding object with an access only to RealEstate methods
@@ -44,7 +45,7 @@ public class Driver {
 		office2.setZipCode("15002");
 		office2.setStreet("MacDonalds");
 		office2.setNumber("15");
-		office2.setState("MI");
+		office2.setState("NY");
 		office2.setCity("Detroit");
 		
 		//Assign values to variables, declared in OfficeBuilding class (casting)
@@ -63,6 +64,7 @@ public class Driver {
 		office2.printAddress();
 		System.out.println(Arrays.toString(office2.buildAddress()));
 		System.out.println("Total area " + office2.totalArea());
+		System.out.println("Is the plot a square? " + office2.isSquare());
 		
 		//Methods and a variable which don't work because there are not in the RealEstate class, but in child classes
 		
@@ -87,7 +89,7 @@ public class Driver {
 		//Assign values to variables, declared in OfficeBuilding class (casting)
 		
 		((OfficeBuilding) office3).setLength (200.00);
-		((OfficeBuilding) office3).setWidth(300.00);
+		((OfficeBuilding) office3).setWidth(200.00);
 		((OfficeBuilding) office3).setStockNumber(5);
 		((OfficeBuilding) office3).setVacancyRate(0.5);
 
@@ -112,6 +114,24 @@ public class Driver {
 		
 		//Methods still doesn't work
 		//System.out.println("Calculated office ROI " + office2.officeROI());	 - OfficeBuilding class
+		
+		
+		System.out.println("Is the plot a square? " + office3.isSquare());
+		
+		//Calling of the hashcode method from RealEstate super class
+		
+		compareStates (office1, office2);
+		
+		//Implement hashCode method
+	
+			if (office1.state.hashCode()==office2.state.hashCode()) {
+				System.out.println("State of a " + office1 + " and " + office2 + " are the same!");
+			}
+			else {
+				System.out.println("State of a " + office1 + " and " + office2 + " are not the same!");
+			}
+
 	}
+
 
 }

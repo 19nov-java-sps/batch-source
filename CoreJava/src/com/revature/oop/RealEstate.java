@@ -1,5 +1,7 @@
 package com.revature.oop;
 
+import java.io.IOException;
+
 //Here is my abstract class Real Estate which declares  varuables and methods that are obligatory to use in
 //all child classes like Commercial and OfficeBuilding
 
@@ -14,8 +16,8 @@ public abstract class RealEstate implements AddressBuilder, AreaCalculation {
 	protected String city;
 	protected String street;
 	protected String number;
-	private int length;
-	private int width;
+	private double length;
+	private double width;
 
 	//The default constructor for a RealEstate object
 	public RealEstate() {
@@ -25,9 +27,15 @@ public abstract class RealEstate implements AddressBuilder, AreaCalculation {
 	//An abstract method
 
 	public double totalArea() {
-		double totalArea=this.length*this.width*3;
-		 return totalArea;
-	};
+		double totalArea ;
+		try (  totalArea = this.length*this.width;) {
+				if (totalArea !=0) {
+				return totalArea;
+				} catch (MyCustomException e) {
+				 System.out.println("The both paramethers have to be not 0!");
+			 }
+		 }
+	}
 	
 	
 	//A concrete method
@@ -37,6 +45,29 @@ public abstract class RealEstate implements AddressBuilder, AreaCalculation {
 		return address;
 			}
 	
+	//Implement equals  method and hashcode method
+	public boolean isSquare () {
+		Double length = new Double(this.length);
+		Double width = new Double(this.width);
+		
+		if (length.equals(width)) {
+			System.out.println("Is square");
+		}
+		else {
+			System.out.println("Is rectangle");
+		}
+		return this.length != this.width;
+	}
+	
+	public static void compareStates (Object a, Object b) {
+	if (a.hashCode()==b.hashCode()) {
+		System.out.println("buildings " + a + " and " + b + " are the same!");
+	}
+	else {
+		System.out.println("Buildings a " + a + " and " + b + " are not the same!");
+	}
+	}
+
 	//Getters and setters for the variables
 	
 	public int getStockNumber() {
