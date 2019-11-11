@@ -27,14 +27,16 @@ public abstract class RealEstate implements AddressBuilder, AreaCalculation {
 	//An abstract method
 
 	public double totalArea() {
-		double totalArea ;
-		try (  totalArea = this.length*this.width;) {
+		
+		try {
+			double totalArea = this.length*this.width;
 				if (totalArea !=0) {
 				return totalArea;
-				} catch (MyCustomException e) {
+				}
+			} catch (MyCustomException e) {
 				 System.out.println("The both paramethers have to be not 0!");
 			 }
-		 }
+		 return 0.0;
 	}
 	
 	

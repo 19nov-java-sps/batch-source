@@ -14,6 +14,9 @@ public class Driver {
 		OfficeBuilding office1 = new OfficeBuilding(5, 200.00,300.00, 
 				"10007", "NY", "New York", "Broadway", "1077", 0, 0.2, 25.22);
 		
+		
+		
+		
 		office1.printAddress();
 		System.out.println(Arrays.toString(office1.buildAddress()));
 		System.out.println("Total investments " + office1.investment);
@@ -47,6 +50,8 @@ public class Driver {
 		office2.setNumber("15");
 		office2.setState("NY");
 		office2.setCity("Detroit");
+		
+		
 		
 		//Assign values to variables, declared in OfficeBuilding class (casting)
 		
@@ -120,7 +125,7 @@ public class Driver {
 		
 		//Calling of the hashcode method from RealEstate super class
 		
-		compareStates (office1, office2);
+		RealEstate.compareStates (office1, office2);
 		
 		//Implement hashCode method
 	
