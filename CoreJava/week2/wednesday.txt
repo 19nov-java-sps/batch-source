@@ -1,0 +1,16 @@
+functions
+
+scalar - certain set of parameters, one output
+    round()
+    floor()
+    ceiling()
+    abs()
+    length()
+
+
+aggregate - multiple set of paramaters, performed on a data set to get a result
+
+select [columns]
+from [table]
+where [condition]
+group by [column]
