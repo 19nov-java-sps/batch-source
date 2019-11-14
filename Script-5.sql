@@ -107,6 +107,110 @@ group by "Customer"."CustomerId";
 
 --Create a query which shows the number of purchases per each genre. Display the name of each genre and
 --number of purchases. Show the most popular genre first.
+ --Create a query that shows the employee that has made the highest total value of sales (total of all invoices).
  
+
+
+
+
+ 
+
+
+
+
+select SalesTable2."full_name", Max(SalesTable2."total") from SalesTable2
+where SalesTable2."total"=(select max(SalesTable2."total") from SalesTable2)
+group by SalesTable2."full_name";
+
+
+
+
+create materialized VIEW SalesTable2 AS
+select "Employee"."FirstName" || "Employee"."LastName" as Full_Name, "Customer"."SupportRepId",Sum("Total") as Total  from
+"Employee"
+inner join
+"Customer"
+on "Employee"."EmployeeId"="Customer"."SupportRepId"
+inner join "Invoice"
+on "Customer"."CustomerId"= "Invoice"."CustomerId"
+group by "Employee"."FirstName","Employee"."LastName", "Customer"."SupportRepId"
+
+--Create a function that returns the average total of all invoices.
+
+
+
+
+--Create a query which shows the number of purchases per each genre. 
+--Display the name of each genre and number of purchases. Show the most popular genre firs
+
+
+
+create or replace function findAvgSal()
+returns numeric(7,2)
+language plpgsql
+as $function$
+declare
+	avgSal numeric(7,2);
+begin
+	select round(avg("Total"),2) into avgSal
+	from "Invoice";
+	return avgSal;
+end
+$function$
+
+
+
+select findAvgSal();
+
+create or replace function bornAfter()
+returns setof "Employee"
+language plpgsql
+as $function$
+begin
+	return query select * from "Employee"  where "Employee"."BirthDate">'1967-12-31 00:00:00'::date;
+end
+$function$
+
+select bornAfter();
+
+--Create a function that returns the manager of an employee, given the id of the employee.
+
+create or replace function getManager(id integer)
+returns setof varchar
+language plpgsql
+as $function$
+begin
+return query 
+select e."FirstName"
+from "Employee" e
+join "Employee" m 
+on e."EmployeeId"= m."ReportsTo"
+where m."EmployeeId"= id
+group by e."FirstName";
+
+
+
+end;
+$function$
+
+
+select getManager(2);
+
+
+select e."FirstName"
+from "Employee" e
+join "Employee" m 
+on e."EmployeeId"= m."ReportsTo"
+where m."EmployeeId"= 2
+group by e."FirstName";
+
+
+
+--Create a function that returns the price of a particular playlist, given the id for that playlist.
+
+
+
+--Create a query which shows the number of purchases per each genre. Display the name of each genre and number of purchases. Show the most popular genre first.
+
 
 
