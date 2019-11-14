@@ -2,20 +2,20 @@ select * from "Employee";--select all from employee table
 
 select * from "Employee" where "LastName"='King';-- selecting everything from employee where lastname is king
 
-select * from "Album" order by "Title" desc;--electing all albums ordered by title in descending order
+select * from "Album" order by "Title" desc;--selecting all albums ordered by title in descending order
 
-select "FirstName" from "Customer" order by "City" asc;
+select "FirstName" from "Customer" order by "City" asc;--Select first name from Customer and sort result set in ascending order by city.
 
-select * from "Invoice" where "BillingAddress"='T%'
+select * from "Invoice" where "BillingAddress"='T%'--Select all invoices with a billing address like “T%”.
 
-select max("Milliseconds") as Longest_Track from "Track";
+select max("Milliseconds") as Longest_Track from "Track";--Select the name of the longest track.
 
-select avg("Total") as Average_for_invoices from "Invoice";
+select avg("Total") as Average_for_invoices from "Invoice";--Find the average invoice total.
 
-select "Title", count("Title") as position from "Employee" group by "Title";
+select "Title", count("Title") as position from "Employee" group by "Title";--Find the total number of employees in each position.
 
 
-insert into "Genre" values(999,'Bobby Bluegrass');-- adding a Email
+insert into "Genre" values(999,'Bobby Bluegrass');-- Insert two new records into Genre table
 --Fax
 --Phone
 --PostalCode
@@ -26,6 +26,8 @@ insert into "Genre" values(999,'Bobby Bluegrass');-- adding a Email
 
 insert into "Genre" values(1000,'Bobby Dance');
 
+--Insert two new records into Employee table
+
 insert into "Employee" values('9','Smith','Elliot','Head Honcho',1, '1969-02-18 00:00:00', '1992-02-18 00:00:00', 
 '96a Glenwood Rd', 'Glenwood Landing', 'NY','USA','11547','516-965-6218','516-982-2983','rbucci@oldwestbury.edu');
 
@@ -34,6 +36,8 @@ insert into "Employee" values('9','Smith','Elliot','Head Honcho',1, '1969-02-18 
 
 insert into "Employee" values('10','Smith','Francois','Assistant',1, '1969-02-18 00:00:00', '1992-02-18 00:00:00', 
 '96a Glenwood Rd', 'Glenwood Landing', 'NY','USA','11547','516-965-6218','516-982-2983','smitty@oldwestbury.edu');
+
+--Insert two new records into Customer table 
 
 INSERT INTO "Customer"
 ("CustomerId", "FirstName", "LastName", "Company", "Address", "City", "State", "Country", "PostalCode", "Phone", "Fax", "Email", "SupportRepId")
@@ -44,19 +48,19 @@ INSERT INTO "Customer"
 ("CustomerId", "FirstName", "LastName", "Company", "Address", "City", "State", "Country", "PostalCode", "Phone", "Fax", "Email", "SupportRepId")
 VALUES(61, 'Dennis', 'Monahan', 'Monahan Industries', '407 Hopper Ave', 'Ridgewood', 'NJ', 'USA', '07450', '201-233-0363', '201-564-2929', 'heymon99@gmail.com', 2);
 
+--Update Aaron Mitchell in Customer table to Robert Walter
+
 update "Customer" set "FirstName"='Aaron', "LastName"='Mitchell' where "FirstName"='Robert'AND "LastName"='Walter';
+
+--Update name of artist in the Artist table “Creedence Clearwater Revival” to “CCR”
 
 update "Artist" set "Name"='CCR' where "Name"='Creedence Clearwater Revival';
 
-
+--Create an inner join that joins customers and orders and specifies the name of the customer and the invoiceId.
 select "FirstName", "LastName", "InvoiceId" from
 "Customer"
 inner join "Invoice"
 on "Customer"."CustomerId"= "Invoice"."CustomerId";
-
-
---Create a right join that joins album and artist specifying artist name and title.
-
 
 
 
@@ -105,19 +109,9 @@ group by "Customer"."CustomerId";
 
 
 
---Create a query which shows the number of purchases per each genre. Display the name of each genre and
---number of purchases. Show the most popular genre first.
+
  --Create a query that shows the employee that has made the highest total value of sales (total of all invoices).
  
-
-
-
-
- 
-
-
-
-
 select SalesTable2."full_name", Max(SalesTable2."total") from SalesTable2
 where SalesTable2."total"=(select max(SalesTable2."total") from SalesTable2)
 group by SalesTable2."full_name";
@@ -135,16 +129,8 @@ inner join "Invoice"
 on "Customer"."CustomerId"= "Invoice"."CustomerId"
 group by "Employee"."FirstName","Employee"."LastName", "Customer"."SupportRepId"
 
+
 --Create a function that returns the average total of all invoices.
-
-
-
-
---Create a query which shows the number of purchases per each genre. 
---Display the name of each genre and number of purchases. Show the most popular genre firs
-
-
-
 create or replace function findAvgSal()
 returns numeric(7,2)
 language plpgsql
@@ -161,6 +147,8 @@ $function$
 
 
 select findAvgSal();
+
+--Create a function that returns all employees who are born after 1968.
 
 create or replace function bornAfter()
 returns setof "Employee"
@@ -197,20 +185,8 @@ $function$
 select getManager(2);
 
 
-select e."FirstName"
-from "Employee" e
-join "Employee" m 
-on e."EmployeeId"= m."ReportsTo"
-where m."EmployeeId"= 2
-group by e."FirstName";
 
 
-
---Create a function that returns the price of a particular playlist, given the id for that playlist.
-
-
-
---Create a query which shows the number of purchases per each genre. Display the name of each genre and number of purchases. Show the most popular genre first.
 
 
 
