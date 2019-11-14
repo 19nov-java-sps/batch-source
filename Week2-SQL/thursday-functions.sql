@@ -237,7 +237,7 @@ begin
 	-- get the current salary of the employee 
 	select monthly_salary into current_salary
 	from employee
-	where empl_id = current_id;
+	where empl_id = input_id;
 
 	-- we need to compare budget_used + raise_amount to budget
 	if (budget_used+raise_amount)>dept_budget then 
@@ -245,7 +245,7 @@ begin
 	else 
 		update employee
 		set monthly_salary = current_salary + raise_amount
-		where empl_id = current_id;
+		where empl_id = input_id;
 		return current_salary + raise_amount;
 	end if; 
 end;
@@ -253,4 +253,4 @@ $$
 
 select * from department_spending;
 
-select assessRaise(8, 1000);
+select assessRaise(8, 800);
