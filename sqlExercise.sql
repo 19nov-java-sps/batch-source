@@ -98,10 +98,25 @@ full outer join "Invoice" i
 on c."CustomerId" = i."CustomerId";
 
 --3.6.b
-
+select sum(i."Total") as "Total Sales", e."EmployeeId", concat_ws(' ', e."FirstName", e."LastName") as "Name"
+from "Customer" c
+join "Invoice" i
+on c."CustomerId" = i."CustomerId"
+join "Employee" e
+on c."SupportRepId" = e."EmployeeId"
+group by e."EmployeeId"
+order by sum(i."Total") desc
+limit 1;
 
 --3.6.c
-
+select sum(i."Quantity") as "Number of Purches", g."Name" as "Genre Name"
+from "InvoiceLine" i
+join "Track" t
+on i."TrackId" = t."TrackId"
+right join "Genre" g
+on g."GenreId" = t."GenreId"
+group by g."Name"
+order by "Number of Purches" desc nulls last;
 
 --4.0.a
 create or replace function avg_total_invoice()
@@ -122,7 +137,7 @@ select avg_total_invoice();
 
 --4.0.b
 create or replace function empl_born_after()
-returns setof Employee
+returns setof "Employee" 
 language plpgsql
 as $function$
 begin
@@ -131,19 +146,18 @@ end
 $function$
 
 select * from empl_born_after();
-select * from "Employee" where "BirthDate" > '1968-01-01 00:00:00';
 
 
 --4.0.c
 create or replace function get_manager(empl_id integer)
-returns setof Employee
+returns setof "Employee"
 language plpgsql
 as $function$
 declare
 	manager_id "Employee"."EmployeeId"%type;
 begin
 	select "ReportsTo" into manager_id
-	from "Employee"
+	from "Employee" e
 	where "EmployeeId" = empl_id;
 
 	return query select * from "Employee" where "EmployeeId" = manager_id;
