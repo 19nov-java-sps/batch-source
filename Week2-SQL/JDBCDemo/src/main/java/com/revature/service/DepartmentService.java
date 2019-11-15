@@ -19,12 +19,13 @@ public class DepartmentService {
 		return departmentDao.getDepartmentById(id);
 	}
 	
-	public boolean createDepartment(Department d) {
-		int deptCreated = departmentDao.createDepartment(d);
-		if(deptCreated != 0) {
-			return true;
-		}
-		return false;
+	public Department createDepartment(Department d) {
+//		int deptCreated = departmentDao.createDepartment(d);
+//		if(deptCreated != 0) {
+//			return true;
+//		}
+//		return false;
+		return departmentDao.createDepartmentWithFunction(d);
 	}
 	
 	public boolean updateDepartment(Department d) {
@@ -33,6 +34,18 @@ public class DepartmentService {
 			return true;
 		}
 		return false;
+	}
+	
+	public boolean deleteDepartment(Department d) {
+		int deptDeleted = departmentDao.deleteDepartment(d);
+		if(deptDeleted !=0) {
+			return true;
+		}
+		return false;
+	}
+	
+	public void increaseBudget(Department d, double increase) {
+		departmentDao.increaseDepartmentBudget(d, increase);
 	}
 
 }
