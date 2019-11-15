@@ -95,7 +95,7 @@ on "Invoice"."CustomerId" = "Customer"."CustomerId";
 --Create a right join that joins album and artist specifying artist name and title.
 SELECT "Name", "Title"
 FROM "Artist"
-right join "Album"
+right outer join "Album"
 on "Artist"."ArtistId" = "Album"."ArtistId";
 
 --3.4 CROSS
@@ -115,20 +115,111 @@ on "Employee"."ReportsTo" = "e"."EmployeeId";
 
 --3.6 Joined Queries
 --Create a query that shows the customer first name and last name as FULL_NAME (you can use || to concatenate two strings) with the total amount of money they have spent as TOTAL.
-select "FirstName" || "LastName" as FULL_NAME, sum("Total") as "Total"
+select "FirstName" || ' ' || "LastName" as FULL_NAME, sum("Total") as "Total"
 from "Invoice"
 join "Customer"
 on "Customer"."CustomerId" = "Invoice"."CustomerId"
 group by "Customer"."CustomerId";
 
 --Create a query that shows the employee that has made the highest total value of sales (total of all invoices).
-
+select "Employee"."FirstName" || ' ' || "Employee"."LastName" as "FULL_NAME", sum("Invoice"."Total") 
+from "Employee"
+join "Customer" 
+on "Customer"."SupportRepId" = "Employee"."EmployeeId"
+join "Invoice" 
+on "Invoice"."CustomerId" = "Customer"."CustomerId"
+group by "FULL_NAME"
+order by sum desc;
+limit 1;
 
 --Create a query which shows the number of purchases per each genre. Display the name of each genre and number of purchases. Show the most popular genre first.
-
+select
+    G."Name",
+    sum(I."Quantity") as TotalPurchases
+from
+    "Genre" G
+join "Track" T on
+    G."GenreId" = T."GenreId"
+join "InvoiceLine" I on
+    I."TrackId" = T."TrackId"
+group by
+    G."Name"
+order by
+    TotalPurchases desc;
 
 --4.0 User Defined Functions
 --Create a function that returns the average total of all invoices.
+create or replace function getAvg()
+returns numeric (7,2)
+language plpgsql
+As $function$
+declare
+    avgTotal numeric(7,2);
+Begin
+    select avg("Total") into avgTotal from "Invoice";
+    return avgTotal;
+End;
+$function$
+
+select getAvg()
 --Create a function that returns all employees who are born after 1968.
+create or replace function afterYear() 
+returns setof "Employee" 
+language plpgsql 
+as $function$ 
+begin 
+    return QUERY
+select *
+from "Employee"
+where "Employee"."BirthDate">'1968-12-31 00:00:00';
+end;
+$function$
+
+select afterYear()
 --Create a function that returns the manager of an employee, given the id of the employee.
+create or replace function getManager(emp_id "Employee"."EmployeeId"%type) 
+returns setof "Employee" 
+language plpgsql 
+as $function$ 
+declare reports_to "Employee"."ReportsTo"%type;
+
+begin
+select "ReportsTo"
+into reports_to
+from "Employee"
+where emp_id = "EmployeeId";
+return QUERY
+select *
+from "Employee"
+where reports_to = "EmployeeId";
+end;
+$function$
+
+select getManager(2)
+
 --Create a function that returns the price of a particular playlist, given the id for that playlist.
+create or replace function getPrice(playlist_id "PlaylistTrack"."PlaylistId"%type) 
+returns numeric 
+language plpgsql 
+as $function$ 
+declare 
+price numeric;
+quantity numeric;
+total numeric;
+begin
+select ("UnitPrice")
+into price
+from "Track" t
+join "PlaylistTrack" p 
+on t."TrackId" = p."TrackId" ;
+
+select count(*)
+into quantity
+from "PlaylistTrack"
+where playlist_id = "PlaylistId";
+total = quantity * price;
+return total;
+end;
+$function$
+
+select getPrice(4);
