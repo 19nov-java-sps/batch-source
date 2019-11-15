@@ -3,6 +3,11 @@ package com.revature;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.List;
+
+import com.revature.model.Department;
+import com.revature.service.DepartmentService;
+import com.revature.util.ConnectionUtil;
 
 public class Driver {
 	
@@ -18,32 +23,43 @@ public class Driver {
 	 * --- configure your project object model ---
 	 * 4. Update your Maven Project - Right click on the project folder in 
 	 * 		the "Package Explorer" -> "Maven" -> "Update Project"
-	 * 
-	 * Setting up environment variables:
-	 * --- (Option 1) In your system's environment variables ---
-	 * 
-	 * --- (Option 2) In STS ---
-	 * 1. Right click on the project folder in the "Package Explorer"
-	 * 		go to "Run As" and "Run Configurations"
-	 * 2. Click on the "Environment" tab and configure your name value pairs
-	 * 
-	 * 
-	 * Using System.getenv("key") returns the value of the environment 
-	 * 	variable, whether set in the system or in STS
-	 * 		
-	 * 
 	 */
 	
-	public static void main(String[] args) throws SQLException {
-		// for more information on formatting this url or connecting to the db:
-			// https://jdbc.postgresql.org/documentation/80/connect.html
-		String url = "jdbc:postgresql://"+System.getenv("jdbc_db_host")+":5432/postgres";
-		String username = System.getenv("jdbc_db_user");
-		String password = System.getenv("jdbc_db_pass");
+	public static void main(String[] args){
+		/* testing connection:
+		try {
+			String driverName = ConnectionUtil.getConnection().getMetaData().getDriverName();
+			System.out.println(driverName);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		*/
 		
-		Connection c = DriverManager.getConnection(url, username, password);
-		String driver = c.getMetaData().getDriverName();
-		System.out.println(driver);
+		DepartmentService ds = new DepartmentService();
+//		List<Department> depts = ds.getDepartments();
+//		for(Department d: depts) {
+//			System.out.println(d);
+//		}
+		
+//		Department myDept = ds.getDepartmentById(5);
+//		System.out.println(myDept);
+
+//		Department newDepartment = new Department();
+//		newDepartment.setName("JDBC Department");
+//		newDepartment.setmonthlyBudget(3000);
+//		boolean success = ds.createDepartment(newDepartment);
+//		System.out.println("success? "+success);
+		
+		Department previouslyCreatedDepartment = ds.getDepartmentById(8);
+		System.out.println(previouslyCreatedDepartment);
+		previouslyCreatedDepartment.setName("Cool Updated Department");
+		boolean success = ds.updateDepartment(previouslyCreatedDepartment);
+		System.out.println("success? "+ success);
+		Department postUpdate = ds.getDepartmentById(8);
+		System.out.println(postUpdate);
+		
+		
 		
 	}
 
