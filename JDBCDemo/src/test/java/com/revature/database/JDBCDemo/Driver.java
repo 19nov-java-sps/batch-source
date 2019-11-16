@@ -50,13 +50,12 @@ public class Driver {
 		boolean success = ds.createDepartment(newDepartment);
 		System.out.println("success? "+success);
 		
-		Department previouslyCreatedDepartment = ds.getDepartmentById(8);
+		Department previouslyCreatedDepartment = ds.getDepartmentById(11);
 		System.out.println(previouslyCreatedDepartment);
 		previouslyCreatedDepartment.setName("Cool Updated Department");
-		@SuppressWarnings("unused")
 		boolean s = ds.updateDepartment(previouslyCreatedDepartment);
-		System.out.println("success? "+ success);
-		Department postUpdate = ds.getDepartmentById(8);
+		System.out.println("success? "+ s);
+		Department postUpdate = ds.getDepartmentById(11);
 		System.out.println(postUpdate);
 		
 		

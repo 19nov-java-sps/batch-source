@@ -87,8 +87,7 @@ public class DepartmentDaoImpl implements DepartmentDao {
 		String sql = "update department set dept_name = ?, monthly_budget = ? where dept_id = ?";
 		
 		try(Connection c = ConnectionUtil.getConnection();
-				PreparedStatement ps = c.prepareStatement(sql)){
-			
+				PreparedStatement ps = c.prepareStatement(sql)){	
 			ps.setString(1, d.getName());
 			ps.setDouble(2, d.getmonthlyBudget());
 			ps.setInt(3, d.getId());
@@ -104,7 +103,6 @@ public class DepartmentDaoImpl implements DepartmentDao {
 
 	@Override
 	public int deleteDepartment(Department d) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
