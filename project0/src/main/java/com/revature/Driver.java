@@ -16,6 +16,8 @@ public class Driver {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
+		System.out.println("=======================================================");
 		BankAcctService bas = new BankAcctService();
 		List<BankAcct> acct = bas.getBankAcct();
 		for (BankAcct a:  acct) {
