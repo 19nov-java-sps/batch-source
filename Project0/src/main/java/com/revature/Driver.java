@@ -4,14 +4,14 @@ import com.revature.service.UserService;
 
 public class Driver {
 	
-	private static boolean isLogin = false;
+	private static String account = null;
 	
-    public static boolean isLogin() {
-		return isLogin;
+    public static String getAccount() {
+		return account;
 	}
 
-	public static void setLogin(boolean isLogin) {
-		Driver.isLogin = isLogin;
+	public static void setAccount(String account) {
+		Driver.account = account;
 	}
 
 	public static void main( String[] args ) {

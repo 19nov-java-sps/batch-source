@@ -5,6 +5,7 @@ import java.util.Scanner;
 import com.revature.Driver;
 import com.revature.dao.UserDao;
 import com.revature.dao.impl.UserDaoImpl;
+import com.revature.model.User;
 
 public class UserService {
 	
@@ -14,18 +15,23 @@ public class UserService {
     
     public void startService() {
 
-    	if (Driver.isLogin() == false) {
+    	if (Driver.getAccount() == null) {
 	    	System.out.println("Welcome to MyBank!");
 	        System.out.println("==================");
 	        System.out.println("Login-------------1");
 	        System.out.println("Register----------2");
     	} else {
     		System.out.println("   Welcome Back User!   ");
-    		System.out.println("Account Information----4");
-    		System.out.println("Update Account Info----5");
-	        System.out.println("Logout-----------------3");
+    		System.out.println("========================");
+    		System.out.println("Account Information----3");
+    		System.out.println("Update Account Info----4");
+    		System.out.println("Transaction History----5");
+    		System.out.println("Deposit----------------6");
+    		System.out.println("Withdraw---------------7");
+    		System.out.println("Transfer---------------8");
+	        System.out.println("Logout-----------------9");
     	}
-        
+    	
     	
         int action = sc.nextInt();
         
@@ -39,6 +45,10 @@ public class UserService {
 			break;
 			
 		case 3:
+			this.getUserAcc();
+			break;
+			
+		case 9:
 			this.logout();
 			break;
 
@@ -51,7 +61,7 @@ public class UserService {
     
 	public void login() {
 		
-		if (Driver.isLogin() == false) {
+		if (Driver.getAccount() == null) {
 			
 			sc.nextLine();
 			System.out.println("Username: ");
@@ -60,7 +70,7 @@ public class UserService {
 			String password = sc.nextLine();
 
 			if (userDao.login(userName, password) == true) {
-	    		System.out.println("Login success");
+	    		System.out.println("Login Successful");
 			} else {
 		        System.out.println("Wrong User Name or Password. Please try again!");
 			}
@@ -76,7 +86,7 @@ public class UserService {
 		userDao.login(userName, password);
 		
 		if (userDao.login(userName, password) == true) {
-    		System.out.println("Login success");
+    		System.out.println("Login Successful");
 		} else {
 	        System.out.println("Wrong User Name or Password. Please try again!");
 		}
@@ -86,7 +96,7 @@ public class UserService {
 	
 	public void register() {
 		
-		if (Driver.isLogin() == false) {
+		if (Driver.getAccount() == null) {
 			
 			sc.nextLine();
 			System.out.println("Enter Username (must be 5 to 10 characters)");
@@ -117,6 +127,27 @@ public class UserService {
 		
 		userDao.logout();
 		this.startService();
+	}
+	
+	public boolean getUserAcc() {
+		if (Driver.getAccount() == null) {
+			System.out.println("Please Login First!");
+			this.startService();
+			return false;
+		} else {
+			User u = userDao.getAccInfo();
+			System.out.println("Name: " + u.getFirstName() + " " + u.getLastName() + "\n");
+			System.out.println("Email: " + u.getEmail() + "\n");
+			System.out.println("Phone: " + u.getPhone() + "\n");
+			System.out.println("Account Number: " + u.getAccountNum() + "\n");
+			System.out.println("Current Balance: " + u.getBalance() + "\n");
+			
+			sc.nextLine();
+			sc.nextLine();
+			this.startService();
+			
+			return true;
+		}
 	}
 
 }

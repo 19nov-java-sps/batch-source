@@ -13,14 +13,14 @@ public class User implements Serializable {
 	private String password;
 	private String email;
 	private String phone;
-	private String account;
+	private String accountNum;
 	private double balance;
 		
 	public User() {
 		super();
 	}
 	
-	public User(int id, String firstName, String lastName, String userName, String password, String email, String phone, String account, double balance) {
+	public User(int id, String firstName, String lastName, String userName, String password, String email, String phone, String accountNum, double balance) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -28,7 +28,7 @@ public class User implements Serializable {
 		this.password = password;
 		this.email = email;
 		this.phone = phone;
-		this.account = account;
+		this.accountNum = accountNum;
 		this.balance = balance;
 	}
 	
@@ -88,12 +88,12 @@ public class User implements Serializable {
 		this.phone = phone;
 	}
 
-	public String getAccount() {
-		return account;
+	public String getAccountNum() {
+		return accountNum;
 	}
 
-	public void setAccount(String account) {
-		this.account = account;
+	public void setAccountNum(String accountNum) {
+		this.accountNum = accountNum;
 	}
 
 	public double getBalance() {
@@ -107,7 +107,7 @@ public class User implements Serializable {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", userName=" + userName
-				+ ", password=" + password + ", email=" + email + ", phone=" + phone + ", account=" + account
+				+ ", password=" + password + ", email=" + email + ", phone=" + phone + ", accountNum=" + accountNum
 				+ ", balance=" + balance + "]";
 	}
 
@@ -115,7 +115,7 @@ public class User implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((account == null) ? 0 : account.hashCode());
+		result = prime * result + ((accountNum == null) ? 0 : accountNum.hashCode());
 		long temp;
 		temp = Double.doubleToLongBits(balance);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
@@ -138,10 +138,10 @@ public class User implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		if (account == null) {
-			if (other.account != null)
+		if (accountNum == null) {
+			if (other.accountNum != null)
 				return false;
-		} else if (!account.equals(other.account))
+		} else if (!accountNum.equals(other.accountNum))
 			return false;
 		if (Double.doubleToLongBits(balance) != Double.doubleToLongBits(other.balance))
 			return false;
