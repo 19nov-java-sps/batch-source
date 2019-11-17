@@ -1,7 +1,5 @@
 package com.revature.dao.impl;
 
-import static org.hamcrest.CoreMatchers.nullValue;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,14 +14,20 @@ import com.revature.util.ConnectionUtil;
 public class UserDaoImpl implements UserDao {
 		
 	@Override
-	public boolean login(String userName, String password) {
+	public boolean login(String user, String password) {
 		
-		String sql = "select \"UserName\", \"Password\", \"AccountNumber\" from \"User\" where \"UserName\" = ? and \"Password\" = ?";
-
+		String sql = "";
+		
+		if (user.matches("^(.+)@(.+)$")) {
+			sql = "select \"UserName\", \"Password\", \"AccountNumber\" from \"User\" where \"Email\" = ? and \"Password\" = ?";
+		} else {
+			sql = "select \"UserName\", \"Password\", \"AccountNumber\" from \"User\" where \"UserName\" = ? and \"Password\" = ?";
+		}
+		
 		try(Connection c = ConnectionUtil.getConnection();
         		PreparedStatement ps = c.prepareStatement(sql)) {
         	
-        	ps.setString(1, userName);
+        	ps.setString(1, user);
         	ps.setString(2, password);
         	ResultSet rs = ps.executeQuery();
         	
@@ -47,11 +51,11 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public boolean register(String userName, String password, String firstName, String lastName, String email,
+	public int register(String userName, String password, String firstName, String lastName, String email,
 			String phone) {
 		// TODO Auto-generated method stub
 		System.out.println("Register Successful!");
-		return true;
+		return 1;
 	}
 
 	@Override
@@ -60,7 +64,7 @@ public class UserDaoImpl implements UserDao {
 		User user = null;
 		
 //		String sql = "select \"UserId\", \"FirstName\", \"LastName\", \"UserName\", \"Email\", \"Phone\", \"AccountNumber\", \"AccountBalance\" from \"User\" where \"AccountNumber\" = '123456789'";
-		String sql = "select * from \"User\" where \"AccountNumber\" = '123456789'";
+		String sql = "select * from \"User\" where \"AccountNumber\" = " + Driver.getAccount();
 		
 		try (Connection c = ConnectionUtil.getConnection();
 				Statement s = c.createStatement();
@@ -90,9 +94,9 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public String UpdateAccInfo(String password, String firstName, String lastName, String email, String phone) {
+	public int UpdateAccInfo(String password, String firstName, String lastName, String email, String phone) {
 		// TODO Auto-generated method stub
-		return null;
+		return 1;
 	}
 
 }

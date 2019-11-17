@@ -6,6 +6,7 @@ import com.revature.Driver;
 import com.revature.dao.UserDao;
 import com.revature.dao.impl.UserDaoImpl;
 import com.revature.model.User;
+import com.revature.util.ValidateInputUtil;
 
 public class UserService {
 	
@@ -48,6 +49,10 @@ public class UserService {
 			this.getUserAcc();
 			break;
 			
+		case 4:
+			this.updateAcc();
+			break;
+			
 		case 9:
 			this.logout();
 			break;
@@ -64,7 +69,7 @@ public class UserService {
 		if (Driver.getAccount() == null) {
 			
 			sc.nextLine();
-			System.out.println("Username: ");
+			System.out.println("Username or Email: ");
 			String userName = sc.nextLine();
 			System.out.println("Password: ");
 			String password = sc.nextLine();
@@ -81,11 +86,11 @@ public class UserService {
 		this.startService();
 	}
 	
-	public void login(String userName, String password) {
+	public void login(String user, String password) {
 		
-		userDao.login(userName, password);
+		boolean loginSuccess = userDao.login(user, password);
 		
-		if (userDao.login(userName, password) == true) {
+		if (loginSuccess == true) {
     		System.out.println("Login Successful");
 		} else {
 	        System.out.println("Wrong User Name or Password. Please try again!");
@@ -94,33 +99,54 @@ public class UserService {
 		this.startService();
 	}
 	
-	public void register() {
+	public boolean register() {
 		
 		if (Driver.getAccount() == null) {
 			
 			sc.nextLine();
-			System.out.println("Enter Username (must be 5 to 10 characters)");
+			
+			System.out.println("Enter Username (must between 5 to 12 characters)");
 			String userName = sc.nextLine();
-			System.out.println("Enter Password (must be 8 to 16 characters)");
+			
+			System.out.println("Enter Password (must between 8 to 16 characters)");
 			String password = sc.nextLine();
-			System.out.println("Enter First Name");
+			
+			System.out.println("Re-Enter Your Password");
+			String rePass = sc.nextLine();
+			
+			System.out.println("Enter Your First Name");
 			String firstName = sc.nextLine();
-			System.out.println("Enter Last Name");
+			
+			System.out.println("Enter Your Last Name");
 			String lastName = sc.nextLine();
+			
 			System.out.println("Enter Your Email");
 			String email = sc.nextLine();
-			System.out.println("Enter Your Phone");
-			String phone = sc.nextLine();
+			
+			System.out.println("Enter Your Phone Number");
+			String phone = sc.nextLine().replaceAll("[^0-9]", "");
+			
+			if (ValidateInputUtil.validateInput(userName, password, rePass, firstName, lastName, email, phone) == false) {
+				this.startService();
+				return false;
+			}
+			
+			phone = phone.replaceFirst("(\\d{3})(\\d{3})(\\d+)", "$1-$2-$3");
 						
-			if (userDao.register(userName, password, firstName, lastName, email, phone) == true) {
+			if (userDao.register(userName, password, firstName, lastName, email, phone) == 1) {
 				this.login(userName, password);
+			} else {
+				this.startService();
+				return false;
 			}
 			
 		} else {
 			System.out.println("You Already Login.");
 		}
 
+		System.out.println("Register Successful!");
 		this.startService();
+		return true;
 	}
 	
 	public void logout() {
@@ -130,6 +156,7 @@ public class UserService {
 	}
 	
 	public boolean getUserAcc() {
+		
 		if (Driver.getAccount() == null) {
 			System.out.println("Please Login First!");
 			this.startService();
@@ -149,5 +176,49 @@ public class UserService {
 			return true;
 		}
 	}
+	
+	public boolean updateAcc() {
+		
+		if (Driver.getAccount() == null) {
+			System.out.println("Please Login First!");
+			this.startService();
+			return false;
+		}
+		
+		sc.nextLine();
+		System.out.println("Enter Your Password (must between 8 to 16 characters)");
+		String password = sc.nextLine();
+		
+		System.out.println("Re-Enter Your Password");
+		String rePass = sc.nextLine();
+		
+		System.out.println("Enter Your First Name");
+		String firstName = sc.nextLine();
+		
+		System.out.println("Enter Your Last Name");
+		String lastName = sc.nextLine();
+		
+		System.out.println("Enter Your Email");
+		String email = sc.nextLine();
+		
+		System.out.println("Enter Your Phone Number");
+		String phone = sc.nextLine();
+		
+		if (ValidateInputUtil.validateInput(password, rePass, firstName, lastName, email, phone) == false) {
+			this.startService();
+			return false;
+		}
+		
+		if (userDao.UpdateAccInfo(password, firstName, lastName, email, phone) == 0) {
+			this.startService();
+			return false;
+		}
+		
+		System.out.println("Update Your Account Success!");
+		this.startService();
+		return true;			
+	}
+	
+	
 
 }
