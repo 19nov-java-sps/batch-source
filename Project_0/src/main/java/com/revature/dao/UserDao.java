@@ -6,7 +6,7 @@ import com.revature.model.User;
 
 public interface UserDao {
 	
-	public int createUserTable();	// Used to create the users table.
+	public int createUserTable();	// Used to create the users table. (Only used once)
 	public int createUser(User u);	// Used to create a new user.
 	public int updateUser(String username, double newBalance);	// Used to withdraw or deposit.
 	public int deleteUser(String username);	// Used to delete user.

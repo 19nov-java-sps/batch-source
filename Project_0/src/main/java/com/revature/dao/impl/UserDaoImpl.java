@@ -58,7 +58,7 @@ public class UserDaoImpl implements UserDao {
 			e.printStackTrace();
 		}
 		
-		return usersCreated;
+		return usersCreated;	// returns a 1 to then check if the user was created or not.
 	}
 
 	@Override
@@ -132,12 +132,13 @@ public class UserDaoImpl implements UserDao {
 	public List<User> getUserTable() {
 		
 		String sql = "select * from users";
-		List<User> userTable = new ArrayList<>();
+		List<User> userTable = new ArrayList<>();	// Used to store all the users.
 		
 		try(Connection c = ConnectionUtil.getConnection();
 				Statement s = c.createStatement();
 				ResultSet rs = s.executeQuery(sql)){
 			
+				// Keeps on looping until it doesn't see any more users.
 				while (rs.next()) {
 					String username = rs.getString("username");
 					String password = rs.getString("password");

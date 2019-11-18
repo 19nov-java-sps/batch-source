@@ -3,6 +3,9 @@ package com.revature.service;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -21,6 +24,7 @@ public class UserServiceTest {
 	@Mock
 	private UserDao ud;
 	
+	// Tests the createUser function
 	@Test
 	public void testCreatingUser() {
 		
@@ -35,6 +39,7 @@ public class UserServiceTest {
 		assertEquals(expected, actual);
 	}
 	
+	// Tests the updateUser function
 	@Test
 	public void testUpdatingUser() {
 		
@@ -49,6 +54,7 @@ public class UserServiceTest {
 		assertEquals(expected, actual);
 	}
 	
+	// Tests the deleteUser function
 	@Test
 	public void testDeletingUser() {
 		
@@ -61,5 +67,19 @@ public class UserServiceTest {
 		int actual = us.deleteUser(u.getUsername());
 		
 		assertEquals(expected, actual);
+	}
+	
+	// Tests the getUserTable function
+	@Test
+	public void testGetUsersTable() {
+		
+		List<User> usersTable = new ArrayList<>();
+		
+		usersTable.add(new User());
+		usersTable.add(new User());
+		
+		when(ud.getUserTable()).thenReturn(usersTable);
+		
+		assertEquals(us.getUserTable().size(),2);
 	}
 }

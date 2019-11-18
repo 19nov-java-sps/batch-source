@@ -7,7 +7,7 @@ import com.revature.service.UserService;
 
 public class Prompt {
 	
-	Scanner sc = new Scanner(System.in);	// Used to read in console input.
+	Scanner sc = new Scanner(System.in);	// Used to read input from console.
 	UserService us = new UserService();		// Used to call various methods for CRUD operations.
 	
 	public Prompt() {
@@ -41,6 +41,7 @@ public class Prompt {
 			System.exit(0);
 			
 			break;
+			// if the user inputs anything besides 1, 2 or 3 then this message shows and it recursively calls itself again.
 		default:
 			System.out.println("That isn't an option try again!\n\n");
 			welcomeMsg();
@@ -104,7 +105,7 @@ public class Prompt {
 		System.out.println("Enter your username: ");
 		String username = sc.next();
 		
-		if (username.equals("b")) {	// if the user accidentally chose to log in, then they can go back by inputting -1.
+		if (username.equals("b")) {	// if the user accidentally chose to log in, then they can go back by inputting "b".
 			welcomeMsg();
 		}
 		
@@ -132,8 +133,8 @@ public class Prompt {
 		
 		String answer = sc.next();
 		
-		while (answer != null) {
-			
+		while (answer != null) {	// I use null here since the switch already has a log out feature, and answer can never be null.
+									
 			switch (answer) {
 			// VIEW BALANCE
 			case "1":
@@ -182,7 +183,7 @@ public class Prompt {
 			}
 			
 			System.out.println("\nWhat else would you like to do?");
-			answer = sc.next();	// After the switch statement, the user can choose another option.
+			answer = sc.next();	// This switch is in a while loop and will keep asking until the user decides to log out.
 		}
 		
 	}
@@ -193,18 +194,19 @@ public class Prompt {
 		System.out.println("\nHow much do you want to deposit?");
 		double depositAmount = sc.nextDouble();
 		
+		// checks for negative values.
 		while (depositAmount < 0) {
 			System.out.println("\nNegative values are not allowed!");
 			System.out.println("\n\nHow much do you want to deposit?");
 			depositAmount = sc.nextDouble();
 		}
 		
-		
+		// stores the new balance by adding the deposit to the existing balance.
 		double newBalanceDep = depositAmount + u.getBalance();
 		
 		
 		us.updateUser(u.getUsername(), newBalanceDep);
-		System.out.println("\n\tDeposit Successful!");
+		System.out.println("\n\tDeposit Successful!"); // message to show that the deposit went through.
 	}
 	
 	// Withdraw function
@@ -213,15 +215,15 @@ public class Prompt {
 		System.out.println("\nHow much do you want to withdraw?");
 		double withdrawAmount = sc.nextDouble();
 		
-		
+		// checks if the input is negative.
 		while (withdrawAmount < 0) {
 			System.out.println("\nNegative values are not allowed!");
 			System.out.println("\n\nHow much do you want to withdraw?");
 			withdrawAmount = sc.nextDouble();
 		}
 		
-		
-		double newBalanceWit = u.getBalance() - withdrawAmount;	// new balance after withdrawing.
+		// stores the new balance by subtracting the withdraw amount from the current balance.
+		double newBalanceWit = u.getBalance() - withdrawAmount;
 		
 		
 		// if it is negative that means the withdraw amount was larger than balance.
@@ -234,7 +236,7 @@ public class Prompt {
 		
 		
 		us.updateUser(u.getUsername(), newBalanceWit);	// updates the user balance.
-		System.out.println("\n\tWithdraw Successful!");
+		System.out.println("\n\tWithdraw Successful!");	// message to show that the withdraw went through.
 	}
 	
 }
