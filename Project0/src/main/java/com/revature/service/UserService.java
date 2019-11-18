@@ -131,8 +131,8 @@ public class UserService {
 				return false;
 			}
 			
-			phone = phone.replaceFirst("(\\d{3})(\\d{3})(\\d+)", "$1-$2-$3");
-						
+			phone = phone.replaceFirst("(\\d{3})(\\d{3})(\\d+)", "($1) $2-$3");
+			
 			if (userDao.register(userName, password, firstName, lastName, email, phone) == 1) {
 				this.login(userName, password);
 			} else {
@@ -185,36 +185,31 @@ public class UserService {
 			return false;
 		}
 		
-		sc.nextLine();
+		User u = userDao.getAccInfo();
+		sc.nextLine();		
 		System.out.println("Enter Your Password (must between 8 to 16 characters)");
 		String password = sc.nextLine();
 		
 		System.out.println("Re-Enter Your Password");
 		String rePass = sc.nextLine();
 		
-		System.out.println("Enter Your First Name");
-		String firstName = sc.nextLine();
-		
-		System.out.println("Enter Your Last Name");
-		String lastName = sc.nextLine();
-		
 		System.out.println("Enter Your Email");
 		String email = sc.nextLine();
 		
 		System.out.println("Enter Your Phone Number");
-		String phone = sc.nextLine();
+		String phone = sc.nextLine().replaceAll("[^0-9]", "");
 		
-		if (ValidateInputUtil.validateInput(password, rePass, firstName, lastName, email, phone) == false) {
+		if (ValidateInputUtil.validateInput(password, rePass, email, phone) == false) {
 			this.startService();
 			return false;
 		}
 		
-		if (userDao.UpdateAccInfo(password, firstName, lastName, email, phone) == 0) {
+		if (userDao.UpdateAccInfo(u, password, email, phone) == 0) {
 			this.startService();
 			return false;
 		}
 		
-		System.out.println("Update Your Account Success!");
+		System.out.println("Update Your Account Information Success!");
 		this.startService();
 		return true;			
 	}
