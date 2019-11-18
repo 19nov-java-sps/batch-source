@@ -1,16 +1,21 @@
 package com.revature.service;
 
+import java.util.List;
 import java.util.Scanner;
 
 import com.revature.Driver;
+import com.revature.dao.TransactionDao;
 import com.revature.dao.UserDao;
+import com.revature.dao.impl.TransactionDaoImpl;
 import com.revature.dao.impl.UserDaoImpl;
+import com.revature.model.Transaction;
 import com.revature.model.User;
 import com.revature.util.ValidateInputUtil;
 
-public class UserService {
+public class BankingService {
 	
 	private UserDao userDao = new UserDaoImpl();
+	private TransactionDao transactionDao = new TransactionDaoImpl();
 	
     private static Scanner sc = new Scanner(System.in);
     
@@ -51,6 +56,10 @@ public class UserService {
 			
 		case 4:
 			this.updateAcc();
+			break;
+			
+		case 5:
+			this.viewTransHistory();
 			break;
 			
 		case 9:
@@ -214,6 +223,35 @@ public class UserService {
 		return true;			
 	}
 	
+	public boolean viewTransHistory() {
+		
+		if (Driver.getAccount() == null) {
+			System.out.println("Please Login First!");
+			this.startService();
+			return false;
+		} else {
+			List<Transaction> transHistoy = transactionDao.getTransactionHistory();
+			
+			if (transHistoy.size() > 0) {
+				for (Transaction th: transHistoy) {
+					System.out.println("_______________________________________");
+					System.out.println(th.getType() + " to Account Number " + th.getAccountNum() + "\n");
+					System.out.println("Amount: " + th.getAmount() + "\n");
+					System.out.println("Date: " + th.getDate() + "\n");
+					System.out.println("Balance: " + th.getBalanceAfterTrans() + "\n");
+					System.out.println("_______________________________________");
+				}
+			} else {
+				System.out.println("You don't have any transaction yet.");
+			}
+			
+			sc.nextLine();
+			sc.nextLine();
+			this.startService();
+			
+			return true;
+		}
+	}
 	
 
 }
