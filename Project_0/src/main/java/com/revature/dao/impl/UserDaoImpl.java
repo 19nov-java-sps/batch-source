@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.revature.dao.UserDao;
 import com.revature.model.User;
@@ -37,6 +39,7 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public int createUser(User u) {
 		
+		// using parameterized statement in order to avoid SQL injection.
 		String sql = "insert into Users (username, password, first_name, last_name, user_balance) values (?, ?, ?, ?, ?)";
 		int usersCreated = 0;
 		
@@ -49,7 +52,7 @@ public class UserDaoImpl implements UserDao {
 			ps.setString(4, u.getLastName());
 			ps.setDouble(5, u.getBalance());
 			
-			usersCreated = ps.executeUpdate();
+			usersCreated = ps.executeUpdate();	// stores a 1 which refers to the updated rows in SQL.
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -124,5 +127,34 @@ public class UserDaoImpl implements UserDao {
 		}
 		return u;
 	}
+
+	@Override
+	public List<User> getUserTable() {
+		
+		String sql = "select * from users";
+		List<User> userTable = new ArrayList<>();
+		
+		try(Connection c = ConnectionUtil.getConnection();
+				Statement s = c.createStatement();
+				ResultSet rs = s.executeQuery(sql)){
+			
+				while (rs.next()) {
+					String username = rs.getString("username");
+					String password = rs.getString("password");
+					String firstName = rs.getString("first_name");
+					String lastName = rs.getString("last_name");
+					double balance = rs.getDouble("user_balance");
+					User u = new User(username, password, firstName, lastName, balance);
+					userTable.add(u);
+				}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return userTable;
+	}
+	
+	
 
 }

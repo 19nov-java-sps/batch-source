@@ -1,5 +1,7 @@
 package com.revature.service;
 
+import java.util.List;
+
 import com.revature.dao.UserDao;
 import com.revature.dao.impl.UserDaoImpl;
 import com.revature.model.User;
@@ -40,5 +42,10 @@ public class UserService {
 	public User getUser(String username) {
 		
 		return ud.getUser(username);
+	}
+	
+	public List<User> getUserTable() {
+		
+		return ud.getUserTable();
 	}
 }
