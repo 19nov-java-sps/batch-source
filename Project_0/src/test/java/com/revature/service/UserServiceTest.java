@@ -46,6 +46,7 @@ public class UserServiceTest {
 		boolean expected = true;
 		
 		User u = new User("adonis", "123", "adonis", "cabreja", 0);
+		u.setBalance(10);
 		
 		when(ud.updateUser(u.getUsername(), u.getBalance())).thenReturn(true);
 		
@@ -65,6 +66,19 @@ public class UserServiceTest {
 		when(ud.deleteUser(u.getUsername())).thenReturn(1);
 		
 		int actual = us.deleteUser(u.getUsername());
+		
+		assertEquals(expected, actual);
+	}
+	
+	// Tests the testGetUser function
+	@Test
+	public void testGetUser() {
+		
+		User expected = new User("adonis", "123", "adonis", "cabreja", 0);
+		
+		when(ud.getUser("adonis")).thenReturn(new User("adonis", "123", "adonis", "cabreja", 0));
+		
+		User actual = us.getUser("adonis");
 		
 		assertEquals(expected, actual);
 	}

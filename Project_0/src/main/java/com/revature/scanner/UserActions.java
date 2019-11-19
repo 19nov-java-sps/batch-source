@@ -17,7 +17,7 @@ public class UserActions {
 
 	
 	// Deposit function
-	protected void deposit(User u) {
+	void deposit(User u) {
 		
 		System.out.println("\nHow much do you want to deposit?");
 		double depositAmount = sc.nextDouble();
@@ -41,7 +41,7 @@ public class UserActions {
 	
 	
 	// Withdraw function
-	protected void withdraw(User u) {
+	void withdraw(User u) {
 		
 		System.out.println("\nHow much do you want to withdraw?");
 		double withdrawAmount = sc.nextDouble();
@@ -75,7 +75,7 @@ public class UserActions {
 	
 	
 	// transfer to a user function.
-	protected void transfer(User usr1) {
+	void transfer(User usr1) {
 		
 		System.out.println("\nWho do you want to transfer to?");
 		
@@ -84,6 +84,7 @@ public class UserActions {
 		System.out.println("--------");
 		List<User> userTable = us.getUserTable();
 		for (User u : userTable) {
+			// doesn't display the username of the person that is transferring.
 			if (u.getUsername().equals(usr1.getUsername())) {
 				continue;
 			}
@@ -100,7 +101,7 @@ public class UserActions {
 		}
 		
 		
-		// creates a new User by using the name that was entered.
+		// creates a new User by calling the getUser method with the username that was entered.
 		User usr2 = us.getUser(user);
 		
 		System.out.println("\nHow much?");

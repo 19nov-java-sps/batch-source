@@ -13,10 +13,11 @@ public class Driver {
 		// Creates a new prompt and calls welcomeMsg which then calls other functions depending on the user's choices.
 		Prompt p = new Prompt();
 		p.welcomeMsg();
-		
-//		UserService us = new UserService();
+
 		
 		// USED TO CHECK THE USERS TABLE.	(ONLY USED FOR TESTING)
+//		UserService us = new UserService();
+				
 //		List<User> userTable = us.getUserTable();
 //		for (User u : userTable) {
 //			System.out.println(u);

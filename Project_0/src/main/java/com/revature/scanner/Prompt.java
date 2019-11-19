@@ -9,7 +9,7 @@ public class Prompt {
 	
 	Scanner sc = new Scanner(System.in);	// Used to read input from console.
 	UserService us = new UserService();		// Used to call various methods for CRUD operations.
-	UserActions ua = new UserActions();
+	UserActions ua = new UserActions();		// Used to call methods like withdraw, deposit and transfer.
 	
 	public Prompt() {
 		super();
