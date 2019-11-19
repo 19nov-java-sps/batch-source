@@ -22,6 +22,17 @@ import java.sql.SQLException;
  */
 
 public class ConnectionUtil {
+	/*
+	 * Adding another parameter from environment variables 
+	 * So that I can configure the test environment in the run
+	 * configuration - junit run configuration would have an
+	 * environment variable jdbc_db_test set to "true"
+	 * while our Driver configuration would have the 3 
+	 * credential based environment variables set
+	 * 
+	 */
+	
+	private static boolean isTest = Boolean.valueOf(System.getenv("jdbc_db_test"));
 	
 	private static Connection connection;
 	
@@ -39,12 +50,19 @@ public class ConnectionUtil {
 	}
 	
 	public static Connection getConnection() throws SQLException {
-		String url = "jdbc:postgresql://"+System.getenv("jdbc_db_host")+":5432/postgres";
-		String username = System.getenv("jdbc_db_user");
-		String password = System.getenv("jdbc_db_pass");
-	
-		if(connection == null || connection.isClosed()) {
-			connection = DriverManager.getConnection(url, username, password);
+		if(isTest==true) {
+			if(connection == null || connection.isClosed()) {
+				connection = DriverManager.getConnection("jdbc:h2:~/test");
+			}
+			
+		} else {
+			String url = "jdbc:postgresql://"+System.getenv("jdbc_db_host")+":5432/postgres";
+			String username = System.getenv("jdbc_db_user");
+			String password = System.getenv("jdbc_db_pass");
+		
+			if(connection == null || connection.isClosed()) {
+				connection = DriverManager.getConnection(url, username, password);
+			}
 		}
 		return connection;
 	}
