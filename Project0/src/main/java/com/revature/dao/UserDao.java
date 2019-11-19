@@ -8,7 +8,7 @@ public interface UserDao {
 	public void logout();
 	public int register(String userName, String password, String firstName, String lastName, String email, String phone);
 	
-	public User getAccInfo();
+	public User getAccInfo(String account);
 	public int UpdateAccInfo(User u, String password, String email, String phone);
 
 }

@@ -97,11 +97,11 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public User getAccInfo() {
+	public User getAccInfo(String account) {
 		
 		User user = null;
 
-		String sql = "select * from \"User\" where \"AccountNumber\" = " + Driver.getAccount();
+		String sql = "select * from \"User\" where \"AccountNumber\" = " + account;
 		
 		try (Connection c = ConnectionUtil.getConnection();
 				Statement s = c.createStatement();

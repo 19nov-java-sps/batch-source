@@ -6,10 +6,10 @@ import com.revature.model.Transaction;
 
 public interface TransactionDao {
 
-	public List<Transaction> getTransactionHistory();
+	public List<Transaction> getTransactionHistory(String account);
 	
-	public boolean deposit(Double amount);
-	public boolean withdraw(Double amount);
-	public boolean transferTo(Double amount, String transferAcc);
+	public double deposit(double amount, int account);
+	public double withdraw(double amount, int account);
+	public double transferTo(double amount, int account, int transferAcc);
 
 }
