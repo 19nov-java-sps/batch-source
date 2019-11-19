@@ -1,7 +1,10 @@
 package com.revature.model;
 
 import java.io.Serializable;
+import java.util.List;
 
+//Makes the object 'BankAcct' Serializable ; which means to convert its state into a byte stream
+//so that the byte stream can be converted back into a copy of the object. To persist the data.
 public class BankAcct implements Serializable {
 	
 		private static final long serialVersionUID = 1L;
@@ -112,10 +115,6 @@ public class BankAcct implements Serializable {
 			return "BankAcct [firstName=" + firstName + ", lastName=" + lastName + ", balance=" + balance + ", userid="
 					+ userId + "]";
 		}
-		
-		
-		
-		
-		
+
 		
 }
