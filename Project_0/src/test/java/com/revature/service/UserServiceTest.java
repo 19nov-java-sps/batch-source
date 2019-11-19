@@ -43,13 +43,13 @@ public class UserServiceTest {
 	@Test
 	public void testUpdatingUser() {
 		
-		int expected = 1;
+		boolean expected = true;
 		
 		User u = new User("adonis", "123", "adonis", "cabreja", 0);
 		
-		when(ud.updateUser(u.getUsername(), u.getBalance())).thenReturn(1);
+		when(ud.updateUser(u.getUsername(), u.getBalance())).thenReturn(true);
 		
-		int actual = us.updateUser(u.getUsername(), u.getBalance());
+		boolean actual = us.updateUser(u.getUsername(), u.getBalance());
 		
 		assertEquals(expected, actual);
 	}

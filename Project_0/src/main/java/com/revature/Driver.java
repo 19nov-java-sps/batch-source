@@ -14,9 +14,7 @@ public class Driver {
 		Prompt p = new Prompt();
 		p.welcomeMsg();
 		
-		// USED TO CREATE A TABLE			(ONLY USED ONCE)
 //		UserService us = new UserService();
-//		us.createUserTable();
 		
 		// USED TO CHECK THE USERS TABLE.	(ONLY USED FOR TESTING)
 //		List<User> userTable = us.getUserTable();

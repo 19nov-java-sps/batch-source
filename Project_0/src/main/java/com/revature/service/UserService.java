@@ -10,12 +10,10 @@ public class UserService {
 	
 	private UserDao ud = new UserDaoImpl();
 	
-	// CREATE USER TABLE
-	public int createUserTable() {
-	
-		return ud.createUserTable();
+	public UserService() {
+		super();
 	}
-	
+
 	// CREATE NEW USER
 	public String createUser(User u) {
 		
@@ -27,7 +25,7 @@ public class UserService {
 	}
 	
 	// UPDATE USER (WITHDRAW OR DEPOSIT)
-	public int updateUser(String username, double newBalance) {
+	public boolean updateUser(String username, double newBalance) {
 		
 		return ud.updateUser(username, newBalance);
 	}

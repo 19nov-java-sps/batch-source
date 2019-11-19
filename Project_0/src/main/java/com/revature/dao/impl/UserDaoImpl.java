@@ -1,5 +1,6 @@
 package com.revature.dao.impl;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,32 +16,10 @@ import com.revature.util.ConnectionUtil;
 public class UserDaoImpl implements UserDao {
 
 	@Override
-	public int createUserTable() {
-		
-		String sql = "create table Users (username varchar(50), "
-				+ "password varchar(50),"
-				+ "first_name varchar(50),"
-				+ "last_name varchar(50),"
-				+ "user_balance numeric (7,2))";
-		
-		
-		try(Connection c = ConnectionUtil.getConnection();
-				Statement s = c.createStatement()){
-				s.executeUpdate(sql);
-				System.out.println("User Table Created!");
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return 0;
-	}
-
-	@Override
 	public int createUser(User u) {
 		
 		// using parameterized statement in order to avoid SQL injection.
-		String sql = "insert into Users (username, password, first_name, last_name, user_balance) values (?, ?, ?, ?, ?)";
+		String sql = "insert into Users (user_name, pass_word, first_name, last_name, user_balance) values (?, ?, ?, ?, ?)";
 		int usersCreated = 0;
 		
 		try(Connection c = ConnectionUtil.getConnection();
@@ -62,29 +41,29 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public int updateUser(String username, double newBalance) {
+	public boolean updateUser(String username, double newBalance) {
 		
-		String sql = "update users set user_balance = ? where username = ?";
-		int userUpdated = 0;
+		String sql = "{ call updateBalance(?,?) }";
+		boolean userCreated = false;
 		
+		// Using callable statement to call an SQL function.
 		try(Connection c = ConnectionUtil.getConnection();
-				PreparedStatement ps = c.prepareStatement(sql)){
+				CallableStatement cs = c.prepareCall(sql)){
 			
-			ps.setDouble(1, newBalance);
-			ps.setString(2, username);
-			userUpdated = ps.executeUpdate();
+			cs.setString(1, username);
+			cs.setDouble(2, newBalance);
+			userCreated = cs.execute();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		return userUpdated;
+		return userCreated;
 	}
 
 	@Override
 	public int deleteUser(String username) {
 		
-		String sql = "delete from users u where u.username = ?";
+		String sql = "delete from users u where u.user_name = ?";
 		int userDeleted = 0;
 		
 		try(Connection c = ConnectionUtil.getConnection();
@@ -103,7 +82,7 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public User getUser(String username) {
 		
-		String sql = "select * from Users u where u.username = ?";
+		String sql = "select * from Users u where u.user_name = ?";
 		User u = new User();
 		
 		try(Connection c = ConnectionUtil.getConnection();
@@ -115,8 +94,8 @@ public class UserDaoImpl implements UserDao {
 			
 			// if there is a result then set everything and return it.
 			if (rs.next()) {
-				u.setUsername(rs.getString("username"));
-				u.setPassword(rs.getString("password"));
+				u.setUsername(rs.getString("user_name"));
+				u.setPassword(rs.getString("pass_word"));
 				u.setFirstName(rs.getString("first_name"));
 				u.setLastName(rs.getString("last_name"));
 				u.setBalance(rs.getDouble("user_balance"));
@@ -140,8 +119,8 @@ public class UserDaoImpl implements UserDao {
 			
 				// Keeps on looping until it doesn't see any more users.
 				while (rs.next()) {
-					String username = rs.getString("username");
-					String password = rs.getString("password");
+					String username = rs.getString("user_name");
+					String password = rs.getString("pass_word");
 					String firstName = rs.getString("first_name");
 					String lastName = rs.getString("last_name");
 					double balance = rs.getDouble("user_balance");

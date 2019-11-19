@@ -9,6 +9,7 @@ public class Prompt {
 	
 	Scanner sc = new Scanner(System.in);	// Used to read input from console.
 	UserService us = new UserService();		// Used to call various methods for CRUD operations.
+	UserActions ua = new UserActions();
 	
 	public Prompt() {
 		super();
@@ -55,8 +56,12 @@ public class Prompt {
 		
 		User newUser = new User();
 		
-		System.out.println("Create a username: ");
+		System.out.println("Create a username (b to go back): ");
 		String username = sc.next().toLowerCase(); // use toLowerCase to not have similar user names that only vary with capital letters.
+		
+		if (username.equals("b")) {
+			welcomeMsg();
+		}
 		
 		while (username.length() < 5) {	// checks if the username is less than 5 characters long.
 			System.out.println("\nUsername should be more than 5 characters long!");
@@ -129,7 +134,7 @@ public class Prompt {
 	private void loggedInMsg(User u) {
 		
 		System.out.println("\n\nWelcome " + u.getFirstName() + " " + u.getLastName() + ".");
-		System.out.println("\nWhat would you like to do today?\n\n1. View Balance\n\n2. Deposit\n\n3. Withdraw\n\n4. Log out\n\n5. Delete account");
+		System.out.println("\nWhat would you like to do today?\n\n1. View Balance\n\n2. Deposit\n\n3. Withdraw\n\n4. Transfer to a user\n\n5. Log out\n\n6. Delete account");
 		
 		String answer = sc.next();
 		
@@ -145,34 +150,43 @@ public class Prompt {
 			// DEPOSIT
 			case "2":
 				
-				deposit(u);
-				u = us.getUser(u.getUsername());
+				ua.deposit(u);
+				u = us.getUser(u.getUsername());	// reassigns "u" to get the updated balance.
 				break;
 				
 			// WITHDRAW
 			case "3":
 				
-				withdraw(u);
+				ua.withdraw(u);
 				u = us.getUser(u.getUsername());				
+				break;
+			
+			// TRANSFER TO ANOTHER USER
+			case "4":
+				
+				ua.transfer(u);
+				u = us.getUser(u.getUsername());
 				break;
 				
 			// LOG OUT
-			case "4":
+			case "5":
 				
 				System.out.println("\nLogging out\n");
 				welcomeMsg();	// after logging out it goes back to the welcome message prompt.
 				break;
 				
 			// DELETE USER
-			case "5":
+			case "6":
 				
 				// checks if the user still has funds in their account before deleting.
 				if (u.getBalance() > 0) {	
 					System.out.println("\nPlease withdraw all funds before deleting account!");
 				} else {
+					
 					us.deleteUser(u.getUsername());
 					System.out.println("\nUser deleted!\n\n");
 					welcomeMsg();	// After deleting the account it goes back to the welcome message prompt.
+					
 				}
 				
 				break;
@@ -187,56 +201,4 @@ public class Prompt {
 		}
 		
 	}
-	
-	// Deposit function
-	private void deposit(User u) {
-		
-		System.out.println("\nHow much do you want to deposit?");
-		double depositAmount = sc.nextDouble();
-		
-		// checks for negative values.
-		while (depositAmount < 0) {
-			System.out.println("\nNegative values are not allowed!");
-			System.out.println("\n\nHow much do you want to deposit?");
-			depositAmount = sc.nextDouble();
-		}
-		
-		// stores the new balance by adding the deposit to the existing balance.
-		double newBalanceDep = depositAmount + u.getBalance();
-		
-		
-		us.updateUser(u.getUsername(), newBalanceDep);
-		System.out.println("\n\tDeposit Successful!"); // message to show that the deposit went through.
-	}
-	
-	// Withdraw function
-	private void withdraw(User u) {
-		
-		System.out.println("\nHow much do you want to withdraw?");
-		double withdrawAmount = sc.nextDouble();
-		
-		// checks if the input is negative.
-		while (withdrawAmount < 0) {
-			System.out.println("\nNegative values are not allowed!");
-			System.out.println("\n\nHow much do you want to withdraw?");
-			withdrawAmount = sc.nextDouble();
-		}
-		
-		// stores the new balance by subtracting the withdraw amount from the current balance.
-		double newBalanceWit = u.getBalance() - withdrawAmount;
-		
-		
-		// if it is negative that means the withdraw amount was larger than balance.
-		while (newBalanceWit < 0) {	
-			System.out.println("\nYou dont have enough funds!");
-			System.out.println("\n\nHow much do you want to withdraw? ");
-			withdrawAmount = sc.nextDouble();
-			newBalanceWit = u.getBalance() - withdrawAmount;
-		}
-		
-		
-		us.updateUser(u.getUsername(), newBalanceWit);	// updates the user balance.
-		System.out.println("\n\tWithdraw Successful!");	// message to show that the withdraw went through.
-	}
-	
 }
