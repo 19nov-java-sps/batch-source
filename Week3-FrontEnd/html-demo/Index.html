@@ -6,17 +6,24 @@
     <meta name="description" content="a demo taking a look at html tags">
     <link rel="icon" href="https://cdn4.iconfinder.com/data/icons/faces-10/96/Smiley-512.png" type="image">
     <title>My Webpage</title>
+    <link rel="stylesheet" type="text/css" href="MyStyle.css">
+
+    <style>
+        body{
+            background-color: lavender !important;
+        }
+    </style>
 </head>
-<body>
+<body style="background-color:aquamarine">
     <header>
-            <h1>Hello World</h1>
+            <h1 style="color:rgb(85, 67, 202)">Hello World</h1>
             <h4>Welcome to my Webpage</h4>
     </header>
     <article>
         <section>
                 <p>Don't fight it, use what happens. We'll paint one happy little tree right here. This present moment is perfect simply due to the fact you're experiencing it.</p>
 
-                <p>Any little thing can be your friend if you let it be. A tree needs to be your friend if you're going to paint him. A beautiful little sunset. Clouds are free. <span> They just float around the sky all day and have fun. </span> We wash our brush with odorless thinner.</p>
+                <p class="formatted-par">Any little thing can be your friend if you let it be. A tree needs to be your friend if you're going to paint him. A beautiful little sunset. Clouds are free. <span id="formatted-span"> They just float around the sky all day and have fun. </span> We wash our brush with odorless thinner.</p>
                 
                 <p>I thought today we would do a happy little picture. Let's build an almighty mountain. The least little bit can do so much. Here we're limited by the time we have. Everyone wants to enjoy the good parts - but you have to build the framework first. <strong>All you have to learn here is how to have fun.</strong></p>
                 
@@ -25,7 +32,7 @@
         <section>
                 <p>Let's make some happy little clouds in our world. <em> It's important to me that you're happy. </em> Just beat the devil out of it. Use your imagination, let it go. Now let's put some happy little clouds in here. This piece of canvas is your world.</p>
 
-                <p>This is where you take out all your hostilities and frustrations. It's better than kicking the puppy dog around and all that so. Here's something that's fun. I guess I'm a little weird. I like to talk to trees and animals. That's okay though; I have more fun than most people. Those great big fluffy clouds. It looks so good, I might as well not stop.</p>
+                <p class="formatted-par">This is where you take out all your hostilities and frustrations. It's better than kicking the puppy dog around and all that so. Here's something that's fun. I guess I'm a little weird. I like to talk to trees and animals. That's okay though; I have more fun than most people. Those great big fluffy clouds. It looks so good, I might as well not stop.</p>
                 
                 <p>Let your imagination be your guide. In your imagination you can go anywhere you want. Maybe there was an old trapper that lived out here and maybe one day he went to check his beaver traps, and maybe he fell into the river and drowned. Let's have a nice tree right here. You don't want to kill all your dark areas they are very important.</p>
         </section>
@@ -44,13 +51,16 @@
         <li><a href="http://www.superblindados.com/alaskan-waterfall-bob-ross-painting/" target="_blank" rel=" noopener noreferrer"> Alaskan Waterfall</a></li>
     </ul>
 
-    <h3>Bob's Color Mixes</h3>
     <table>
+        <caption>Bob's Color Mixes</caption>
+        <thead>
         <tr>
-            <th>Composite</th>
-            <th>Primary 1</th>
-            <th>Primary 2</th>
+            <th scope="col">Composite</th>
+            <th scope="col">Primary 1</th>
+            <th scope="col">Primary 2</th>
         </tr>
+    </thead>
+    <tbody>
         <tr>
             <td>Orange</td>
             <td>Red</td>
@@ -66,6 +76,7 @@
             <td>Blue</td>
             <td>Red</td>
         </tr>
+    </tbody>
     </table>
 
     <hr>
@@ -96,14 +107,14 @@
         </datalist>
 
         <br>
-        <input type="submit" value="Submit Form!">
+        <input id="submit-btn" type="submit" value="Submit Form!">
     </form>
 
     <br> <br> 
     <details>
-            <summary> Click here to see some Bob Ross inspiration</summary>
-            <p>You're meant to have fun in life.</p>
-        </details>
+        <summary> Click here to see some Bob Ross inspiration</summary>
+        <p>You're meant to have fun in life.</p>
+    </details>
     <hr><br> <br> 
     <footer>
         <p>Thanks for visiting my website</p>
