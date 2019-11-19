@@ -2,6 +2,9 @@ package com.revature.model;
 
 import java.io.Serializable;
 
+// Makes the object 'User' Serializable ; which means to convert its state into a byte stream
+// so that the byte stream can be converted back into a copy of the object. To persist the data.
+
 public class User implements Serializable {
 	
 	private static final long serialVersionUID = 1L;

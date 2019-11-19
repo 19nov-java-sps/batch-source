@@ -8,6 +8,9 @@ public class ConnectionUtil {
 
 	private static Connection connection;
 
+	// DriverManager has a static method "getConnection" which we provide
+	// database information/credentials to, in order to establish a 
+	//connection to our database
 	
 	public static Connection getConnection() throws SQLException {
 		String url = "jdbc:postgresql://"+System.getenv("jdbc_db_host")+":5432/postgres";

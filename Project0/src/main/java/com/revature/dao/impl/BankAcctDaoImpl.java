@@ -39,9 +39,9 @@ public class BankAcctDaoImpl implements BankAcctDao {
 	}
 
 	@Override
-	public List<BankAcct> getBankAcctByUserId(int id) {
+	public BankAcct getBankAcctByUserId(int id) {
 		String sql = "select * from bankacct where user_id = ?";
-		List<BankAcct> acct = new ArrayList<>();
+		BankAcct b = null;
 		
 		try (Connection c = ConnectionUtil.getConnection();
 				PreparedStatement ps = c.prepareStatement(sql)) {
@@ -53,15 +53,14 @@ public class BankAcctDaoImpl implements BankAcctDao {
 				String firstName = rs.getString("first_name");
 				String lastName = rs.getString("last_name");
 				double balance = rs.getDouble("balance");
-				BankAcct b = new BankAcct(firstName, lastName, balance, userId);
-				acct.add(b);
+				b = new BankAcct(firstName, lastName, balance, userId);
 			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
-		return acct;
+		return b;
 	}
 
 
@@ -114,12 +113,10 @@ public class BankAcctDaoImpl implements BankAcctDao {
 		
 		try(Connection c = ConnectionUtil.getConnection();
 				PreparedStatement ps = c.prepareStatement(sql)){
-			ps.setString(1, b.getFirstName());
-			ps.setString(2, b.getLastName());
-			ps.setDouble(3, b.getBalance());
-			ps.setInt(4, b.getUserId());
+			ps.setInt(1, b.getUserId());
 			
 			bankAcctsDeleted = ps.executeUpdate();
+			this.getBankAcct();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
