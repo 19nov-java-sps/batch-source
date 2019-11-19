@@ -1,29 +1,38 @@
 package com.revature;
 
+import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import com.revature.model.BankAcct;
+import com.revature.model.Client;
 import com.revature.service.BankAcctService;
+import com.revature.service.ClientService;
 import com.revature.util.ConnectionUtil;
 
 public class Driver {
 
 	public static void main(String[] args) {
-		try {
-			String driverName = ConnectionUtil.getConnection().getMetaData().getDriverName();
-			System.out.println(driverName);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		Client fakeClient = new Client("cashmoney", "12345", 10);
+		BankAcct fakeBankAcct = new BankAcct("John", "Junior", 1000.00, 10);
+		fakeClient.setBankAcct(fakeBankAcct);
 		
-		System.out.println("=======================================================");
-		BankAcctService bas = new BankAcctService();
-		List<BankAcct> acct = bas.getBankAcct();
-		for (BankAcct a:  acct) {
-			System.out.println(a);
-		}
-
+		System.out.print(fakeClient.getBankAcct());
+		
+		BankAcctService basAcctService = new BankAcctService();
+		ClientService  cService =  new ClientService();
+		
+		cService.createClient(fakeClient);
+		
+		basAcctService.createBankAcct(fakeBankAcct);
+		
+		
+		
+		
+	
 	}
-
+	
+	
 }

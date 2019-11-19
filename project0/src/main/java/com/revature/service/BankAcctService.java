@@ -14,6 +14,10 @@ public class BankAcctService {
 		return bankAcctDao.getBankAcct();
 	}
 	
+	public BankAcct getBankAcctByUserId(int id) {
+		return bankAcctDao.getBankAcctByUserId(id);
+	}
+	
 	public boolean createBankAcct(BankAcct b) {
 		int acctCreated = bankAcctDao.createBankAcct(b);
 		if(acctCreated != 0) {
@@ -21,6 +25,31 @@ public class BankAcctService {
 		}
 		return false;
 	}
+	
+	public boolean updateBankAcct(BankAcct b) {
+		int acctDeleted = bankAcctDao.updateBankAcct(b);
+		if(acctDeleted != 0) {
+			return true;
+		}
+		return false;
+	}
+	
+	public Boolean deleteBankAcct(BankAcct b) {
+		int deptDeleted = bankAcctDao.deleteBankAcct(b);
+		if(deptDeleted !=0) {
+			return true;
+		}
+		return false;
+	}
+	
+	public void withdraw(BankAcct b, double withdrawAmount) {
+		bankAcctDao.withdraw(b, withdrawAmount);
+	}
+	
+	public void deposit(BankAcct b, double depositAmount) {
+		bankAcctDao.withdraw(b, depositAmount);
+	}
+	
 	
 
 }

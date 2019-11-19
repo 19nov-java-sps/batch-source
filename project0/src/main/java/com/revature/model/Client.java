@@ -11,8 +11,18 @@ public class Client implements Serializable {
 	private String username;
 	private String  password;
 	private int userId;
+	
+	private BankAcct bankAcct;
+	
+	
 	public String getUsername() {
 		return username;
+	}
+	public BankAcct getBankAcct() {
+		return bankAcct;
+	}
+	public void setBankAcct(BankAcct bankAcct) {
+		this.bankAcct = bankAcct;
 	}
 	public void setUsername(String username) {
 		this.username = username;
