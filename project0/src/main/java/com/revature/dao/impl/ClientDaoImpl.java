@@ -32,7 +32,6 @@ public class ClientDaoImpl implements  ClientDao{
 			}
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -51,7 +50,6 @@ public class ClientDaoImpl implements  ClientDao{
 						pStatement.setInt(3, c.getUserId());
 						success = pStatement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}			
 		
@@ -71,7 +69,7 @@ public class ClientDaoImpl implements  ClientDao{
 			pStatement.setInt(3, c.getUserId());
 			updatedClient =  pStatement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 		return updatedClient;
 	}
@@ -86,10 +84,62 @@ public class ClientDaoImpl implements  ClientDao{
 			pStatement.setInt(1, c.getUserId());
 			deletedClient =  pStatement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 		return deletedClient;
 
+	}
+
+	@Override
+	public int createBankAcctWhenClientEnrolls(Client c) {
+		String sqString = "insert into BankAcct (firstname, lastname, balance, user_id) values (?,?,?,?)";
+		int createdBankAcct = 0;
+		
+		try (Connection connection = ConnectionUtil.getConnection();
+				PreparedStatement pStatement = connection.prepareStatement(sqString)){
+			try {
+				pStatement.setString(1, c.getBankAcct().getFirstName());
+				pStatement.setString(2, c.getBankAcct().getLastName());
+				pStatement.setInt(3, 0);
+				pStatement.setInt(4, c.getUserId());
+				createdBankAcct = pStatement.executeUpdate();
+			} catch (SQLException e) {
+			
+				e.printStackTrace();
+			}
+			
+			
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		return createdBankAcct;
+		
+				
+			
+	}
+
+	@Override
+	public Client getClientByUserId(int id) {
+		String sqlString =  "select * from Client where Client.user_id = ?";
+		Client c = null;
+		
+		try (Connection connection = ConnectionUtil.getConnection();
+				PreparedStatement statement = connection.prepareStatement(sqlString)){
+			statement.setInt(1, id);
+			ResultSet rSet = statement.executeQuery();
+			
+			while(rSet.next()) {
+				int userId = rSet.getInt("user_id");
+				String username = rSet.getString("username");
+				String password = rSet.getString("passwordString");
+				c = new Client(username, password, userId);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return c;
 	}
 
 

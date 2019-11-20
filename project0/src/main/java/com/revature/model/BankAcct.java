@@ -10,12 +10,11 @@ public class BankAcct implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String firstName;
 	private String lastName;
-	private double  balance;
+	private double  balance = 0;
 	private int userId;
 	
 	public BankAcct() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public BankAcct(String firstName, String lastName, double balance, int userId) {

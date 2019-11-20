@@ -10,5 +10,6 @@ public interface ClientDao {
 	public int createClient(Client c);
 	public int updateClient(Client c);
 	public int deleteClient(Client c);
-	
+	public int createBankAcctWhenClientEnrolls(Client c);
+	public Client getClientByUserId(int id);
 }

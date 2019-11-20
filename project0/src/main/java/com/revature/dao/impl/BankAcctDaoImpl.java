@@ -11,7 +11,6 @@ import java.util.List;
 
 import com.revature.dao.BankAcctDao;
 import com.revature.model.BankAcct;
-import com.revature.model.Client;
 import com.revature.util.ConnectionUtil;
 
 
@@ -165,29 +164,6 @@ public class BankAcctDaoImpl implements BankAcctDao{
 		}
 		
 	}
-
-
-
-//	@Override
-//	public int createBankAcctWithClient(Client c) {
-//		String sql = "insert into BankAcct (firstName, lastName,  balance, user_id) values (?,?,?,?)";
-//		int acctCreated = 0;
-//		
-//		try(Connection c = ConnectionUtil.getConnection();
-//				PreparedStatement ps = c.prepareStatement(sql)){
-//			ps.setString(1, c.);
-//			ps.setString(2,b.getLastName());
-//			ps.setDouble(3, b.getBalance());
-//			ps.setInt(4, b.getUserId());
-//			acctCreated = ps.executeUpdate();
-//			
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		
-//		
-//		return acctCreated;
-//	}
 
 
 }
