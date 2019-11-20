@@ -33,6 +33,8 @@ public class Menu {
 		clientsList = clientService.getClient();
 		bankAcctsList = bankAcctService.getBankAcct();
 		
+	
+		
 		
 		
 		
@@ -47,8 +49,12 @@ public class Menu {
 		System.out.println("2 - Sign In With An Existing Account");
 		System.out.println("3 - Exit");
 		System.out.println("\n");
+		System.out.println("\n");
+		System.out.println("\n");
 		
 		optionChosen = scanner.nextLine();
+		System.out.println("\n");
+		
 		
 		switch (optionChosen) {
 		case "1":
@@ -87,33 +93,17 @@ public class Menu {
 				
 				bankAcctService.createBankAcct(clientBankAcct);
 				
+				System.out.println("=====================================================");
+				ActionController(createdClient);
+
 				
 			} else {
 				System.out.println("Due to Technical Difficulties, your request has not been process");
 				start();
 			}
 			
-			ActionController();
-				
-				switch(optionChosen) {
-				
-				case "1":
-					ActionViewAcctController(createdClient);
-					break;
-				case "2":
-					ActionDepositController();
-					break;
-				case "3":
-					ActionWithdrawController();
-					break;
-				default:
-					System.exit(0);
-					break;
-				
-				}
-		
-			
-			break;
+		break;
+	
 		case "2":
 			System.out.println("\n");
 			System.out.println("Please Enter Your Username");
@@ -123,6 +113,17 @@ public class Menu {
 			System.out.println("Please Enter Your Password");
 			inputPasswordString = scanner.nextLine();
 			
+			
+			
+			for (Client details: clientsList) {
+				if ( details.getUsername().equals(inputUsernameString) && details.getPassword().equals(inputPasswordString)) {
+					System.out.println("Thank you for verifying your credentials");
+					ActionController(details);
+				} else {
+					System.out.println("Unfortunately, we are unable to locate  your account");
+					System.exit(0);
+				}
+			}
 			
 			
 			break;
@@ -136,39 +137,82 @@ public class Menu {
 		
 	}
 
-	private static void ActionWithdrawController() {
-		ClientService clientService = new ClientService();
-		BankAcctService bankAcctService = new BankAcctService();
+
+	private static void ActionWithdrawController(Client createdClient) {
+		BankAcctService bService =  new BankAcctService();
+		BankAcct acct = bService.getBankAcctByUserId(createdClient.getUserId());
+		
+		System.out.println("How much would you like to withdraw?");
+		Scanner scanner = new Scanner(System.in);
+		double withdrawAmount =  scanner.nextDouble();
+		
+		if ( acct.getBalance() - withdrawAmount < 0 )  {
+			System.out.println("Sorry, your account has insufficient funds.");
+			System.out.println("\n");
+			ActionViewAcctController(createdClient);
+		} else {
+			bService.withdraw(acct, withdrawAmount);
+			ActionViewAcctController(createdClient);
+		}
+		
+		
 		
 	}
 
-	private static void ActionDepositController() {
-		ClientService clientService = new ClientService();
-		BankAcctService bankAcctService = new BankAcctService();
+	@SuppressWarnings("resource")
+	private static void ActionDepositController(Client createdClient) {
+		BankAcctService bService =  new BankAcctService();
+		BankAcct acct = bService.getBankAcctByUserId(createdClient.getUserId());
+		System.out.println("How much would you like to Deposit?");
+		Scanner scanner =  new Scanner(System.in);
+		double depositAmount =  (double) scanner.nextDouble();
+		
+		bService.deposit(acct, depositAmount);
+		System.out.println("\n");
+		ActionViewAcctController(createdClient);
+		
 	}
 
-	private static void ActionViewAcctController(Client createdClient) {
-		BankAcctService bankAcctService = new BankAcctService();
-		BankAcct bankAcct = bankAcctService.getBankAcctByUserId(createdClient.getUserId());
+	private static void ActionViewAcctController(Client c) {
 		
-		System.out.print(bankAcct);
+		BankAcctService bService =  new BankAcctService();
+		BankAcct acct = bService.getBankAcctByUserId(c.getUserId());
+		System.out.println("Your current balance is" + " " + acct.getBalance());
+		ActionController(c);
 		
 		
 	}
 
-	public static void ActionController() {
+	public static void ActionController(Client c) {
+		System.out.println("=====================================================");
 		System.out.println("\n");
-		System.out.println("\n");
-		System.out.println("What would you like to do?");
-		System.out.println("\n");
-		System.out.println("1. View Your Account Balance");
-		System.out.println("\n");
-		System.out.println("\n");
-		System.out.println("2. Deposit");
-		System.out.println("\n");
-		System.out.println("3. Withdraw");
-		System.out.println("\n");
-		System.out.println("4. Sign Out");
+		System.out.println("\tWhat would you like to do?");
+		System.out.println("\t1. View Your Account Balance");
+		System.out.println("\t2. Deposit");
+		System.out.println("\t3. Withdraw");
+		System.out.println("\t4. Sign Out");
+		Scanner scanner = new Scanner(System.in);
+		int answer = scanner.nextInt();
+		
+		switch(answer) {
+		
+		case 1:
+			ActionViewAcctController(c);
+			break;
+		case 2:
+			ActionDepositController(c);
+			break;
+		case 3:
+			ActionWithdrawController(c);
+			break;
+		default:
+			System.exit(0);
+			break;
+		
+		}
+		
+
+		
 
 	}
 	
