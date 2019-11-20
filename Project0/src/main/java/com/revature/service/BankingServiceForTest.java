@@ -19,28 +19,6 @@ public class BankingServiceForTest {
 	private TransactionDao transactionDao = new TransactionDaoImpl();
 	
     private static Scanner sc = new Scanner(System.in);
-    
-	public boolean login() {
-		
-		if (Driver.getAccount() == null) {
-			
-			sc.nextLine();
-			System.out.println("Username or Email: ");
-			String userName = sc.nextLine();
-			System.out.println("Password: ");
-			String password = sc.nextLine();
-
-			if (userDao.login(userName, password) == true) {
-	    		System.out.println("Login Successful");
-			} else {
-		        System.out.println("Wrong User Name or Password. Please try again!");
-		        return false;
-			}
-		} else {
-			System.out.println("You already login.");
-		}
-		return true;
-	}
 	
 	public boolean login(String user, String password) {
 		
@@ -102,22 +80,9 @@ public class BankingServiceForTest {
 		return true;
 	}
 	
-	public void logout() {
-		
-		userDao.logout();
-	}
-	
 	public User getUserAcc(String account) {
 
 		User u = userDao.getAccInfo(account);
-		System.out.println("Name: " + u.getFirstName() + " " + u.getLastName() + "\n");
-		System.out.println("Email: " + u.getEmail() + "\n");
-		System.out.println("Phone: " + u.getPhone() + "\n");
-		System.out.println("Account Number: " + u.getAccountNum() + "\n");
-		System.out.println("Current Balance: " + u.getBalance() + "\n");
-		
-		sc.nextLine();
-		sc.nextLine();
 		
 		return u;
 	}
@@ -152,31 +117,6 @@ public class BankingServiceForTest {
 		
 		System.out.println("Update Your Account Information Success!");
 		return true;
-	}
-	
-	public void viewTransHistory(String account) {
-		
-		if (Driver.getAccount() == null) {
-			System.out.println("Please Login First!");
-		} else {
-			List<Transaction> transHistoy = transactionDao.getTransactionHistory(account);
-			
-			if (transHistoy.size() > 0) {
-				for (Transaction th: transHistoy) {
-					System.out.println("_______________________________________");
-					System.out.println(th.getType() + " to Account Number " + th.getAccountNum() + "\n");
-					System.out.println("Amount: " + th.getAmount() + "\n");
-					System.out.println("Date: " + th.getDate() + "\n");
-					System.out.println("Balance: " + th.getBalanceAfterTrans() + "\n");
-					System.out.println("_______________________________________");
-				}
-			} else {
-				System.out.println("You don't have any transaction yet.");
-			}
-			
-			sc.nextLine();
-			sc.nextLine();
-		}
 	}
 	
 

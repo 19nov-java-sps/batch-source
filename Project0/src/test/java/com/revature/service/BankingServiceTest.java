@@ -38,8 +38,11 @@ public class BankingServiceTest
 	}
 	
 	@Test
-	public void testRegister() {
-		
+	public void testGetNullUser() {
+		when(bs.getUserAcc("123")).thenReturn(null);
+		User expected = null;
+		User actual = bs.getUserAcc("123");
+		assertEquals(expected, actual);
 	}
 	
 	

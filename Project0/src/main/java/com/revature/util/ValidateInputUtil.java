@@ -94,7 +94,7 @@ public class ValidateInputUtil {
 			ResultSet rs = ps.executeQuery();
 			
         	if (rs.next()) {
-        		System.out.println("Username Already Exist. Update Account Fail!");
+        		System.out.println("Username Already Exist. Please try again!");
         		return false;
         	}
         	
@@ -116,7 +116,7 @@ public class ValidateInputUtil {
 			ResultSet rs = ps.executeQuery();
 			
         	if (rs.next()) {
-        		System.out.println("Email Already Exist. Update Account Fail!");
+        		System.out.println("Email Already Exist. Please try again!");
         		return false;
         	}
         	
@@ -138,7 +138,7 @@ public class ValidateInputUtil {
 			ResultSet rs = ps.executeQuery();
 			
         	if (rs.next()) {
-        		System.out.println("Phone Number Already Exist. Update Account Fail!");
+        		System.out.println("Phone Number Already Exist. Please try again!");
         		return false;
         	}
         	

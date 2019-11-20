@@ -21,7 +21,7 @@ public class BankingService {
     private static Scanner sc = new Scanner(System.in);
     
     public void startService() {
-
+    	
     	if (Driver.getAccount() == null) {
 	    	System.out.println("   Welcome to MyBank!   ");
 	        System.out.println("========================");
@@ -40,45 +40,49 @@ public class BankingService {
     	}
     	
     	
-        int action = sc.nextInt();
+        String action = sc.nextLine();
         
         switch (action) {
-		case 1:
+		case "1":
 			this.login();
 			break;
 			
-		case 2:
+		case "2":
 			this.register();
 			break;
 			
-		case 3:
+		case "3":
 			this.getUserAcc();
 			break;
 			
-		case 4:
+		case "4":
 			this.updateAcc();
 			break;
 			
-		case 5:
+		case "5":
 			this.viewTransHistory();
 			break;
 			
-		case 6:
+		case "6":
 			this.deposit();
 			break;
 			
-		case 7:
+		case "7":
 			this.withdraw();
 			break;
 			
-		case 8:
+		case "8":
 			this.transfer();
 			break;
 			
-		case 9:
+		case "9":
 			this.logout();
 			break;
-
+			
+		case "0":
+			this.exit();
+			break;
+		
 		default:
 			this.startService();
 			break;
@@ -90,7 +94,6 @@ public class BankingService {
 		
 		if (Driver.getAccount() == null) {
 			
-			sc.nextLine();
 			System.out.println("Username or Email: ");
 			String userName = sc.nextLine();
 			System.out.println("Password: ");
@@ -123,9 +126,7 @@ public class BankingService {
 	public void register() {
 		
 		if (Driver.getAccount() == null) {
-			
-			sc.nextLine();
-			
+						
 			System.out.println("Enter Username (must between 5 to 12 characters)");
 			String userName = sc.nextLine();
 			
@@ -187,7 +188,6 @@ public class BankingService {
 			System.out.println("Current Balance: " + u.getBalance() + "\n");
 			
 			sc.nextLine();
-			sc.nextLine();
 			this.startService();
 			
 		}
@@ -201,7 +201,6 @@ public class BankingService {
 		}
 		
 		User u = userDao.getAccInfo(Driver.getAccount());
-		sc.nextLine();		
 		System.out.println("Enter Your Password (must between 8 to 16 characters)");
 		String password = sc.nextLine();
 		
@@ -253,7 +252,6 @@ public class BankingService {
 			}
 			
 			sc.nextLine();
-			sc.nextLine();
 			this.startService();	
 		}
 	}
@@ -264,15 +262,14 @@ public class BankingService {
 			System.out.println("Please Login First!");
 			this.startService();
 		}
-		
-		sc.nextLine();
-						
+								
 		double amount = 0;
 		int account = Integer.parseInt(Driver.getAccount());
 		
 		try {
 			System.out.println("Enter Amount You Want To Deposit");
 			amount = sc.nextDouble();
+			sc.nextLine();
 			
 		} catch (InputMismatchException e) {
 			System.out.println("Invalid Input");
@@ -295,15 +292,14 @@ public class BankingService {
 			System.out.println("Please Login First!");
 			this.startService();
 		}
-		
-		sc.nextLine();
-						
+								
 		double amount = 0;
 		int account = Integer.parseInt(Driver.getAccount());
 		
 		try {
 			System.out.println("Enter Amount You Want To Withdraw");
 			amount = sc.nextDouble();
+			sc.nextLine();
 			
 		} catch (InputMismatchException e) {
 			System.out.println("Invalid Input");
@@ -332,7 +328,6 @@ public class BankingService {
 			System.out.println("Please Login First!");
 			this.startService();
 		}	
-		sc.nextLine();
 		
 		// check transfer amount and user account balance
 		double amount = 0;
@@ -369,7 +364,6 @@ public class BankingService {
 		transferAcc = transferAcc.replaceAll("[^0-9]", "");
 		if (transferAcc.length() != 9) {
 			System.out.println("Invalid Account Number");
-			sc.next();
 			this.startService();
 		}
 		
@@ -385,4 +379,8 @@ public class BankingService {
 		this.startService();
 	}
 	
+	
+	public void exit() {
+		System.exit(0);
+	}
 }
