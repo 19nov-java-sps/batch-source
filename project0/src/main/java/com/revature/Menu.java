@@ -28,14 +28,11 @@ public class Menu {
 		//Loading Existing Clients and Accounts
 		
 		List<Client> clientsList = new ArrayList<>();
-		List<BankAcct> bankAcctsList =  new ArrayList<>();
-		
 		clientsList = clientService.getClient();
-		bankAcctsList = bankAcctService.getBankAcct();
+
 		
 	
-		
-		
+	
 		
 		
 		System.out.println("=====================================================");
@@ -115,13 +112,14 @@ public class Menu {
 			
 			
 			
+			
 			for (Client details: clientsList) {
 				if ( details.getUsername().equals(inputUsernameString) && details.getPassword().equals(inputPasswordString)) {
 					System.out.println("Thank you for verifying your credentials");
 					ActionController(details);
 				} else {
 					System.out.println("Unfortunately, we are unable to locate  your account");
-					System.exit(0);
+					start();
 				}
 			}
 			
@@ -143,10 +141,13 @@ public class Menu {
 		BankAcct acct = bService.getBankAcctByUserId(createdClient.getUserId());
 		
 		System.out.println("How much would you like to withdraw?");
+		
+		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
 		double withdrawAmount =  scanner.nextDouble();
+		double currentBalance = acct.getBalance();
 		
-		if ( acct.getBalance() - withdrawAmount < 0 )  {
+		if (currentBalance == 0 || currentBalance -  withdrawAmount <= 0)  {
 			System.out.println("Sorry, your account has insufficient funds.");
 			System.out.println("\n");
 			ActionViewAcctController(createdClient);
@@ -165,7 +166,7 @@ public class Menu {
 		BankAcct acct = bService.getBankAcctByUserId(createdClient.getUserId());
 		System.out.println("How much would you like to Deposit?");
 		Scanner scanner =  new Scanner(System.in);
-		double depositAmount =  (double) scanner.nextDouble();
+		double depositAmount =  (double) scanner.nextDouble() * -1;
 		
 		bService.deposit(acct, depositAmount);
 		System.out.println("\n");
@@ -191,6 +192,9 @@ public class Menu {
 		System.out.println("\t2. Deposit");
 		System.out.println("\t3. Withdraw");
 		System.out.println("\t4. Sign Out");
+		System.out.println("\t5. Delete Account");
+		
+		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
 		int answer = scanner.nextInt();
 		
@@ -205,16 +209,37 @@ public class Menu {
 		case 3:
 			ActionWithdrawController(c);
 			break;
+		case 4:
+			System.exit(0);
+			break;
+		case 5:
+			ActionDeleteController(c);
+			break;
 		default:
 			System.exit(0);
 			break;
-		
 		}
 		
 
 		
 
 	}
+
+
+	private static void ActionDeleteController(Client c) {
+		BankAcctService bService =  new BankAcctService();
+		ClientService  clientService = new ClientService();
+		
+		BankAcct acct = bService.getBankAcctByUserId(c.getUserId());
+		
+		clientService.deleteClient(c);
+		
+		bService.deleteBankAcct(acct);
+		
+		
+		
+	}
+	
 	
 
 }
