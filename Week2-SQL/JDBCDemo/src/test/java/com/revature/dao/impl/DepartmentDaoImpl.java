@@ -106,4 +106,16 @@ public class DepartmentDaoImpl implements DepartmentDao {
 		return 0;
 	}
 
+	@Override
+	public Department createDepartmentWithFunction(Department d) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void increaseDepartmentBudget(Department d, double increase) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

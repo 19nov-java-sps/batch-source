@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+
+h1 {
+  color: blue;
+  font-family: verdana;
+  font-size: 300%;
+}
+p  {
+  color: red;
+  font-family: courier;
+  font-size: 160%;
+  font-weight: bold;
+}
+
+p1 {
+    color: navy;
+    font-family: courier;
+    font-size: 160%;
+    font-weight: bold;
+}
+
+summary {
+  color: black;
+  font-family: courier;
+  font-size: 160%;
+  font-weight: bold;
+}
+
+</style>
+</head>
+<body>
+
+
+</body>
+</html>
