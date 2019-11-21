@@ -14,6 +14,20 @@ function Dog(name, breed, age){
 */
 
 
+function Animal(speciesInput, canFlyInput){
+    let species = speciesInput;
+    let canFly = canFlyInput;
+
+    this.getCanFly = function(){
+        return canFly;
+    }
+
+    this.getSpecies = function(){
+        return species;
+    }
+}
+
+// these are constructor functions > let dog = new Dog();
 function Dog(nameInput, breedInput, ageInput){
     let name = nameInput;
     let breed = breedInput;
@@ -48,4 +62,6 @@ function Dog(nameInput, breedInput, ageInput){
     this.bark = function(){
         console.log("woof");
     }
+
+    this.__proto__ = new Animal("Canis lupus familiaris",false);
 }
