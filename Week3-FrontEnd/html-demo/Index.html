@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="author" content="Carolyn Rehm">
     <meta name="description" content="a demo taking a look at html tags">
-    <link rel="icon" href="https://cdn4.iconfinder.com/data/icons/faces-10/96/Smiley-512.png" type="image">
+    <!-- <link rel="icon" href="https://cdn4.iconfinder.com/data/icons/faces-10/96/Smiley-512.png" type="image"> -->
     <title>My Webpage</title>
     <link rel="stylesheet" type="text/css" href="MyStyle.css">
 
@@ -17,7 +17,7 @@
 <body style="background-color:aquamarine">
     <header>
             <h1 style="color:rgb(85, 67, 202)">Hello World</h1>
-            <h4>Welcome to my Webpage</h4>
+            <h4 id="subtitle">Welcome to my Webpage</h4>
     </header>
     <article>
         <section>
@@ -42,10 +42,10 @@
         <figcaption>Bob Ross' Oak Blue Ridge Falls</figcaption>
     </figure>
     <div>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/DxSv0YS0_aw" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="Bob Ross Fundraiser video"></iframe>
+        <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/DxSv0YS0_aw" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="Bob Ross Fundraiser video"></iframe> -->
     </div>
     <h3>Bob Ross' Best Works</h3>
-    <ul>
+    <ul id="painting-list">
         <li><a href="https://t0.rbxcdn.com/8bbb20b8bf3a20fcec51ad91b7474b65" target="_blank" rel="noopener noreferrer"> Bubbling Stream</a></li>
         <li><a href="https://arthive.com/artists/9887~Bob_Ross/works/280380~Old_mill" target="_blank" rel="noopener noreferrer"> Old Mill</a></li>
         <li><a href="http://www.superblindados.com/alaskan-waterfall-bob-ross-painting/" target="_blank" rel=" noopener noreferrer"> Alaskan Waterfall</a></li>
@@ -119,5 +119,6 @@
     <footer>
         <p>Thanks for visiting my website</p>
     </footer>
+    <script src="../js-dom-intro/main.js"></script>
 </body>
 </html>
