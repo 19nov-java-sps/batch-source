@@ -1,66 +1,30 @@
-document.getElementById("submit-btn").addEventListener("click", searchWeight);
+let url = `https://pokeapi.co/api/v2/pokemon/`;
 
-let baseUrl = "https://pokeapi.co/";
+document.getElementById("find-weight-btn").addEventListener("click", searchCharacter);
 
-function searchWeight(){
-    let idInput = document.getElementById("id-input").value;
-    SendAjaxGet(baseUrl, displayWeight, displayErrorMessage);
+function searchCharacter() {
+    let input = document.getElementById("id-input").value;
+    xmlGetRequest(url+input, displayWeight);
 }
 
-
-function sendAjaxGet(url, callback, errorCallback){
+function xmlGetRequest(url, callback) {
     let xhr = new XMLHttpRequest();
     xhr.open("GET", url);
-    xhr.onreadystatechange = function(){ 
-        if(xhr.readyState==4 && xhr.status ==200){
-            let parsedJSON = JSON.parse(xhr.response);
-            if(parsedJSON.success == false){
-                errorCallback();
-            } else {
-                callback(parsedJSON);
-            }
-        } 
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            callback(xhr.response);
+        }
     }
-    xhr.send()
-        
-
-
+    xhr.send();
 }
 
-function displayWeight(idInput){
-    document.getElementById("error").hidden = true;
+function displayWeight (pokemonJSON) {
+    document.getElementById("idToWeight").hidden = false;
 
-    console.log(weatherInfo);
-
-    document.getElementById("result").hidden = false;
-    document.getElementById("weight").innerText = `Weight for ${idInput.location.name}`;
-}
-
-let JSONPokemone =`[ ]`
-window.onload = function(){
-let Pokemon = JSON.parse(JSONPokemon);
-for(let pokemon of Pokemon){
-    this.addTableRow(pokemon.Weight, pokemon.ID);
-}
-}
-let Weight = 40;
-function addTableRow(Weight, ID){
-let row = document.createElement("tr");
-
-row.innerHTML = `<td>${Weight}</td> <td>${ID}</td>`;
-
-
-document.getElementById("pokemon-table").appendChild(row);
-
-
-}
-document.getElementById("add-pokemon-btn").addEventListener("click", addNew);
+    let pokemonWeight = JSON.parse(pokemonJSON);
+    document.getElementById("weight").innerText = `weight: ${pokemonWeight.weight/10}`;
 
 
 
 
-function addNew() {
-//let Weight = document.getElementById("Weight-input").value;
-let ID = document.getElementById("ID-input").value;
-addTableRow(Weight,ID)
 }
