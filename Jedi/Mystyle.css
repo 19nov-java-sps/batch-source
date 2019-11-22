@@ -1,0 +1,19 @@
+body {
+  
+    background-image: url("Dragon.jpg");
+}
+    
+h1 {
+    color: orange;
+    font-weight: 700;
+    text-align: center;
+    
+}
+h2{
+    color:orange;
+    text-align:center;
+    opacity:200% ;
+    background-color:blue;
+    display:inline;
+  
+}
