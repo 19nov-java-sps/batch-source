@@ -1,0 +1,3 @@
+function removeChar(string, index) {
+  
+}
