@@ -34,3 +34,23 @@ newAElement.href = "https://dynaimage.cdn.cnn.com/cnn/q_auto,w_727,c_fit/http%3A
 newLiElement.appendChild(newAElement);
 paintingList.appendChild(newLiElement);
 
+
+let brFallsUrl = "https://static01.nyt.com/images/2019/07/13/arts/bob-ross-oak_blue-ridge-falls/bob-ross-oak_blue-ridge-falls-articleLarge-v2.jpg?quality=90&auto=webp";
+let caption = document.getElementById("img-cap");
+//adding an event listener
+let changePic = function(event){
+    // console.log(event);
+    let image = event.target;
+    if(image.src == catUrl){
+        image.src = brFallsUrl;
+        image.alt = "A cool but kind of spooky Bob Ross painting";
+        caption.innerText = "Bob Ross' Oak Blue Ridge Falls";
+    } else {
+        image.src = catUrl;
+        image.alt = "A cozy cat";
+        caption.innerText = "A little cat wearing a sweater!!";
+    }
+}
+
+waterfallPic.addEventListener("click", changePic);
+
