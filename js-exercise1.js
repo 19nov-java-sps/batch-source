@@ -121,7 +121,7 @@ function isLeapYear(x){
 }
 
 function printShape(shape, height, input){
-    var string = "";
+    var string = "\n";
     if (shape === "Square"){
         for(var i = 0; i< height; i++){
             for(var j = 0; j< height; j++){
@@ -146,15 +146,32 @@ function printShape(shape, height, input){
         var halfheight = height/2;
         var roundedhalf = Math.round(halfheight);
         var rest = height - roundedhalf;
-        for(var i = 0; i< roundedhalf+1; i++){
-            for(var j = 0; j< i; j++){
+        for(var i = 1; i< roundedhalf+1; i++){
+            for(var k = 0; k < roundedhalf-1;k++ ){
+                if(i+k >roundedhalf-1){
+                   string+= input;
+                }
+                if(i+k <= roundedhalf-1){
+                string+= " ";
+                }
+            }
+            for(var j = 0; j < i; j ++){
                 string += input;
-                if (j == i-1){
+                if (j === i-1){
                     string+= '\n';
                 }
             }
         }
         for(var i = 0; i< rest+1; i++){
+            for(var k = 0; k < roundedhalf-1;k++ ){
+                if(i-k < 0){
+                    string+= input;
+                 }
+                if( i-k >= 0){
+                 string+= " ";
+                 }
+                }
+                
             for(var j = rest - i; j > 0; j--){
                 string += input;
                 if (j == 1){
