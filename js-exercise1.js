@@ -10,13 +10,7 @@ function maxLength(arr) {
 }
 
 // 2. Reverse Array
-function reverseArray(arr) {
-  let result = [];
-  while(arr.length) {
-    result.push(arr.pop());
-  }
-  return result;
-}
+reverseArray = arr => arr.reverse();
 
 // 3. Count Vowels 
 function vowelCount(str) {
@@ -80,26 +74,44 @@ function isLeapYear(date) {
 
 // 10. Shapes
 function printShape(shape, height, character) {
-  let string ='';
+  let str = '';
 
   if (shape === 'Square') {
-    for (let i = 0; i < height; i++) {
-      for (let j = 0; j < height; j++) {
-        string += character;
+    for (let i = 1; i <= height; i++) {
+      for (let j = 1; j <= height; j++) {
+        str += character;
       }
-      string += '\n';
+      if (i !== height) {
+        str += '\n';
+      }
     }
   } else if (shape === 'Triangle') {
     for (let i = 1; i <= height; i++) {
-      
+      for (let j = 0; j < i; j++) {
+        str += character;
+      }
+      if (i !== height) {
+        str += '\n';
+      }
     }
   } else if (shape === 'Diamond') {
-
+    let s = '';
+    const res = [];
+    for (let i = 1; i <= height; i+=2) {
+      for (let j = 0; j < (height - i) / 2; j++) {
+        s += ' ';
+      }
+      for (let k = 0; k < i; k++) {
+        s += character;
+      }
+      res.push(s);
+      s = '';
+    }
+    str = res.concat(res.slice(0, height/2).reverse()).join('\n');
   }
 
-  return string;
+  return str;
 }
-console.log(printShape("Square", 3, "%"));
 
 // 11. Rotate Left
 function rotate(arr, n) {
@@ -108,6 +120,28 @@ function rotate(arr, n) {
 }
 
 // 12. Balanced Brackets
-function balanced(str) {
-
+function balanced(str) { 
+  const pairs = {
+    ']': '[',
+    ')': '(',
+    '}': '{'
+  }
+  const balance = [];
+  
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] === '[' || str[i] === '(' || str[i] === '{') {
+      balance.push(str[i]);
+    } else if (str[i] === ']' || str[i] === ')' || str[i] === '}') {
+      if (pairs[str[i]] === balance[balance.length - 1]) {
+        balance.pop();
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
+   
+  return balance.length === 0 ? true : false;
 }
+
