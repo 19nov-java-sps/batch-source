@@ -178,23 +178,53 @@ begin
 	from "Invoice" i);
 end
 $function$
-
+;
 select AverInvTotal ();
 
 
 create function BornBefore1968 ()
-returns setof employe 
+returns setof "Employee"
 language plpgsql
 as $function$
 begin 
 	return query select * from  "Employee" e where e."BirthDate" <  '1968-01-01'; 
 end
 $function$
+;
+
+select  BornBefore1968  ();
+
+create function GetEmployeesManager (emlId integer)
+returns setof "Employee"
+language plpgsql
+as $function$
+begin
+	return query select * from "Employee" e where e."EmployeeId"=(
+	 select "ReportsTo" from "Employee" e where e."EmployeeId" = emlId);
+end
+$function$
+;
+
+select GetEmployeesManager(5);
 
 
-s
+
+create function GetPlaylistPrivce (PlayListId integer)
+returns numeric
+language plpgsql
+as $function$
+begin
+	return (select sum("UnitPrice")
+	from "Track" t
+	join "PlaylistTrack" plt
+	on t."TrackId" = plt."TrackId"
+	join "Playlist" pl
+	on pl."PlaylistId" = plt."PlaylistId"
+	where pl."PlaylistId" = PlayListId);
+end
+$function$
+;
 
 
-
-
+select GetPlaylistPrivce(1);
 
