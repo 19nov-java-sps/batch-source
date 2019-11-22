@@ -120,21 +120,64 @@ function isLeapYear(x){
     return notLeap;
 }
 
-function printShape(shape, height, input)
-var string = "";
+function printShape(shape, height, input){
+    var string = "";
     if (shape === "Square"){
         for(var i = 0; i< height; i++){
-            string += input;
+            for(var j = 0; j< height; j++){
+                string += input;
+                if (j == height-1){
+                    string+= '\n';
+                }
+            }
         }
     }
     if (shape === "Triangle"){
-       for(var i = 0; i< height; i++){
-            string += input;
+        for(var i = 0; i< height+1; i++){
+            for(var j = 0; j< i; j++){
+                string += input;
+                if (j == i-1){
+                    string+= '\n';
+                }
+            }
         }
     }
     if (shape === "Diamond"){
-        for(var i = 0; i< height; i++){
-            string += input;
-        }       
+        var halfheight = height/2;
+        var roundedhalf = Math.round(halfheight);
+        var rest = height - roundedhalf;
+        for(var i = 0; i< roundedhalf+1; i++){
+            for(var j = 0; j< i; j++){
+                string += input;
+                if (j == i-1){
+                    string+= '\n';
+                }
+            }
+        }
+        for(var i = 0; i< rest+1; i++){
+            for(var j = rest - i; j > 0; j--){
+                string += input;
+                if (j == 1){
+                    string+= '\n';
+                }
+            }
+        }  
+           
     }
-    
+    return string;
+}
+
+function rotateLeft(array, n){
+    var holder = [1];
+    var length = array.length-1;
+    for (var j = 0; j < n; j++){
+        holder[0] = array[0];
+        for (var i = 0; i < length; i++){
+            array[i] = array[i+1];
+        }
+        array[length] = holder[0];
+
+    }
+    return array;
+}
+
