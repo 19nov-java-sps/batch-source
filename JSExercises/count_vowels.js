@@ -1,9 +1,11 @@
+//--------------------------------------------------------------
 //Write a JavaScript function to count the number of vowels in a given string
+//--------------------------------------------------------------
 
-function vowelCount(string) {
+function vowelCount(inputStr) {
   //define set of vowels
-  const vowels = new Set('a', 'e', 'i', 'o', 'u');
-  let lowered = string.toLowerCase();
+  const vowels = new Set(['a', 'e', 'i', 'o', 'u']);
+  let lowered = inputStr.toLowerCase();
 
   let numberOfVowels = 0;
   for (let i = 0; i < lowered.length; ++i) {

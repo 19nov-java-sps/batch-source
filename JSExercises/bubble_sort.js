@@ -3,18 +3,18 @@
 // Return the sorted array
 //--------------------------------------------------------------
 
-function bubbleSort(inputArr) {
-  for (let i = 0; i < inputArr.length-1; ++i) {
-    for (let j = 0; j < inputArr.length-1-i; ++j) {
-      if (inputArr[j] > inputArr[j+1]) {
-        let temp = inputArr[j];
-        inputArr[j] = inputArr[j+1];
-        inputArr[j+1] = temp;
+function bubbleSort(arr) {
+  for (let i = 0; i < arr.length-1; ++i) {
+    for (let j = 0; j < arr.length-1-i; ++j) {
+      if (arr[j] > arr[j+1]) {
+        let temp = arr[j];
+        arr[j] = arr[j+1];
+        arr[j+1] = temp;
       }
     }
   }
 
-  return inputArr;
+  return arr;
 }
 
 let inputArr = [5, 1, 3, 2, 8];
