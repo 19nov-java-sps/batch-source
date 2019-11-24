@@ -128,6 +128,8 @@ $function$
 select getAvg()
 
 
+INSERT INTO department values(1,"Accounting",10,000);
+
 
 --Create a function that returns all employees who are born after 1968.
 create or replace function afterYear()
