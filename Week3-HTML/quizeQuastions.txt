@@ -1,0 +1,191 @@
+What is the output of the following code?
+let a = {
+ field1: 'hello',
+ field2: 'world'
+}
+
+let b = a && a.field1;
+
+This is not valid JavaScript.
+'hello'*
+'world'
+true
+
+This property of the XMLHttpRequest object will have a value of 4 when the server completes the requested operation.
+
+onreadystatechange
+readyState
+None of these.
+status
+
+Which of these is not among the parameters used in the XMLHttpRequest open function?
+URL
+http method
+async on/off
+form data
+
+This property of the XMLHttpRequest object will contain the event handler to be called when the readystatechange event is fired.
+onreadystatechange
+
+In JavaScript, Function inherits from Object.
+TRUE
+How can you add new DIV elements dynamically?
+document.createElement('div')
+
+The first index number in an array starts with ............................ and the highest index number of an array of size n will be ............
+The first index number in an array starts with ............................ and the highest index number of an array of size n will be ............
+
+0, n
+1, n
+1, n-1
+0, n-1 *
+
+Which will submit a form using JavaScript?
+document.getElementById('myform').submit( ) *
+All of these
+document.submit( )
+document.myForm.submit( )
+
+Which is not a JavaScript event?
+onclick
+None of these *
+onhover
+onload
+onchange
+
+Which is not a JavaScript data type?
+Object
+Boolean
+Undeclared *
+Function
+Null
+String
+Number
+
+In JavaScript, Array inherits from Object.
+TRUE
+
+
+In JavaScript, a closure is an inner function that has access to its outer function's scope, even after the outer function has returned.
+
+FALSE/*(true!!)
+
+What is the output:
+var x = 'hello' / 3;
+console.log(x + ' - ' + typeof x);
+"hello" - string
+NaN - number *
+undefined - undefined
+NaN - object
+undefined - string
+
+What is the output of the following code: window.onload = function a( ){ console.log(obj.prop); }
+Undefined
+Uncaught ReferenceError: obj is not defined *
+Null
+None of these
+
+Which of the following is not one of the built in error types in JavaScript.
+RangeError
+ReferenceError
+SyntaxError
+EvalError
+URIError
+CompileError *
+TypeError
+
+!== will perform type coercion.
+TRUE
+FALSE*
+
+In JavaScript, shift removes the first element of an array and returns that element.
+TRUE
+FALSE*
+
+What does the hexadecimal number (#FA0AB1) represent in CSS?
+What does the hexadecimal number (#FA0AB1) represents in CSS?
+
+hex color code *
+text code
+byte code
+None of the above
+
+Which CSS property controls the text size?
+Which CSS property controls the text size?
+
+text-size
+text-style
+font-size*
+font-style
+
+Select all h1 elements in CSS
+h1{ }*
+h1.all{ }
+Not possible
+all.h1{ }
+
+
+How do you insert a comment in a CSS file?
+// this is a comment   *
+// this is a comment //
+/* this is a comment */
+This is a commen
+
+What is the correct JavaScript syntax to change the content of the HTML element?   
+#demo.innerHTML = "Hello World!";
+document.getElementByName("demo").innerHTML = "Hello World!";
+document.getElementById("demo").innerHTML = "Hello World!";   *
+document.getElement("demo").innerHTML = "Hello World!";
+
+What is the correct HTML for making a text input field?
+<box>
+<text>
+<input type="text"> *
+<input type="textfield">
+
+HTML comments start with <!-- and end with -->
+TRUE
+FALSE*
+
+Choose the correct HTML element for the largest heading:
+<heading>
+<h6>
+<h1>*
+<head>
+
+Choose the correct HTML element to define bold and important text
+<b>
+<bold>
+<strong>*
+<important>
+
+Bubbling event listeners take precedence over capturing event listeners.
+TRUE
+FALSE*
+
+By default, event handlers are set to the bubbling phase.
+TRUE(!*)
+FALSE*
+
+isNaN(true) === false
+TRUE*
+FALSE
+
+What is the result of the following operation?
+( 7 || 0 ) ? "hello" : world
+
+"hello"*
+the operation will result in a reference error
+world
+
+Hoisting is a behavior which:
+Increases a numeric value to the next whole number.
+Lifts a variable declaration to the top of its scope. (!*)
+Declaring a variable in a higher scope than its initial assignment to increase its scope.
+Lifts a variable declaration and assignment to the top of its scope.*
+
+Hoisting is possible when:
+Only variables declared without using var, let, or const.(*!)
+Only variables declared with let or const. *
+Only variables declared with var.
+The Math.hoist() function is called.

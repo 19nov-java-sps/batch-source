@@ -182,11 +182,16 @@ function isLeapYear (date){
 function printShape (shape, hight, char){
     if (shape == "Square"){
         let sqareSting = "";
+        let spaceString=" "
+        let space = " "; // to be visible
         for (let i=0; i<=hight-1; i++){
-            sqareSting = sqareSting.concat(char);
+            sqareSting = sqareSting.concat(char+"  "); //"  " - to take a shape of a square
+           
+          
         }
         for (let i=0; i<=hight-1; i++){
-        console.log(sqareSting)
+            spaceString = spaceString.concat(space)
+            console.log(sqareSting+spaceString)
         }
     }
     if (shape == "Triangle"){
@@ -200,24 +205,26 @@ function printShape (shape, hight, char){
         let space = " ";
         let concatSpace="";
         let concatChar = "";
-        
+        let j=Math.floor(hight/2)
+        let x = 1;
+
+            //Printing the top part
         for (let i=1; i<=hight; i=i+2){
-            console.log(i + "i");
             concatChar=char.repeat(i);
-
-             for (let j=Math.floor(hight/2);j>=0;j--){
-                console.log(j + "j");
-                concatSpace=space.repeat(j);
-                console.log(concatSpace + concatChar);
-                 break;
-                              
+            concatSpace=space.repeat(j);
+            console.log(concatSpace + concatChar)
+            j--;
             }
-      
-                
+
+            //Printing the bottom part
+        for (let l=Math.floor(hight-2); l>=1; l=l-2){
+            concatChar=char.repeat(l);
+            concatSpace=space.repeat(x);
+            console.log(concatSpace + concatChar)
+            x++;
+            }
         }
-
     }
- }
-
+ 
 
 
