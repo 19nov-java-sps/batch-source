@@ -17,6 +17,15 @@ public class User implements Serializable {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	public User( String firstName, String lastName, String userName, String passWord, String email) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.userName = userName;
+		this.passWord = passWord;
+		this.email = email;
+	}
 
 	public User(int userId, String firstName, String lastName, String userName, String passWord, String email) {
 		super();

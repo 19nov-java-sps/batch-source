@@ -3,6 +3,7 @@ package com.revature.dao;
 import java.util.List;
 
 import com.revature.model.Account;
+import com.revature.model.User;
 
 public interface AccountDao {
 	
@@ -13,6 +14,7 @@ public interface AccountDao {
 	public int deleteAccount(Account a);
 	public void addMoney(Account a, double money);
 	public void withdrowMoney(Account a, double money);
+	public int getUserAccountId(int userId);
 	
 
 }

@@ -1,4 +1,4 @@
-package com.revature.Project0;
+package com.revature.jdbc.JDNCDemo;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

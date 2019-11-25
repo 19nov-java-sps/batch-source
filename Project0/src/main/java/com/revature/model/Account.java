@@ -26,6 +26,14 @@ public class Account implements Serializable {
 	}
 
 
+	public Account(String accountType, int userId, double ammount) {
+		super();
+		this.type = accountType;
+		this.userId=userId;
+		this.balance=ammount;
+	}
+
+
 	public int getAccountId() {
 		return accountId;
 	}
