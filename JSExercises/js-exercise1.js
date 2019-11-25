@@ -65,11 +65,11 @@ function vowelCount(inputStr) {
 }
 
 //--
-//Create a function that checks for a valid email format
+// 4. Create a function that checks for a valid email format
 //--
 
 //For simplicity I'll assume any character is valid for email username
-
+/*
 function isValidEmail(str) {
   let parsed = str.split('@');
   if (parsed.length !== 2) {
@@ -81,10 +81,18 @@ function isValidEmail(str) {
 
 function isValidDomain(str) {
   let parsed = str.split('.');
+*/
+
+let isValidEmail = function(str){
+  let email = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if(str.match(email)){
+      return true;
+    }
+  return false;
 }
 
 //--------------------------------------------------------------
-// Write a function to remove a character at the specified position of a given
+// 5. Write a function to remove a character at the specified position of a given
 // string and return the new string
 //--------------------------------------------------------------
 
@@ -93,7 +101,7 @@ function removeChar(str, index) {
 }
 
 //--------------------------------------------------------------
-// Use bubble sort algorithm to sort an array of numbers.
+// 6. Use bubble sort algorithm to sort an array of numbers.
 // Return the sorted array
 //--------------------------------------------------------------
 
@@ -112,7 +120,7 @@ function bubbleSort(arr) {
 }
 
 //--------------------------------------------------------------
-// Check if a number is even
+// 7. Check if a number is even
 //--------------------------------------------------------------
 /*
 function isEven(someNumber) {
@@ -129,7 +137,7 @@ function isEven(someNumber) {
 }
 
 //--------------------------------------------------------------
-// Check if a string is a palindrome
+// 8. Check if a string is a palindrome
 //--------------------------------------------------------------
 
 //I'm going to assume that the string has only letters
