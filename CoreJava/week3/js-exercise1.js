@@ -12,8 +12,9 @@ function maxLength(array){
         longestWord = array[i];
         if (longestWord.length() < array[i+1]) {
             longestWord = array[i+1]
-            return longestWord
         }
+    }
+    return longestWord
 
 }
 
@@ -36,39 +37,68 @@ function reverseArray(array){
 
 */
 
-function
+function vowelCount(string) {
+  let counter = 0
+  let i = 0
+  let newString = string.toLowerCase()
+  while (i<string.length()) {
+    if (newString[i].includes("a") || newString[i].includes("e")  || newString[i].includes("i") || newString[i].includes("o") || newString[i].includes("u")) {
+      counter++
+    }
+    i++
+  }
+}
      
 
 /*
-
-
 4.      Email Validation 	
 Define function: isValidEmail(string)
 Create a function that checks for a valid email format.
- 
+ */
+
+function isValidEmail(string){
+	
+	let isEmail = false
+	
+	if(string.indexOf('@') > 0 && string.indexOf('.') > string.indexOf('@')) {
+    isEmail = true
+    return isEmail
+  }
+  return isEmail
+}
 
 
-
-
-*/
 
 /*
 5.     Remove Character
 	Define function: removeChar(string, index)
 Write a JavaScript function to remove a character at the specified position of a given string and return the new string.
-
-
-
 */
+function removeChar(string, i) {
+  return string.substring(0, i) + string.substring(i+1);
+
+}
+
+
 /*
 6.       Bubble Sort
 Define function: bubbleSort(numArray)
 Use the bubble sort algorithm to sort an array of numbers. You may need to look up the algorithm if you’re not familiar with it
 Return the sorted array.
-
-
-
 */
+function bubble_sort(arr){
+  for(let i = 0; i < arr.length; i++){
+    for(let j = 0; j < (arr.length-i-1); j++){
+      let thisEle = arr[j];
+      if(arr[j] > arr[j+1]){
+        arr[j] = arr[j+1];
+        arr[j+1] = thisEle;
+      }
+    }
+  }
+  
+  return arr;
+}
 
 
 /*
@@ -76,18 +106,27 @@ Return the sorted array.
 Define function: isEven(someNum)
 Return true if even, false if odd.
 Challenge: Do not use % operator.
-
-
 */
+
+function isEven(someNum){
+  return someNum % 2 == 0;
+} 
 
 /*
 8.   Palindrome
 Define function: isPalindrome(someStr)
 Return true if someStr is a palindrome, otherwise return false.
-
-
-
 */
+function isPalindrome(string) {
+  var str = string;
+  var palindromeReversed = string.split('').reverse().join('');
+  console.log(string);
+  if (palindromeReversed === str ) {
+    return true;
+  } else {
+    return false;
+  }
+ }
 
 /*
 ////////////// challenge questions
@@ -96,11 +135,10 @@ Return true if someStr is a palindrome, otherwise return false.
 Define function: isLeapYear(date)
 Create a JavaScript function that takes a date parameter and returns true if the year is a leap year in the Gregorian calendar.
  
-
-
-
-
 */
+
+
+
 
 /*
 10.   Shapes
