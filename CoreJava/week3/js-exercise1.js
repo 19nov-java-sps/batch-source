@@ -23,9 +23,10 @@ Define function: reverseArray(array)
 Write a JavaScript function to reverse the elements of a given array.
  */
 
-
-
-*/
+function reverseArray(array){
+  let reversedArray = array.reverse()
+  return reverseArray
+}
 
 
  /*
@@ -33,10 +34,9 @@ Write a JavaScript function to reverse the elements of a given array.
 	Define function: vowelCount(string)
 	 Write a JavaScript function to count the number of vowels in a given string.
 
-
-
-
 */
+
+function
      
 
 /*
