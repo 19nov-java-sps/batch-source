@@ -1,11 +1,11 @@
 //--------------------------------------------------------------
 // JavaScript functions
 //
-// cwc 22Nov2019
+// cwc 24Nov2019
 //--------------------------------------------------------------
 
 //--------------------------------------------------------------
-// Find longest string from given array of strings and return its index
+// 1. Find longest string from given array of strings and return its index
 //--------------------------------------------------------------
 function getMaxString(inputArr) {
   let position_longest = 0;
@@ -18,11 +18,11 @@ function getMaxString(inputArr) {
   return position_longest;
 }
 
-let inputArr = ["one", "two", "three", "b", "cd"];
-console.log(getMaxString(inputArr));
+let inputOne = ["one", "two", "three", "b", "cd"];
+console.log(getMaxString(inputOne));
 
 //--------------------------------------------------------------
-//Write a JavaScript function to reverse the elements of a given array
+// 2. Write a JavaScript function to reverse the elements of a given array
 //--------------------------------------------------------------
 
 function reverseArray(arr) {
@@ -42,8 +42,11 @@ function reverseArray(arr) {
   return arr;
 }
 
+let inputTwo = [1, 2, 3, 4, 5];
+console.log(reverseArray(inputTwo));
+
 //--------------------------------------------------------------
-//Write a JavaScript function to count the number of vowels in a given string
+// 3. Write a JavaScript function to count the number of vowels in a given string
 //--------------------------------------------------------------
 
 function vowelCount(inputStr) {
@@ -77,7 +80,7 @@ function isValidEmail(str) {
 }
 
 function isValidDomain(str) {
-  let parsed = str.split('.'); 
+  let parsed = str.split('.');
 }
 
 //--------------------------------------------------------------
@@ -130,7 +133,7 @@ function isEven(someNumber) {
 //--------------------------------------------------------------
 
 //I'm going to assume that the string has only letters
-//I'll allow for spaces
+//I'll allow for spaces by removing them when processing string
 function isPalindrome(someStr) {
   let formatted = formatString(someStr).toLowerCase();
 
