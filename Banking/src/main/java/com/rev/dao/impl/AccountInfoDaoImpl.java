@@ -53,7 +53,6 @@ public class AccountInfoDaoImpl implements AccountInfoDao {
 			e.printStackTrace();
 		}
 		return accntPostWithdrawal;
-		
 	}
 
 	public int deposit(AccountInfo a, double amount) {
