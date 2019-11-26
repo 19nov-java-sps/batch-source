@@ -46,7 +46,8 @@ public class MainMenu {
 			
 			break;
 			
-		// if the client inputs anything other than 1, 2 or 3 then this message prints to the screen and it takes the client back to the main menu via recursion
+		// if the client inputs anything other than 1, 2 or 3 then 
+		//this message prints to the screen and it takes the client back to the main menu via recursion
 		default:
 			System.out.println("Invalid option! Please try again! \n\n");
 			mainMenuMsg();
