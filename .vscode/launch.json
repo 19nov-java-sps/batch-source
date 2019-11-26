@@ -2,9 +2,17 @@
     "configurations": [
         {
             "type": "java",
-            "name": "CodeLens (Launch) - ListDemo",
+            "name": "Debug (Attach)",
+            "request": "attach",
+            "hostName": "localhost",
+            "port": 8080
+        },
+        
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - HelloWorld",
             "request": "launch",
-            "mainClass": "com.revature.collections.ListDemo"
+            "mainClass": "com.revature.servlets.HelloWorldServlet"
         }
     ]
 }
