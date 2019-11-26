@@ -48,4 +48,5 @@ function Dog(nameInput, breedInput, ageInput){
     this.bark = function(){
         console.log("woof");
     }
+
 }
