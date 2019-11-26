@@ -11,4 +11,32 @@
 		<url-pattern>/hello</url-pattern>
 	</servlet-mapping>
 
+
+	<servlet>
+		<servlet-name>CarServlet</servlet-name>
+		<servlet-class>com.revature.servlets.CarServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CarServlet</servlet-name>
+		<url-pattern>/cars</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>CalculatorServlet</servlet-name>
+		<servlet-class>com.revature.servlets.CalculatorServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CalculatorServlet</servlet-name>
+		<url-pattern>/calculator</url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>AnswerServlet</servlet-name>
+		<servlet-class>com.revature.servlets.AnswerServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AnswerServlet</servlet-name>
+		<url-pattern>/answer</url-pattern>
+	</servlet-mapping>
 </web-app>
