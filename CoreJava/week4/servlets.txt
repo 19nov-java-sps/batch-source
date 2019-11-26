@@ -1,0 +1,15 @@
+What are servelets???
+    java classes
+
+
+servelet (I)
+    - init() - called once
+    - service() - called once per request
+    - destroy() - called  once 
+
+
+Generic servelet (AC)
+
+HTTPServelet
+
+
