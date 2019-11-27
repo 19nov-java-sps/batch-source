@@ -1,6 +1,6 @@
 console.log("hi from directory.js")
 
-let requestUrl = "http://localhost:8080/ServletDemo/employees";
+let requestUrl = "http://localhost:8080/FrontControllerDemo/api/employees";
 
 function sendAjaxGet(url, callback){
 	let xhr = new XMLHttpRequest();

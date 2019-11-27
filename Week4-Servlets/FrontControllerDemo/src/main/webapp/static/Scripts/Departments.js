@@ -2,7 +2,7 @@
  * 
  */
 
-const requestUrl = "http://localhost:8080/ServletDemo/departments";
+const requestUrl = "http://localhost:8080/FrontControllerDemo/api/departments";
 
 
 function sendAjaxGet(url, callback){
