@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+body{
+    background-color: rgb(227, 238, 241);
+    margin: auto;
+    padding: 5rem;
+    width: auto;
+    height: auto;
+}
+
+article{
+    background-color: white;
+    padding: 1rem;
+    margin: 10rem;
+}
+
+h1{
+    padding-bottom: 1rem;
+}
+
+#passend{
+padding-bottom: 1rem;
+}
