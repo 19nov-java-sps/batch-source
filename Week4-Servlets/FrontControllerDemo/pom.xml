@@ -6,7 +6,7 @@
   <packaging>war</packaging>
   
   
-  <build>
+  	<build>
 		<finalName>FrontControllerDemo</finalName>
 	</build>
 
