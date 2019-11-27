@@ -34,6 +34,7 @@ public class EmployeeServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+<<<<<<< HEAD
 		List<Employee> employees = employeeService.getAll();	
 		
 		ObjectMapper om = new ObjectMapper();
@@ -41,6 +42,35 @@ public class EmployeeServlet extends HttpServlet {
 		
 		try(PrintWriter pw = response.getWriter()){
 			pw.write(employeeJSON);
+=======
+		ObjectMapper om = new ObjectMapper();
+		
+		String idStr = request.getParameter("id");
+		
+		if(idStr!=null) {
+			if(idStr.matches("^\\d+$")) {
+				int id = Integer.parseInt(idStr);
+				Employee e = employeeService.getById(id);
+				if(e==null) {
+					response.sendError(404);
+				} else {
+					String employeeJSON = om.writeValueAsString(e);
+					try(PrintWriter pw = response.getWriter()){
+						pw.write(employeeJSON);
+					}
+				}
+			} else {
+				response.sendError(400);
+			}
+		} else {
+			List<Employee> employees = employeeService.getAll();	
+			
+			String employeesJSON = om.writeValueAsString(employees);
+			
+			try(PrintWriter pw = response.getWriter()){
+				pw.write(employeesJSON);
+			}
+>>>>>>> Carolyn_Rehm
 		}
 		
 	}
@@ -54,9 +84,17 @@ public class EmployeeServlet extends HttpServlet {
 		e.setName(newName);
 	
 		Department d = new Department();
+<<<<<<< HEAD
 		//pls do more input validation than this vvvv
 		d.setId(Integer.parseInt(newDeptId));
 		e.setDepartment(d);
+=======
+		
+		if(newDeptId!=null && newDeptId.matches("^\\d+$")) {
+			d.setId(Integer.parseInt(newDeptId));
+			e.setDepartment(d);
+		}
+>>>>>>> Carolyn_Rehm
 		
 		employeeService.create(e);
 		

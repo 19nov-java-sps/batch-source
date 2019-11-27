@@ -1,6 +1,6 @@
 console.log("hi from directory.js")
 
-let requestUrl = "http://localhost:8080/ServletDemo/employees";
+let requestUrl = "http://localhost:8080/FrontControllerDemo/api/employees";
 
 function sendAjaxGet(url, callback){
 	let xhr = new XMLHttpRequest();
@@ -28,11 +28,7 @@ function displayEmployees(employeesJSON){
 		
 		let newRow = document.createElement("tr");
 		
-<<<<<<< HEAD
-		newRow.innerHTML = `<td>${employee.name}</td><td>${employee.department.name}</td>`;
-=======
 		newRow.innerHTML= `<td>${employee.name}</td><td>${employee.department.name}</td>`;
->>>>>>> Carolyn_Rehm
 		table.appendChild(newRow);
 		
 	}
