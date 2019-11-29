@@ -7,7 +7,7 @@ public class Invoice {
 	private String description;
 	private String dateSubmitted;
 	private String dateApproved;
-	private Boolean rejected;
+	private boolean rejected;
 	private int userId;
 	
 	public Invoice() {
@@ -16,7 +16,7 @@ public class Invoice {
 	}
 
 	public Invoice(int invoiceId, Double amount, String description, String dateSubmitted, String dateApproved,
-			Boolean rejected, int userId) {
+			boolean rejected, int userId) {
 		super();
 		this.invoiceId = invoiceId;
 		this.amount = amount;
@@ -43,7 +43,7 @@ public class Invoice {
 		result = prime * result + ((dateSubmitted == null) ? 0 : dateSubmitted.hashCode());
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + invoiceId;
-		result = prime * result + ((rejected == null) ? 0 : rejected.hashCode());
+		result = prime * result + (rejected ? 1231 : 1237);
 		result = prime * result + userId;
 		return result;
 	}
@@ -79,10 +79,7 @@ public class Invoice {
 			return false;
 		if (invoiceId != other.invoiceId)
 			return false;
-		if (rejected == null) {
-			if (other.rejected != null)
-				return false;
-		} else if (!rejected.equals(other.rejected))
+		if (rejected != other.rejected)
 			return false;
 		if (userId != other.userId)
 			return false;
@@ -129,11 +126,11 @@ public class Invoice {
 		this.dateApproved = dateApproved;
 	}
 
-	public Boolean getRejected() {
+	public boolean isRejected() {
 		return rejected;
 	}
 
-	public void setRejected(Boolean rejected) {
+	public void setRejected(boolean rejected) {
 		this.rejected = rejected;
 	}
 
@@ -146,6 +143,8 @@ public class Invoice {
 	}
 	
 	
+
+
 		
 	
 }

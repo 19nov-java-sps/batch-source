@@ -6,7 +6,7 @@ public class Employee {
 	private String username;
 	private String password;
 	private String fullname;
-	private Boolean isManager;
+	private boolean isManager;
 	private Invoice invoice;
 	
 	
@@ -16,7 +16,7 @@ public class Employee {
 	}
 
 
-	public Employee(int userId, String username, String password, String fullname, Boolean isManager, Invoice invoice) {
+	public Employee(int userId, String username, String password, String fullname, boolean isManager, Invoice invoice) {
 		super();
 		this.userId = userId;
 		this.username = username;
@@ -27,13 +27,30 @@ public class Employee {
 	}
 
 
+	public Employee(int userId, String username, String password, String fullname, boolean isManager) {
+		super();
+		this.userId = userId;
+		this.username = username;
+		this.password = password;
+		this.fullname = fullname;
+		this.isManager = isManager;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Employee [userId=" + userId + ", username=" + username + ", password=" + password + ", fullname="
+				+ fullname + ", isManager=" + isManager + ", invoice=" + invoice + "]";
+	}
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((fullname == null) ? 0 : fullname.hashCode());
 		result = prime * result + ((invoice == null) ? 0 : invoice.hashCode());
-		result = prime * result + ((isManager == null) ? 0 : isManager.hashCode());
+		result = prime * result + (isManager ? 1231 : 1237);
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + userId;
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
@@ -60,10 +77,7 @@ public class Employee {
 				return false;
 		} else if (!invoice.equals(other.invoice))
 			return false;
-		if (isManager == null) {
-			if (other.isManager != null)
-				return false;
-		} else if (!isManager.equals(other.isManager))
+		if (isManager != other.isManager)
 			return false;
 		if (password == null) {
 			if (other.password != null)
@@ -121,12 +135,12 @@ public class Employee {
 	}
 
 
-	public Boolean getIsManager() {
+	public boolean isManager() {
 		return isManager;
 	}
 
 
-	public void setIsManager(Boolean isManager) {
+	public void setManager(boolean isManager) {
 		this.isManager = isManager;
 	}
 
@@ -140,13 +154,6 @@ public class Employee {
 		this.invoice = invoice;
 	}
 
-
-	@Override
-	public String toString() {
-		return "Employee [userId=" + userId + ", username=" + username + ", password=" + password + ", fullname="
-				+ fullname + ", isManager=" + isManager + ", invoice=" + invoice + "]";
-	}
-	
 	
 	
 }

@@ -8,7 +8,7 @@ import com.revauture.model.Invoice;
 public class InvoiceDaoImpl implements InvoiceDao{
 
 	@Override
-	public List<Invoice> getInvoices(Invoice i) {
+	public List<Invoice> getInvoices() {
 		// TODO Auto-generated method stub
 		return null;
 	}
