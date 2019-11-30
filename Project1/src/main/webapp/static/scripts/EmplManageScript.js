@@ -41,7 +41,7 @@ function displayEmplsInfo(xhr) {
 	title.innerText = "All Employees";
 	
 	let table = document.createElement("Table");
-	table.className = "table table-bordered";
+	table.className = "table table-bordered table-striped";
 	document.getElementById("main").appendChild(table);
 	
 	let head = document.createElement("thead");

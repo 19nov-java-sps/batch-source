@@ -1,20 +1,16 @@
-document.getElementById("pending-reim").addEventListener("click", viewPending);
-document.getElementById("resolved-reim").addEventListener("click", viewResolved);
+document.getElementById("pending-req").addEventListener("click", viewAllPending);
+document.getElementById("resolved-req").addEventListener("click", viewAllResolved);
 
-function viewPending() {
+function viewAllPending() {
 	
-	let tokenArr = token.split(":");
-	
-	let baseUrl = "http://localhost:8080/Project1/api/reimbursements/pending?id=";
-	sendAjaxGetReims(baseUrl + tokenArr[0], displayEmplReim, 'Pending');
+	let url = "http://localhost:8080/Project1/api/reimbursements/pending";
+	sendAjaxGetReims(url, displayAllReims, 'Pending');
 }
 
-function viewResolved() {
+function viewAllResolved() {
 	
-	let tokenArr = token.split(":");
-	
-	let baseUrl = "http://localhost:8080/Project1/api/reimbursements/resolved?id=";
-	sendAjaxGetReims(baseUrl + tokenArr[0], displayEmplReim, 'Resolved');
+	let url = "http://localhost:8080/Project1/api/reimbursements/resolved";
+	sendAjaxGetReims(url, displayAllReims, 'Resolved');
 }
 
 function sendAjaxGetReims(url, callback, type){
@@ -33,7 +29,7 @@ function sendAjaxGetReims(url, callback, type){
 	xhr.send();
 }
 
-function displayEmplReim(xhr, type) {
+function displayAllReims(xhr, type) {
 	
 	if (document.getElementById("main")) {		
 		document.getElementById("main").remove();
@@ -51,7 +47,7 @@ function displayEmplReim(xhr, type) {
 		
 		let title = document.createElement("h4");
 		document.getElementById("main").appendChild(title);
-		title.innerText = `My ${type} Reimbursement`;
+		title.innerText = `All ${type} Reimbursement`;
 		
 		let table = document.createElement("Table");
 		table.className = "table table-bordered table-striped";
@@ -63,8 +59,8 @@ function displayEmplReim(xhr, type) {
 			head.innerHTML = `<tr>
 			<th>Id</th>
 			<th>Amount</th>
+			<th>Employee</th>
 			<th>Submit Date</th>
-			<th>Description</th>
 			</tr>`
 			table.appendChild(head);
 			
@@ -76,8 +72,8 @@ function displayEmplReim(xhr, type) {
 				
 				newRow.innerHTML= `<td>${r.reimId}</td>
 				<td>${r.amount}</td>
-				<td>${r.submitDate.slice(0, 16)}</td>
-				<td>${r.description}</td>`;
+				<td>${r.submitBy.firstName} ${r.submitBy.lastName}</td>
+				<td>${r.submitDate.slice(0, 16)}</td>`;
 				body.appendChild(newRow);
 			})
 			
@@ -88,12 +84,11 @@ function displayEmplReim(xhr, type) {
 			head.innerHTML = `<tr>
 			<th>Id</th>
 			<th>Amount</th>
-			<th>Submit Date</th>
-			<th>Description</th>
 			<th>Result</th>
+			<th>Employee</th>
+			<th>Submit Date</th>
 			<th>Manager</th>
 			<th>Resolved Date</th>
-			<th>Reason</th>
 			</tr>`;
 			table.appendChild(head);
 			
@@ -106,12 +101,11 @@ function displayEmplReim(xhr, type) {
 				
 				newRow.innerHTML= `<td>${r.reimId}</td>
 				<td>${r.amount}</td>
-				<td>${r.submitDate.slice(0, 16)}</td>
-				<td>${r.description}</td>
 				<td>${r.result}</td>
+				<td>${r.submitBy.firstName} ${r.submitBy.lastName}</td>
+				<td>${r.submitDate.slice(0, 16)}</td>
 				<td>${r.resolvedBy.firstName} ${r.resolvedBy.lastName}</td>
-				<td>${r.resolvedDate.slice(0, 16)}</td>
-				<td>${reason}</td>`;
+				<td>${r.resolvedDate.slice(0, 16)}</td>`;
 				
 				body.appendChild(newRow);
 			})
@@ -120,5 +114,4 @@ function displayEmplReim(xhr, type) {
 		}
 	}
 }
-
 

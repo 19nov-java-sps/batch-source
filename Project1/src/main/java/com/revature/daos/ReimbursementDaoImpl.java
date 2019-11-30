@@ -21,11 +21,13 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 	public List<Reimbursement> getPendingReim() {
 
 		List<Reimbursement> reims = new ArrayList<>();
-		String sql = "select * from Reimbursement where status = \"pending\"";
+		String sql = "select * from Reimbursement where status = ?";
 		
-		try (Connection c = ConnectionUtil.getConnection();
-				Statement s = c.createStatement();
-				ResultSet rs = s.executeQuery(sql)){
+		try(Connection c = ConnectionUtil.getConnection();
+        		PreparedStatement ps = c.prepareStatement(sql)) {
+        	
+			ps.setString(1, "pending");
+        	ResultSet rs = ps.executeQuery();
 			
 			while (rs.next()) {
 				int reimId = rs.getInt("reimId");
@@ -57,11 +59,13 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 	public List<Reimbursement> getResolvedReim() {
 
 		List<Reimbursement> reims = new ArrayList<>();
-		String sql = "select * from Reimbursement where status = \"resolved\"";
+		String sql = "select * from Reimbursement where status = ?";
 		
-		try (Connection c = ConnectionUtil.getConnection();
-				Statement s = c.createStatement();
-				ResultSet rs = s.executeQuery(sql)){
+		try(Connection c = ConnectionUtil.getConnection();
+        		PreparedStatement ps = c.prepareStatement(sql)) {
+        	
+			ps.setString(1, "resolved");
+        	ResultSet rs = ps.executeQuery();
 			
 			while (rs.next()) {
 				int reimId = rs.getInt("reimId");
@@ -93,12 +97,13 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 	public List<Reimbursement> getPendingReimById(int emplId) {
 		
 		List<Reimbursement> reims = new ArrayList<>();
-		String sql = "select * from Reimbursement where status = \"pending\" and submitBy = ?";
+		String sql = "select * from Reimbursement where status = ? and submitBy = ?";
 		
 		try(Connection c = ConnectionUtil.getConnection();
         		PreparedStatement ps = c.prepareStatement(sql)) {
         	
-        	ps.setInt(1, emplId);
+			ps.setString(1, "pending");
+        	ps.setInt(2, emplId);
         	ResultSet rs = ps.executeQuery();
         	
         	while (rs.next()) {
@@ -131,12 +136,13 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 	public List<Reimbursement> getResolvedReimById(int emplId) {
 		
 		List<Reimbursement> reims = new ArrayList<>();
-		String sql = "select * from Reimbursement where status = \"resolved\" and submitBy = ?";
+		String sql = "select * from Reimbursement where status = ? and submitBy = ?";
 		
 		try(Connection c = ConnectionUtil.getConnection();
         		PreparedStatement ps = c.prepareStatement(sql)) {
         	
-        	ps.setInt(1, emplId);
+			ps.setString(1, "resolved");
+        	ps.setInt(2, emplId);
         	ResultSet rs = ps.executeQuery();
         	
         	while (rs.next()) {

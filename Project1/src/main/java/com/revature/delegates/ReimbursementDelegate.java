@@ -27,10 +27,9 @@ public class ReimbursementDelegate {
 			}
 		} else {
 			if (idStr.matches("^\\d+$")) {
-				List<Reimbursement> reimbursement = rs.viewPendingReimById(Integer.parseInt(idStr));
-				
+				List<Reimbursement> reimbursements = rs.viewPendingReimById(Integer.parseInt(idStr));
 				try(PrintWriter pw = response.getWriter()){
-					pw.write(new ObjectMapper().writeValueAsString(reimbursement));
+					pw.write(new ObjectMapper().writeValueAsString(reimbursements));
 				}
 			} else {
 				response.sendError(400, "Invalid ID param");
@@ -51,10 +50,9 @@ public class ReimbursementDelegate {
 			}
 		} else {
 			if (idStr.matches("^\\d+$")) {
-				List<Reimbursement> reimbursement = rs.viewResolvedReimById(Integer.parseInt(idStr));
-
+				List<Reimbursement> reimbursements = rs.viewResolvedReimById(Integer.parseInt(idStr));
 				try(PrintWriter pw = response.getWriter()){
-					pw.write(new ObjectMapper().writeValueAsString(reimbursement));
+					pw.write(new ObjectMapper().writeValueAsString(reimbursements));
 				}
 			} else {
 				response.sendError(400, "Invalid ID param");
