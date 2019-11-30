@@ -18,7 +18,7 @@ public class EmployeeService {
 		return employeeDao.getEmployeeById(id);
 	}
 	
-	public boolean createClient(Employee e) {
+	public boolean createEmployee(Employee e) {
 		int i =  employeeDao.createEmployee(e);
 		if (i !=  0) {
 			return true;
@@ -28,7 +28,7 @@ public class EmployeeService {
 		
 	}
 
-	public boolean deleteClient(Employee e) {
+	public boolean deleteEmployee(Employee e) {
 		int i =  employeeDao.deleteEmployee(e);
 		if (i !=  0) {
 			return true;
@@ -38,7 +38,7 @@ public class EmployeeService {
 		
 	}
 	
-	public boolean updateClient(Employee e) {
+	public boolean updateEmployee(Employee e) {
 		int i =  employeeDao.updateEmployee(e);
 		if (i !=  0) {
 			return true;

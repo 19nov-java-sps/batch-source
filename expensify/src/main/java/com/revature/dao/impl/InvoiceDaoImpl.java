@@ -1,6 +1,9 @@
 package com.revature.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
+
+
 
 import com.revature.dao.InvoiceDao;
 import com.revauture.model.Invoice;
@@ -9,7 +12,10 @@ public class InvoiceDaoImpl implements InvoiceDao{
 
 	@Override
 	public List<Invoice> getInvoices() {
-		// TODO Auto-generated method stub
+		List<Invoice> invoiceslList = new ArrayList<>();
+		
+		
+		
 		return null;
 	}
 

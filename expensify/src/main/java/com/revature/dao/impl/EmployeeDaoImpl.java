@@ -1,6 +1,8 @@
 package com.revature.dao.impl;
 
+
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -41,26 +43,84 @@ public class EmployeeDaoImpl implements EmployeeDao{
 
 	@Override
 	public Employee getEmployeeById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		String sqlString =  "select * from Employee where Employee.user_id = ?";
+		Employee employee = null;
+		
+		
+		try (Connection connection = ConnectionUtil.getConnection();
+				PreparedStatement pStatement = connection.prepareStatement(sqlString)){
+			
+			pStatement.setInt(1, id);
+			ResultSet rSet = pStatement.executeQuery();
+			
+			while  (rSet.next()) {
+				int userId = rSet.getInt("user_id");
+				String username = rSet.getString("username");
+				String password = rSet.getString("passwordString");
+				String fullname = rSet.getString("full_name");
+				Boolean isManager = rSet.getBoolean("isManager");
+				employee = new Employee(userId, username, password, fullname, isManager);	
+			}
+		} catch (SQLException error) {
+			error.printStackTrace();
+		}
+		return employee;
 	}
 
 	@Override
 	public int createEmployee(Employee e) {
-		// TODO Auto-generated method stub
-		return 0;
+		String sqString = "insert into Employee (username, passwordString, full_name, isManager) values (?,?,?,?)";
+		int success = 0;
+		
+		try (Connection connection = ConnectionUtil.getConnection();
+				PreparedStatement pStatement = connection.prepareStatement(sqString)){
+			pStatement.setString(1, e.getUsername());
+			pStatement.setString(2, e.getPassword());
+			pStatement.setString(3, e.getFullname());
+			pStatement.setBoolean(4, e.isManager());
+			success = pStatement.executeUpdate();
+		
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		return success;
 	}
 
 	@Override
 	public int updateEmployee(Employee e) {
-		// TODO Auto-generated method stub
-		return 0;
+		String sqlString = "update * from Employee set user_id = ?, username = ?, passwordString = ?, full_name = ?, isManager = ? where Employee.user_id =  ?";
+		int updatedemployee = 0;
+		
+		try (Connection connection = ConnectionUtil.getConnection();
+				PreparedStatement preparedStatement = connection.prepareStatement(sqlString)){
+			preparedStatement.setInt(1, e.getUserId());
+			preparedStatement.setString(2, e.getUsername());
+			preparedStatement.setString(3, e.getPassword());
+			preparedStatement.setString(4, e.getFullname());
+			preparedStatement.setBoolean(5, e.isManager());
+			updatedemployee = preparedStatement.executeUpdate();
+			
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		return updatedemployee;
 	}
 
 	@Override
 	public int deleteEmployee(Employee e) {
-		// TODO Auto-generated method stub
-		return 0;
+		String sqString = "delete from Employee where Employee.user_id = ?";
+		int deletedEmployee = 0;
+		
+		try (Connection connection = ConnectionUtil.getConnection();
+				PreparedStatement pStatement =  connection.prepareStatement(sqString)){
+			pStatement.setInt(1, e.getUserId());
+			deletedEmployee =  pStatement.executeUpdate();
+		} catch (SQLException error) {
+			error.printStackTrace();
+		}
+		return deletedEmployee;
 	}
 
 }

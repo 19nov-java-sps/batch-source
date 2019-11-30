@@ -57,19 +57,19 @@ public class EmployeeServiceTest {
 		employee.setUsername("pnguye17");
 		
 		when(ed.updateEmployee(employee)).thenReturn(1);
-		boolean actual = es.updateClient(employee);
+		boolean actual = es.updateEmployee(employee);
 		assertEquals(expected, actual);
 	}
 	
 	@Test
-	public void testDeleteBankAcct() {
+	public void testDeleteEmployee() {
 		boolean expected = true;
 		Employee employee = new Employee();
 		employee.setUserId(1);
 		employee.setUsername("pnguye17");
 		
-		when(ed.updateEmployee(employee)).thenReturn(1);
-		boolean actual = es.updateClient(employee);
+		when(ed.deleteEmployee(employee)).thenReturn(1);
+		boolean actual = es.deleteEmployee(employee);
 		assertEquals(expected, actual);
 	}
 	

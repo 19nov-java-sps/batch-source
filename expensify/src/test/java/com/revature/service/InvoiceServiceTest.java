@@ -1,11 +1,13 @@
 package com.revature.service;
 
+import static org.hamcrest.CoreMatchers.both;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.tomcat.util.security.Escape;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -36,24 +38,50 @@ public class InvoiceServiceTest {
 	
 	@Test
 	public void testDeleteInvoice() {
-		
+		boolean expected = true;
+		Invoice invoice = new Invoice();
+		invoice.setUserId(1);
+		invoice.setInvoiceId(1);
+		when(invoiceDao.deleteInvoice(invoice)).thenReturn(1);
+		boolean actual= invoiceService.deleteInvoice(invoice);
+		assertEquals(expected, actual);
 	}
 	
 	
 	@Test
 	public void testUpdateInvoice() {
-		
+		boolean expected = true;
+		Invoice invoice = new Invoice();
+		invoice.setUserId(2);
+		invoice.setInvoiceId(1);
+		when(invoiceDao.updateInvoice(invoice)).thenReturn(1);
+		boolean actual= invoiceService.updateInvoice(invoice);
+		assertEquals(expected, actual);
 	}
 	
 	
 	@Test
 	public void testGetInvoiceById() {
+//		Invoice invoice = new Invoice();
+//		invoice.setInvoiceId(1);
+//		invoice.setAmount(100.00);
+//		invoice.setDescription("Testing the Junit");
+//		
+//		when(invoiceDao.getInvoiceById(1)).thenReturn(1);
+//		assertEquals(invoiceService.g
+//		
+//		
 		
 	}
 	
 	
 	@Test
-	public void testCreatInvoice() {
+	public void testCreateInvoice() {
+		boolean expected = true;
+		Invoice invoice = new Invoice();
+		when(invoiceDao.createInvoice(invoice)).thenReturn(1);
+		boolean actual =  invoiceService.createInvoice(invoice);
+		assertEquals(expected, actual);
 		
 	}
 	
