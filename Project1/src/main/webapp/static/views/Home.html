@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Employee Home</title>
+    <link rel="shortcut icon" href="static/styles/money.png" type="image/png">
+    <link rel="stylesheet" type="text/css" href="static/styles/Home.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+  </head>
+  <body>
+    <div id="title" class="bg-warning text-dark">
+      <h1><i>Employee Home</i></h1>
+    </div>
+    <button class="btn btn-outline-secondary" id="logout-btn">Logout</button>
+    <nav id="employee-sidebar">
+      <ul class="nav flex-column list-group">
+        <li class="nav-item list-group-item list-group-item-action">
+          <a class="nav-link active text-dark" href="#" id="profile">My Profile</a>
+        </li>
+        <li class="nav-item list-group-item list-group-item-action">
+          <a class="nav-link text-dark" href="#" id="update-info">Update Information</a>
+        </li>
+        <li class="nav-item dropdown list-group-item list-group-item-action">
+          <a class="nav-link dropdown-toggle text-dark" data-toggle="dropdown" href="#">View Reimbursement</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#" id="pending-reim">Pending</a>
+            <a class="dropdown-item" href="#" id="resolved-reim">Resolved</a>
+          </div>
+        </li>
+        <li class="nav-item list-group-item list-group-item-action">
+          <a class="nav-link text-dark" href="#">New Reimbursement</a>
+        </li>
+      </ul>
+    </nav>
+    <nav id="manager-sidebar" hidden>
+      <ul class="nav flex-column list-group">
+        <li class="nav-item list-group-item list-group-item-action">
+          <a class="nav-link active text-dark" href="#" id="view-empls">View Employees</a>
+        </li>
+        <li class="nav-item list-group-item list-group-item-action">
+          <a class="nav-link text-dark" href="#">Pending Requests</a>
+        </li>
+        <li class="nav-item list-group-item list-group-item-action">
+          <a class="nav-link text-dark" href="#">Resolved Requests</a>
+        </li>
+        <li class="nav-item list-group-item list-group-item-action">
+          <a class="nav-link text-dark" href="#" id="regis-empl">Register Employee</a>
+        </li>
+      </ul>
+    </nav>
+    <div id="content">
+    </div>
+    <script type="text/javascript" src="static/scripts/HomeScript.js"></script>
+    <script type="text/javascript" src="static/scripts/EmplManageScript.js"></script>
+    <script type="text/javascript" src="static/scripts/EmplReimScript.js"></script>
+    <script type="text/javascript" src="static/scripts/ManagerReimScript.js"></script>
+  </body>
+</html>
