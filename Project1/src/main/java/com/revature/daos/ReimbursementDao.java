@@ -12,5 +12,5 @@ public interface ReimbursementDao {
 	public List<Reimbursement> getResolvedReimById(int emplId);
 	public Reimbursement getReimById(int reimId);
 	public int updateReim(int reimId);
-	public int createReim(Reimbursement reim);
+	public int createReim(double amount, int emplId, String description);
 }

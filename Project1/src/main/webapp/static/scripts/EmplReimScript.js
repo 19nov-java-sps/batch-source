@@ -72,12 +72,12 @@ function displayEmplReim(xhr, type) {
 			
 			reims.forEach(r => {
 				let newRow = document.createElement("tr");
-				let description = r.description.length ? '' : r.description;
+				let description = r.description.length ? r.description : '';
 				
 				newRow.innerHTML= `<td>${r.reimId}</td>
 				<td>${r.amount}</td>
 				<td>${r.submitDate.slice(0, 16)}</td>
-				<td>${r.description}</td>`;
+				<td>${description}</td>`;
 				body.appendChild(newRow);
 			})
 			
@@ -101,13 +101,13 @@ function displayEmplReim(xhr, type) {
 			
 			reims.forEach(r => {
 				let newRow = document.createElement("tr");
-				let description = r.description.length ? '' : r.description;
-				let reason = r.reason.length ? '' : r.reason;
+				let description = r.description.length ? r.description : '';
+				let reason = r.reason.length ? r.reason : '';
 				
 				newRow.innerHTML= `<td>${r.reimId}</td>
 				<td>${r.amount}</td>
 				<td>${r.submitDate.slice(0, 16)}</td>
-				<td>${r.description}</td>
+				<td>${description}</td>
 				<td>${r.result}</td>
 				<td>${r.resolvedBy.firstName} ${r.resolvedBy.lastName}</td>
 				<td>${r.resolvedDate.slice(0, 16)}</td>

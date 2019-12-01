@@ -45,6 +45,7 @@ function displayEmplsInfo(xhr) {
 	document.getElementById("main").appendChild(table);
 	
 	let head = document.createElement("thead");
+	head.className = "thead-light";
 	head.innerHTML = `<tr>
 	<th>Id</th>
 	<th>Name</th>

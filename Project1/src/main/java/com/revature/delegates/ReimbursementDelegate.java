@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.revature.models.Employee;
 import com.revature.models.Reimbursement;
 import com.revature.services.ReimbursementService;
 
@@ -77,6 +78,20 @@ public class ReimbursementDelegate {
 			}
 		} else {
 			response.sendError(400, "Invalid ID param");
+		}
+	}
+	
+	public void submitReimbursement(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String amount = request.getParameter("amount");
+		String emplId = request.getParameter("emplId");
+		String description = request.getParameter("description");
+		
+		int newReim = rs.submitReim(Double.parseDouble(amount), Integer.parseInt(emplId), description);
+
+		if (newReim == 1) {
+			response.setStatus(200);
+		} else {
+			response.sendError(400);
 		}
 	}
 }

@@ -34,7 +34,7 @@ public class ReimbursementService {
 		return reimbursementDao.updateReim(id);
 	}
 	
-	public int submitReim(Reimbursement reim) {
-		return reimbursementDao.createReim(reim);
+	public int submitReim(double amount, int emplId, String description) {
+		return reimbursementDao.createReim(amount, emplId, description);
 	}
 }

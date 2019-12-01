@@ -20,37 +20,40 @@
     <button class="btn btn-outline-secondary" id="logout-btn">Logout</button>
     <nav id="employee-sidebar">
       <ul class="nav flex-column list-group">
-        <li class="nav-item list-group-item list-group-item-action">
-          <a class="nav-link active text-dark" href="#" id="profile">My Profile</a>
+        <li class="nav-item list-group-item list-group-item-action" id="profile">
+          <a class="nav-link active text-dark" href="#">My Profile</a>
         </li>
-        <li class="nav-item list-group-item list-group-item-action">
-          <a class="nav-link text-dark" href="#" id="update-info">Update Information</a>
+        <li class="nav-item list-group-item list-group-item-action" id="update-info">
+          <a class="nav-link text-dark" href="#">Update Information</a>
         </li>
-        <li class="nav-item dropdown list-group-item list-group-item-action">
+        <li class="nav-item dropdown list-group-item list-group-item-action" id="my-reim-option">
           <a class="nav-link dropdown-toggle text-dark" data-toggle="dropdown" href="#">My Reimbursement</a>
           <div class="dropdown-menu">
             <a class="dropdown-item" href="#" id="pending-reim">Pending</a>
             <a class="dropdown-item" href="#" id="resolved-reim">Resolved</a>
           </div>
         </li>
-        <li class="nav-item list-group-item list-group-item-action">
+        <li class="nav-item list-group-item list-group-item-action" id="new-reim-option">
           <a class="nav-link text-dark" href="#">New Reimbursement</a>
+        </li>
+        <li class="nav-item list-group-item list-group-item-action" id="contact" hidden>
+          <a class="nav-link text-dark" href="#">Contact</a>
         </li>
       </ul>
     </nav>
     <nav id="manager-sidebar" hidden>
       <ul class="nav flex-column list-group">
-        <li class="nav-item list-group-item list-group-item-action">
-          <a class="nav-link active text-dark" href="#" id="view-empls">View Employees</a>
+        <li class="nav-item list-group-item list-group-item-action" id="view-empls">
+          <a class="nav-link active text-dark" href="#">View Employees</a>
         </li>
-        <li class="nav-item list-group-item list-group-item-action">
-          <a class="nav-link text-dark" href="#" id="pending-req">Pending Requests</a>
+        <li class="nav-item list-group-item list-group-item-action" id="pending-req">
+          <a class="nav-link text-dark" href="#">Pending Request</a>
         </li>
-        <li class="nav-item list-group-item list-group-item-action">
-          <a class="nav-link text-dark" href="#" id="resolved-req">Resolved Requests</a>
+        <li class="nav-item list-group-item list-group-item-action" id="resolved-req">
+          <a class="nav-link text-dark" href="#">Resolved Request</a>
         </li>
-        <li class="nav-item list-group-item list-group-item-action">
-          <a class="nav-link text-dark" href="#" id="regis-empl">Register Employee</a>
+        <li class="nav-item list-group-item list-group-item-action" id="regis-empl">
+          <a class="nav-link text-dark" href="#">Register Employee</a>
         </li>
       </ul>
     </nav>
@@ -59,6 +62,6 @@
     <script type="text/javascript" src="static/scripts/HomeScript.js"></script>
     <script type="text/javascript" src="static/scripts/EmplManageScript.js"></script>
     <script type="text/javascript" src="static/scripts/EmplReimScript.js"></script>
-    <script type="text/javascript" src="static/scripts/ManageReimScript.js"></script>
+    <script type="text/javascript" src="static/scripts/ManageReimScript.js"></script>    
   </body>
 </html>

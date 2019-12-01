@@ -58,6 +58,9 @@ public class RequestHelper {
 		case "/login":
 			authDelegate.authenticate(request, response);
 			break;
+		case "/reimbursement/new":
+			reimbursementDelegate.submitReimbursement(request, response);
+			break;
 		default:
 			response.sendError(405);
 		}

@@ -4,16 +4,16 @@ document.getElementById("resolved-req").addEventListener("click", viewAllResolve
 function viewAllPending() {
 	
 	let url = "http://localhost:8080/Project1/api/reimbursements/pending";
-	sendAjaxGetReims(url, displayAllReims, 'Pending');
+	sendAjaxGetReim(url, displayAllReims, 'Pending');
 }
 
 function viewAllResolved() {
 	
 	let url = "http://localhost:8080/Project1/api/reimbursements/resolved";
-	sendAjaxGetReims(url, displayAllReims, 'Resolved');
+	sendAjaxGetReim(url, displayAllReims, 'Resolved');
 }
 
-function sendAjaxGetReims(url, callback, type){
+function sendAjaxGetReim(url, callback, type){
 	let xhr = new XMLHttpRequest();
 	xhr.open("GET", url);
 	
@@ -29,7 +29,7 @@ function sendAjaxGetReims(url, callback, type){
 	xhr.send();
 }
 
-function displayAllReims(xhr, type) {
+function displayAllReims(xhr, type = 'Pending') {
 	
 	if (document.getElementById("main")) {		
 		document.getElementById("main").remove();
@@ -50,8 +50,12 @@ function displayAllReims(xhr, type) {
 		title.innerText = `All ${type} Reimbursement`;
 		
 		let table = document.createElement("Table");
-		table.className = "table table-bordered table-striped";
+		table.className = "table table-bordered table-hover";
 		document.getElementById("main").appendChild(table);
+		
+		let caption = document.createElement("Caption");
+		caption.innerText = 'Click on reimbusement id to view detail';
+		table.appendChild(caption);
 		
 		if (type === 'Pending') {
 			let head = document.createElement("thead");
@@ -68,8 +72,8 @@ function displayAllReims(xhr, type) {
 			
 			reims.forEach(r => {
 				let newRow = document.createElement("tr");
-				let description = r.description.length ? '' : r.description;
-				
+				newRow.className = 'pending-row';
+
 				newRow.innerHTML= `<td>${r.reimId}</td>
 				<td>${r.amount}</td>
 				<td>${r.submitBy.firstName} ${r.submitBy.lastName}</td>
@@ -86,6 +90,7 @@ function displayAllReims(xhr, type) {
 			<th>Amount</th>
 			<th>Result</th>
 			<th>Employee</th>
+			<th>Employee Id</th>
 			<th>Submit Date</th>
 			<th>Manager</th>
 			<th>Resolved Date</th>
@@ -96,13 +101,13 @@ function displayAllReims(xhr, type) {
 			
 			reims.forEach(r => {
 				let newRow = document.createElement("tr");
-				let description = r.description.length ? '' : r.description;
-				let reason = r.reason.length ? '' : r.reason;
+				newRow.className = 'resolved-row';
 				
 				newRow.innerHTML= `<td>${r.reimId}</td>
 				<td>${r.amount}</td>
 				<td>${r.result}</td>
 				<td>${r.submitBy.firstName} ${r.submitBy.lastName}</td>
+				<td>${r.submitBy.emplId}</td>
 				<td>${r.submitDate.slice(0, 16)}</td>
 				<td>${r.resolvedBy.firstName} ${r.resolvedBy.lastName}</td>
 				<td>${r.resolvedDate.slice(0, 16)}</td>`;
@@ -113,5 +118,89 @@ function displayAllReims(xhr, type) {
 			table.appendChild(body);
 		}
 	}
+	
+	let resolvedRows = document.getElementsByClassName("resolved-row");
+	for (let i = 0; i < resolvedRows.length; i++) {
+		resolvedRows[i].onclick = viewSingleResolved(event);
+	}
+	
+//	let pendingRows = document.getElementsByClassName("pending-row");
+//	for (let i = 0; i < pendingRows.length; i++) {
+//		pendingRows[i].onclick = viewSingleReim(event);
+//	}
 }
+
+function viewSingleResolved() {
+	
+	return (e) => {
+		if (e.target.cellIndex == 0) {
+			let url = "http://localhost:8080/Project1/api/reimbursements?id=" + e.target.innerText;
+			sendAjaxGetReim(url, displayResolvedById);
+			
+		}
+	}
+}
+
+function displayResolvedById(xhr) {
+	if (document.getElementById("main")) {		
+		document.getElementById("main").remove();
+	}
+	
+	let r = JSON.parse(xhr.response);
+	
+	let main = document.createElement("Div");
+	main.id = "main";
+	document.getElementById("content").appendChild(main);
+	
+	let title = document.createElement("h4");
+	document.getElementById("main").appendChild(title);
+	title.innerText = `Reimbursement Detail`;
+	
+	let table = document.createElement("Table");
+	table.className = "table table-bordered table-hover";
+	document.getElementById("main").appendChild(table);
+	
+	let firstHead = document.createElement("thead");
+	firstHead.className = "thead-light";
+	firstHead.innerHTML = `<tr>
+	<th>Id</th>
+	<th>Status</th>
+	<th>Employee</th>
+	<th>Department</th>
+	<th>Submit Date</th>
+	<th>Description</th>
+	</tr>`;
+	table.appendChild(firstHead);
+	
+	let firstRow = document.createElement("tr");	
+	firstRow.innerHTML= `<td>${r.reimId}</td>
+	<td>${r.status.toUpperCase()}</td>
+	<td>${r.submitBy.firstName} ${r.submitBy.lastName}</td>
+	<td>${r.submitBy.department.deptName}</td>
+	<td>${r.submitDate.slice(0, 16)}</td>
+	<td>${r.description}</td>`;
+	table.appendChild(firstRow);
+
+	let secondHead = document.createElement("thead");
+	secondHead.className = "thead-light";
+	secondHead.innerHTML = `<tr>
+	<th>Amount</th>
+	<th>Result</th>
+	<th>Manager</th>
+	<th>Position</th>
+	<th>Resolved Date</th>
+	<th>Reason</th>
+	</tr>`;
+	table.appendChild(secondHead);
+	
+	let secondRow = document.createElement("tr");	
+	secondRow.innerHTML= `<td>${r.amount}</td>
+	<td>${r.result.toUpperCase()}</td>
+	<td>${r.resolvedBy.firstName} ${r.resolvedBy.lastName}</td>
+	<td>${r.resolvedBy.position}</td>
+	<td>${r.resolvedDate.slice(0, 16)}</td>
+	<td>${r.reason}</td>`;
+	table.appendChild(secondRow);
+}
+
 
