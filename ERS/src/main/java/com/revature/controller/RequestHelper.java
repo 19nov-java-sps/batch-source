@@ -31,6 +31,7 @@ public class RequestHelper {
 			case "employees":
 				employeeDelegate.getUsers(request, response);
 				break;
+			case
 			default:
 				response.sendError(404, "Request Record(s) Not Found");
 			}
