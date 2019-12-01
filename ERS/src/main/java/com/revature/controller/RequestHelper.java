@@ -7,44 +7,44 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.revature.delegates.AuthDelegate;
-import com.revature.delegates.UserDelegate;
+import com.revature.delegates.EmployeesDelegate;
 import com.revature.delegates.ViewDelegate;
 
 public class RequestHelper {
-	
+
 	private ViewDelegate viewDelegate = new ViewDelegate();
-	private EmployeesDelegate emplDelegate = new EmployeesDelegate();
-	private ReimbursementDelegate reimDelegate = new ReimbursementDelegate();
+	private EmployeesDelegate employeeDelegate = new EmployeesDelegate();
 	private AuthDelegate authDelegate = new AuthDelegate();
 
-	public void processGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+	public void processGet(HttpServletRequest request, HttpServletResponse response)
+			throws IOException, ServletException {
 		String path = request.getServletPath();
-		if(path.startsWith("/api/")) {
+		if (path.startsWith("/api/")) {
 			// we will authenticate the token here
-			if(!authDelegate.isAuthorized(request)) {
+			if (!authDelegate.isAuthorized(request)) {
 				response.sendError(401);
 				return;
 			}
-			
+
 			String record = path.substring(5);
-			switch(record) {
+			switch (record) {
 			case "employees":
-				emplDelegate.getEmployees(request, response);
+				employeeDelegate.getUsers(request, response);
 				break;
 			default:
 				response.sendError(404, "Request Record(s) Not Found");
 			}
-			
+
 		} else {
 			viewDelegate.returnView(request, response);
 		}
-		
+
 	}
 
-	
-	public void processPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+	public void processPost(HttpServletRequest request, HttpServletResponse response)
+			throws IOException, ServletException {
 		String path = request.getServletPath();
-		switch(path) {
+		switch (path) {
 		case "/login":
 			authDelegate.authenticate(request, response);
 			break;
