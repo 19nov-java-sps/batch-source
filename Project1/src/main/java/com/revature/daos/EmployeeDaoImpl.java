@@ -136,8 +136,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			
 			ps.setString(1, password);
 			ps.setString(2, email);
-			ps.setString(4, phone);
-			ps.setInt(6, emplId);
+			ps.setString(3, phone);
+			ps.setInt(4, emplId);
 			
 			emplUpdated = ps.executeUpdate();
 			

@@ -44,10 +44,18 @@ public class EmployeeDelegate {
 	}
 	
 	public void updateEmployee(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		int emplId = Integer.parseInt(request.getParameter("emplId"));
-		String password = request.getParameter("password");
-		String email = request.getParameter("email");
-		String phone = request.getParameter("phone");
+		String emplString = request.getReader().readLine();
+		String[] emplArr = emplString.split("=");
+		String[] parameters = new String[4];
+		for (int i = 1; i < 5; i++) {
+			String aString = emplArr[i].split("&")[0];
+			parameters[i-1] = aString;
+		}
+
+		int emplId = Integer.parseInt(parameters[0]);
+		String password = parameters[1];
+		String email = parameters[2];
+		String phone = parameters[3];
 
 		int newReim = employeeService.updateEmplInfo(emplId, password, email, phone);
 		if (newReim == 1) {
