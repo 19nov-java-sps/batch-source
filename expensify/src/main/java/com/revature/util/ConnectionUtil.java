@@ -8,13 +8,22 @@ public class ConnectionUtil {
 	private static Connection connection;
 	
 	public static Connection getConnection() throws SQLException {
-		String url = "jdbc:postgresql://" +System.getenv("jdbc_host")+ ":5432/postgres";
-		String username = System.getenv("jdbc_user");
-		String password = System.getenv("jdbc_pass");
+		
+		try {
+            Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException e) {
+            System.out.println("Class not found " + e);
+        }
+		
+		String url = "jdbc:postgresql://"+System.getenv("jdbc_db_host")+":5432/postgres";
+		String username = System.getenv("jdbc_db_user");
+		String password = System.getenv("jdbc_db_pass");
 	
 		if(connection == null || connection.isClosed()) {
 			connection = DriverManager.getConnection(url, username, password);
+			System.out.println("connected to POSTgres ");
 		}
 		return connection;
 	}
 }
+

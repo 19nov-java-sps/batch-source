@@ -7,10 +7,12 @@
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/js/bootstrap.min.js" integrity="sha384-3qaqj0lc6sV/qpzrc1N5DC6i1VRn/HyX4qdPaiEFbn54VjQBEU341pvjz7Dv3n6P" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <title>Expensify</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light navbar navbar-dark bg-dark">
+<div class="bg-img">
+<nav class="navbar navbar-expand-lg bg-dark">
   <a class="navbar-brand" href="#">Expensify</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -23,19 +25,53 @@
     </ul>
   </div>
 </nav>
+<div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form p-4">
+                    <div class="px-2">
+                        <form method="POST" class="justify-content-center">
+                            <div class="form-group">
+                                <label class="sr-only">Username</label>
+                                <input type="text" class="form-control" id="username" placeholder="Employee Username">
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only">Email</label>
+                                <input type="text" class="form-control" id="passwordString" placeholder="Employee Password">
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg" id="btn">Launch Site</button>
+                        </form>
+                    </div>
+           </div>
+</div>
 
-<form class="container">
-  <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1">
-  </div>
-  <button id="login-btn" type="submit" class="btn btn-primary">Login</button>
-</form>
+<div class="page-footer pt-4 text-center">
+	 <div class="d-inline py-2">
+        <div class="mb-5 ">
 
+          <a class="ic">
+            <i class="fa fa-facebook-f fa-lg blue-text mr-md-5 mr-3 fa-2x"> </i>
+          </a>
+       
+          <a class="ic">
+            <i class="fa fa-twitter fa-lg blue-text mr-md-5 mr-3 fa-2x"> </i>
+          </a>
+          <a class="ic">
+            <i class="fa fa-instagram fa-lg blue-text mr-md-5 mr-3 fa-2x"> </i>
+          </a>
+        
+          <a class="ic">
+            <i class="fa fa-pinterest fa-lg blue-text fa-2x"> </i>
+          </a>
+        </div>
+       </div>
+         <div class="d-inline">© 2018 Copyright: <br>
+         
+    <a href="#"> Revature.com</a><br>
+    <a href="#">Privacy Policy</a> <br>
+    <a href="#">Term of Use</a>
+    <a href="/expensify/landing">Landing</a>
+ </div>
+</div>
+
+  
 
 </body>
 <script src="static/Scripts/home.js"></script>

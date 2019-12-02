@@ -14,6 +14,30 @@ import com.revature.util.ConnectionUtil;
 import com.revauture.model.Employee;
 
 public class EmployeeDaoImpl implements EmployeeDao{
+//	
+//	public List<Employee> dummyList = new ArrayList<>();
+//	
+//	public EmployeeDaoImpl() {
+//		dummyList.add(new Employee(1, "p3t3rpark3r", "12345", "Peter Nguyen", true));
+//		dummyList.add(new Employee(2, "ryan", "12345", "Ryan Cars", false));
+//	}
+//	
+//	@Override
+//	public List<Employee> dummyEmployeesList() {
+//		return new ArrayList<>(dummyList);
+//	}
+//
+//	@Override
+//	public Employee dummyEmployee(int id) {
+//		for(Employee employee : dummyList) {
+//			if (employee.getUserId() == id) {
+//				return employee;
+//			}
+//		}
+//		return null;
+//	}
+
+	
 
 	@Override
 	public List<Employee> getEmployees() {
@@ -122,5 +146,33 @@ public class EmployeeDaoImpl implements EmployeeDao{
 		}
 		return deletedEmployee;
 	}
+
+
+	@Override
+	public Employee getUserByUsernameAndPassword(String username, String password) {
+		String sqlString =  "select * from Employee where Employee.username = ? AND Employee.passwordString = ?";
+		Employee employeeFound = null;
+		
+		try (Connection connection = ConnectionUtil.getConnection();
+				PreparedStatement preparedStatement = connection.prepareStatement(sqlString)){
+			preparedStatement.setString(1, username);
+			preparedStatement.setString(2, password);
+			ResultSet rSet = preparedStatement.executeQuery();
+			
+			while (rSet.next()) {
+				int userId = rSet.getInt("user_id");
+				String userName = rSet.getString("username");
+				String passWord = rSet.getString("passwordString");
+				String fullname = rSet.getString("full_name");
+				Boolean isManager = rSet.getBoolean("isManager");
+				employeeFound = new Employee(userId, userName, passWord, fullname, isManager);	
+				System.out.println(employeeFound.toString());
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return employeeFound;
+	} 
 
 }

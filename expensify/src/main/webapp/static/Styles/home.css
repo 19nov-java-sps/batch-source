@@ -1,15 +1,17 @@
-@charset "UTF-8";
-
-.container {
-	background-color: #008000;
-	margin-top: 100px;
-	align-items: center;
+body, html {
+  height: 100%;
 }
 
-nav {
-	background-color: azure
-}
+.bg-img {
+  /* The image used */
+  background-image: url("../Images/bike.jpg");
 
-label  {
-	
+  /* Control the height of the image */
+  min-height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
 }

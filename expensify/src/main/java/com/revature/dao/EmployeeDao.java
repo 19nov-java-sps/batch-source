@@ -12,4 +12,8 @@ public interface EmployeeDao {
 	public int updateEmployee(Employee e);
 	public int deleteEmployee(Employee e);
 	
+//	public List<Employee> dummyEmployeesList();
+//	public Employee dummyEmployee(int id);
+	public Employee getUserByUsernameAndPassword(String username, String password);
+
 }

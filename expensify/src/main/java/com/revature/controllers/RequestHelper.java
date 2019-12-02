@@ -6,11 +6,17 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.revature.delegates.AuthDelegate;
+import com.revature.delegates.EmployeeDelegate;
+import com.revature.delegates.InvoiceDelegate;
 import com.revature.delegates.ViewDelegate;
 
 public class RequestHelper {
 	
 	private ViewDelegate viewDelegate = new ViewDelegate();
+	private EmployeeDelegate employeeDelegate = new EmployeeDelegate();
+	private AuthDelegate authDelegate = new AuthDelegate();
+	private InvoiceDelegate invoiceDelegate = new InvoiceDelegate();
 	
 	public RequestHelper() {
 		super();
@@ -21,6 +27,11 @@ public class RequestHelper {
 		// at this point, we are either requesting a resource or a static page
 		String path = request.getRequestURI().substring(request.getContextPath().length());
 		if(path.startsWith("/api/")) {
+			if(!authDelegate.isAuthorized(request)) {
+				System.out.print(request.toString());
+				response.sendError(401);
+				return;
+			}
 			// we're requesting a resource
 			String record = path.substring(5);
 			
@@ -30,11 +41,11 @@ public class RequestHelper {
 			switch(record) {
 			case "employees":
 				//process with the employee delegate
-//				eDelegate.getEmployees(request, response);
+				employeeDelegate.getEmployees(request, response);
 				break;
 			case "invoices":
 				//process with the department delegate
-//				dDelegate.getDepartments(request, response);
+				invoiceDelegate.getInvoices(request, response);
 				break;
 			default:
 				response.sendError(404, "Record not supported.");
@@ -46,6 +57,17 @@ public class RequestHelper {
 			viewDelegate.resolveView(request, response);
 		}	
 	
+	}
+	public void processPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		String path = request.getRequestURI().substring(request.getContextPath().length());
+		System.out.println(path+"this is the path when someone logins");
+		switch(path) {
+		case "/home":
+			authDelegate.authenticate(request, response);
+			break;
+		default:
+			response.sendError(405);
+		}
 	}
 
 }

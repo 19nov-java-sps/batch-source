@@ -36,7 +36,6 @@ public class RequestHelper {
 			
 		} else {
 			viewDelegate.returnView(request, response);
-		}
 		
 	}
 
@@ -44,7 +43,7 @@ public class RequestHelper {
 	public void processPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		String path = request.getServletPath();
 		switch(path) {
-		case "/login":
+		case "/landing":
 			authDelegate.authenticate(request, response);
 			break;
 		default:

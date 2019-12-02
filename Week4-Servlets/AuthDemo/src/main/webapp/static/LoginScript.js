@@ -3,7 +3,7 @@ document.getElementById("login-btn").addEventListener("click", requestLogin);
 
 
 function requestLogin(){
-	let url = "http://localhost:8080/AuthDemo/login";
+	let url = "http://localhost:8080/expensify/api/employees";
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url);
 	xhr.onreadystatechange = function(){
@@ -12,14 +12,14 @@ function requestLogin(){
 			let auth = xhr.getResponseHeader("Authorization");
 			sessionStorage.setItem("token", auth);
 //			console.log(auth);
-			window.location.href="http://localhost:8080/AuthDemo/home";
+			window.location.href="http://localhost:8080/expensify/landing";
 		}
 		if(this.readyState === 4 ){
 			console.log(this);
 		}
 	}
 	let user = document.getElementById("username").value;
-	let pass = document.getElementById("password").value;
+	let pass = document.getElementById("passwordString").value;
 	
 	xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded")
 	

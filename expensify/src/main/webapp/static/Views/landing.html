@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<link rel="stylesheet" type="text/css" href="static/Styles/landing.css" >
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css" integrity="sha384-SI27wrMjH3ZZ89r4o+fGIJtnzkAnFs3E4qz9DIYioCQ5l9Rd/7UAa8DHcaL8jkWt" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/js/bootstrap.min.js" integrity="sha384-3qaqj0lc6sV/qpzrc1N5DC6i1VRn/HyX4qdPaiEFbn54VjQBEU341pvjz7Dv3n6P" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<title>Expensify</title>
+</head>
+<body>
+<nav class="navbar navbar-light bg-info">
+    <div class="btn-group" role="group">
+    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" 		aria-expanded="false">
+      Employee Portal
+    </button>
+    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+      <a class="dropdown-item" id="signOut">Sign Out</a>
+    </div>
+  </div>
+  
+  
+  
+  
+  <form id="search" class="form-inline" hidden>
+    <input class="form-control mr-sm-2" type="search" placeholder="Invoices" aria-label="Search">
+    <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
+  </form>
+</nav>
+
+<div class="container" id="employee">
+  <div class="row">
+    <div class="col-3" id="employeeInfo">
+    	<h2 id="employeeId">Employee Id</h2>
+		<h2 id="full_name">Employee Full Name</h2>
+		<h2 id="manager_status"></h2>
+		<button class="btn btn-warning" hidden id="fetchInvoice">Fetch Invoices</button>
+	</div>
+	<div  class="col-9" id="invoiceList">
+	<h4 class="text-center">History of Invoices</h4>
+	<div id="inv" hidden=true>
+		<h3 id="title"></h3>
+		<h3 id="amount"></h3>
+		<button id="btn">Delete</button>
+	</div>
+	</div>
+    </div>
+    </div>
+
+
+</body>
+<script src="static/Scripts/landing.js"></script>
+</html>
