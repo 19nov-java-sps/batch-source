@@ -9,7 +9,7 @@ function requestLogin() {
 	xhr.onreadystatechange = function(){
 		if (this.readyState === 4 && this.status === 200) {
 			let auth = xhr.getResponseHeader("Authorization");
-			 sessionStorage.setItem("token", auth);
+			sessionStorage.setItem("token", auth);
 			window.location.href="http://localhost:8080/Project1/home";
 		} 
 		
@@ -17,6 +17,7 @@ function requestLogin() {
 			document.getElementById('email').value = '';
 			document.getElementById('password').value = '';
 			document.getElementById('message').hidden = false;
+			setTimeout(function(){ document.getElementById('message').hidden = true; }, 5000);
 		}
 		
 		if (this.readyState === 4) {

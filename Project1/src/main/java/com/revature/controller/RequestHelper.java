@@ -65,4 +65,18 @@ public class RequestHelper {
 			response.sendError(405);
 		}
 	}
+	
+	public void processPut(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		String path = request.getServletPath();
+
+		switch(path) {
+		case "/reimbursement/update":
+			reimbursementDelegate.resolveReimbursement(request, response);
+			break;
+		default:
+			response.sendError(405);
+		}
+	}
 }
+
+

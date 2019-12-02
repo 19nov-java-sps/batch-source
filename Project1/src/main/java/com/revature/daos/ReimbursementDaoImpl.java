@@ -174,9 +174,29 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 	}
 
 	@Override
-	public int updateReim(int id) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int updateReim(int reimId, int managerId, String result, String reason) {
+		int reimUpdated = 0;
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		
+		String sql = "update Reimbursement set status = ?, resolvedResult = ?, resolvedBy = ?, resolvedDate = ?, reason = ? where reimId = ?";
+		
+		try(Connection c = ConnectionUtil.getConnection();
+				PreparedStatement ps = c.prepareStatement(sql)){
+			
+			ps.setString(1, "resolved");
+			ps.setString(2, result);
+			ps.setInt(3, managerId);
+			ps.setString(4, timestamp.toString());
+			ps.setString(5, reason);
+			ps.setInt(6, reimId);
+			
+			reimUpdated = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return reimUpdated;
 	}
 
 	@Override

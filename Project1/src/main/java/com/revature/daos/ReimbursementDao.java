@@ -11,6 +11,6 @@ public interface ReimbursementDao {
 	public List<Reimbursement> getPendingReimById(int emplId);
 	public List<Reimbursement> getResolvedReimById(int emplId);
 	public Reimbursement getReimById(int reimId);
-	public int updateReim(int reimId);
+	public int updateReim(int reimId, int managerId, String result, String reason);
 	public int createReim(double amount, int emplId, String description);
 }

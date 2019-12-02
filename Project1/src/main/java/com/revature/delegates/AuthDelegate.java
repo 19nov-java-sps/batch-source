@@ -16,7 +16,6 @@ public class AuthDelegate {
 	
 	public boolean isAuthorized(HttpServletRequest request) {
 		String authToken = request.getHeader("Authorization");
-		System.out.println("auth: " + authToken);
 		if(authToken != null) {
 			String[] tokenArr = authToken.split(":");
 			

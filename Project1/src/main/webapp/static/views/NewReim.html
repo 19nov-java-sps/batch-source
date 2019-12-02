@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>New Reimbursement</title>
-    <link rel="shortcut icon" href="static/styles/money.png" type="image/png">
+    <link rel="shortcut icon" href="../static/styles/money.png" type="image/png">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -13,10 +13,30 @@
 
   </head>
   <body>
-  <h3>Submit new Reimbursement Request</h3>
-  <input type="button" id="login-btn" value="Submit" class="btn btn-dark btn-lg">
-  <button id="return-btn" class="btn btn-light btn-lg" type="submit">Return</button>
+  <div id="title" class="bg-warning text-dark jumbotron">
+      <h1 class="display-5">Reimbursement Request Form</h1>
+  </div>
+  <form id="new-reim-form" class="border border-white" style="margin-right: 10%; margin-left: 10%">
+    <div class="form-group">
+      <label for="amount">Amount</label>
+      <input id="amount" type="number" min="0.01" step="0.01" placeholder="Amount" class="form-control" required autofocus autocomplete="off">
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea id="description" rows="4" placeholder="Reason for Reimbursement" class="form-control" required></textarea>
+    </div>
+    <div class="alert alert-success" role="alert" id="reim-success-alert" hidden>
+  	  Submit Reimbursement Success
+	</div>
+	<div class="alert alert-danger" role="alert" id="reim-fail-alert" hidden>
+  	  Submit Reimbursement Failed
+	</div>
+    <div class="text-center">
+	  <input type="button" id="submit-reim-btn" value="Submit" class="btn btn-dark btn-lg">
+	  <input id="reim-return-btn" class="btn btn-secondary btn-lg" type="button" value="Return">
+	</div>
+  </form>
   
-  <script type="text/javascript" src="static/scripts/NewReimScript.js"></script>
+  <script type="text/javascript" src="../static/scripts/NewReimScript.js"></script>
   </body>
 </html>

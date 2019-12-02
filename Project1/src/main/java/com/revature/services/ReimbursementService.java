@@ -30,8 +30,8 @@ public class ReimbursementService {
 		return reimbursementDao.getReimById(reimId);
 	}
 	
-	public int resolveReim(int id) {
-		return reimbursementDao.updateReim(id);
+	public int resolveReim(int reimId, int managerId, String result, String reason) {
+		return reimbursementDao.updateReim(reimId, managerId, result, reason);
 	}
 	
 	public int submitReim(double amount, int emplId, String description) {

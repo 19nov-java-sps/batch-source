@@ -87,11 +87,28 @@ public class ReimbursementDelegate {
 		String description = request.getParameter("description");
 		
 		int newReim = rs.submitReim(Double.parseDouble(amount), Integer.parseInt(emplId), description);
-
 		if (newReim == 1) {
-			response.setStatus(200);
+			response.setStatus(201);
+		} else {
+			response.sendError(400);
+		}
+	}
+	
+	public void resolveReimbursement(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+		System.out.println(request.getParameter("reimId")+request.getParameter("managerId")+request.getParameter("result")+request.getParameter("reason"));
+		int reimId = Integer.parseInt(request.getParameter("reimId"));
+		int managerId = Integer.parseInt(request.getParameter("managerId"));
+		String result = request.getParameter("result");
+		String reason = request.getParameter("reason");
+
+		int updatedReim = rs.resolveReim(reimId, managerId, result, reason);
+		if (updatedReim == 1) {
+			response.setStatus(204);
 		} else {
 			response.sendError(400);
 		}
 	}
 }
+
+

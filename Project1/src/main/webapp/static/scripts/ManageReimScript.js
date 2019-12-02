@@ -58,6 +58,9 @@ function displayAllReims(xhr, type = 'Pending') {
 		table.appendChild(caption);
 		
 		if (type === 'Pending') {
+			const tokenArr = token.split(':');
+			const level = tokenArr[1];
+			
 			let head = document.createElement("thead");
 			head.className = "thead-light";
 			head.innerHTML = `<tr>
@@ -71,14 +74,16 @@ function displayAllReims(xhr, type = 'Pending') {
 			let body = document.createElement("tbody");
 			
 			reims.forEach(r => {
-				let newRow = document.createElement("tr");
-				newRow.className = 'pending-row';
-
-				newRow.innerHTML= `<td>${r.reimId}</td>
-				<td>${r.amount}</td>
-				<td>${r.submitBy.firstName} ${r.submitBy.lastName}</td>
-				<td>${r.submitDate.slice(0, 16)}</td>`;
-				body.appendChild(newRow);
+				if (level > r.submitBy.isManager) {
+					let newRow = document.createElement("tr");
+					newRow.className = 'pending-row';
+	
+					newRow.innerHTML= `<td>${r.reimId}</td>
+					<td>${r.amount}</td>
+					<td>${r.submitBy.firstName} ${r.submitBy.lastName}</td>
+					<td>${r.submitDate.slice(0, 16)}</td>`;
+					body.appendChild(newRow);
+				}
 			})
 			
 			table.appendChild(body);
@@ -124,10 +129,19 @@ function displayAllReims(xhr, type = 'Pending') {
 		resolvedRows[i].onclick = viewSingleResolved(event);
 	}
 	
-//	let pendingRows = document.getElementsByClassName("pending-row");
-//	for (let i = 0; i < pendingRows.length; i++) {
-//		pendingRows[i].onclick = viewSingleReim(event);
-//	}
+	let pendingRows = document.getElementsByClassName("pending-row");
+	for (let i = 0; i < pendingRows.length; i++) {
+		pendingRows[i].onclick = viewSinglePending(event);
+	}
+}
+
+function viewSinglePending() {
+	return (e) => {
+		if (e.target.cellIndex == 0) {
+			sessionStorage.setItem("reimId", e.target.innerText);
+			window.location.href="http://localhost:8080/Project1/reimbursement/update";
+		}
+	}
 }
 
 function viewSingleResolved() {
@@ -142,12 +156,13 @@ function viewSingleResolved() {
 }
 
 function displayResolvedById(xhr) {
-	if (document.getElementById("main")) {		
-		document.getElementById("main").remove();
-	}
 	
 	let r = JSON.parse(xhr.response);
 	
+	if (document.getElementById("main")) {		
+		document.getElementById("main").remove();
+	}
+		
 	let main = document.createElement("Div");
 	main.id = "main";
 	document.getElementById("content").appendChild(main);
@@ -202,5 +217,6 @@ function displayResolvedById(xhr) {
 	<td>${r.reason}</td>`;
 	table.appendChild(secondRow);
 }
+
 
 
