@@ -61,7 +61,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 	public List<Reimbursement> getResolvedReim() {
 
 		List<Reimbursement> reims = new ArrayList<>();
-		String sql = "select * from Reimbursement where status = ? order by submitBy";
+		String sql = "select * from Reimbursement where status = ? order by resolvedDate";
 		
 		try(Connection c = ConnectionUtil.getConnection();
         		PreparedStatement ps = c.prepareStatement(sql)) {

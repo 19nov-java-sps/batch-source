@@ -26,7 +26,7 @@ public class EmployeeService {
 		return employeeDao.createEmpl(e);
 	}
 	
-	public int updateEmplInfo(int id) {
-		return employeeDao.updateEmpl(id);
+	public int updateEmplInfo(int emplId, String password, String email, String phone) {
+		return employeeDao.updateEmpl(emplId, password, email, phone);
 	}
 }

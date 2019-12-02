@@ -73,6 +73,9 @@ public class RequestHelper {
 		case "/reimbursement/update":
 			reimbursementDelegate.resolveReimbursement(request, response);
 			break;
+		case "/employee/update":
+			emplDelegate.updateEmployee(request, response);
+			break;
 		default:
 			response.sendError(405);
 		}

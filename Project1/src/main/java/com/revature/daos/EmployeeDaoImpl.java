@@ -127,9 +127,25 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	}
 
 	@Override
-	public int updateEmpl(int emplId) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int updateEmpl(int emplId, String password, String email, String phone) {
+		int emplUpdated = 0;
+		String sql = "update Employee set pass = ?, email = ?, phone = ? where emplId = ?";
+		
+		try(Connection c = ConnectionUtil.getConnection();
+				PreparedStatement ps = c.prepareStatement(sql)){
+			
+			ps.setString(1, password);
+			ps.setString(2, email);
+			ps.setString(4, phone);
+			ps.setInt(6, emplId);
+			
+			emplUpdated = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return emplUpdated;
 	}
 
 }

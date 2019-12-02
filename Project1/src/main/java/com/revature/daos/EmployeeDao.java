@@ -10,5 +10,5 @@ public interface EmployeeDao {
 	public Employee getEmplById(int id);
 	public Employee emplLogin(String email, String password);
 	public int createEmpl(Employee e);
-	public int updateEmpl(int emplId);
+	public int updateEmpl(int emplId, String password, String email, String phone);
 }

@@ -1,7 +1,4 @@
 document.getElementById('view-empls').addEventListener("click", viewEmpls);
-document.getElementById('regis-empl').addEventListener("click", registerEmpl);
-
-//let token = sessionStorage.getItem("token");
 
 function viewEmpls() {
 	let url = "http://localhost:8080/Project1/api/employees";
@@ -76,8 +73,4 @@ function displayEmplsInfo(xhr) {
 	table.appendChild(body);
 }
 
-
-function registerEmpl() {
-	console.log('Register!')
-}
 

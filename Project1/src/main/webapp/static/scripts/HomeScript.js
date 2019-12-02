@@ -4,6 +4,8 @@ document.getElementById('logout-btn').addEventListener("click", logout);
 document.getElementById('profile').addEventListener("click", getMyInfo);
 document.getElementById('contact').addEventListener("click", getMyManager);
 document.getElementById('new-reim-option').addEventListener("click", newReimPage);
+document.getElementById('update-info').addEventListener("click", updateInfoPage);
+document.getElementById('regis-empl').addEventListener("click", registerEmpl);
 
 if(!token){
 	window.location.href="http://localhost:8080/Project1/login";
@@ -98,4 +100,13 @@ function getMyManager() {
 function newReimPage() {
 	window.location.href="http://localhost:8080/Project1/reimbursement/new";
 }
+
+function updateInfoPage() {
+	window.location.href="http://localhost:8080/Project1/employee/update";
+}
+
+function registerEmpl() {
+	console.log('Register!')
+}
+
 

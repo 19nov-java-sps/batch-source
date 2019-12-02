@@ -95,12 +95,18 @@ public class ReimbursementDelegate {
 	}
 	
 	public void resolveReimbursement(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String reimString = request.getReader().readLine();
+		String[] reimArr = reimString.split("=");
+		String[] parameters = new String[4];
+		for (int i = 1; i < 5; i++) {
+			String aString = reimArr[i].split("&")[0];
+			parameters[i-1] = aString;
+		}
 
-		System.out.println(request.getParameter("reimId")+request.getParameter("managerId")+request.getParameter("result")+request.getParameter("reason"));
-		int reimId = Integer.parseInt(request.getParameter("reimId"));
-		int managerId = Integer.parseInt(request.getParameter("managerId"));
-		String result = request.getParameter("result");
-		String reason = request.getParameter("reason");
+		int reimId = Integer.parseInt(parameters[0]);
+		int managerId = Integer.parseInt(parameters[1]);
+		String result = parameters[2];
+		String reason = parameters[3];
 
 		int updatedReim = rs.resolveReim(reimId, managerId, result, reason);
 		if (updatedReim == 1) {

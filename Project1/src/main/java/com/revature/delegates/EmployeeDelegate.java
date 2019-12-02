@@ -40,7 +40,26 @@ public class EmployeeDelegate {
 			} else {
 				response.sendError(400, "Invalid ID param");
 			}
+		}		
+	}
+	
+	public void updateEmployee(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		int emplId = Integer.parseInt(request.getParameter("emplId"));
+		String password = request.getParameter("password");
+		String email = request.getParameter("email");
+		String phone = request.getParameter("phone");
+
+		int newReim = employeeService.updateEmplInfo(emplId, password, email, phone);
+		if (newReim == 1) {
+			response.setStatus(204);
+		} else {
+			response.sendError(400);
 		}
-		
+	}
+	
+	public void registerEmpl(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		// code
 	}
 }
+
+

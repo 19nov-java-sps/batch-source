@@ -36,12 +36,17 @@ function sendAjaxGetPendingReim(url, callback){
 
 function displayPendingById(xhr) {
 	let r = JSON.parse(xhr.response);
+	if (r.status === 'resolved') {
+		document.getElementById("approve-btn").hidden = true;
+		document.getElementById("denial-btn").hidden = true;
+	}
+	
 	document.getElementById("empl-row").innerHTML= `<td>${r.reimId}</td>
+					<td>${r.amount}</td>
 					<td>${r.submitBy.firstName} ${r.submitBy.lastName}</td>
-					<td>${r.submitBy.emplId}</td>
 					<td>${r.submitBy.position}</td>
 					<td>${r.submitBy.department.deptName}</td>`;
-	document.getElementById("reim-row").innerHTML= `<td>${r.amount}</td>
+	document.getElementById("reim-row").innerHTML= `<td>${r.status.toUpperCase()}</td>
 					<td>${r.submitDate.slice(0, 16)}</td>
 					<td colspan="3">${r.description}</td>`;
 }
@@ -65,20 +70,25 @@ function sendAjaxUpdateReim(result) {
 	
 	xhr.onreadystatechange = function() {
 		if (this.readyState === 4 && this.status === 204) {
-			window.location.href="http://localhost:8080/Project1/home";
+			window.location.reload();
+			
 		}
 		
 		else if (this.readyState === 4 && this.status !== 204){
-			alert('Failed');
+			alert('Failed! Please Try Again.');
 		}
 	}
 	
 	let reason = document.getElementById('reason').value;
+	if (!reason) {
+		reason = 'Null'
+	} else {
+		reason.replace(/=|&/g, "*");
+	}
 	
 	xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
 
 	let requestBody = `reimId=${reimId}&managerId=${managerId}&result=${result}&reason=${reason}`;
-	console.log(requestBody)
 	xhr.send(requestBody);
 }
 
