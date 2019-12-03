@@ -1,0 +1,18 @@
+#login-form {
+  margin-left: 12%;
+  margin-right: 12%;
+  padding: 3%;
+}
+
+.jumbotron {
+  max-height: 200px;
+}
+
+button {
+  text-align: center;
+}
+
+#message {
+  font-size: small;
+  color: red;
+}

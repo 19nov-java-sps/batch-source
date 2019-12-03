@@ -1,0 +1,32 @@
+#title {
+  font-size: large;
+  padding: 1em;
+  position: relative;
+}
+
+button {
+  position: absolute;
+  top: 4%;
+  right: 3%;
+  width: 7rem;
+}
+
+nav {
+  max-width: 18%;
+}
+
+#employee-sidebar {
+  margin-top: 1%;
+}
+
+#content {
+	position: absolute;
+	top: 18%;
+	right: 5%;
+}
+
+.empl-info {
+	margin: 1%;
+}
+
+
