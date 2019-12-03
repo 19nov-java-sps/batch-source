@@ -8,7 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.revature.daos.DepartmentDao;
+import com.revature.dao.DepartmentDao;
 import com.revature.models.Department;
 import com.revature.util.ConnectionUtil;
 

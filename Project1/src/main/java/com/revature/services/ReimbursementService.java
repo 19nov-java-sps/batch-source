@@ -2,8 +2,8 @@ package com.revature.services;
 
 import java.util.List;
 
+import com.revature.dao.ReimbursementDao;
 import com.revature.dao.impl.ReimbursementDaoImpl;
-import com.revature.daos.ReimbursementDao;
 import com.revature.models.Reimbursement;
 
 public class ReimbursementService {

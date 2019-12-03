@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.revature.dao.EmployeeDao;
 import com.revature.dao.impl.EmployeeDaoImpl;
-import com.revature.daos.EmployeeDao;
 import com.revature.models.Department;
 import com.revature.models.Employee;
 import com.revature.services.EmployeeService;

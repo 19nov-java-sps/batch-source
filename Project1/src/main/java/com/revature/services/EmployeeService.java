@@ -2,8 +2,8 @@ package com.revature.services;
 
 import java.util.List;
 
+import com.revature.dao.EmployeeDao;
 import com.revature.dao.impl.EmployeeDaoImpl;
-import com.revature.daos.EmployeeDao;
 import com.revature.models.Employee;
 
 public class EmployeeService {

@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.revature.daos.EmployeeDao;
+import com.revature.dao.EmployeeDao;
 import com.revature.models.Department;
 import com.revature.models.Employee;
 import com.revature.services.DepartmentService;
