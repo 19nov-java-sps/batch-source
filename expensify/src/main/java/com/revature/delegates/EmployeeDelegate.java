@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.dao.EmployeeDao;
 import com.revature.dao.impl.EmployeeDaoImpl;
@@ -40,6 +39,18 @@ public class EmployeeDelegate {
 			}
 		}
 	}
+	
+	public void postEmployees(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+
+		Employee employee = employeeDao.getUserByUsernameAndPassword(username, password);
+		try(PrintWriter pw = response.getWriter();){
+				pw.write(new ObjectMapper().writeValueAsString(employee));
+			}	
+		}
 }
+
 	
 

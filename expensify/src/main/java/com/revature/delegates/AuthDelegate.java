@@ -24,7 +24,7 @@ public class AuthDelegate {
 				if(idStr.matches("^\\d+$")) {
 					// check to see if there is a valid user and if that user is the appropriate role in their token
 					Employee employee = employeeDao.getEmployeeById(Integer.parseInt(idStr));
-					if(employee!=null && employee.isManager()) {
+					if(employee!=null) {
 						return true;
 					}
 				}
@@ -41,7 +41,7 @@ public class AuthDelegate {
 
 		if(employee!=null) {
 			String token = employee.getUserId()+":"+employee.isManager();
-			System.out.println(token);
+			System.out.println(token); 
 			response.setStatus(200);
 			response.setHeader("Authorization", token);
 		} else {

@@ -28,7 +28,6 @@ public class RequestHelper {
 		String path = request.getRequestURI().substring(request.getContextPath().length());
 		if(path.startsWith("/api/")) {
 			if(!authDelegate.isAuthorized(request)) {
-				System.out.print(request.toString());
 				response.sendError(401);
 				return;
 			}
@@ -65,9 +64,19 @@ public class RequestHelper {
 		case "/home":
 			authDelegate.authenticate(request, response);
 			break;
+		case "/employee":
+			employeeDelegate.postEmployees(request, response);
 		default:
 			response.sendError(405);
 		}
+	}
+	
+	public void processPut(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException  {
+		
+	}
+	
+	public void processDelete(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException  {
+		
 	}
 
 }

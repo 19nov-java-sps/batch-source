@@ -1,18 +1,44 @@
 let token = sessionStorage.getItem("token");
-let invoiceURL = "http://localhost:8080/expensify/api/invoices"
 
+let invoiceURL = "http://localhost:8080/expensify/api/invoices"
+let employeesURL = "http://localhost:8080/expensify/employee/edit"
+
+document.getElementById("fetchInvoice").addEventListener("click", sendAjaxGetInvoices)
+
+document.getElementById("signOut").addEventListener("click", logOut)
+
+
+console.log(token, "sessionStorage")
+	
 if(!token){
-	window.location.href="http://localhost:8080/expensify/home";
+	window.location.href="http://localhost:8080/expensify/pop";
 } else {
 	let tokenArr = token.split(":")
 	if(tokenArr.length === 2){
 		let baseUrl = "http://localhost:8080/expensify/api/employees?id=";
-		sendAjaxGet(baseUrl + tokenArr[0], displayInfo);
+		sendAjaxGet(baseUrl+tokenArr[0], displayInfo);
 	} else {
-		window.location.href="http://localhost:8080/expensify/home";
+		window.location.href="http://localhost:8080/expensify/hello";
 	}
 }
 
+function sendAjaxEdit(URL,callback){
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", employeesURL );
+	xhr.onreadystatechange = function(){
+		if(this.readyState === 4 && this.status === 200) {
+			callback(this);
+		} 
+	}
+	let username = document.getElementById("username").value;
+	let password = document.getElementById("passwordString").value;
+	
+	xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded")
+	
+	let requestBody = `username=${username}&password=${password}`;
+	xhr.send(requestBody);
+	
+}
 
 function sendAjaxGetInvoices(URL, callback){
 	let xhr = new XMLHttpRequest();
@@ -34,18 +60,12 @@ function populate(xhr){
 	
 	for( let i = 0; i < invoiceJson.length; i++){
 		
-		let div  = document.getElementById("inv")
-		div.hidden = false
-		let title = document.getElementById("title")
-		title.innerHTML = `${invoiceJson[i].description}`
-		let amount = document.getElementById("amount")
-		amount.innerHTML = `${invoiceJson[i].amount}`
-		let button = document.getElementById("btn")
-		button.addEventListener("click", deleteInvoice)
-		div.appendChild(amount)
-		div.appendChild(title)
-		div.appendChild(button)
+		let div  = document.createElement("div")
+		let h1 = document.createElement("h1")
+		let span = document.creatElement("span")
+		div.appendChild(h1).appendChild(span)
 		invoiceList.appendChild(div)
+	
 	}
 }
 
@@ -60,9 +80,7 @@ function sendAjaxGet(url, callback){
 	xhr.onreadystatechange = function(){
 		if(this.readyState === 4 && this.status === 200) {
 			callback(this);
-		} else if (this.readyState === 4){
-			window.location.href="http://localhost:8080/expensify/home";
-		}
+		} 
 	}
 
 	xhr.setRequestHeader("Authorization", token);
@@ -72,7 +90,6 @@ function sendAjaxGet(url, callback){
 function displayInfo(xhr) {
 	let empl = JSON.parse(xhr.response);
 	console.log(empl)
-	document.getElementById("employeeId").innerHTML = `Employee id: ${empl.userId}`
 	document.getElementById("full_name").innerHTML = empl.fullname
 	if (empl.manager) {
 		document.getElementById("search").hidden = false
@@ -82,10 +99,6 @@ function displayInfo(xhr) {
 	}
 }
 
-
-document.getElementById("fetchInvoice").addEventListener("click", sendAjaxGetInvoices)
-
-document.getElementById("signOut").addEventListener("click", logOut)
 
 function logOut() {
 	sessionStorage.clear;

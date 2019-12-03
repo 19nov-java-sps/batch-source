@@ -31,6 +31,7 @@ public class FrontController extends DefaultServlet {
 		if(path.startsWith("/static/")) {
 			super.doGet(request, response);
 		} else {
+			System.out.println("server");
 			rh.processGet(request, response);
 		}
 		

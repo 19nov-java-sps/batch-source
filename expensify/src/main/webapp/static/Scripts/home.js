@@ -10,6 +10,8 @@ function requestLogin() {
 		if (this.readyState === 4 && this.status === 200) {
 			let auth = xhr.getResponseHeader("Authorization");
 			sessionStorage.setItem("token", auth);
+			console.log(auth, "<=========auth")
+			console.log(this.status, "<=========== when button  is pressed")
 			window.location.href="http://localhost:8080/expensify/landing";
 		} 
 		
