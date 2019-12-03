@@ -50,7 +50,7 @@ function displayEmplsInfo(xhr) {
 	<th>Phone</th>
 	<th>Position</th>
 	<th>Department</th>
-	<th>Manager Id</th>
+	<th>Manager</th>
 	</tr>`
 	table.appendChild(head);
 	

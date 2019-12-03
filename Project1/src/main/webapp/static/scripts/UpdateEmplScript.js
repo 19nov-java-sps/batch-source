@@ -78,8 +78,7 @@ function updateInfo() {
 	let newEmail = document.getElementById("my-email").value;
 	if (!/.+@.+\..+/.test(newEmail)) {
 		callAjax = false;
-		console.log('email')
-		document.getElementById("invalid-email-msg").hidden = true;
+		document.getElementById("invalid-email-msg").hidden = false;
 		setTimeout(function(){ document.getElementById('invalid-email-msg').hidden = true; }, 3000);
 	} else {
 		email = newEmail;
@@ -89,7 +88,7 @@ function updateInfo() {
 	newPhone = newPhone.replace(/[^0-9]/g, '');
 	if (newPhone.length !== 10) {
 		callAjax = false;
-		document.getElementById("invalid-phone-msg").hidden = true;
+		document.getElementById("invalid-phone-msg").hidden = false;
 		setTimeout(function(){ document.getElementById('invalid-phone-msg').hidden = true; }, 3000);
 	} else {
 		phone = newPhone.replace(/(\d{3})(\d{3})(\d{3})/, "($1) $2-$3");

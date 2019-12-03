@@ -1,4 +1,4 @@
-package com.revature.daos;
+package com.revature.dao.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.revature.daos.DepartmentDao;
 import com.revature.models.Department;
 import com.revature.util.ConnectionUtil;
 

@@ -106,7 +106,7 @@ function updateInfoPage() {
 }
 
 function registerEmpl() {
-	console.log('Register!')
+	window.location.href="http://localhost:8080/Project1/employee/new";
 }
 
 

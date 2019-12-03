@@ -1,4 +1,4 @@
-package com.revature.daos;
+package com.revature.dao.impl;
 
 import java.sql.Timestamp;
 import java.sql.Connection;
@@ -10,6 +10,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.revature.daos.ReimbursementDao;
 import com.revature.models.Employee;
 import com.revature.models.Reimbursement;
 import com.revature.services.EmployeeService;

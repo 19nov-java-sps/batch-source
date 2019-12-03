@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.revature.delegates.AuthDelegate;
+import com.revature.delegates.DepartmentDelegate;
 import com.revature.delegates.EmployeeDelegate;
 import com.revature.delegates.ReimbursementDelegate;
 import com.revature.delegates.ViewDelegate;
@@ -17,6 +18,7 @@ public class RequestHelper {
 	private EmployeeDelegate emplDelegate = new EmployeeDelegate();
 	private AuthDelegate authDelegate = new AuthDelegate();
 	private ReimbursementDelegate reimbursementDelegate = new ReimbursementDelegate();
+	private DepartmentDelegate departmentDelegate = new DepartmentDelegate();
 
 	public void processGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		String path = request.getServletPath();
@@ -40,6 +42,9 @@ public class RequestHelper {
 			case "reimbursements/resolved":
 				reimbursementDelegate.getResolvedReimbursements(request, response);
 				break;
+			case "departments":
+				departmentDelegate.getDepartments(request, response);
+				break;
 			default:
 				response.sendError(404, "Request Record(s) Not Found");
 			}
@@ -60,6 +65,9 @@ public class RequestHelper {
 			break;
 		case "/reimbursement/new":
 			reimbursementDelegate.submitReimbursement(request, response);
+			break;
+		case "/employee/new":
+			emplDelegate.registeEmpl(request, response);
 			break;
 		default:
 			response.sendError(405);

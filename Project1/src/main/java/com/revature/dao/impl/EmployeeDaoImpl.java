@@ -1,13 +1,15 @@
-package com.revature.daos;
+package com.revature.dao.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.revature.daos.EmployeeDao;
 import com.revature.models.Department;
 import com.revature.models.Employee;
 import com.revature.services.DepartmentService;
@@ -122,8 +124,28 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 	@Override
 	public int createEmpl(Employee e) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		int emplCreated = 0;	
+		String sql = "insert into Employee(firstName, lastName, email, phone, pass, managerId, isManager, deptId, emplPosition) values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				
+		try(Connection c = ConnectionUtil.getConnection();
+				PreparedStatement ps = c.prepareStatement(sql)){
+			ps.setString(1, e.getFirstName());
+			ps.setString(2, e.getLastName());
+			ps.setString(3, e.getEmail());
+			ps.setString(4, e.getPhone());
+			ps.setString(5, e.getPassword());
+			ps.setInt(6, e.getManagerId());
+			ps.setInt(7, e.getIsManager());
+			ps.setInt(8, e.getDepartment().getDeptId());
+			ps.setString(9, e.getPosition());
+
+			emplCreated = ps.executeUpdate();
+			
+		} catch (SQLException err) {
+			err.printStackTrace();
+		}
+		return emplCreated;
 	}
 
 	@Override
