@@ -1,0 +1,35 @@
+<h3> Structural Directives </h3>
+
+<div (click)='changeCondition()'>
+  <p *ngIf='condition'>Condition is met</p>
+  <p *ngIf='!condition'>Condition is not met</p>
+</div>
+
+<br><br>
+
+<div [ngSwitch]='time' >
+  <p *ngSwitchCase="'night'" >It's night time</p>
+  <p *ngSwitchCase="'day'">It's day time</p>
+  <p *ngSwitchDefault>It's ? time</p>
+</div>
+
+<br><br>
+
+<h5>Here is a list of my cats:</h5>
+<ul>
+  <li *ngFor='let cat of cats'>Cat #{{cat.id}}: {{cat.name}}</li>
+</ul>
+
+<h5>Here is a table with all of my cats:</h5>
+<table class="table table-hover" *ngIf='cats.length>0'>
+  <tr>
+    <th>Number</th>
+    <th>Name</th>
+    <th>Color</th>
+  </tr>
+  <tr *ngFor='let cat of cats; let i=index'>
+    <td>{{i+1}}</td>
+    <td>{{cat.name}}</td>
+    <td>{{cat.color}}</td>
+  </tr>
+</table>
