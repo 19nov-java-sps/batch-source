@@ -1,54 +1,96 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>Employee Login Page</title>
-   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+	integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+	crossorigin="anonymous"></script>
+<link
+	href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css"
+	rel="stylesheet">
+<link
+	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+	rel="stylesheet">
+<link rel="stylesheet" href="static/views/login-style.css">
 </head>
 <body>
- <div>
-        <div class="jumbotron bg-warning" >
-            <h1> Employee Login Portal </h1>
-            <form action="/home" class="was-validated">
+	<div>
+		<div class="jumbotron big-banner container">
+			<h1>Employee Login Portal</h1>
+			<form method="POST" class="was-validated">
 
-               <!-- Username icon and input text was formatted here -->
-                <div class="form-group">
-                  <label for="username">Username:</label>
-                 
-                  <div class="input-group flex-nowrap"> 
-                    <div class="input-group-prepend">
-                      <span class="input-group text form-control fa fa-user icon" id="addon-wrapping"></span>
-                      </div>
-                      <input type="text" class="form-control" id="username" placeholder="Enter username" name="uname" aria-describedby="addon-wrapping" required>
-                    </div>
-                  <div class="valid-feedback">Valid.</div>
-                  <div class="invalid-feedback d-flex">Please fill out this field.</div>
-                </div>
+				<!-- Username icon and input text was formatted here -->
+				<div class="form-group">
+					<label for="username">Username:</label>
 
-                <!-- Password icon and input text was formatted here -->
-                <div class="form-group">
-                  <label for="password">Password:</label>
+					<div class="input-group flex-nowrap">
+						<div class="input-group-prepend">
+							<span class="input-group text form-control fa fa-user icon"
+								id="addon-wrapping"></span>
+						</div>
+						<input type="text" class="form-control" id="username"
+							placeholder="Enter username" aria-describedby="addon-wrapping"
+							required>
+					</div>
+					<div class="valid-feedback">Valid.</div>
+					<div class="invalid-feedback">Please fill out this field.</div>
+				</div>
 
-                  <div class="input-group flex-norap">
-                    <div class="input-group-prepend">
-                      <span class="input-group text form-control fa fa-key icon" id="addon-wrapping"></span>
-                      </div>
-                  <input type="text" class="form-control" id="password" placeholder="Enter password" name="pswd" aria-describedby="addon-wrapping" required>
-                  </div>
-                  <div class="valid-feedback">Valid.</div>
-                  <div class="invalid-feedback d-flex">Please fill out this field.</div>
-                </div>
-                <div class="form-group form-check">
-                </div>
-                <button type="submit" id="login-btn" class="btn btn-success">Submit</button>
-              </form>
-        </div>
-    </div>
-    <script type="text/javascript" src="static/Scripts/LoginScript.js"></script>
+				<!-- Password icon and input text was formatted here -->
+				<!-- I removed  d-flex from username and password div class -->
+				<div class="form-group">
+					<label for="password">Password:</label>
+
+					<div class="input-group flex-norap">
+						<div class="input-group-prepend">
+							<span class="input-group text form-control fa fa-key icon"
+								id="addon-wrapping"></span>
+						</div>
+						<input type="password" class="form-control" id="password"
+							placeholder="Enter password" aria-describedby="addon-wrapping"
+							required>
+					</div>
+					<div class="valid-feedback">Valid.</div>
+					<div class="invalid-feedback ">Please fill out this field.</div>
+
+					<!-- This input ties functionality to an event in this html doc... the script is below -->
+					<input type="checkbox" onclick="myFunction()"> Show
+					Password
+
+				</div>
+				<div class="form-group form-check"></div>
+				<button type="submit" id="login-btn" class="btn btn-primary">Submit</button>
+			</form>
+		</div>
+	</div>
+
+	<script>
+		function myFunction() {
+			var x = document.getElementById("password");
+			if (x.type === "password") {
+				x.type = "text";
+			} else {
+				x.type = "password";
+			}
+		}
+	</script>
+
+	<script type="text/javascript" src="static/scripts/LoginScript.js"></script>
 </body>
 </html>

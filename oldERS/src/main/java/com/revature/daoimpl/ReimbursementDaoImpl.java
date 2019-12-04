@@ -9,7 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.revature.dao.ReimbursementDao;
-import com.revature.models.Reimbursement;
+import com.revature.model.Employees;
+import com.revature.model.Reimbursement;
 import com.revature.util.ConnectionUtil;
 
 public class ReimbursementDaoImpl implements ReimbursementDao {

@@ -1,8 +1,8 @@
-package com.revature.model;
+package com.revature.models;
 
 import java.io.Serializable;
 
-public class Employees implements Serializable {
+public class Employee implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private int employeeID;
@@ -11,12 +11,12 @@ public class Employees implements Serializable {
 	private String fullName;
 	private boolean isManager;
 
-	public Employees() {
+	public Employee() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Employees(int employeeID, String userName, String passWord, String fullName, boolean isManager) {
+	public Employee(int employeeID, String userName, String passWord, String fullName, boolean isManager) {
 		super();
 		this.employeeID = employeeID;
 		this.userName = userName;
@@ -25,47 +25,47 @@ public class Employees implements Serializable {
 		this.isManager = isManager;
 	}
 
-	protected int getEmployeeID() {
+	public int getEmployeeID() {
 		return employeeID;
 	}
 
-	protected void setEmployeeID(int employeeID) {
+	public void setEmployeeID(int employeeID) {
 		this.employeeID = employeeID;
 	}
 
-	protected String getUserName() {
+	public String getUserName() {
 		return userName;
 	}
 
-	protected void setUserName(String userName) {
+	public void setUserName(String userName) {
 		this.userName = userName;
 	}
 
-	protected String getPassWord() {
+	public String getPassWord() {
 		return passWord;
 	}
 
-	protected void setPassWord(String passWord) {
+	public void setPassWord(String passWord) {
 		this.passWord = passWord;
 	}
 
-	protected String getFullName() {
+	public String getFullName() {
 		return fullName;
 	}
 
-	protected void setFullName(String fullName) {
+	public void setFullName(String fullName) {
 		this.fullName = fullName;
 	}
 
-	protected boolean isManager() {
+	public boolean getisManager() {
 		return isManager;
 	}
 
-	protected void setManager(boolean isManager) {
+	public void setManager(boolean isManager) {
 		this.isManager = isManager;
 	}
 
-	protected static long getSerialversionuid() {
+	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 
@@ -89,10 +89,10 @@ public class Employees implements Serializable {
 		if (obj == null) {
 			return false;
 		}
-		if (!(obj instanceof Employees)) {
+		if (!(obj instanceof Employee)) {
 			return false;
 		}
-		Employees other = (Employees) obj;
+		Employee other = (Employee) obj;
 		if (employeeID != other.employeeID) {
 			return false;
 		}
@@ -125,7 +125,7 @@ public class Employees implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Employees [employeeID=" + employeeID + ", userName=" + userName + ", passWord=" + passWord
+		return "Employee [employeeID=" + employeeID + ", userName=" + userName + ", passWord=" + passWord
 				+ ", fullName=" + fullName + ", isManager=" + isManager + "]";
 	}
 

@@ -31,63 +31,63 @@ public class Reimbursement implements Serializable {
 		this.rejected = rejected;
 	}
 
-	protected int getReimbursementID() {
+	public int getReimbursementID() {
 		return reimbursementID;
 	}
 
-	protected void setReimbursementID(int reimbursementID) {
+	public void setReimbursementID(int reimbursementID) {
 		this.reimbursementID = reimbursementID;
 	}
 
-	protected int getEmployeeID() {
+	public int getEmployeeID() {
 		return employeeID;
 	}
 
-	protected void setEmployeeID(int employeeID) {
+	public void setEmployeeID(int employeeID) {
 		this.employeeID = employeeID;
 	}
 
-	protected double getAmount() {
+	public double getAmount() {
 		return amount;
 	}
 
-	protected void setAmount(double amount) {
+	public void setAmount(double amount) {
 		this.amount = amount;
 	}
 
-	protected String getDescription() {
+	public String getDescription() {
 		return description;
 	}
 
-	protected void setDescription(String description) {
+	public void setDescription(String description) {
 		this.description = description;
 	}
 
-	protected String getDateSubmission() {
+	public String getDateSubmission() {
 		return dateSubmission;
 	}
 
-	protected void setDateSubmission(String dateSubmission) {
+	public void setDateSubmission(String dateSubmission) {
 		this.dateSubmission = dateSubmission;
 	}
 
-	protected String getDateApproval() {
+	public String getDateApproval() {
 		return dateApproval;
 	}
 
-	protected void setDateApproval(String dateApproval) {
+	public void setDateApproval(String dateApproval) {
 		this.dateApproval = dateApproval;
 	}
 
-	protected boolean isRejected() {
+	public boolean getisRejected() {
 		return rejected;
 	}
 
-	protected void setRejected(boolean rejected) {
+	public void setRejected(boolean rejected) {
 		this.rejected = rejected;
 	}
 
-	protected static long getSerialversionuid() {
+	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 
