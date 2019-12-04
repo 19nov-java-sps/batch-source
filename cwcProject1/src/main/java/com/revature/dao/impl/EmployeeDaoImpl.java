@@ -18,7 +18,15 @@ import com.revature.util.ConnectionUtil;
 public class EmployeeDaoImpl implements EmployeeDao {
 	
 	DepartmentService ds = new DepartmentService();
-
+/*
+	List<Employee> dummyEmployees = new  ArrayList<>(); 
+	
+	public EmployeeDaoImp() {
+		dummyEmployees.add(new Employee())
+	}
+	*/
+	
+	
 	@Override
 	public List<Employee> getAllEmpl() {
 		
@@ -37,7 +45,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 				String phone = rs.getString("phone");
 				String password = rs.getString("pass");
 				int managerId = rs.getInt("managerId");
-				int isManager = rs.getInt("isManager");
+				boolean isManager = rs.getBoolean("isManager");
 				int deptId = rs.getInt("deptId");
 				String position = rs.getString("emplPosition");
 				
@@ -70,7 +78,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 				String lastName = rs.getString("lastName");
 				String phone = rs.getString("phone");
 				int managerId = rs.getInt("managerId");
-				int isManager = rs.getInt("isManager");
+				boolean isManager = rs.getBoolean("isManager");
 				int deptId = rs.getInt("deptId");
 				String position = rs.getString("emplPosition");
 				
@@ -105,7 +113,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 				String email = rs.getString("email");
 				String password = rs.getString("pass");
 				int managerId = rs.getInt("managerId");
-				int isManager = rs.getInt("isManager");
+				boolean isManager = rs.getBoolean("isManager");
 				int deptId = rs.getInt("deptId");
 				String position = rs.getString("emplPosition");
 				
@@ -136,7 +144,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			ps.setString(4, e.getPhone());
 			ps.setString(5, e.getPassword());
 			ps.setInt(6, e.getManagerId());
-			ps.setInt(7, e.getIsManager());
+			ps.setBoolean(7, e.isManager());
 			ps.setInt(8, e.getDepartment().getDeptId());
 			ps.setString(9, e.getPosition());
 

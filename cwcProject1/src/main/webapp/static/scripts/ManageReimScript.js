@@ -54,7 +54,6 @@ function displayAllReims(xhr, type = 'Pending') {
 		document.getElementById("main").appendChild(table);
 		
 		let caption = document.createElement("Caption");
-		caption.innerText = 'Click on reimbusement id to view detail';
 		table.appendChild(caption);
 		
 		if (type === 'Pending') {

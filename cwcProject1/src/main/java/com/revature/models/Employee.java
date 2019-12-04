@@ -13,104 +13,26 @@ private static final long serialVersionUID = 1L;
 	private String phone;
 	private String password;
 	private int managerId;
-	private int isManager;
+	private boolean isManager;
 	private Department department;
 	private String position;
 	
 	public Employee() {
 		super();
 	}
-	
-	public Employee(int emplId, String firstName, String lastName, String email, String phone, String password, int managerId, int isManager, Department dept, String position) {
+
+	public Employee(int emplId, String firstName, String lastName, String email, String phone, String password,
+			int managerId, boolean isManager, Department department, String position) {
+		super();
 		this.emplId = emplId;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.password = password;
 		this.email = email;
 		this.phone = phone;
-		this.managerId = managerId;
-		this.department = dept;
-		this.isManager = isManager;
-		this.position = position;
-	}
-
-	public int getEmplId() {
-		return emplId;
-	}
-
-	public void setEmplId(int emplId) {
-		this.emplId = emplId;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public int getManagerId() {
-		return managerId;
-	}
-
-	public void setManagerId(int managerId) {
 		this.managerId = managerId;
-	}
-
-	public int getIsManager() {
-		return isManager;
-	}
-
-	public void setIsManager(int isManager) {
 		this.isManager = isManager;
-	}
-
-	public Department getDepartment() {
-		return department;
-	}
-
-	public void setDepartment(Department department) {
 		this.department = department;
-	}
-
-	public String getPosition() {
-		return position;
-	}
-
-	public void setPosition(String position) {
 		this.position = position;
 	}
 
@@ -129,7 +51,7 @@ private static final long serialVersionUID = 1L;
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + emplId;
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
-		result = prime * result + isManager;
+		result = prime * result + (isManager ? 1231 : 1237);
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + managerId;
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
@@ -191,5 +113,90 @@ private static final long serialVersionUID = 1L;
 		return true;
 	}
 
+	public int getEmplId() {
+		return emplId;
+	}
+
+	public void setEmplId(int emplId) {
+		this.emplId = emplId;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public int getManagerId() {
+		return managerId;
+	}
+
+	public void setManagerId(int managerId) {
+		this.managerId = managerId;
+	}
+
+	public boolean isManager() {
+		return isManager;
+	}
+
+	public void setManager(boolean isManager) {
+		this.isManager = isManager;
+	}
+
+	public Department getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
+
+	public String getPosition() {
+		return position;
+	}
+
+	public void setPosition(String position) {
+		this.position = position;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
+	
 	
 }

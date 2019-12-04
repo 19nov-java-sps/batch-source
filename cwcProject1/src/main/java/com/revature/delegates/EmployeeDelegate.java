@@ -21,6 +21,7 @@ public class EmployeeDelegate {
 	public void getEmployees(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
 		String idStr = request.getParameter("id");
+		System.out.println(idStr);
 		if (idStr == null) {
 			List<Employee> employees = employeeService.getEmployees();
 			
@@ -66,26 +67,26 @@ public class EmployeeDelegate {
 		}
 	}
 	
-	public void registeEmpl(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		String firstname = request.getParameter("firstname");
-		String lastname = request.getParameter("lastname");
-		String email = request.getParameter("email");
-		String phone = request.getParameter("phone");
-		String position = request.getParameter("position");
-		int managerId = Integer.parseInt(request.getParameter("managerId"));
-		
-		Department dept = new Department();
-		dept.setDeptId(Integer.parseInt(request.getParameter("deptId")));
-		
-		Employee empl = new Employee(0, firstname, lastname, email, phone, "12345", managerId, 0, dept, position);
-		
-		int emplCreated = employeeService.registeEmpl(empl);
-		if (emplCreated == 1) {
-			response.setStatus(201);
-		} else {
-			response.sendError(400);
-		}
-	}
+//	public void registeEmpl(HttpServletRequest request, HttpServletResponse response) throws IOException {
+//		String firstname = request.getParameter("firstname");
+//		String lastname = request.getParameter("lastname");
+//		String email = request.getParameter("email");
+//		String phone = request.getParameter("phone");
+//		String position = request.getParameter("position");
+//		int managerId = Integer.parseInt(request.getParameter("managerId"));
+//		
+//		Department dept = new Department();
+//		dept.setDeptId(Integer.parseInt(request.getParameter("deptId")));
+//		
+//		Employee empl = new Employee(0, firstname, lastname, email, phone, "12345", managerId, false, dept, position);
+//		
+//		int emplCreated = employeeService.registeEmpl(empl);
+//		if (emplCreated == 1) {
+//			response.setStatus(201);
+//		} else {
+//			response.sendError(400);
+//		}
+//	}
 }
 
 

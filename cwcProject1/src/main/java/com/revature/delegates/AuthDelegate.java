@@ -19,14 +19,11 @@ public class AuthDelegate {
 		if(authToken != null) {
 			String[] tokenArr = authToken.split(":");
 			
-			if (tokenArr.length == 3) {
+			if (tokenArr.length == 2) {
 				String idStr = tokenArr[0];
-				String isManager = tokenArr[1];
+				//String isManager = tokenArr[1];
 				if (idStr.matches("^\\d+$")) {
 					Employee e = employeeService.getEmplById(Integer.parseInt(idStr));
-					if(e != null && e.getIsManager() == Integer.parseInt(isManager)) {
-						return true;
-					}
 				}
 			}
 		}
@@ -40,7 +37,7 @@ public class AuthDelegate {
 		Employee empl = employeeService.getLogin(email, pass);
 
 		if (empl != null) {
-			String token = empl.getEmplId() + ":" + empl.getIsManager() + ":" + empl.getManagerId();
+			String token = empl.getEmplId()+ ":" + empl.isManager();
 			response.setStatus(200);
 			response.setHeader("Authorization", token);
 		} else {

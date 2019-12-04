@@ -13,16 +13,16 @@ function requestLogin() {
 			window.location.href="http://localhost:8080/Project1/home";
 		} 
 		
-		if (this.status !== 200){
-			document.getElementById('email').value = '';
-			document.getElementById('password').value = '';
-			document.getElementById('message').hidden = false;
-			setTimeout(function(){ document.getElementById('message').hidden = true; }, 5000);
-		}
+//		if (this.status !== 200){
+//			document.getElementById('email').value = '';
+//			document.getElementById('password').value = '';
+//			document.getElementById('message').hidden = false;
+//			setTimeout(function(){ document.getElementById('message').hidden = true; }, 5000);
+//		}
 		
-		if (this.readyState === 4) {
-			console.log(this);
-		}
+//		if (this.readyState === 4) {
+//			console.log(this);
+//		}
 
 	}
 	
