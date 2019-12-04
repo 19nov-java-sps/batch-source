@@ -1,0 +1,6 @@
+<div>
+  <button (click)='increment(1)' class="btn btn-primary">Increment</button>
+  <button *ngIf='count>5' (click)='increment(5)' class="btn btn-danger" >Increment By 5</button>
+  <!-- <p [class]='(count%5==0)?"red-text":"blue-text"' >Current Value: {{count}}</p> -->
+  <p [class]='counterColorClass'> Current Value: {{count}}</p>
+</div>
