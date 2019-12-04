@@ -7,6 +7,7 @@ public class Reimbursement {
 	private boolean isPending;
 	private int userId;
 	private int resolvedBy;
+	private String status;
 	public Reimbursement(String reasonForReimbursement, double reimbursementAmount, boolean isPending, int userId,
 			int resolvedBy) {
 		super();
@@ -21,6 +22,28 @@ public class Reimbursement {
 		reimbursementAmount=amount;
 		isPending= ispending2;
 		userId=userId2;
+	}
+	public Reimbursement(String reasonfor, double amount, boolean ispending2, int userId2,int resolvedBy1,String status1) {
+		reasonForReimbursement=reasonfor;
+		reimbursementAmount=amount;
+		isPending= ispending2;
+		userId=userId2;
+		resolvedBy=resolvedBy1;
+		status=status1;
+	}
+	public Reimbursement(String reasonForReimbursement, double reimbursementAmount, boolean isPending, int userId,String status1) {
+		super();
+		this.reasonForReimbursement = reasonForReimbursement;
+		this.reimbursementAmount = reimbursementAmount;
+		this.isPending = isPending;
+		this.userId = userId;
+		this.status=status1;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	public String getReasonForReimbursement() {
 		return reasonForReimbursement;
@@ -93,7 +116,7 @@ public class Reimbursement {
 	public String toString() {
 		return "Reimbursement [reasonForReimbursement=" + reasonForReimbursement + ", reimbursementAmount="
 				+ reimbursementAmount + ", isPending=" + isPending + ", userId=" + userId + ", resolvedBy=" + resolvedBy
-				+ "]";
+				+ ", status=" + status + "]";
 	}
 	
 	

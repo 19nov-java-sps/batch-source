@@ -14,7 +14,8 @@ public interface ReimbursementDao {
 	public List<Reimbursement> getResolvedReimbursementById(int id);
 	public boolean createReimbursement(Reimbursement re) throws SQLException;
 	public void resolveReimbursement(int i);
-	void resolveReimbursement(int i, int manager) throws SQLException;
+
+	void resolveReimbursement(int i, int manager, String status) throws SQLException;
 	
 	
 }

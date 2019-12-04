@@ -59,9 +59,9 @@ public class ReimbursementService {
 	}
 	
 	
-	public void resolveReimbursement(int id, int managerid) throws SQLException {
+	public void resolveReimbursement(int id, int managerid, String status) throws SQLException {
 		
-		red.resolveReimbursement(id, managerid);
+		red.resolveReimbursement(id, managerid, status);
 	}
 	
 	

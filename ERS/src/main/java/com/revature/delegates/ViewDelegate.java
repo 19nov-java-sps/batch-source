@@ -62,6 +62,10 @@ public class ViewDelegate {
 		case "/updateinfo":
 			request.getRequestDispatcher("/static/UpdateEmployee.html").forward(request, response);
 			break;
+		case "/approveordeny":
+			request.getRequestDispatcher("/static/ResolveRequests.html").forward(request, response);
+			break;
+			
 			
 			
 		default:

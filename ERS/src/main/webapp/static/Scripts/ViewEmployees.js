@@ -29,7 +29,7 @@ function displayEmployees(employeesJSON){
 		
 		let newRow = document.createElement("tr");
 		
-		newRow.innerHTML= `<td>${employee.firstName}</td><td>${employee.lastName}</td>`;
+		newRow.innerHTML= `<td>${employee.firstName  }</td><td>${employee.lastName}</td>`;
 		table.appendChild(newRow);
 		
 	}

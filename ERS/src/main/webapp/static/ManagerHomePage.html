@@ -16,7 +16,27 @@
 
 function myfunction() {
   sessionStorage.clear();
+  
 }
+  let auth = sessionStorage.getItem("token");
+  if(auth==null){
+  	window.location.href="http://localhost:8080/ERS/login";
+  }
+
+  let tokenArr = auth.split(":");
+  let type= tokenArr[1];
+
+  if(type!="Manager"){
+  	window.location.href="http://localhost:8080/ERS/login";
+  }
+
+  
+  
+  
+  
+  
+  
+
 </script>
 
 
@@ -66,6 +86,7 @@ body{
                     <a href="finalized" class="w3-bar-item w3-button">View Resolved Reimbursement Requests</a>
                     <a href="employeedirectory" class="w3-bar-item w3-button">View Employees</a>
                   	<a href="pendingbyid" class="w3-bar-item w3-button">View Employee Reimbursements</a>
+                  	<a href="approveordeny" class="w3-bar-item w3-button">Approve Or Deny Requests</a>
                   	
                 
                     <a href="login" onclick="myfunction()" class="w3-bar-item w3-button">Logout</a>

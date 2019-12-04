@@ -149,7 +149,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao{
 
 	@Override
 	public boolean createReimbursement(Reimbursement re) throws SQLException {
-		String sql = "insert into reimbursements (amount,userid,reasonfor,ispending) VALUES (? ,? ,?,?)";
+		String sql = "insert into reimbursements (amount,userid,reasonfor,ispending,status) VALUES (? ,? ,?,?,?)";
 		int count=0;
 		try (Connection c = ConnectionUtil.getConnection();
 				PreparedStatement ps = c.prepareStatement(sql)) {
@@ -158,6 +158,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao{
 			ps.setInt(2,  re.getUserId());
 			ps.setString(3, re.getReasonForReimbursement());
 			ps.setBoolean(4, re.isPending());
+			ps.setString(5,re.getStatus());
 		
 			count=ps.executeUpdate();
 		
@@ -170,17 +171,17 @@ public class ReimbursementDaoImpl implements ReimbursementDao{
 
 
 	@Override
-	public void resolveReimbursement(int i, int manager) throws SQLException {
-String sql2 = "update reimbursements set ispending=false, resolvedby=? where id=?";
+	public void resolveReimbursement(int i, int manager, String status) throws SQLException {
+String sql2 = "update reimbursements set ispending=false, resolvedby=?, status=? where id=?";
 		
 		try (Connection c = ConnectionUtil.getConnection();
 				PreparedStatement ps = c.prepareStatement(sql2)) {
 		
 			ps.setInt(1,manager);
 
-			ps.setInt(2,i);
+			ps.setString(2,status);
 			
-
+			ps.setInt(3,i );
 			ps.executeUpdate();
 	
 	}

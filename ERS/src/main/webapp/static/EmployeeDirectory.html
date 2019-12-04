@@ -12,9 +12,65 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<script>
 
+function myfunction() {
+  sessionStorage.clear();
+  
+}
+  let auth = sessionStorage.getItem("token");
+  if(auth==null){
+  	window.location.href="http://localhost:8080/ERS/login";
+  }
+
+  let tokenArr = auth.split(":");
+  let type= tokenArr[1];
+
+  if(type!="Manager"){
+  	window.location.href="http://localhost:8080/ERS/login";
+  }
+
+  
+  
+  
+  
+  
+  
+
+</script>
 <title>View Employees Page</title> 
+<style>
+#centered{
 
+
+    
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 400px;
+        height:400px;
+      
+
+
+
+    
+}
+body{
+
+
+    background-image: url("https://www.usnews.com/dims4/USNEWS/3da5344/2147483647/resize/1200x%3E/quality/85/?url=http%3A%2F%2Fmedia.beam.usnews.com%2Fff%2F6d%2Fabb5206e42b4932cf58355abad4b%2F1-intro-iguazu-falls.jpg");
+    background-size:cover;
+    color:yellow;
+  
+}
+h1{
+color:yellow;
+}
+
+
+
+
+</style>
 </head>
  <body>
      <h1 style="text-align:center">Employee Directory</h1>

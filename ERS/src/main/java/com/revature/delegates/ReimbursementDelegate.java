@@ -49,8 +49,7 @@ public class ReimbursementDelegate {
 		String id= request.getParameter("id");
 		int id1= Integer.parseInt(id);
 		
-		
-		Reimbursement rea= new Reimbursement(reasonfor,amountfor, true, id1);
+		Reimbursement rea= new Reimbursement(reasonfor,amountfor, true, id1,"Pending");
 		
 		re.createReimbursement(rea);
 		
@@ -58,6 +57,17 @@ public class ReimbursementDelegate {
 		
 	}
 	
+	public void amendReimbursement(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
+		String id = request.getParameter("id");
+		String status= request.getParameter("status");
+		String managerid=request.getParameter("managerid");
+		int id1= Integer.parseInt(id);
+		int id2= Integer.parseInt(managerid);
+		
+		
+re.resolveReimbursement(id1, id2, status);
+		
+	}
 	
 	
 	

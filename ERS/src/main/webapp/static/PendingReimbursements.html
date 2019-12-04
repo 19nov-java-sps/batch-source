@@ -11,9 +11,65 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<script>
 
+function myfunction() {
+  sessionStorage.clear();
+  
+}
+  let auth = sessionStorage.getItem("token");
+  if(auth==null){
+  	window.location.href="http://localhost:8080/ERS/login";
+  }
+
+  let tokenArr = auth.split(":");
+  let type= tokenArr[1];
+
+  if(type!="Manager"){
+  	window.location.href="http://localhost:8080/ERS/login";
+  }
+
+  
+  
+  
+  
+  
+  
+
+</script>
 <title>Pending Reimbursements Page</title> 
+<style>
+#centered{
 
+
+    
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 400px;
+        height:400px;
+      
+
+
+
+    
+}
+body{
+
+
+    background-image: url("  https://media.wired.com/photos/5b8477b61419cf3acdceed27/master/pass/How%20Technology%20Is%20Changing%20the%20Way%20We%20Love.jpg");
+    background-size:cover;
+    color:yellow;
+  
+}
+h1{
+color:yellow;
+}
+
+
+
+
+</style>
 </head>
  <body>
      <h1 style="text-align:center">Pending Reimbursements</h1>
@@ -32,7 +88,7 @@
             </table>
         </div>
 
-        
+      
        
         
         <p id="firstname"></p>

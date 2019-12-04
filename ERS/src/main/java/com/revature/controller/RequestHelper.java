@@ -82,6 +82,9 @@ public class RequestHelper {
 		case "/updateinfo":
 		empDelegate.updateInfo(request, response);
 			break;
+		case "/approveordeny":
+		burse.amendReimbursement(request, response);
+				break;
 		default:
 			response.sendError(405);
 		}

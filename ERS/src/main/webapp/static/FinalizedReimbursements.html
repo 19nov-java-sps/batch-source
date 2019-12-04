@@ -13,7 +13,65 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 <title>Resolved Reimbursements Page</title> 
+<style>
 
+#centered{
+
+
+    
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 400px;
+        height:400px;
+      
+
+
+
+    
+}
+body{
+
+
+    background-image: url("https://cdn.britannica.com/41/24341-050-DC561751/canvas-oil-La-Grande-Jatte-Georges-Seurat-1884.jpg");
+    background-size:cover;
+    color:yellow;
+  
+}
+h1{
+color:yellow;
+}
+
+
+
+
+</style>
+<script>
+
+function myfunction() {
+  sessionStorage.clear();
+  
+}
+  let auth = sessionStorage.getItem("token");
+  if(auth==null){
+  	window.location.href="http://localhost:8080/ERS/login";
+  }
+
+  let tokenArr = auth.split(":");
+  let type= tokenArr[1];
+
+  if(type!="Manager"){
+  	window.location.href="http://localhost:8080/ERS/login";
+  }
+
+  
+  
+  
+  
+  
+  
+
+</script>
 </head>
  <body>
      <h1 style="text-align:center">Resolved Reimbursements</h1>

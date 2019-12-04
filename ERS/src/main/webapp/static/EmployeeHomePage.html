@@ -16,6 +16,21 @@
 function myfunction() {
   sessionStorage.clear();
 }
+let auth = sessionStorage.getItem("token");
+if(auth==null){
+	window.location.href="http://localhost:8080/ERS/login";
+}
+
+let tokenArr = auth.split(":");
+let type= tokenArr[1];
+
+if(type!="General"){
+	window.location.href="http://localhost:8080/ERS/login";
+}
+
+
+
+
 </script>
 
 
