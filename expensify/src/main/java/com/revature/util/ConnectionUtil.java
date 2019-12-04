@@ -15,9 +15,9 @@ public class ConnectionUtil {
             System.out.println("Class not found " + e);
         }
 		
-		String url = "jdbc:postgresql://"+System.getenv("jdbc_db_host")+":5432/postgres";
-		String username = System.getenv("jdbc_db_user");
-		String password = System.getenv("jdbc_db_pass");
+		String url = "jdbc:postgresql://"+System.getenv("host")+":5432/postgres";
+		String username = System.getenv("user");
+		String password = System.getenv("pass");
 	
 		if(connection == null || connection.isClosed()) {
 			connection = DriverManager.getConnection(url, username, password);

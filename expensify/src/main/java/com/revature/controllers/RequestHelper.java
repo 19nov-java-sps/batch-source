@@ -58,18 +58,53 @@ public class RequestHelper {
 	
 	}
 	public void processPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+//		String path = request.getRequestURI().substring(request.getContextPath().length());
+//		System.out.println(path+"this is the path  in  RH  processPOST");
+//		switch(path) {
+//		case "/home":
+//			authDelegate.authenticate(request, response);
+//			break;
+//		case "/employee":
+//			employeeDelegate.postEmployees(request, response);
+//		default:
+//			response.sendError(405);
+//		}
 		String path = request.getRequestURI().substring(request.getContextPath().length());
-		System.out.println(path+"this is the path when someone logins");
-		switch(path) {
-		case "/home":
-			authDelegate.authenticate(request, response);
-			break;
-		case "/employee":
-			employeeDelegate.postEmployees(request, response);
-		default:
-			response.sendError(405);
+		System.out.println(path+"this is the path  in  RH  processPOST");
+		if(path.startsWith("/api/")) {
+			if(!authDelegate.isAuthorized(request)) {
+				response.sendError(401);
+				return;
+			}
+			// we're requesting a resource
+			String record = path.substring(5);
+			
+			System.out.println(record);
+			// evaluate the rest of the uri to figure out what resource is being requested
+			// send to the appropriate resource delegate
+			switch(record) {
+			case "employees":
+				//process with the employee delegate
+				employeeDelegate.getEmployees(request, response);
+				break;
+			case "invoices":
+				invoiceDelegate.postInvoices(request, response);
+				break;
+			default:
+				response.sendError(404, "Record not supported.");
+			}
+			
+		} else {
+			switch(path) {
+			case "/home":
+				authDelegate.authenticate(request, response);
+				break;
+			default:
+				response.sendError(405);
+			}
 		}
 	}
+	
 	
 	public void processPut(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException  {
 		

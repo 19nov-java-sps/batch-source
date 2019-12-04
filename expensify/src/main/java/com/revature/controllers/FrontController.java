@@ -39,9 +39,7 @@ public class FrontController extends DefaultServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String uri = request.getServletPath();
-		System.out.println(uri+" "+ "this is in the FrontController");
-		
-		
+		System.out.println(uri+" "+ " this is in the FrontController doPOST");
 		rh.processPost(request, response);
 	}
 

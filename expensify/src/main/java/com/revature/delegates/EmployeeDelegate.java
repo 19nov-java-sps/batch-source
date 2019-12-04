@@ -40,16 +40,15 @@ public class EmployeeDelegate {
 		}
 	}
 	
-	public void postEmployees(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	public void deleteEmployees(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 
 		Employee employee = employeeDao.getUserByUsernameAndPassword(username, password);
-		try(PrintWriter pw = response.getWriter();){
-				pw.write(new ObjectMapper().writeValueAsString(employee));
-			}	
-		}
+		employeeDao.deleteEmployee(employee);
+	}
+		
 }
 
 	

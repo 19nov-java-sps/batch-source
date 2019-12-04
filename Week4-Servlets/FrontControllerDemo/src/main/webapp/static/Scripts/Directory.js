@@ -30,6 +30,7 @@ function displayEmployees(employeesJSON){
 		
 		newRow.innerHTML= `<td>${employee.name}</td><td>${employee.department.name}</td>`;
 		table.appendChild(newRow);
+		document.getElementById("invoiceList").appendChild(table)
 		
 	}
 }

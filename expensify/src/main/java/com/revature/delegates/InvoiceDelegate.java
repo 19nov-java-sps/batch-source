@@ -40,4 +40,26 @@ public class InvoiceDelegate {
 			}
 		}
 	}
+	
+	public void postInvoices(HttpServletRequest request, HttpServletResponse response) throws IOException{
+		int max = 10000; 
+	    int min = 1; 
+	    int range = max - min + 1;
+		int rand = (int)(Math.random() * range) + min;
+		String amountString = request.getParameter("amount");
+		String  descriptionString  =  request.getParameter("descripion");
+		Double  amountDouble  = Double.valueOf(amountString);
+		System.out.print(amountDouble);
+		Invoice newInvoice = new Invoice();
+		newInvoice.setInvoiceId(rand);
+		newInvoice.setAmount(amountDouble);
+		newInvoice.setDescription(descriptionString);
+		newInvoice.setUserId(1);
+		invoiceDao.createInvoice(newInvoice);
+		if(newInvoice!=null) {
+			try(PrintWriter pw = response.getWriter()){
+					pw.write(new ObjectMapper().writeValueAsString(newInvoice));
+			}
+		}
+	}
 }
