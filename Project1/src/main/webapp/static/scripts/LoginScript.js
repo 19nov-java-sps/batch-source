@@ -34,3 +34,4 @@ function requestLogin() {
 	let requestBody = `email=${email}&password=${password}`;
 	xhr.send(requestBody);
 }
+

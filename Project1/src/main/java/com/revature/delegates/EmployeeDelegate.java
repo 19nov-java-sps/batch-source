@@ -3,6 +3,7 @@ package com.revature.delegates;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,11 +13,13 @@ import com.revature.dao.EmployeeDao;
 import com.revature.dao.impl.EmployeeDaoImpl;
 import com.revature.models.Department;
 import com.revature.models.Employee;
+import com.revature.sendmail.RegisterMail;
 import com.revature.services.EmployeeService;
 
 public class EmployeeDelegate {
 
 	private EmployeeService employeeService = new EmployeeService();
+	private RegisterMail registerMail = new RegisterMail();
 	
 	public void getEmployees(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
@@ -77,10 +80,20 @@ public class EmployeeDelegate {
 		Department dept = new Department();
 		dept.setDeptId(Integer.parseInt(request.getParameter("deptId")));
 		
-		Employee empl = new Employee(0, firstname, lastname, email, phone, "12345", managerId, 0, dept, position);
+		String pass = "";
+		for (int i = 0; i < 8; i++) {
+			int random = ThreadLocalRandom.current().nextInt(0, 10);
+			pass += random;
+		}
+		
+		Employee empl = new Employee(0, firstname, lastname, email, phone, pass, managerId, 0, dept, position);
 		
 		int emplCreated = employeeService.registeEmpl(empl);
+		
 		if (emplCreated == 1) {
+			registerMail.setEmplAuth(pass);
+			registerMail.sendRegisterMail();
+
 			response.setStatus(201);
 		} else {
 			response.sendError(400);
