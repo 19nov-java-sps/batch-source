@@ -38,7 +38,7 @@ public class RegisterMail {
         try {
         	
         	MimeMessage message = new MimeMessage(session);  
-            message.setFrom(new InternetAddress("pwndbyrene@gmail.com"));  
+            message.setFrom(new InternetAddress(userString));  
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(sendToString));  
             message.setSubject("Reimbursement");  
             message.setText("Welcome New Employee. Your Password Is " + emplAuth + ". You can login to \"localhost:8080/Project1/login\" with your email now.");  
