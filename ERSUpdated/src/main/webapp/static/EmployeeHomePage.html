@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Robert Bucci">
+    <meta name="description" content="Two truths & a lie">
+    <link rel="icon" href="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/6b502887-22b7-42a1-8c84-7469293d6d7f/d2ao6xd-6ef98252-4f63-4efb-aca2-aa0bdfae5852.jpg/v1/fill/w_900,h_729,q_75,strp/flaming_demon_skull_by_firejerm.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwic3ViIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl0sIm9iaiI6W1t7InBhdGgiOiIvZi82YjUwMjg4Ny0yMmI3LTQyYTEtOGM4NC03NDY5MjkzZDZkN2YvZDJhbzZ4ZC02ZWY5ODI1Mi00ZjYzLTRlZmItYWNhMi1hYTBiZGZhZTU4NTIuanBnIiwid2lkdGgiOiI8PTkwMCIsImhlaWdodCI6Ijw9NzI5In1dXX0.PN5HwZll6d1U9pqvkbo0IETbd6kKs_ZchP3mAm_eWXI" type="image">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<script>
+
+function myfunction() {
+  sessionStorage.clear();
+}
+let auth = sessionStorage.getItem("token");
+if(auth==null){
+	window.location.href="http://localhost:8080/ERS/login";
+}
+
+let tokenArr = auth.split(":");
+let type= tokenArr[1];
+
+if(type!="General"){
+	window.location.href="http://localhost:8080/ERS/login";
+}
+
+
+
+
+</script>
+
+
+
+
+<style>
+
+h1{
+font-weight:1000;
+border-width:200px;
+border-color:red;
+color:yellow;
+
+
+
+
+}
+
+body{
+    background-image:url("https://cbsnews1.cbsistatic.com/hub/i/2017/03/22/aebde2e8-69df-46af-a23f-fce8f915a201/assasn-14li-banner.jpg");
+    background-size:cover;
+}
+
+
+
+
+
+
+
+
+</style>
+
+
+
+
+
+
+<title>Employee Home Page</title> 
+
+</head>
+ <body>
+     <h1 style="text-align:center">Employee Homepage</h1>
+     
+     
+     <!--
+     <nav class="navbar navbar-expand-lg navbar-light bg-light">
+           
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav">
+                <li class="nav-item active">
+                  <a class="nav-link" href="EmployeeHomePage.html">Home <span class="sr-only">(current)</span></a>
+                </li>
+
+             <li class="nav-item">
+                  <a class="nav-link" href="#">View Information</a>
+                </li>
+                <li class="nav-item">
+                        <a class="nav-link" href="#">Update Information</a>
+                      </li>
+                      <li class="nav-item">
+                            <a class="nav-link" href="#"> View Pending Reimbursement Requests</a>
+                          </li>
+                          <li class="nav-item">
+                                <a class="nav-link" href="#">View Resolved Reimbursement Requests</a>
+                              </li>
+                    */
+
+
+                        =
+
+        
+                  
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </nav>
+
+              -->
+              <div class="w3-bar w3-black">
+                    <a href="#" class="w3-bar-item w3-button">Home</a>
+                    <a href="viewinformation" class="w3-bar-item w3-button">View Information</a>
+                    <a href="updateinfo" class="w3-bar-item w3-button">Update Information</a>
+                    <a href="mypending" class="w3-bar-item w3-button">View Pending Reimbursement Requests</a>
+                    <a href="myresolved" class="w3-bar-item w3-button">View Resolved Reimbursement Requests</a>
+                     <a href="submitreimbursement" class="w3-bar-item w3-button">Create Reimbursement</a>
+                    <a href="login" onclick="myfunction()" class="w3-bar-item w3-button">Logout</a>
+           
+                </div>
+
+
+
+
+
+
+  </body>
+  </html>
+  
+  
+
+
+
+
+
+
+
+
+  
+

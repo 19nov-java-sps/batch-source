@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Add a New Employee</title>
+
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css" integrity="sha384-SI27wrMjH3ZZ89r4o+fGIJtnzkAnFs3E4qz9DIYioCQ5l9Rd/7UAa8DHcaL8jkWt" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/js/bootstrap.min.js" integrity="sha384-3qaqj0lc6sV/qpzrc1N5DC6i1VRn/HyX4qdPaiEFbn54VjQBEU341pvjz7Dv3n6P" crossorigin="anonymous"></script>
+
+
+</head>
+<body>
+
+	<div class="container">
+	<h3>Create a New Employee</h3>
+		<form action="employees" method="POST">
+			<label>Name:</label>
+			<input type="text" name="name" class="form-control">
+			<br>
+			<label>Department</label>
+			<select id="dept-select" name="dept" class="form-control">
+				<!-- <option value="1">Marketing</option>
+				<option value="2">Human Resources</option>
+				<option value="3">Information Technology</option>
+				<option value="4">Legal</option>  -->
+			</select>
+			
+			<br>
+			<input type="submit" value="Add!" class="btn btn-primary">
+		</form>
+	</div>
+<script src="static/Scripts/Departments.js"></script>
+</body>
+</html>
