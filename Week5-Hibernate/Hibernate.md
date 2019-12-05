@@ -247,8 +247,8 @@ Example:
     - the string in this case takes in something called HQL
     > HQL is Hibernate Query Language. It is an object oriented version of SQL. It allows you to write in a syntax similar to SQL but using class and field names rather than table and column names.
     > Ex. you change a column name or modify your table - with JDBC we need to update every reference to that table or those columns; with HQL, we don't have to change our code at all, we just need to modify our mappings once and every HQL query would be properly configured.
-    > SQL "select * from employee" -> HQL "from Employee"
-    > (more on HQL here)[https://docs.jboss.org/hibernate/core/3.3/reference/en-US/html/queryhql.html]
+    > SQL "select * from employee" -> HQL "from Employee" 
+    >[(more on HQL here)](https://docs.jboss.org/hibernate/core/3.3/reference/en-US/html/queryhql.html)
 2. .getNamedQuery(String)
     - if you intend to use an HQL statement again and again, you can save this HQL as a named query (this is similar to our previous idea of a view in SQL but on the java side)
     - the string parameter here represents the name we assign to identify the query
