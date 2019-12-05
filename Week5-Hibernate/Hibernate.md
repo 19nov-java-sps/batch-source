@@ -248,7 +248,7 @@ Example:
     > HQL is Hibernate Query Language. It is an object oriented version of SQL. It allows you to write in a syntax similar to SQL but using class and field names rather than table and column names.
     > Ex. you change a column name or modify your table - with JDBC we need to update every reference to that table or those columns; with HQL, we don't have to change our code at all, we just need to modify our mappings once and every HQL query would be properly configured.
     > SQL "select * from employee" -> HQL "from Employee"
-    > (more on HQL here)**********
+    > (more on HQL here)[https://docs.jboss.org/hibernate/core/3.3/reference/en-US/html/queryhql.html]
 2. .getNamedQuery(String)
     - if you intend to use an HQL statement again and again, you can save this HQL as a named query (this is similar to our previous idea of a view in SQL but on the java side)
     - the string parameter here represents the name we assign to identify the query
@@ -264,7 +264,7 @@ Example:
     @NamedQueries({ @NamedQuery(name="getBearByName", query="from Bear where name = :nameVar")})
     ```
 3. .createQuery(CriteriaQuery)
-    - While HQL aims to make our SQL queries more programmatic, CriteriaQuery takes this even further. CriteriaQuery uses the builder pattern********** to programmatically construct a typ safe query.
+    - While HQL aims to make our SQL queries more programmatic, CriteriaQuery takes this even further. CriteriaQuery uses the [builder pattern](https://www.geeksforgeeks.org/builder-design-pattern/) to programmatically construct a typ safe query.
     - The goal of CriteriaQuery is to remove the possible mistakes from malformed SQL strings, as there is no type safety or compile time error checking associated with them. 
 4. .createNativeQuery(String)
     - the string parameter here is represented by plain sql like we're used to
