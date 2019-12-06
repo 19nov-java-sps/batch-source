@@ -26,8 +26,8 @@ function displayReimbursements(reimbJSON){
 	for(let reimb of reimbursements){
 		
 		let newRow = document.createElement("tr");
-		
-		newRow.innerHTML= `<td>${reimb.descr}</td><td>${reimb.sum}</td>`;
+		let rDate = new Date(reimb.date);
+		newRow.innerHTML= `<td>${reimb.reimId}</td><td>${reimb.fName}</td><td>${reimb.lName}</td><td>${rDate.toDateString()}</td><td>${reimb.status}</td><td>${reimb.descr}</td><td>${reimb.sum}</td><td>${null}</td><td>${null}</td>`;
 		table.appendChild(newRow);
 		
 	}

@@ -14,27 +14,37 @@ import com.revature.model.Employee;
 
 public class EmplDelegate {
 	
+	
 	private EmployeeDao emplDao = new EmployeeDaoImpl();
 	
 	public void getEmpl(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		System.out.println("I am in EmplDeligate getEmpl method");
 		String idStr = request.getParameter("id");
+		System.out.println("idStr from UserDeligate = " + idStr);
 		if(idStr == null) {
+			System.out.println ("idStr from emplDeligate = 0");
 			List<Employee> employees = emplDao.getAllEmployee();
 			try(PrintWriter pw = response.getWriter();){
+				System.out.println ("I use PrintWriter in try from emplDeligate if idStr=0");
 				pw.write(new ObjectMapper().writeValueAsString(employees));
 			}
 		}else {
 			if(idStr.matches("^\\d+$")) {
+				System.out.println("I am in emplDeligate if idStr.mathces..\"^\\\\d+$\"");
+				System.out.println("idStr from emplDeligate = " + idStr);
 				Employee e = emplDao.getEmployeeById(Integer.parseInt(idStr));
 				if(e==null) {
 					response.sendError(404, "No employee with given ID");
 				}else {
-					response.sendError(400, "Invalid ID param");
+					try(PrintWriter pw = response.getWriter()){
+						System.out.println ("I use PrintWriter in try from emplDeligate if idStr!=0");
+						pw.write(new ObjectMapper().writeValueAsString(e));
+					}
 				}
+			}else {
+				response.sendError(400, "Invalid ID param");
 			}
 		}
 	}
-
-
 
 }

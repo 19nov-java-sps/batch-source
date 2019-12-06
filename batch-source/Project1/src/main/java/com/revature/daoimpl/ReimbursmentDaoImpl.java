@@ -17,7 +17,7 @@ public class ReimbursmentDaoImpl implements ReimbursementDao {
 
 	@Override
 	public List<Reimbursement> getAllReimbursement() {
-		String sql = "select * from p1reimb";
+		String sql = "select * from p1reimb pr join p1employees pe on pr.id = pe.id";
 		List<Reimbursement> reimbursements = new ArrayList<>();
 		
 		
@@ -32,8 +32,10 @@ public class ReimbursmentDaoImpl implements ReimbursementDao {
 				Date date = rs.getDate("date");
 				String status = rs.getString("status");
 				int emplId = rs.getInt("id");
+				String fName = rs.getString("first_name");
+				String lName = rs.getString("last_name");
 				
-				Reimbursement r = new Reimbursement (rId, descr,  date,   status, sum, emplId);
+				Reimbursement r = new Reimbursement (rId, descr,  date,   status, sum, emplId, fName, lName);
 				reimbursements.add(r);
 				
 			}
@@ -62,8 +64,10 @@ public class ReimbursmentDaoImpl implements ReimbursementDao {
 				Date date = rs.getDate("date");
 				String status = rs.getString("status");
 				int emplId = rs.getInt("id");
+				String fName = rs.getString("fName");
+				String lName = rs.getString("lName");
 				
-				r = new Reimbursement (rId, descr,  date,   status, sum, emplId);
+				r = new Reimbursement (rId, descr,  date,   status, sum, emplId, fName, lName);
 			
 			}
 			

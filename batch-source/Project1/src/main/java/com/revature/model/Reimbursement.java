@@ -12,13 +12,31 @@ public class Reimbursement implements Serializable{
 	private Date date;
 	private String status;
 	private double sum;
+	private String fName1;
+	private String lName1;
+	
+	
+	public String getfName() {
+		return fName1;
+	}
+	public void setfName(String fName) {
+		this.fName1 = fName;
+	}
+	public String getlName() {
+		return lName1;
+	}
+	public void setlName(String lName) {
+		this.lName1 = lName;
+	}
 	private int id;
+	private String fName;
+	private String lName;
 	
 	public Reimbursement() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Reimbursement(int reimId, String descr, Date date, String status, double sum, int emplId) {
+	public Reimbursement(int reimId, String descr, Date date, String status, double sum, int emplId, String fName, String lName) {
 		super();
 		this.reimId = reimId;
 		this.descr = descr;
@@ -26,6 +44,8 @@ public class Reimbursement implements Serializable{
 		this.status = status;
 		this.sum = sum;
 		this.id = emplId;
+		this.fName1 = fName;
+		this.lName1 = lName;
 	}
 	public int getReimId() {
 		return reimId;
@@ -69,6 +89,9 @@ public class Reimbursement implements Serializable{
 		int result = 1;
 		result = prime * result + ((date == null) ? 0 : date.hashCode());
 		result = prime * result + ((descr == null) ? 0 : descr.hashCode());
+		result = prime * result + ((fName1 == null) ? 0 : fName1.hashCode());
+		result = prime * result + id;
+		result = prime * result + ((lName1 == null) ? 0 : lName1.hashCode());
 		result = prime * result + reimId;
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		long temp;
@@ -95,6 +118,18 @@ public class Reimbursement implements Serializable{
 				return false;
 		} else if (!descr.equals(other.descr))
 			return false;
+		if (fName1 == null) {
+			if (other.fName1 != null)
+				return false;
+		} else if (!fName1.equals(other.fName1))
+			return false;
+		if (id != other.id)
+			return false;
+		if (lName1 == null) {
+			if (other.lName1 != null)
+				return false;
+		} else if (!lName1.equals(other.lName1))
+			return false;
 		if (reimId != other.reimId)
 			return false;
 		if (status == null) {
@@ -109,7 +144,7 @@ public class Reimbursement implements Serializable{
 	@Override
 	public String toString() {
 		return "Reimbursement [reimId=" + reimId + ", descr=" + descr + ", date=" + date + ", status=" + status
-				+ ", sum=" + sum + ", id= " + "]";
+				+ ", sum=" + sum + ", id=" + id + ", fName=" + fName1 + ", lName=" + lName1 + "]";
 	}
 	
 	

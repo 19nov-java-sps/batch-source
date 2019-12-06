@@ -16,7 +16,9 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 	@Override
 	public List<Employee> getAllEmployee() {
-		String sql = "select * from p1employees";
+		String sql = "select * from p1employees pe\r\n" + 
+				"join p1reimb re\r\n" + 
+				"on pe.id = re.id";
 		List<Employee>	employees = new ArrayList<>();
 		
 		try (Connection c = ConnectionUtil.getConnection();
@@ -36,11 +38,17 @@ public class EmployeeDaoImpl implements EmployeeDao {
 				String zip = rs.getString(10);
 				String phone = rs.getString(11);
 				String email = rs.getString(12);
-				String empName = rs.getString(13);
-				String empPass = rs.getString(14);
+				String userName = rs.getString(13);
+				String userPass = rs.getString(14);
+				int rId = rs.getInt(15);
+				String descr = rs.getString(16);
+				double sum = rs.getDouble(17);
+				String date = rs.getString(18);
+				String status = rs.getString(19);
 				
 				Employee e = new Employee(emplId, fName, lName, dept, respTo, strNumber, 
-						strName, city, state,zip, phone, email, empName, empPass);
+						strName, city, state,zip, phone, email, userName, userPass,
+						rId, descr, sum, date, status);
 					
 				employees.add(e);
 				
@@ -58,7 +66,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 	@Override
 	public Employee getEmployeeById(int id) {
-		String sql = "select * from p1employees where id = ?";
+		String sql = "select * from p1employees pe join p1reimb pr on pe.id = pr.id where pe.id = ?";
 		Employee e = null;
 		
 		try(Connection c = ConnectionUtil.getConnection();
@@ -82,9 +90,15 @@ public class EmployeeDaoImpl implements EmployeeDao {
 				String email = rs.getString(12);
 				String empName = rs.getString(13);
 				String empPass = rs.getString(14);
+				int rId = rs.getInt(15);
+				String descr = rs.getString(16);
+				double sum = rs.getDouble(17);
+				String date = rs.getString(18);
+				String status = rs.getString(19);
 				
 				e = new Employee(emplId, fName, lName, dept, respTo, strNumber, 
-						strName, city, state,zip, phone, email, empName, empPass);
+						strName, city, state,zip, phone, email, empName, empPass,
+						rId, descr, sum, date, status);
 			}
 				
 		} catch (SQLException e1) {

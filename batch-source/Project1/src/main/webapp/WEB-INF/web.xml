@@ -2,11 +2,12 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
  xmlns="http://java.sun.com/xml/ns/javaee" 
  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
-     <!-- 
+
   <display-name>Project1</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
+    <welcome-file>login.jsp</welcome-file>
     <welcome-file>pr1-js.jsp</welcome-file>
     <welcome-file>default.html</welcome-file>
     <welcome-file>default.htm</welcome-file>
@@ -22,10 +23,10 @@
     <servlet-name>FrontController</servlet-name>
     <url-pattern>/</url-pattern>
   </servlet-mapping>
-   -->
 
+ <!--  
     <display-name>Project1</display-name>
- 
+
   <servlet>
     <description></description>
     <display-name>ReimbursementServlet</display-name>
@@ -37,5 +38,15 @@
     <url-pattern>/reimbursements</url-pattern>
   </servlet-mapping>
 
-
+  <servlet>
+    <description></description>
+    <display-name>EmployeeServlet</display-name>
+    <servlet-name>EmployeeServlet</servlet-name>
+    <servlet-class>com.revature.servlets.EmployeeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EmployeeServlet</servlet-name>
+    <url-pattern>/employees</url-pattern>
+  </servlet-mapping>
+  -->
 </web-app>
