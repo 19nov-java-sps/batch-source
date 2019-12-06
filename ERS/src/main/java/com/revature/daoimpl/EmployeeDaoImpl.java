@@ -27,7 +27,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 				String userName = rs.getString("user_name");
 				String passWord = rs.getString("pass_word");
 				String fullName = rs.getString("full_name");
-				boolean isManager = rs.getBoolean("isManager");
+				boolean isManager = rs.getBoolean("ismanager");
 
 				Employee e = new Employee(employeeID, userName, passWord, fullName, isManager);
 				employee.add(e);
@@ -53,7 +53,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 				String userName = rs.getString("user_name");
 				String passWord = rs.getString("pass_word");
 				String fullName = rs.getString("full_name");
-				boolean isManager = rs.getBoolean("isManager");
+				boolean isManager = rs.getBoolean("ismanager");
 				e = new Employee(employeeID, userName, passWord, fullName, isManager);
 			}
 		} catch (SQLException error) {
@@ -75,7 +75,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 				String userName = rs.getString("user_name");
 				String passWord = rs.getString("pass_word");
 				String fullName = rs.getString("full_name");
-				boolean isManager = rs.getBoolean("isManager");
+				boolean isManager = rs.getBoolean("ismanager");
 
 				Employee e = new Employee(employeeID, userName, passWord, fullName, isManager);
 				return e;
@@ -90,7 +90,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 	@Override
 	public int createEmployee(Employee e) {
-		String sql = "insert into employee (emp_id, user_name, pass_word, full_name, isManager) values (?,?,?,?,?)";
+		String sql = "insert into employee (emp_id, user_name, pass_word, full_name, ismanager) values (?,?,?,?,?)";
 		int employeeCreated = 0;
 
 		try (Connection con = ConnectionUtil.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
@@ -110,17 +110,16 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	}
 
 	@Override
-	public int updateEmployee(Employee e) {
-		String sql = "insert into employee (emp_id, user_name, pass_word, full_name, isManager) values (?,?,?,?,?)";
+	public int updateEmployee(String fullName, String userName, String passWord, int employeeID) {
+		String sql = "update employee set full_name =?, user_name =?, pass_word =?, where emp_id =?";
 		int employeeUpdated = 0;
 
 		try (Connection con = ConnectionUtil.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
 
-			ps.setInt(1, e.getEmployeeID());
-			ps.setString(2, e.getUserName());
-			ps.setString(3, e.getPassWord());
-			ps.setString(4, e.getFullName());
-			ps.setBoolean(5, e.getisManager());
+			ps.setString(1, fullName);
+			ps.setString(2, userName);
+			ps.setString(3, passWord);
+			ps.setInt(4, employeeID);
 
 			employeeUpdated = ps.executeUpdate();
 
@@ -128,6 +127,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			error.printStackTrace();
 		}
 		return employeeUpdated;
+
 	}
 
 	@Override

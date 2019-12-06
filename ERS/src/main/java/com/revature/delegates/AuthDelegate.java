@@ -1,6 +1,7 @@
 package com.revature.delegates;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,19 +20,21 @@ public class AuthDelegate {
 		if (authToken != null) {
 			String[] tokenArr = authToken.split(":");
 			// if the token is formatted the way we expect, we can take the id from it and
-			// query for that user
+			// query for that user or grab the boolean for isManager
 			if (tokenArr.length == 2) {
 				String idStr = tokenArr[0];
-//				String isManager = tokenArr[1];
+				String boolStr = tokenArr[1];
 				if (idStr.matches("^\\d+$")) {
 					// check to see if there is a valid user and if that user is the appropriate
 					// role in their token
 					Employee e = employeeDao.getEmployeeById(Integer.parseInt(idStr));
-					if (e != null) {
+					if (e != null && e.getisManager() == Boolean.parseBoolean(boolStr)) {
+
 						return true;
 					}
 				}
 			}
+
 		}
 		return false;
 	}

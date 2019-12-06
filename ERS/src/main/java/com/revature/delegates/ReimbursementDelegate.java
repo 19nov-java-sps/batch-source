@@ -2,6 +2,7 @@ package com.revature.delegates;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -39,4 +40,21 @@ public class ReimbursementDelegate {
 		}
 
 	}
+	
+	public void createReimbursement(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
+		String descsriptionfor = request.getParameter("descriptionfor");
+		String amount = request.getParameter("amount");
+		int amountfor= Integer.parseInt(amount);
+		String id= request.getParameter("id");
+		int newId= Integer.parseInt(id);
+		
+		Reimbursement reim = new Reimbursement(descriptionfor, amountfor, true, newId,"Pending");
+		
+		re.createReimbursement(rea);
+		
+
+		
+	}
+	
+	
 }

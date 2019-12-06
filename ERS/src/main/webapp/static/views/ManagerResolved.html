@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>View Employees</title>
+<title>Manager Resolved</title>
 
 <link rel="icon" 
 	href="https://img.icons8.com/bubbles/100/000000/star.png"
@@ -23,31 +23,32 @@
 	integrity="sha384-3qaqj0lc6sV/qpzrc1N5DC6i1VRn/HyX4qdPaiEFbn54VjQBEU341pvjz7Dv3n6P"
 	crossorigin="anonymous"></script>
 
-		
 <style>
 body {
   background-image: url(https://images.pexels.com/photos/1323712/pexels-photo-1323712.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260
+
 );
 }
-</style>
-
+</style>	
 </head>
 <body>
 	<div class="container">
 
-		<h1 align="center">View All Employees</h1>
+		<h1 align="center">My Resolved Reimbursements</h1>
 
-		<table id="empl-table" class="table table-striped table-bordered">
+		<table id="pending-table" class="table table-striped table-bordered">
 			<tr>
 				<th>User Id</th>
-				<th>Full Name</th>
-				<th>Username</th>
-				<th>Password</th>
-				<th>Manager?</th>
+				<th>Invoice Id</th>
+				<th>Amount</th>
+				<th>Reason</th>
+				<th>Approved</th>
+				<th>Denied</th>
+				<th>Resolved</th>
 
 			</tr>
 		</table>
 	</div>
-	<script type="text/javascript" src="static/scripts/ViewEmployees.js"></script>
+	<script type="text/javascript" src="static/scripts/ManagerResolved.js"></script>
 </body>
 </html>

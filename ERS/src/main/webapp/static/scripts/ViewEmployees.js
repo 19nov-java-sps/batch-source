@@ -1,42 +1,31 @@
 let token = sessionStorage.getItem("token");
 
-if (!token) {
-	window.location.href = "http://localhost:8080/ERS/tokennull";
-} else {
-	let tokenArr = token.split(":");
-	if (tokenArr.length === 2) {
-		let baseUrl = "http://localhost:8080/ERS/api/employee?id=";
-		sendAjaxGet(baseUrl + tokenArr[0], displayAllEmployees);
-	} else {
-		window.location.href = "http://localhost:8080/ERS/error";
-	}
-}
 
-function sendAjaxGet(url, callback) {
-	let xhr = new XMLHttpRequest();
-	xhr.open("GET", url);
-	xhr.onreadystatechange = function() {
-		if (this.readyState === 4 && this.status === 200) {
-			callback(this);
+		let baseUrl = "http://localhost:8080/ERS/api/employee";
+		fetchAllEmployee()
+
+		
+function fetchAllEmployee(){
+	fetch(baseUrl, {
+		"method": "GET",
+		"headers": { Authorization: `${token}`}
+	}).then(res => {
+		if (res.status === 200) {
+			return res.json()
+		} else {
+			console.log("error")
 		}
-	}
+	}).then( arrayEmployeeObjects => {
+		let table = document.getElementById("empl-table");
 
-	xhr.setRequestHeader("Authorization", token);
-	xhr.send();
-}
+		for (let empl of arrayEmployeeObjects) {
+			console.log(empl)
+			let newRow = document.createElement("tr");
+			let manager = empl.isManager === true ? "true" : empl.isManager;
 
-function displayAllEmployees(employee) {
-
-	let empl = JSON.parse(employee.response);
-	let table = document.getElementById("empl-table");
-	console.log(employee);
-
-//	 for(let emp of empl){
-	let newRow = document.createElement("tr");
-
-	newRow.innerHTML = `<td>${empl.employeeID}</td><td>${empl.fullName}</td>`;
-	table.appendChild(newRow);
-	
-//	 }
-
-}
+		newRow.innerHTML = `<td>${empl.employeeID}</td><td>${empl.fullName}</td><td>${empl.userName}</td><td>${empl.passWord}</td>
+		<td>${empl.isManager}</td>`;
+		table.appendChild(newRow);
+		}
+	})
+}		

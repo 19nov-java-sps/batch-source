@@ -1,6 +1,7 @@
 package com.revature.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -20,13 +21,14 @@ public class RequestHelper {
 
 	public RequestHelper() {
 		super();
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public void processGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		String path = request.getServletPath();
 		if (path.startsWith("/api/")) {
+
 			if (!authDelegate.isAuthorized(request)) {
 				response.sendError(401);
 				return;
@@ -49,21 +51,40 @@ public class RequestHelper {
 			default:
 				response.sendError(404, "Request Record(s) Not Found");
 			}
-		} else {
+		} else
+
+		{
 			viewDelegate.returnView(request, response);
 		}
 
 	}
 
 	public void processPost(HttpServletRequest request, HttpServletResponse response)
-			throws IOException, ServletException {
+			throws IOException, ServletException, SQLException {
 		String path = request.getServletPath();
 		switch (path) {
 		case "/login":
 			authDelegate.authenticate(request, response);
 			break;
+//		case "/updateemployee":
+//			employeeDelegate.updateEmployee(request, response);
+//			break;
+		case "/createreimbursement":
+			reimDelegate.createReimbursement(request, response);
+			break;
 		default:
 			response.sendError(405);
 		}
 	}
+
+
+public void processPut(HttpServletRequest request, HttpServletResponse response)
+		throws IOException, ServletException {
+	String path = request.getServletPath();
+	switch (path) {
+	case "/updateemployee":
+		employeeDelegate.updateEmployee(request, response);
+		break;
+}
+}
 }

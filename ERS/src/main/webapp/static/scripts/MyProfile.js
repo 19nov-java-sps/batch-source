@@ -33,7 +33,7 @@ function displayEmplInfo(e) {
 
 	let newRow = document.createElement("tr");
 
-	newRow.innerHTML = `<td>${employee.employeeID}</td><td>${employee.fullName}</td><td>${employee.isManager}</td>`;
+	newRow.innerHTML = `<td>${employee.employeeID}</td><td>${employee.fullName}</td><td>${employee.userName}</td><td>${employee.passWord}</td>`;
 	table.appendChild(newRow);
 
 }

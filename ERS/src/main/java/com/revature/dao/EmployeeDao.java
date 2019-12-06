@@ -14,7 +14,7 @@ public interface EmployeeDao {
 
 	public int createEmployee(Employee e);
 
-	public int updateEmployee(Employee e);
+	public int updateEmployee(String fullName, String userName, String passWord, int employeeID);
 
 	public int deleteEmployee(Employee e);
 }

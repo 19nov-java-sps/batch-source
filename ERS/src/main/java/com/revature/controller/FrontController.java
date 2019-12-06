@@ -1,6 +1,8 @@
 package com.revature.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,7 +21,6 @@ public class FrontController extends DefaultServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String path = request.getServletPath();
-//				getRequestURI().substring(request.getContextPath().length());
 		if (path.startsWith("/static/")) {
 			super.doGet(request, response);
 		} else {
@@ -29,7 +30,12 @@ public class FrontController extends DefaultServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		requestHelper.processPost(request, response);
+		try {
+			requestHelper.processPost(request, response);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

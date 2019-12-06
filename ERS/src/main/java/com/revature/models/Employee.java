@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class Employee implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+
 	private int employeeID;
 	private String userName;
 	private String passWord;
@@ -14,6 +15,24 @@ public class Employee implements Serializable {
 	public Employee() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+
+	public Employee(String userName, String passWord, String fullName) {
+		super();
+
+		this.userName = userName;
+		this.passWord = passWord;
+		this.fullName = fullName;
+
+	}
+
+	public Employee(int employeeID, String userName, String passWord, String fullName) {
+		super();
+		this.employeeID = employeeID;
+		this.userName = userName;
+		this.passWord = passWord;
+		this.fullName = fullName;
+
 	}
 
 	public Employee(int employeeID, String userName, String passWord, String fullName, boolean isManager) {

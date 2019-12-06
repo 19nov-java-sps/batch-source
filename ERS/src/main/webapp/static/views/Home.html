@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>Home Screen</title>
+<link rel="icon" 
+	href="https://img.icons8.com/bubbles/100/000000/star.png"
+	type="image">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
@@ -21,49 +24,58 @@
 	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 	crossorigin="anonymous"></script>
 	
-	
-
+<style>
+body {
+  background-image: url(https://images.pexels.com/photos/317355/pexels-photo-317355.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260
+);
+}
+</style>
 
 </head>
 <body>
+
 	
 	<!--Employee/Manager navbar-->
 	<nav id="home-page"
 		class="navbar navbar-expand-lg navbar-light bg-warning" >
 		<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 			<ul class="navbar-nav mt-2 mt-lg-0" style="margin-right: auto">
+			<button class="btn btn-outline-secondary" id="logout-btn">Logout</button>
 				<li class="nav-item active">
-					<a class="nav-link" id="myprofile" href="myprofile"> My Profile</a>
+					<a class="nav-link" id="myprofile" href="myprofile">My Profile</a>
 				</li>		
 				<li class="nav-item">
-					<a class="nav-link active"	id="update-profile" href="#">Update Profile</a>
+					<a class="nav-link active"	id="update-profile" href="updateemployee">Update Profile</a>
 				</li>
-				<li class="nav-item">
-					<a class="nav-link active" id="create-reimbursement" href="#" >Create Reimbursement</a></li>
 				<li class="nav-item active">
 					<a class="nav-link" id="view-employees"	href="viewemployees" hidden> View Employees</a>
 				</li>
 				<li class="nav-item dropdown">
-					<a class="nav-link dropdown active" data-toggle="dropdown" id="reimbursement" href="#">Reimbursement</a>
+					<a class="nav-link dropdown active" data-toggle="dropdown" id="reimbursement" href="#">Reimbursements</a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" id="pending-request" href="#">Pending</a>
-						<a class="dropdown-item" id="resolved-request" href="#">Resolved</a>
+						<a class="dropdown-item" id="create-reimbursement" href="createreimbursement">Create Reimbursement</a>
+						<a class="dropdown-item" id="pending-request" href="pending">My Pending</a>
+						<a class="dropdown-item" id="resolved-request" href="resolved">My Resolved</a>
 					</div>
 				</li>
-					<button class="btn btn-outline-secondary" id="logout-btn">Logout</button>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown active" data-toggle="dropdown" id="employee-requests" href="#" hidden>Employee Requests</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" id="employee-pending" href="managerpending">Pending</a>
+						<a class="dropdown-item" id="employee-resolved" href="managerresolved">Resolved</a>
+						<a class="dropdown-item" id="approve-deny" href="approveordeny">Approve or Deny</a>
+						<a class="dropdown-item" id="search-id" href="searchinvoiceid">Search Invoice</a>
+					</div>
+				</li>
 			</ul>
-				<form class="form-inline my-2 my-lg-0" id="search-bar" hidden>
-					<input class="form-control mr-sm-2" type="search" placeholder="Search Invoice Id">
-						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-				</form>
+			
+			
+			
 		</div>
 	</nav>
 	
-	   <!-- used for employee table in HomeScript -->
-	   <div id="display" class="col-md-9">
-	
-
 	<script src="static/scripts/HomeScript.js"></script>
+
 
 </body>
 </html>

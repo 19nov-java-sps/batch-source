@@ -9,85 +9,95 @@ public class Reimbursement implements Serializable {
 	private int reimbursementID;
 	private int employeeID;
 	private double amount;
-	private String description;
-	private String dateSubmission;
-	private String dateApproval;
-	private boolean rejected;
+	private String reason;
+	private boolean pending;
+	private boolean approved;
+	private boolean denied;
+	private boolean resolved;
 
 	public Reimbursement() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Reimbursement(int reimbursementID, int employeeID, double amount, String description, String dateSubmission,
-			String dateApproval, boolean rejected) {
+	public Reimbursement(int reimbursementID, int employeeID, double amount, String reason, boolean pending,
+			boolean approved, boolean denied, boolean resolved) {
 		super();
 		this.reimbursementID = reimbursementID;
 		this.employeeID = employeeID;
 		this.amount = amount;
-		this.description = description;
-		this.dateSubmission = dateSubmission;
-		this.dateApproval = dateApproval;
-		this.rejected = rejected;
+		this.reason = reason;
+		this.pending = pending;
+		this.approved = approved;
+		this.denied = denied;
+		this.resolved = resolved;
 	}
 
-	public int getReimbursementID() {
+	protected int getReimbursementID() {
 		return reimbursementID;
 	}
 
-	public void setReimbursementID(int reimbursementID) {
+	protected void setReimbursementID(int reimbursementID) {
 		this.reimbursementID = reimbursementID;
 	}
 
-	public int getEmployeeID() {
+	protected int getEmployeeID() {
 		return employeeID;
 	}
 
-	public void setEmployeeID(int employeeID) {
+	protected void setEmployeeID(int employeeID) {
 		this.employeeID = employeeID;
 	}
 
-	public double getAmount() {
+	protected double getAmount() {
 		return amount;
 	}
 
-	public void setAmount(double amount) {
+	protected void setAmount(double amount) {
 		this.amount = amount;
 	}
 
-	public String getDescription() {
-		return description;
+	protected String getReason() {
+		return reason;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	protected void setReason(String reason) {
+		this.reason = reason;
 	}
 
-	public String getDateSubmission() {
-		return dateSubmission;
+	protected boolean isPending() {
+		return pending;
 	}
 
-	public void setDateSubmission(String dateSubmission) {
-		this.dateSubmission = dateSubmission;
+	protected void setPending(boolean pending) {
+		this.pending = pending;
 	}
 
-	public String getDateApproval() {
-		return dateApproval;
+	protected boolean isApproved() {
+		return approved;
 	}
 
-	public void setDateApproval(String dateApproval) {
-		this.dateApproval = dateApproval;
+	protected void setApproved(boolean approved) {
+		this.approved = approved;
 	}
 
-	public boolean getisRejected() {
-		return rejected;
+	protected boolean isDenied() {
+		return denied;
 	}
 
-	public void setRejected(boolean rejected) {
-		this.rejected = rejected;
+	protected void setDenied(boolean denied) {
+		this.denied = denied;
 	}
 
-	public static long getSerialversionuid() {
+	protected boolean isResolved() {
+		return resolved;
+	}
+
+	protected void setResolved(boolean resolved) {
+		this.resolved = resolved;
+	}
+
+	protected static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 
@@ -98,12 +108,13 @@ public class Reimbursement implements Serializable {
 		long temp;
 		temp = Double.doubleToLongBits(amount);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + ((dateApproval == null) ? 0 : dateApproval.hashCode());
-		result = prime * result + ((dateSubmission == null) ? 0 : dateSubmission.hashCode());
-		result = prime * result + ((description == null) ? 0 : description.hashCode());
+		result = prime * result + (approved ? 1231 : 1237);
+		result = prime * result + (denied ? 1231 : 1237);
 		result = prime * result + employeeID;
+		result = prime * result + (pending ? 1231 : 1237);
+		result = prime * result + ((reason == null) ? 0 : reason.hashCode());
 		result = prime * result + reimbursementID;
-		result = prime * result + (rejected ? 1231 : 1237);
+		result = prime * result + (resolved ? 1231 : 1237);
 		return result;
 	}
 
@@ -122,34 +133,29 @@ public class Reimbursement implements Serializable {
 		if (Double.doubleToLongBits(amount) != Double.doubleToLongBits(other.amount)) {
 			return false;
 		}
-		if (dateApproval == null) {
-			if (other.dateApproval != null) {
-				return false;
-			}
-		} else if (!dateApproval.equals(other.dateApproval)) {
+		if (approved != other.approved) {
 			return false;
 		}
-		if (dateSubmission == null) {
-			if (other.dateSubmission != null) {
-				return false;
-			}
-		} else if (!dateSubmission.equals(other.dateSubmission)) {
-			return false;
-		}
-		if (description == null) {
-			if (other.description != null) {
-				return false;
-			}
-		} else if (!description.equals(other.description)) {
+		if (denied != other.denied) {
 			return false;
 		}
 		if (employeeID != other.employeeID) {
 			return false;
 		}
+		if (pending != other.pending) {
+			return false;
+		}
+		if (reason == null) {
+			if (other.reason != null) {
+				return false;
+			}
+		} else if (!reason.equals(other.reason)) {
+			return false;
+		}
 		if (reimbursementID != other.reimbursementID) {
 			return false;
 		}
-		if (rejected != other.rejected) {
+		if (resolved != other.resolved) {
 			return false;
 		}
 		return true;
@@ -158,8 +164,8 @@ public class Reimbursement implements Serializable {
 	@Override
 	public String toString() {
 		return "Reimbursement [reimbursementID=" + reimbursementID + ", employeeID=" + employeeID + ", amount=" + amount
-				+ ", description=" + description + ", dateSubmission=" + dateSubmission + ", dateApproval="
-				+ dateApproval + ", rejected=" + rejected + "]";
+				+ ", reason=" + reason + ", pending=" + pending + ", approved=" + approved + ", denied=" + denied
+				+ ", resolved=" + resolved + "]";
 	}
 
 }

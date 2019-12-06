@@ -11,9 +11,6 @@ function requestLogin() {
 			// set authorization in our browser for future request
 			let auth = xhr.getResponseHeader("Authorization");
 			sessionStorage.setItem("token", auth);
-
-			console.log(auth)
-
 			window.location.href = "http://localhost:8080/ERS/home";
 		}
 	}
