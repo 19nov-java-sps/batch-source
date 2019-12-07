@@ -50,7 +50,7 @@ public class ReimbursementServlet extends HttpServlet{
 				response.sendError(400);
 			}
 		} else {
-			List<Reimbursement> reimbursements = reimbDao.getAllReimbursement();	
+			List<Reimbursement> reimbursements = ReimbursementDao.getAllReimbursement();	
 			
 			String reimbJSON = om.writeValueAsString(reimbursements);
 			

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.revature.delegates.AuthDelegate;
 import com.revature.delegates.EmplDelegate;
+import com.revature.delegates.ReimbDeligate;
 import com.revature.delegates.ViewDelegate;
 
 public class RequestHelper {
@@ -38,6 +39,9 @@ public class RequestHelper {
 				case "empl":
 		//			SSystem.out.println(" I am in RequestHelper isAuthorized /users");
 					emplDelegate.getEmpl(request, response);
+					break;
+				case "empls":
+					emplDelegate.getAllEmpl(request, response);  
 					break;
 				default:
 					System.out.println("RequestHelper /api/ default");

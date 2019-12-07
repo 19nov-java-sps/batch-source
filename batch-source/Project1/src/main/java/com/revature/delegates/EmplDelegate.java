@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.dao.EmployeeDao;
 import com.revature.daoimpl.EmployeeDaoImpl;
@@ -45,6 +46,20 @@ public class EmplDelegate {
 				response.sendError(400, "Invalid ID param");
 			}
 		}
+	}
+
+	public void getAllEmpl(HttpServletRequest request, HttpServletResponse response) throws JsonProcessingException {
+		List<Employee> employees = emplDao.getAllEmployee();
+		ObjectMapper om = new ObjectMapper();
+		String employeesJSON = om.writeValueAsString(employees);
+		System.out.println ("All employees " + employees);
+		System.out.println ("All employees " + employeesJSON);
+		try(PrintWriter pw = response.getWriter();){
+			pw.write(employeesJSON);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 }
