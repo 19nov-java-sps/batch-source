@@ -1,5 +1,6 @@
 package com.revature.delegates;
 
+import java.io.Console;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -38,6 +39,20 @@ public class InvoiceDelegate {
 			} else {
 				response.sendError(400, "Invalid ID param");
 			}
+		}
+	}
+	public void getInvoicesByUserId(HttpServletRequest request, HttpServletResponse response) throws IOException{
+		String idStr = request.getParameter("userid");
+		
+		System.out.println(idStr);
+//			if(idStr.matches("^\\d+$")) {
+				List<Invoice> invoice = invoiceDao.getInvoiceByUserId(Integer.parseInt(idStr));
+				if(invoice==null) {
+					response.sendError(404, "No resource found");
+				} else {
+					try(PrintWriter pw = response.getWriter()){
+						pw.write(new ObjectMapper().writeValueAsString(invoice));
+					}
 		}
 	}
 	

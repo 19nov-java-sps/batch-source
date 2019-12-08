@@ -46,6 +46,10 @@ public class RequestHelper {
 				//process with the department delegate
 				invoiceDelegate.getInvoices(request, response);
 				break;
+			case "searchinvoice":
+				//process with the department delegate
+				invoiceDelegate.getInvoicesByUserId(request, response);
+				break;
 			default:
 				response.sendError(404, "Record not supported.");
 			}

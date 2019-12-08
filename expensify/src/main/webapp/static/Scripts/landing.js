@@ -5,7 +5,7 @@ document.getElementById("fetchInvoice").addEventListener("click", sendAjaxGetInv
 document.getElementById("fetchResolved").addEventListener("click", fetchResolveInvoices)
 document.getElementById("fetchEmployee").addEventListener("click", fetchEmployees)
 document.getElementById("editEmployee").addEventListener("click", forwardToEditPage)
-
+document.getElementById("findInvoices").addEventListener("click", invoiceSearchByEmployeeId)
 document.getElementById("signOut").addEventListener("click", logOut)
 
 
@@ -173,8 +173,8 @@ function displayInfo(xhr) {
 	let empl = JSON.parse(xhr.response);
 	console.log(empl)
 	document.getElementById("full_name").innerHTML = empl.fullname
-	if (empl.manager) {
-		document.getElementById("search").hidden = false
+	if (empl.manager === true) {
+//		document.getElementById("search").hidden = false
 		document.getElementById("manager_status").innerHTML = "Manager"
 		document.getElementById("fetchInvoice").hidden = false
 		document.getElementById("fetchEmployee").hidden = false
@@ -185,6 +185,30 @@ function displayInfo(xhr) {
 		console.log("A regular employee logged in")
 	}
 }
+
+function invoiceSearchByEmployeeId() {
+
+	let userid = document.getElementById("id").value 
+	fetch(`http://localhost:8080/expensify/api/searchinvoice?userid=${userid}`, {
+		headers: {
+			Authorization: `${token}`
+		}
+	})
+	.then(res => res.json())
+	.then(invoiceJson => {
+		let div =  document.getElementById("locatedInvoice")
+		for (let invoice of invoiceJson) {
+			let h1 = document.createElement('h1')
+			h1.innerText = invoice.description
+			div.appendChild(h1)
+		}
+		
+	})
+	
+}
+	
+
+
 
 function forwardToEditPage(){
 	window.location.href="http://localhost:8080/expensify/edit"

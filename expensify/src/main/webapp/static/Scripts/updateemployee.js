@@ -8,7 +8,8 @@ function updateEmployee(){
 	xhr.open("POST", employeesURL );
 	xhr.onreadystatechange = function(){
 		if(this.readyState === 4 && this.status === 200) {
-			window.location.href=  "htpp://localhost:8080/expensify/employees"
+			window.location.href= "http://localhost:8080/expensify/landing"
+
 		} 
 	}
 	let password = document.getElementById("password").value;
@@ -21,6 +22,7 @@ function updateEmployee(){
 	let requestBody = `password=${password}&fullname=${fullname}&username=${username}&userId=${userId}`;
 	console.log(requestBody)
 	xhr.send(requestBody);
+
 	
 }
 
