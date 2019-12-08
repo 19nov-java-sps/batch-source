@@ -3,14 +3,12 @@
   <display-name>Project1</display-name>
   <servlet>
     <description></description>
-    <display-name>LoginServlet</display-name>
-    <servlet-name>LoginServlet</servlet-name>
-    <servlet-class>com.revature.servlets.LoginServlet</servlet-class>
+    <display-name>FrontController</display-name>
+    <servlet-name>FrontController</servlet-name>
+    <servlet-class>com.revature.controller.FrontController</servlet-class>
   </servlet>
   <servlet-mapping>
-	<servlet-name>LoginServlet</servlet-name>
-	<url-pattern>/login</url-pattern>
+    <servlet-name>FrontController</servlet-name>
+    <url-pattern>/</url-pattern>
   </servlet-mapping>
-  
-  
 </web-app>
