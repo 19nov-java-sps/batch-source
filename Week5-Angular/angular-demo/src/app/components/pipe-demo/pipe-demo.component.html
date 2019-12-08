@@ -1,0 +1,19 @@
+<h3>Pipe Demo</h3>
+<div class="container">
+  <p>{{str}} => {{str | uppercase}}</p>
+  <p>{{num}} => {{num | currency}} => {{num | currency:'EUR'}}</p>
+  <p>{{day}} => {{day | date}} => {{day | date:'MM/dd/yyyy'}}</p>
+</div>
+
+<div class="container">
+<ul>
+  <li *ngFor='let str of strArray'>{{str | titlecase}}</li>
+</ul>
+
+<ul>
+  <li *ngFor='let product of products'>{{product | convertToSpaces:'o'}}</li>
+</ul>
+<ul>
+    <li *ngFor='let product of products'>{{product | convertToSpaces | titlecase}}</li>
+  </ul>
+</div>
