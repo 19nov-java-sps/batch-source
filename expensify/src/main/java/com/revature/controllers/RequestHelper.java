@@ -80,9 +80,14 @@ public class RequestHelper {
 				//process with the employee delegate
 				employeeDelegate.postEmployee(request, response);
 				break;
-			case "invoices":
+			case "invoice/deny":
+				invoiceDelegate.denyInvoice(request, response);
+				break;
+			case "invoice/create":
 				invoiceDelegate.postInvoices(request, response);
 				break;
+			case "invoice/approve":
+				invoiceDelegate.approveInvoice(request,  response);
 			default:
 				response.sendError(404, "Record not supported.");
 			}
@@ -98,13 +103,6 @@ public class RequestHelper {
 		}
 	}
 	
-	
-	public void processPut(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException  {
-		
-	}
-	
-	public void processDelete(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException  {
-		
-	}
+
 
 }

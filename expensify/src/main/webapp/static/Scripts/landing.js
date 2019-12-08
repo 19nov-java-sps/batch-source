@@ -1,12 +1,20 @@
 let token = sessionStorage.getItem("token");
+const currentUser = token.split(":")[0]
 let invoiceURL = "http://localhost:8080/expensify/api/invoices"
 let employeesURL = "http://localhost:8080/expensify/employees"
+	
 document.getElementById("fetchInvoice").addEventListener("click", sendAjaxGetInvoices)
 document.getElementById("fetchResolved").addEventListener("click", fetchResolveInvoices)
 document.getElementById("fetchEmployee").addEventListener("click", fetchEmployees)
 document.getElementById("editEmployee").addEventListener("click", forwardToEditPage)
 document.getElementById("findInvoices").addEventListener("click", invoiceSearchByEmployeeId)
 document.getElementById("signOut").addEventListener("click", logOut)
+document.getElementById("createInvoices").addEventListener("click", create)
+document.getElementById("submit-btn").addEventListener("click", createNewInvoice)
+document.getElementById("pendingInvoices").addEventListener("click", fetchMyPendingInvoices)
+document.getElementById("myResolvedInvoice").addEventListener("click", fetchMyResolvedInvoices)
+document.getElementById("approve-btn").addEventListener("click", approveInvoice)
+document.getElementById("deny-btn").addEventListener("click", denyInvoice)
 
 
 if(!token){
@@ -52,6 +60,36 @@ function fetchResolveInvoices(){
 	
 }
 
+function fetchMyResolvedInvoices(){
+	fetch(invoiceURL, {
+		headers: {
+			Authorization: `${token}`
+		}
+	})
+	.then(res => {
+		if (res.status === 200) {
+			return res.json()
+		} else {
+			console.log("error")
+		}
+		})
+		.then(invoices => {
+			document.getElementById("createInvoice").style.display = "none"
+			let invoiceList = document.getElementById("invoiceList")
+			invoiceList.hidden = false
+			
+			for (let invoice of invoices){
+				let div = document.createElement("div")
+			if (invoice.resolved === true && invoice.pending === false && invoice.userId === Number(currentUser)) {
+				div.innerHTML = `${invoice.description}`
+				invoiceList.appendChild(div)
+				console.log(invoice)
+			}
+			}
+		})
+	
+}
+
 
 function sendAjaxGetInvoices(){
 	fetch("http://localhost:8080/expensify/api/invoices", {
@@ -81,7 +119,57 @@ function sendAjaxGetInvoices(){
 }
 	
 
-//document.getElementById("employeeDirectory").hidden = true
+function fetchMyPendingInvoices(){
+	fetch("http://localhost:8080/expensify/api/invoices", {
+		headers: { Authorization: `${token}`}
+	})
+	.then(
+			res => {
+				if (res.status === 200) {
+					return res.json()
+				} else {
+					console.log("error")
+				}
+			})
+				.then(invoices => {
+					document.getElementById("createInvoice").style.display = "none"
+						document.getElementById("listOfMyPendingInvoices").style.display = "block"
+						let container = document.getElementById("listOfMyPendingInvoices")
+					
+							for (let invoice of invoices){
+								if(invoice.userId===Number(currentUser)){
+									console.log(invoice)
+										let media = document.createElement("div")
+										let image = document.createElement("img")
+										let mediaBody = document.createElement("div")
+										let heading = document.createElement("h5")
+										let cardText = document.createElement("p")
+										media.setAttribute("class", "media")
+										image.setAttribute("class", "mr-3")
+										image.src = `https://mdbootstrap.com/img/Photos/Avatars/img%20(${invoice.userId}).jpg`
+										mediaBody.setAttribute("class", "media-body")
+										heading.innerHTML = invoice.amount
+										heading.setAttribute("class", "mt-0")
+										cardText.setAttribute("class", "card-text")
+										cardText.innerHTML = invoice.description
+										mediaBody.appendChild(cardText)
+										mediaBody.appendChild(heading)
+										media.appendChild(image)
+										media.appendChild(mediaBody)
+										container.appendChild(media)
+										let lineBreak = document.createElement("br")
+										container.appendChild(lineBreak)
+										container.appendChild(lineBreak)
+										container.appendChild(lineBreak)
+									}}
+					}
+				)
+	}
+			
+				
+		
+
+
 
 function postInvoice(url, callback){
 	
@@ -153,7 +241,42 @@ function populate(xhr){
 	}
 }
 
+function approveInvoice() {
+	let invoiceId = document.getElementById("invoiceId").value
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", `http://localhost:8080/expensify/api/invoice/approve`);
+	xhr.onreadystatechange = function(){
+		if(this.readyState === 4 && this.status === 200) {
+			callback(this);
+		} 
+	}
+	xhr.setRequestHeader("Authorization", token);
+	xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded")
+	let requestbody = `invoiceId=${invoiceId}`
+	xhr.send(requestbody);
+}
 
+
+function denyInvoice(){
+	let invoiceId = document.getElementById("invoiceId").value
+	
+	fetch(`http://localhost:8080/expensify/api/invoice/deny`, {
+		method:  "POST",
+		body:`invoiceId=${invoiceId}`,
+		headers: {
+			Authorization: `${token}`,
+			'Content-Type': 'application/x-www-form-urlencoded'
+		}
+	})
+	.then(res => {
+		if (res.status === 200) {
+			return res.json()
+		} else {
+			console.log("error")
+		}
+	})
+	
+}
 
 
 
@@ -173,15 +296,20 @@ function displayInfo(xhr) {
 	let empl = JSON.parse(xhr.response);
 	console.log(empl)
 	document.getElementById("full_name").innerHTML = empl.fullname
+	let image = document.getElementById('pic')
+	image.src = `https://mdbootstrap.com/img/Photos/Avatars/img%20(${currentUser}).jpg`
 	if (empl.manager === true) {
-//		document.getElementById("search").hidden = false
+		document.getElementById("search").hidden = false
 		document.getElementById("manager_status").innerHTML = "Manager"
 		document.getElementById("fetchInvoice").hidden = false
 		document.getElementById("fetchEmployee").hidden = false
 		console.log("A manager logged in")
 	} else {
 		document.getElementById("fetchInvoice").hidden = true
+		document.getElementById("approveOrDeny").style.display = "none"
 		document.getElementById("fetchEmployee").hidden = true
+		document.getElementById("search").hidden = true
+		document.getElementById("fetchResolved").hidden = true
 		console.log("A regular employee logged in")
 	}
 }
@@ -207,6 +335,27 @@ function invoiceSearchByEmployeeId() {
 	
 }
 	
+function create(){
+	document.getElementById("createInvoice").hidden = false
+	
+}
+
+function createNewInvoice () {
+	let amount = document.getElementById("amount").value
+	let description = document.getElementById("description").value
+	fetch(`http://localhost:8080/expensify/api/invoice/create?userid=${currentUser}`, {
+		method:  "POST",
+		body:`amount=${amount}&description=${description}`,
+		headers: {
+			Authorization: `${token}`,
+			'Content-Type': 'application/x-www-form-urlencoded'
+		}
+	})
+	.then(res => res.json())
+	.catch(error => console.log(error))
+	document.getElementById("createInvoice").style.display = "none"
+	
+}
 
 
 

@@ -1,6 +1,5 @@
 package com.revature.delegates;
 
-import java.io.Console;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -57,19 +56,19 @@ public class InvoiceDelegate {
 	}
 	
 	public void postInvoices(HttpServletRequest request, HttpServletResponse response) throws IOException{
-		int max = 10000; 
-	    int min = 1; 
-	    int range = max - min + 1;
-		int rand = (int)(Math.random() * range) + min;
 		String amountString = request.getParameter("amount");
-		String  descriptionString  =  request.getParameter("descripion");
-		Double  amountDouble  = Double.valueOf(amountString);
+		String descriptionString = request.getParameter("description");
+		String idString = request.getParameter("userid");
+		Double  amountDouble = Double.valueOf(amountString);
 		System.out.print(amountDouble);
 		Invoice newInvoice = new Invoice();
-		newInvoice.setInvoiceId(rand);
 		newInvoice.setAmount(amountDouble);
 		newInvoice.setDescription(descriptionString);
-		newInvoice.setUserId(1);
+		newInvoice.setUserId(Integer.parseInt(idString));
+		newInvoice.setApproved(false);
+		newInvoice.setPending(true);
+		newInvoice.setResolved(false);
+		newInvoice.setRejected(false);
 		invoiceDao.createInvoice(newInvoice);
 		if(newInvoice!=null) {
 			try(PrintWriter pw = response.getWriter()){
@@ -77,4 +76,28 @@ public class InvoiceDelegate {
 			}
 		}
 	}
+	public void denyInvoice(HttpServletRequest request, HttpServletResponse response) throws IOException{
+		String invoiceIdString =  request.getParameter("invoiceId");
+		System.out.println(invoiceIdString);
+		System.out.print(Integer.parseInt(invoiceIdString));
+		Invoice invoice = invoiceDao.getInvoiceByInvoiceId(Integer.parseInt(invoiceIdString));
+		if (invoice!=null) {
+			invoice.setPending(false);
+			invoice.setApproved(false);
+			invoice.setRejected(true);
+			invoice.setResolved(true);
+			invoiceDao.updateInvoice(invoice);
+		} else {
+			response.sendError(404, "No resource found");
+		}
+		
+				
+	}
+	public void approveInvoice(HttpServletRequest request, HttpServletResponse response) throws IOException{
+		String invoiceIdString =  request.getParameter("invoiceId");
+		System.out.println("in the invoice delegate");
+		Invoice invoice = invoiceDao.getInvoiceByInvoiceId(Integer.parseInt(invoiceIdString));
+		System.out.println(invoice.toString());
+	}
+	
 }

@@ -1,7 +1,13 @@
 package com.revauture.model;
 
-public class Employee {
+import javax.persistence.Id;
 
+import org.hibernate.annotations.Entity;
+
+@Entity
+public class Employee {
+	
+	@Id
 	private int userId;
 	private String username;
 	private String password;

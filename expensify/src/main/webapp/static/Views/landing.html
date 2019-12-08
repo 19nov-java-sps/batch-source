@@ -26,47 +26,38 @@
     <button id="findInvoices" class="btn btn-success my-2 my-sm-0" type="button">Search</button>
   </form>
 </nav>
-<div class="row">
-  <div class="col-4">
+<div>
+  <div>
   <div class="card testimonial-card bg-warning"  id="employeeInfo">
   
         <div class="card-up info-color"></div>
      
         <div class="avatar mx-auto white">
-          <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(9).jpg" class="rounded-circle img-fluid">
+          <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(9).jpg" id="pic" class="rounded-circle img-fluid">
         </div>
         <div class="card-body">
      
           <h4 class="font-weight-bold mb-4 text-center" id="full_name"></h4>
           <hr>
           <p class="dark-grey-text mt-4 text-center" id="manager_status"></p>
-          <button class="btn btn-info d-flex justify-content-center" id="fetchInvoice" hidden="true">Fetch Invoices</button>
-          <button class="btn btn-success d-flex justify-content-center" id="fetchEmployee" hidden="true">Fetch Employees</button>
-          <button class="btn btn-success d-flex justify-content-center" id="fetchResolved" hidden="true">Fetch Resolved</button>
-          <button class="btn btn-danger d-flex justify-content-center" id="editEmployee" hidden="true">Edit Profile</button>
+          <button class="btn btn-info" id="fetchInvoice" >Fetch Pending Invoices</button>
+          <button class="btn btn-success" id="fetchEmployee" >Fetch Employees</button>
+          <button class="btn btn-success" id="fetchResolved" >Fetch Resolved</button>
+          <button class="btn btn-danger" id="editEmployee" >Edit Profile</button>
+          <button class="btn btn-danger" id="createInvoices" >Create Invoice</button>
+          <button class="btn btn-secondary" id="pendingInvoices" >My Pending Invoices</button>
+          <button class="btn btn-secondary" id="myResolvedInvoice" >My Resolved Invoices</button>
+          
           
         </div>
       </div>
       </div>
 		
-	<div class="table table col-8" id="invoiceList"  hidden="true">
+	<div class="table table" id="invoiceList"  hidden="true">
 
 	</div>
-			<div class="col-8"  hidden>
-		<form>
-
-			<input type="text" id="newusername">
-			<br>
-			<br>
-		
-			<input type="password" id="newpassword">
-			<br>
-			<br>
-			<input class="btn btn-info"  Edit>
-		</form>
-
-		</div>
-	<ul class="list-unstyled col-8 mt-3" id="employeeDirectory" hidden>
+			
+	<ul class="list-unstyled mt-3" id="employeeDirectory" hidden>
 
 	</ul>
 
@@ -74,8 +65,38 @@
   	
   	<div class="container" id="locatedInvoice">
   	</div>
-  
+  <div class="container" id="createInvoice">
+  <form class="border border-white">
+    <div class="form-group">
+      <label for="amount">Amount</label>
+      <input id="amount" type="number" placeholder="Amount" class="form-control" required autofocus autocomplete="off">
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea id="description" rows="4" placeholder="Reason for Reimbursement" class="form-control" required></textarea>
+    </div>
+    <div class="text-center">
+	  <input type="button" id="submit-btn" value="Submit" class="btn btn-dark btn-lg">
+	</div>
+  </form>
+  </div>
+  <div class="container" id="listOfMyPendingInvoices" style="display:none">
+  </div>
 
+<div class="container" id="approveOrDeny">
+  <form class="border border-white">
+    <div class="form-group">
+      <label for="invoice">Enter Invoice Id</label>
+      <input id="invoiceId" type="number" placeholder="Invoice" class="form-control" required autofocus autocomplete="off">
+    </div>
+ 
+    <div class="text-center">
+	  <input type="button" id="deny-btn" value="Deny" class="btn btn-danger btn-lg">
+	   <input type="button" id="approve-btn" value="Approve" class="btn btn-success btn-lg">
+	</div>
+  </form>
+  </div>
+  
 
 </body>
 <script src="static/Scripts/landing.js"></script>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hibernate-configuration>
+	<session-factory>
+		<property name="hibernate.connection.url">jdbc:postgresql://url:5432/postgres</property>
+		<property name="hibernate.connection.username">user</property>
+		<property name="hibernate.connection.password">pass</property>
+		<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+	
+		<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+		<property name="hibernate.hbm2ddl.auto">validate</property>
+
+		<property name="hibernate.show_sql">true</property>
+		
+		<!-- include our mapping resources (hbm files) or classes (where we have annotations) -->
+		<mapping class="Employee.class" />  <!-- looks in src/main/java for a class -->
+		<mapping resource="" /> <!-- looks in src/main/resources hbm.xml -->
+	</session-factory>
+</hibernate-configuration>
