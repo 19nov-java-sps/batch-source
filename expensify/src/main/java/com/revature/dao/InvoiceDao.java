@@ -12,8 +12,6 @@ public interface InvoiceDao {
 	public int createInvoice(Invoice i);
 	public int updateInvoice(Invoice i);
 	
-	public List<Invoice> dummyInvoiceList();
-	public Invoice dummyInvoice(int id);
 	
 }
 

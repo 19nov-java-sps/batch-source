@@ -41,7 +41,9 @@
           <hr>
           <p class="dark-grey-text mt-4 text-center" id="manager_status"></p>
           <button class="btn btn-info d-flex justify-content-center" id="fetchInvoice" hidden="true">Fetch Invoices</button>
-          <button class="btn btn-info d-flex justify-content-center" id="fetchEmployee" hidden="true">Fetch Employees</button>
+          <button class="btn btn-success d-flex justify-content-center" id="fetchEmployee" hidden="true">Fetch Employees</button>
+          <button class="btn btn-success d-flex justify-content-center" id="fetchResolved" hidden="true">Fetch Resolved</button>
+          <button class="btn btn-danger d-flex justify-content-center" id="editEmployee" hidden="true">Edit Profile</button>
           
         </div>
       </div>
@@ -50,23 +52,26 @@
 	<div class="table table col-8" id="invoiceList"  hidden="true">
 
 	</div>
-	<div class="table table col-8" id="employeeList" hidden="true">
+			<div class="col-8"  hidden>
+		<form>
 
-	</div>
+			<input type="text" id="newusername">
+			<br>
+			<br>
+		
+			<input type="password" id="newpassword">
+			<br>
+			<br>
+			<input class="btn btn-info"  Edit>
+		</form>
 
+		</div>
+	<ul class="list-unstyled col-8 mt-3" id="employeeDirectory" hidden>
+
+	</ul>
 
   	</div>
-	<div class="col-8 form form-control">
-      <input type="text" placeholder="Description" id="Description">
   
-      <input type="text" placeholder="Amount" id="Amount">
-
-  	<input class="btn btn-success" id="createInvoice"  type="submit">
-</div>
-
-
- 
-
 
 
 </body>

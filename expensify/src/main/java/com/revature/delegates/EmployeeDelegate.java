@@ -40,6 +40,23 @@ public class EmployeeDelegate {
 		}
 	}
 	
+
+	public void postEmployee(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		String fullname = request.getParameter("fullname");
+		String employeeID = request.getParameter("userId");
+
+		Employee employee = employeeDao.getEmployeeById(Integer.parseInt(employeeID));
+		employee.setPassword(password);
+		employee.setUsername(username);
+		employee.setFullname(fullname);
+		
+		employeeDao.updateEmployee(employee);
+	}
+	
+	
 	public void deleteEmployees(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
 		String username = request.getParameter("username");

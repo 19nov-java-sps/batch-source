@@ -2,11 +2,12 @@ let token = sessionStorage.getItem("token");
 let invoiceURL = "http://localhost:8080/expensify/api/invoices"
 let employeesURL = "http://localhost:8080/expensify/employees"
 document.getElementById("fetchInvoice").addEventListener("click", sendAjaxGetInvoices)
+document.getElementById("fetchResolved").addEventListener("click", fetchResolveInvoices)
 document.getElementById("fetchEmployee").addEventListener("click", fetchEmployees)
-document.getElementById("createInvoice").addEventListener("click", postInvoice)
+document.getElementById("editEmployee").addEventListener("click", forwardToEditPage)
+
 document.getElementById("signOut").addEventListener("click", logOut)
 
-console.log(token, "sessionStorage")
 
 if(!token){
 	window.location.href="http://localhost:8080/expensify/pop";
@@ -20,49 +21,70 @@ if(!token){
 	}
 }
 
-//function sendAjaxEdit(URL,callback){
-//	let xhr = new XMLHttpRequest();
-//	xhr.open("POST", employeesURL );
-//	xhr.onreadystatechange = function(){
-//		if(this.readyState === 4 && this.status === 200) {
-//			callback(this);
-//		} 
-//	}
-//	let username = document.getElementById("username").value;
-//	let password = document.getElementById("passwordString").value;
-//	
-//	xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded")
-//	
-//	let requestBody = `username=${username}&password=${password}`;
-//	xhr.send(requestBody);
-//	
-//}
+
+function fetchResolveInvoices(){
+	fetch(invoiceURL, {
+		headers: {
+			Authorization: `${token}`
+		}
+	})
+	.then(res => {
+		if (res.status === 200) {
+			return res.json()
+		} else {
+			console.log("error")
+		}
+		})
+		.then(invoices => {
+			let invoiceList = document.getElementById("invoiceList")
+			invoiceList.hidden = false
+			
+			for (let invoice of invoices){
+				let div = document.createElement("div")
+			if (invoice.resolved === true && invoice.pending === false) {
+				div.innerHTML = `${invoice.description}`
+				invoiceList.appendChild(div)
+				console.log(invoice)
+			}
+			}
+		})
+	
+	
+}
+
 
 function sendAjaxGetInvoices(){
 	fetch("http://localhost:8080/expensify/api/invoices", {
 		headers: {
 			Authorization: `${token}`
 		}
-	}).then(res => res.json()).then(data => {
-		let table = document.createElement("table")
-	
-		
-		for (let invoice of data){
-			
-			let newRow = document.createElement("tr");
-			newRow.innerHTML = `<td>${invoice.dateSubmitted}</td><td>${invoice.description}</td><td>${invoice.amount}</td>
-			<button class="btn btn-danger">Approved</button>`
-			table.appendChild(newRow);
-			document.getElementById("invoiceList").appendChild(table)
-			
-			
-
-		}
 	})
-
+	.then(res => {
+		if (res.status === 200) {
+			return res.json()
+		} else {
+			console.log("error")
+		}
+		})
+		.then(invoices => {
+			let invoiceList = document.getElementById("invoiceList")
+			invoiceList.hidden = false
+			for (let invoice of invoices){
+				let div = document.createElement("div")
+			if (invoice.pending === true) {
+				div.innerHTML = `${invoice.description}`
+				invoiceList.appendChild(div)
+				console.log(invoice)
+			}
+			}
+		})
 }
+	
+
+//document.getElementById("employeeDirectory").hidden = true
 
 function postInvoice(url, callback){
+	
 
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", employeesURL );
@@ -98,21 +120,20 @@ function fetchEmployees(){
 			console.log("error")
 		}
 	}).then(data => {
-		let table = document.createElement("table")
-		document.getElementById("invoiceList").hidden = true
-		
+		document.getElementById("employeeDirectory").hidden = false
+		let list = document.getElementById("employeeDirectory")
 		for (let employee of data){
-		
-			let newRow = document.createElement("tr");
-			newRow.innerHTML = `<td>${employee.fullname}</td>`
-			table.appendChild(newRow);
-			document.getElementById("employeeList").appendChild(table)
-			document.getElementById("employeeList").hidden =false
-		}
-	})
-	
-}
-
+			console.log(employee)
+			let li = document.createElement("li")
+			list.appendChild(li)
+			let image = document.createElement("img")
+			list.appendChild(image)
+			image.src = `https://mdbootstrap.com/img/Photos/Avatars/img%20(${employee.userId}).jpg`
+			let name = document.createElement("h4")
+			name.innerText = `${employee.fullname}`
+			li.appendChild(name)
+			
+		}})}
 
 
 function populate(xhr){
@@ -131,6 +152,9 @@ function populate(xhr){
 	
 	}
 }
+
+
+
 
 
 function sendAjaxGet(url, callback){
@@ -154,7 +178,16 @@ function displayInfo(xhr) {
 		document.getElementById("manager_status").innerHTML = "Manager"
 		document.getElementById("fetchInvoice").hidden = false
 		document.getElementById("fetchEmployee").hidden = false
+		console.log("A manager logged in")
+	} else {
+		document.getElementById("fetchInvoice").hidden = true
+		document.getElementById("fetchEmployee").hidden = true
+		console.log("A regular employee logged in")
 	}
+}
+
+function forwardToEditPage(){
+	window.location.href="http://localhost:8080/expensify/edit"
 }
 
 

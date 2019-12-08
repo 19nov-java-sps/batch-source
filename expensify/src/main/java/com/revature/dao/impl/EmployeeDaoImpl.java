@@ -113,7 +113,7 @@ public class EmployeeDaoImpl implements EmployeeDao{
 
 	@Override
 	public int updateEmployee(Employee e) {
-		String sqlString = "update * from Employee set user_id = ?, username = ?, passwordString = ?, full_name = ?, isManager = ? where Employee.user_id =  ?";
+		String sqlString = "update Employee set user_id = ?, username = ?, passwordString = ?, full_name = ?, isManager = ? where Employee.user_id =  ?";
 		int updatedemployee = 0;
 		
 		try (Connection connection = ConnectionUtil.getConnection();
@@ -123,6 +123,7 @@ public class EmployeeDaoImpl implements EmployeeDao{
 			preparedStatement.setString(3, e.getPassword());
 			preparedStatement.setString(4, e.getFullname());
 			preparedStatement.setBoolean(5, e.isManager());
+			preparedStatement.setInt(6, e.getUserId());
 			updatedemployee = preparedStatement.executeUpdate();
 			
 		} catch (SQLException e1) {

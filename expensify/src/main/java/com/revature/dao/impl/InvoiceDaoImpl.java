@@ -16,30 +16,6 @@ import com.revature.util.ConnectionUtil;
 import com.revauture.model.Invoice;
 
 public class InvoiceDaoImpl implements InvoiceDao{
-
-	public List<Invoice> dummyInvoiceList = new ArrayList<>();
-	
-	public InvoiceDaoImpl() {
-		dummyInvoiceList.add(new Invoice(1, 200.00, "coffee", "2019-10-10", null, false, 1));
-		dummyInvoiceList.add(new Invoice(2, 100.00, "gas", "2019-10-09", null, true, 2));
-		dummyInvoiceList.add(new Invoice(3, 5000.00, "office party", "2019-10-10", null, false, 1));
-		
-	}
-	
-	@Override
-	public List<Invoice> dummyInvoiceList() {
-		return new ArrayList<>(dummyInvoiceList);
-	}
-
-	@Override
-	public Invoice dummyInvoice(int id) {
-		for (Invoice invoice : dummyInvoiceList) {
-			if (invoice.getUserId() == id) {
-				return invoice;
-			}
-		}
-		return null;
-	}
 	
 	@Override
 	public List<Invoice> getInvoices() {
@@ -54,11 +30,12 @@ public class InvoiceDaoImpl implements InvoiceDao{
 				int invoiceId = resultSet.getInt("invoice_id");
 				Double amount = resultSet.getDouble("amount");
 				String description = resultSet.getString("description");
-				String dateSubmitted = resultSet.getString("date_submitted");
-				String dateApproved = resultSet.getString("date_approved");
+				boolean pending = resultSet.getBoolean("pending");
+				boolean approved = resultSet.getBoolean("approved");
 				boolean rejected  =  resultSet.getBoolean("rejected");
+				boolean resolved = resultSet.getBoolean("resolved");
 				int userId = resultSet.getInt("user_id");
-				Invoice invoice = new Invoice(invoiceId, amount, description, dateSubmitted, dateApproved, rejected, userId);
+				Invoice invoice = new Invoice(invoiceId, amount, description, pending, approved, rejected, resolved, userId);
 				invoiceslList.add(invoice);
 				
 			}
@@ -88,11 +65,12 @@ public class InvoiceDaoImpl implements InvoiceDao{
 				int invoiceId = resultSet.getInt("invoice_id");
 				Double amount = resultSet.getDouble("amount");
 				String description = resultSet.getString("description");
-				String dateSubmitted = resultSet.getString("date_submitted");
-				String dateApproved = resultSet.getString("date_approved");
+				boolean pending = resultSet.getBoolean("pending");
+				boolean approved = resultSet.getBoolean("approved");
 				boolean rejected  =  resultSet.getBoolean("rejected");
+				boolean resolved = resultSet.getBoolean("resolved");
 				int userId = resultSet.getInt("user_id");
-				newInvoice = new Invoice(invoiceId, amount, description, dateSubmitted, dateApproved, rejected, userId);	
+				newInvoice = new Invoice(invoiceId, amount, description, pending, approved, rejected, resolved, userId);
 			}
 			
 		} catch (SQLException e) {
@@ -123,17 +101,17 @@ public class InvoiceDaoImpl implements InvoiceDao{
 
 	@Override
 	public int createInvoice(Invoice i) {
-		String string = "insert into Invoice (invoice_id, amount, description, date_submitted, date_approved, rejected, user_id)  values (?,?,?,?,?,?,?)";
+		String string = "insert into Invoice (amount, description, pending, approved, rejected, resolved, user_id)  values (?,?,?,?,?,?,?)";
 		int success = 0;
 		
 		try (Connection connection =  ConnectionUtil.getConnection();
 				PreparedStatement preparedStatement =  connection.prepareStatement(string)){
-			preparedStatement.setInt(1, i.getInvoiceId());
-			preparedStatement.setDouble(2, i.getAmount());
-			preparedStatement.setString(3, i.getDescription());
-			preparedStatement.setString(4, i.getDateSubmitted());
-			preparedStatement.setString(5, i.getDateApproved());
-			preparedStatement.setBoolean(6, i.isRejected());
+			preparedStatement.setDouble(1, i.getAmount());
+			preparedStatement.setString(2, i.getDescription());
+			preparedStatement.setBoolean(3, i.isPending());
+			preparedStatement.setBoolean(4, i.isApproved());
+			preparedStatement.setBoolean(5, i.isRejected());
+			preparedStatement.setBoolean(6, i.isResolved());
 			preparedStatement.setInt(7, i.getUserId());
 			success = preparedStatement.executeUpdate();
 			
@@ -148,17 +126,17 @@ public class InvoiceDaoImpl implements InvoiceDao{
 
 	@Override
 	public int updateInvoice(Invoice i) {
-		String string =  "update from Invoice set invoice_id = ?,  amount = ?, desciption = ?, date_submitted = ?,  date_approved = ?, rejected =? where Invoice.user_id =  ?";
+		String string =  "update from Invoice set amount = ?, desciption = ?, pending = ?,  approved = ?, rejected = ?, resolved = ? where Invoice.user_id =  ?";
 		int success = 0;
 		
 		try (Connection connection =  ConnectionUtil.getConnection();
 				PreparedStatement preparedStatement =  connection.prepareStatement(string)){
-			preparedStatement.setInt(1, i.getInvoiceId());
-			preparedStatement.setDouble(2, i.getAmount());
-			preparedStatement.setString(3, i.getDescription());
-			preparedStatement.setString(4, i.getDateSubmitted());
-			preparedStatement.setString(5, i.getDateApproved());
-			preparedStatement.setBoolean(6, i.isRejected());
+			preparedStatement.setDouble(1, i.getAmount());
+			preparedStatement.setString(2, i.getDescription());
+			preparedStatement.setBoolean(3, i.isPending());
+			preparedStatement.setBoolean(4, i.isApproved());
+			preparedStatement.setBoolean(5, i.isRejected());
+			preparedStatement.setBoolean(6, i.isResolved());
 			preparedStatement.setInt(7, i.getUserId());
 			success = preparedStatement.executeUpdate();
 			
