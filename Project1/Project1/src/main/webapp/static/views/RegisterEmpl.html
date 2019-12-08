@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Update user</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+  </head>
+  <body>
+  <div id="title" class="bg-secondary text-light jumbotron">
+      <h1 class="display-5">Registration</h1>
+  </div>
+	  <form id="new-empl-form" class="border border-white" style="margin-right: 10%; margin-left: 10%">
+	  	 <div class="form-row">
+		    <div class="form-group col-md-6">
+		      <label for="first-name">First Name<small style="color:red"> *</small></label>
+		      <input type="text" class="form-control" id="first-name" placeholder="First Name" required autofocus autocomplete="off">
+		    </div>
+		    <div class="form-group col-md-6">
+		      <label for="last-name">Last Name<small style="color:red"> *</small></label>
+		      <input type="text" class="form-control" id="last-name" placeholder="Last Name" required autocomplete="off">
+		    </div>
+		  </div>
+	  <div class="form-row">
+		  <div class="form-group col-md-6">
+		    <label for="email">Email<small style="color:red"> *</small></label>
+		    <input type="email" class="form-control" id="email" placeholder="Email" required autocomplete="off">
+		  </div>
+		  <div class="form-group col-md-6">
+		    <label for="phone">Phone<small style="color:red"> *</small></label>
+		    <input type="text" class="form-control" id="phone" placeholder="Phone#" required autocomplete="off">
+		  </div>
+	  </div>
+	  <div class="form-row">
+	    <div class="form-group col-md-6">
+	      <label for="position">Position<small style="color:red"> *</small></label>
+	      <input type="text" class="form-control" id="position" placeholder="Position" required>
+	    </div>
+	    <div class="form-group col-md-4">
+	      <label for="dept-option">Department</label>
+	      <select id="dept-option" class="form-control">
+	        
+	      </select>
+	    </div>
+	    <div class="form-group col-md-2">
+	      <label for="manager-id">Manager Id</label>
+	      <input type="text" class="form-control" id="manager-id" value="Null" readonly>
+	    </div>
+	  </div>
+	  <div id="invalid-email-msg" class="alert alert-danger" role="alert" hidden>
+        Invalid Email
+	  </div>
+	  <div id="invalid-phone-msg" class="alert alert-danger" role="alert" hidden>
+        Invalid Phone Number
+	  </div>
+	  <div id="invalid-input-msg" class="alert alert-danger" role="alert" hidden>
+        Please Fill Out All Required Input!
+	  </div>
+	  <div id="empl-success-alert" class="alert alert-success" role="alert" hidden>
+        Register Employee Success
+	  </div>
+	  <div id="empl-fail-alert" class="alert alert-danger" role="alert" hidden>
+        Register Employee Failed
+	  </div>
+    <div class="text-center">
+	  <input type="button" id="submit-empl-btn" value="Submit" class="btn btn-dark btn-lg">
+	  <input id="empl-return-btn" class="btn btn-secondary btn-lg" type="button" value="Return">
+	</div>
+  </form>
+  
+  <script type="text/javascript" src="../static/scripts/NewEmplScript.js"></script>
+  </body>
+</html>

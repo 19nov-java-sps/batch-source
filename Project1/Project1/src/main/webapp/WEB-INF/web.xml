@@ -7,7 +7,7 @@
   
   <servlet>
   	<servlet-name>MasterServlet</servlet-name>
-  	<servlet-class>com.revature.controller.FrontController</servlet-class>
+  	<servlet-class>controller.FrontController</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>MasterServlet</servlet-name>
