@@ -1,6 +1,7 @@
 package com.revature.dao.impl;
 
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -206,6 +207,32 @@ public class InvoiceDaoImpl implements InvoiceDao{
 		return newInvoice;
 	}
 
-
+	
+	public void putDenyCallable(int id) {
+		String sqlString  ="{ call denyInvoice(?)}";
+		try(Connection c = ConnectionUtil.getConnection();
+				CallableStatement cs = c.prepareCall(sqlString)){
+			cs.setInt(1, id);
+		
+			cs.execute();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public void putApprovedCallable(int id) {
+		String sqlString  ="{ call approve(?)}";
+		try(Connection c = ConnectionUtil.getConnection();
+				CallableStatement cs = c.prepareCall(sqlString)){
+			cs.setInt(1, id);
+		
+			cs.execute();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 }

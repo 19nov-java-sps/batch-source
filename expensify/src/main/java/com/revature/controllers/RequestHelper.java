@@ -61,6 +61,7 @@ public class RequestHelper {
 		}	
 	
 	}
+	
 	public void processPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 	String path = request.getRequestURI().substring(request.getContextPath().length());
 		System.out.println(path+"this is the path  in  RH  processPOST");
@@ -81,13 +82,13 @@ public class RequestHelper {
 				employeeDelegate.postEmployee(request, response);
 				break;
 			case "invoice/deny":
-				invoiceDelegate.denyInvoice(request, response);
+				invoiceDelegate.deniedInvoice(request, response);
 				break;
 			case "invoice/create":
 				invoiceDelegate.postInvoices(request, response);
 				break;
 			case "invoice/approve":
-				invoiceDelegate.approveInvoice(request,  response);
+				invoiceDelegate.approvedInvoice(request, response);
 			default:
 				response.sendError(404, "Record not supported.");
 			}
@@ -101,8 +102,5 @@ public class RequestHelper {
 				response.sendError(405);
 			}
 		}
-	}
-	
-
-
+}
 }

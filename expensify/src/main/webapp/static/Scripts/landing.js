@@ -243,6 +243,11 @@ function populate(xhr){
 
 function approveInvoice() {
 	let invoiceId = document.getElementById("invoiceId").value
+	let pending = false
+	let approved = true
+	let rejected = false
+	let resolved = true
+	
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", `http://localhost:8080/expensify/api/invoice/approve`);
 	xhr.onreadystatechange = function(){
@@ -252,7 +257,7 @@ function approveInvoice() {
 	}
 	xhr.setRequestHeader("Authorization", token);
 	xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded")
-	let requestbody = `invoiceId=${invoiceId}`
+	let requestbody = `pending=${pending}&approved=${approved}&denied=${rejected}&resolved=${resolved}&invoiceId=${invoiceId}`
 	xhr.send(requestbody);
 }
 

@@ -13,7 +13,8 @@ public interface InvoiceDao {
 	public int deleteInvoice(Invoice i);
 	public int createInvoice(Invoice i);
 	public int updateInvoice(Invoice i);
-	
+	public void putApprovedCallable(int id);
+	public void putDenyCallable(int id);
 	
 }
 

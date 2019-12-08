@@ -76,28 +76,23 @@ public class InvoiceDelegate {
 			}
 		}
 	}
-	public void denyInvoice(HttpServletRequest request, HttpServletResponse response) throws IOException{
-		String invoiceIdString =  request.getParameter("invoiceId");
-		System.out.println(invoiceIdString);
-		System.out.print(Integer.parseInt(invoiceIdString));
-		Invoice invoice = invoiceDao.getInvoiceByInvoiceId(Integer.parseInt(invoiceIdString));
-		if (invoice!=null) {
-			invoice.setPending(false);
-			invoice.setApproved(false);
-			invoice.setRejected(true);
-			invoice.setResolved(true);
-			invoiceDao.updateInvoice(invoice);
-		} else {
-			response.sendError(404, "No resource found");
-		}
+	public void approvedInvoice(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+		String invoiceId = request.getParameter("invoiceId");
 		
-				
+		invoiceDao.putApprovedCallable(Integer.parseInt(invoiceId));
+
+		
 	}
-	public void approveInvoice(HttpServletRequest request, HttpServletResponse response) throws IOException{
-		String invoiceIdString =  request.getParameter("invoiceId");
-		System.out.println("in the invoice delegate");
-		Invoice invoice = invoiceDao.getInvoiceByInvoiceId(Integer.parseInt(invoiceIdString));
-		System.out.println(invoice.toString());
-	}
+	
+	public void deniedInvoice(HttpServletRequest request, HttpServletResponse response) throws IOException {
+			
+
+			String invoiceId = request.getParameter("invoiceId");
+			
+			invoiceDao.putDenyCallable(Integer.parseInt(invoiceId));
+			
+		
+		}
 	
 }

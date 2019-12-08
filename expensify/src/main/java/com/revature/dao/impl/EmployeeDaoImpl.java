@@ -9,34 +9,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import com.revature.dao.EmployeeDao;
 import com.revature.util.ConnectionUtil;
+
 import com.revauture.model.Employee;
 
 public class EmployeeDaoImpl implements EmployeeDao{
-//	
-//	public List<Employee> dummyList = new ArrayList<>();
-//	
-//	public EmployeeDaoImpl() {
-//		dummyList.add(new Employee(1, "p3t3rpark3r", "12345", "Peter Nguyen", true));
-//		dummyList.add(new Employee(2, "ryan", "12345", "Ryan Cars", false));
-//	}
-//	
-//	@Override
-//	public List<Employee> dummyEmployeesList() {
-//		return new ArrayList<>(dummyList);
-//	}
-//
-//	@Override
-//	public Employee dummyEmployee(int id) {
-//		for(Employee employee : dummyList) {
-//			if (employee.getUserId() == id) {
-//				return employee;
-//			}
-//		}
-//		return null;
-//	}
-
 	
 
 	@Override
