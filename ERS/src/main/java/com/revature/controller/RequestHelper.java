@@ -25,7 +25,7 @@ public class RequestHelper {
 	}
 
 	public void processGet(HttpServletRequest request, HttpServletResponse response)
-			throws IOException, ServletException {
+			throws IOException, ServletException, SQLException {
 		String path = request.getServletPath();
 		if (path.startsWith("/api/")) {
 
@@ -39,15 +39,21 @@ public class RequestHelper {
 			case "employee":
 				employeeDelegate.getEmployees(request, response);
 				break;
-			case "reimbursement":
-				reimDelegate.getReimbursement(request, response);
+			case "pendingreimbursement":
+				reimDelegate.getPendingReimbursement(request, response);
 				break;
-			case "reimbursement/pending":
-//				reimDelegate.getPendingReimbursements(request, response);
+			case "resolvedreimbursement":
+				reimDelegate.getResolvedReimbursement(request, response);
 				break;
-			case "reimbursement/resolved":
-//				reimDelegate.getResolvedReimbursements(request, response);
+			case "allpending":
+				reimDelegate.getPendingReimbursement(request, response);
 				break;
+			case "allresolved":
+				reimDelegate.getResolvedReimbursement(request, response);
+				break;
+//			case "viewpendingbyid":
+//				reimDelegate.viewPendingById(request, response);
+//				break;
 			default:
 				response.sendError(404, "Request Record(s) Not Found");
 			}
@@ -66,25 +72,18 @@ public class RequestHelper {
 		case "/login":
 			authDelegate.authenticate(request, response);
 			break;
-//		case "/updateemployee":
-//			employeeDelegate.updateEmployee(request, response);
-//			break;
+		case "/updateemployee":
+			employeeDelegate.updateEmployee(request, response);
+			break;
 		case "/createreimbursement":
 			reimDelegate.createReimbursement(request, response);
+			break;
+		case "/approveordeny":
+			reimDelegate.resolveReimbursement(request, response);
 			break;
 		default:
 			response.sendError(405);
 		}
 	}
 
-
-public void processPut(HttpServletRequest request, HttpServletResponse response)
-		throws IOException, ServletException {
-	String path = request.getServletPath();
-	switch (path) {
-	case "/updateemployee":
-		employeeDelegate.updateEmployee(request, response);
-		break;
-}
-}
 }

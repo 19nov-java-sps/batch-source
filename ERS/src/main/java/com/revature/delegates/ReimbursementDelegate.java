@@ -12,49 +12,75 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.dao.ReimbursementDao;
 import com.revature.daoimpl.ReimbursementDaoImpl;
 import com.revature.models.Reimbursement;
+import com.revature.servicelayer.ReimbursementService;
 
 public class ReimbursementDelegate {
 
 	private ReimbursementDao reimbursementDao = new ReimbursementDaoImpl();
+	private ReimbursementService reimService = new ReimbursementService();
 
-	public void getReimbursement(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		String idStr = request.getParameter("id");
-		if (idStr == null) {
-			List<Reimbursement> reimbursement = reimbursementDao.getAllReimbursements();
-			try (PrintWriter pw = response.getWriter();) {
-				pw.write(new ObjectMapper().writeValueAsString(reimbursement));
-			}
-		} else {
-			if (idStr.matches("^\\d+$")) {
-				Reimbursement r = reimbursementDao.getReimbursementById(Integer.parseInt(idStr));
-				if (r == null) {
-					response.sendError(404, "No user with given ID");
-				} else {
-					try (PrintWriter pw = response.getWriter()) {
-						pw.write(new ObjectMapper().writeValueAsString(r));
-					}
-				}
-			} else {
-				response.sendError(400, "Invalid ID param");
-			}
+	// gets all pending reimbursements
+	public void getPendingReimbursement(HttpServletRequest request, HttpServletResponse response) throws IOException {
+//		String idString = request.getParameter("employeeID");
+		
+//		System.out.println(idString);
+		
+		List<Reimbursement> reim = reimbursementDao.getPendingReimbursements();
+//				getPendingReimbursementById(Integer.parseInt(idString));
+//				reimbursementDao.getPendingReimbursements()
+//		System.out.println("I made it to getPendingReimbursement");
+		try (PrintWriter pw = response.getWriter();) {
+			pw.write(new ObjectMapper().writeValueAsString(reim));
+			System.out.println(reim);
 		}
-
 	}
-	
-	public void createReimbursement(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
-		String descsriptionfor = request.getParameter("descriptionfor");
+
+	// gets all resolved reimbursements
+	public void getResolvedReimbursement(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		List<Reimbursement> reim = reimbursementDao.getResolvedReimbursements();
+		System.out.println("I made it to getResolvedReimbursement");
+		try (PrintWriter pw = response.getWriter();) {
+			pw.write(new ObjectMapper().writeValueAsString(reim));
+			System.out.println(reim);
+		}
+	}
+
+	// creates a reimbursement request
+	public void createReimbursement(HttpServletRequest request, HttpServletResponse response)
+			throws IOException, SQLException {
+		String path = request.getServletPath();
+		System.out.println("I am in ReimbursementDelegate." + " Servlet path is " + path);
+		String reason = request.getParameter("reason");
 		String amount = request.getParameter("amount");
-		int amountfor= Integer.parseInt(amount);
-		String id= request.getParameter("id");
-		int newId= Integer.parseInt(id);
-		
-		Reimbursement reim = new Reimbursement(descriptionfor, amountfor, true, newId,"Pending");
-		
-		re.createReimbursement(rea);
-		
+		double parseAmount = Double.parseDouble(amount);
+		String id = request.getParameter("id");
+		int parseId = Integer.parseInt(id);
 
-		
+		Reimbursement r = new Reimbursement(parseId, parseAmount, reason, true, false, false, false);
+
+		reimService.createReimbursement(r);
+		System.out.println(reimService.createReimbursement(r));
+
 	}
-	
-	
+
+	// grabs all pending requests based on employee id
+//	public void viewPendingById(HttpServletRequest request, HttpServletResponse response)
+//			throws IOException, SQLException {
+//		String path = request.getServletPath();
+//		System.out.println("I am in viewPendingById" + " Servlet path i;s " + path);
+//		String employeeid = request.getParameter("employeeID");
+//		String reimbursementid = request.getParameter("reimbursementID");
+//		String amount = request.getParameter("reason");
+//		double parseAmount = Double.parseDouble(amount);
+//		String reason = request.getParameter("reason");
+//		
+//
+//
+//	}
+
+	// approve or deny request
+	public void resolveReimbursement(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
+
+	}
 }

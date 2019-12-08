@@ -14,15 +14,4 @@
 		<servlet-name>FrontController</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-	
-	<servlet>
-		<description></description>
-		<display-name>TestServlet</display-name>
-		<servlet-name>TestServlet</servlet-name>
-		<servlet-class>com.revature.TestServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>TestServlet</servlet-name>
-		<url-pattern>/test</url-pattern>
-	</servlet-mapping>
 </web-app>

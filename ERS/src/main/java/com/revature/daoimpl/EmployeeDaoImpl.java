@@ -109,23 +109,24 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		return employeeCreated;
 	}
 
-	@Override
-	public int updateEmployee(String fullName, String userName, String passWord, int employeeID) {
-		String sql = "update employee set full_name =?, user_name =?, pass_word =?, where emp_id =?";
+	public int updateEmployee(Employee e) throws SQLException {
+		String sql = "update employee set full_name =?, user_name =?, pass_word =?, isManager =? where employee.emp_id =?";
 		int employeeUpdated = 0;
 
 		try (Connection con = ConnectionUtil.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
 
-			ps.setString(1, fullName);
-			ps.setString(2, userName);
-			ps.setString(3, passWord);
-			ps.setInt(4, employeeID);
+			ps.setString(1, e.getFullName());
+			ps.setString(2, e.getUserName());
+			ps.setString(3, e.getPassWord());
+			ps.setBoolean(4, e.getisManager());
+			ps.setInt(5, e.getEmployeeID());
 
-			employeeUpdated = ps.executeUpdate();
+			ps.executeUpdate();
 
 		} catch (SQLException error) {
 			error.printStackTrace();
 		}
+		System.out.println(employeeUpdated);
 		return employeeUpdated;
 
 	}

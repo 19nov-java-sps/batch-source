@@ -24,7 +24,12 @@ public class FrontController extends DefaultServlet {
 		if (path.startsWith("/static/")) {
 			super.doGet(request, response);
 		} else {
-			requestHelper.processGet(request, response);
+			try {
+				requestHelper.processGet(request, response);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 

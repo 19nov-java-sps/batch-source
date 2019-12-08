@@ -20,6 +20,18 @@ public class Reimbursement implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
+	public Reimbursement(int employeeID, double amount, String reason, boolean pending, boolean approved,
+			boolean denied, boolean resolved) {
+		super();
+		this.employeeID = employeeID;
+		this.amount = amount;
+		this.reason = reason;
+		this.pending = pending;
+		this.approved = approved;
+		this.denied = denied;
+		this.resolved = resolved;
+	}
+
 	public Reimbursement(int reimbursementID, int employeeID, double amount, String reason, boolean pending,
 			boolean approved, boolean denied, boolean resolved) {
 		super();
@@ -33,71 +45,75 @@ public class Reimbursement implements Serializable {
 		this.resolved = resolved;
 	}
 
-	protected int getReimbursementID() {
+	public Reimbursement(int userID, int invoiceID, double amount2, String reason2) {
+		// TODO Auto-generated constructor stub
+	}
+
+	public int getReimbursementID() {
 		return reimbursementID;
 	}
 
-	protected void setReimbursementID(int reimbursementID) {
+	public void setReimbursementID(int reimbursementID) {
 		this.reimbursementID = reimbursementID;
 	}
 
-	protected int getEmployeeID() {
+	public int getEmployeeID() {
 		return employeeID;
 	}
 
-	protected void setEmployeeID(int employeeID) {
+	public void setEmployeeID(int employeeID) {
 		this.employeeID = employeeID;
 	}
 
-	protected double getAmount() {
+	public double getAmount() {
 		return amount;
 	}
 
-	protected void setAmount(double amount) {
+	public void setAmount(double amount) {
 		this.amount = amount;
 	}
 
-	protected String getReason() {
+	public String getReason() {
 		return reason;
 	}
 
-	protected void setReason(String reason) {
+	public void setReason(String reason) {
 		this.reason = reason;
 	}
 
-	protected boolean isPending() {
+	public boolean isPending() {
 		return pending;
 	}
 
-	protected void setPending(boolean pending) {
+	public void setPending(boolean pending) {
 		this.pending = pending;
 	}
 
-	protected boolean isApproved() {
+	public boolean isApproved() {
 		return approved;
 	}
 
-	protected void setApproved(boolean approved) {
+	public void setApproved(boolean approved) {
 		this.approved = approved;
 	}
 
-	protected boolean isDenied() {
+	public boolean isDenied() {
 		return denied;
 	}
 
-	protected void setDenied(boolean denied) {
+	public void setDenied(boolean denied) {
 		this.denied = denied;
 	}
 
-	protected boolean isResolved() {
+	public boolean isResolved() {
 		return resolved;
 	}
 
-	protected void setResolved(boolean resolved) {
+	public void setResolved(boolean resolved) {
 		this.resolved = resolved;
 	}
 
-	protected static long getSerialversionuid() {
+	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 

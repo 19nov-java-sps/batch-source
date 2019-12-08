@@ -13,16 +13,18 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.dao.EmployeeDao;
 import com.revature.daoimpl.EmployeeDaoImpl;
 import com.revature.models.Employee;
+import com.revature.servicelayer.EmployeeService;
 
 public class EmployeeDelegate {
 
 	private EmployeeDao employeeDao = new EmployeeDaoImpl();
+	private EmployeeService employeeService = new EmployeeService();
 
+	// gets list of employees or gets single employee by their id
 	public void getEmployees(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String path = request.getServletPath();
-		System.out.println(path);
+		System.out.println("I am in EmployeeDelegate" + path);
 		String idStr = request.getParameter("id");
-		String boolStr = request.getHeader("Authorization").split(":")[1];
 		if (idStr == null) {
 			List<Employee> employee = employeeDao.getAllEmployees();
 			try (PrintWriter pw = response.getWriter();) {
@@ -46,87 +48,45 @@ public class EmployeeDelegate {
 
 	}
 
-	public void updateEmployee(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		String fullName = request.getParameter("fullName");
-		String userName = request.getParameter("userName");
-		String passWord = request.getParameter("passWord");
-		String employeeID = request.getParameter("employeeID");
-		
-		int update;
-		update = employeeDao.updateEmployee(fullName, userName, passWord, Integer.parseInt(employeeID));
+	// updates employee info
+	public void updateEmployee(HttpServletRequest request, HttpServletResponse response)
+			throws IOException, SQLException {
+		String path = request.getServletPath();
+		System.out.println(path);
+		String fullname = request.getParameter("fullName");
+		String username = request.getParameter("userName");
+		String password = request.getParameter("passWord");
+		String id = request.getParameter("id");
+		String stringIsManager = request.getParameter("manager");
+		Boolean isManager = Boolean.parseBoolean(stringIsManager);
+		int newId = Integer.parseInt(id);
+
+		Employee e = employeeService.getEmployeeById(newId);
+		System.out.println(employeeService.getEmployeeById(newId));
+
+		// adds validation for update inputs
+		e.setManager(isManager);
+		if (fullname != "" && fullname != null) {
+			e.setFullName(fullname);
+		} else {
+			e.setFullName(e.getFullName());
+		}
+		if (username != "" && username != null) {
+			e.setUserName(username);
+		} else {
+			e.setUserName(e.getUserName());
+		}
+		if (password != "" && password != null) {
+			e.setPassWord(password);
+		} else {
+			e.setPassWord(e.getPassWord());
+		}
+		System.out.println(employeeService.getEmployeeById(newId));
+		System.out.println(e.getEmployeeID());
+		e.setEmployeeID(newId);
+
+		employeeService.updateEmployee(e);
+
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-//	public void updateEmployee(HttpServletRequest request, HttpServletResponse response)
-//			throws IOException, SQLException {
-//		String path = request.getServletPath();
-//		System.out.println(path);
-//		String fullname = request.getParameter("fullname");
-//		String username = request.getParameter("username");
-//		String password = request.getParameter("password");
-//		String id = request.getParameter("id");
-//		int newId = Integer.parseInt(id);
-//
-//		Employee e = employeeDao.getEmployeeById(newId);
-//
-//		if (fullname != "" && fullname != null) {
-//			e.setFullName(fullname);
-//		} else {
-//			e.setFullName(e.getFullName());
-//		}
-//
-//		if (username != "" && username != null) {
-//
-//			e.setUserName(username);
-//
-//		} else {
-//			e.setUserName(e.getUserName());
-//		}
-//
-//		if (password != "" && password != null) {
-//
-//			e.setPassWord(password);
-//
-//		} else {
-//			e.setPassWord(e.getPassWord());
-//		}
-//
-//		employeeDao.updateEmployee(e);
-//
-//	}
-
-//	public void allEmployees(HttpServletRequest request, HttpServletResponse response) throws IOException {
-//		List<Employee> employee = employeeDao.getAllEmployees();
-//		try (PrintWriter pw = response.getWriter();) {
-//			pw.write(new ObjectMapper().writeValueAsString(employee));
-//			pw.close();
-//		}
-//	}
-
-//
-//public void getEmployeeById(HttpServletRequest request, HttpServletResponse response) throws IOException {
-//	
-//	Employee employee = employeeDao.getEmployeeById(1);
-//	try (PrintWriter pw = response.getWriter();) {
-//		pw.write(new ObjectMapper().writeValueAsString(employee));
-//		pw.close();
-//	}
-//}
 
 }

@@ -1,8 +1,6 @@
 let token = sessionStorage.getItem("token");
-
-
-		let baseUrl = "http://localhost:8080/ERS/api/employee";
-		fetchAllEmployee()
+let baseUrl = "http://localhost:8080/ERS/api/employee";
+fetchAllEmployee()
 
 		
 function fetchAllEmployee(){
@@ -21,7 +19,6 @@ function fetchAllEmployee(){
 		for (let empl of arrayEmployeeObjects) {
 			console.log(empl)
 			let newRow = document.createElement("tr");
-			let manager = empl.isManager === true ? "true" : empl.isManager;
 
 		newRow.innerHTML = `<td>${empl.employeeID}</td><td>${empl.fullName}</td><td>${empl.userName}</td><td>${empl.passWord}</td>
 		<td>${empl.isManager}</td>`;
