@@ -1,0 +1,18 @@
+@charset "UTF-8";
+
+#title_page{
+	margin-bottom:2rem;
+}
+
+#logout-btn{
+	float:right;
+}
+
+
+#resolved-table-employees{
+	float:right;
+}
+
+#adding-expenses{
+	padding: 3rem;
+}

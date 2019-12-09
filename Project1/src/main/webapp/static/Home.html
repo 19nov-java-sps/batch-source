@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Home Page</title>
+ <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="static/styles.css">
+    <link rel="stylesheet" href="static/Login.css">
+</head>
+<body>
+	<input type="button" class="btn btn-primary" id="logout-btn" value="Sign Out">
+		<h2 id="title_page"><span id="type"></span> Page</h3> 
+	<h3>Welcome <span id="user"></span></h3>
+
+	
+	<br>
+	
+<!-- ---------------------------- Only Manager View --------------------------------------------->	
+	<div id="manager_only"  hidden="true">
+	
+<!-- ---------------------------- Single Employee record ----------------------------------------->	
+	
+	<h3>Select an Employee</h3>
+		<form>
+		<select id="empnames" onchange="getSelectedValue();">
+		</select>
+		</form>
+		<br>
+
+
+
+		<table id="single-empl-table" class="table table-hover table-sm" hidden=true >
+						 
+							<thead>
+								<th>Expense ID</th>
+								<th>Expense Type</th>
+								<th>Expense Amount</th>
+								<th>Status</th>
+								<th>Manager</th>
+							</thead>
+		</table>
+		
+		<div id="accordion">
+		
+<!-- ---------------------------- View All Employees -------------------------------------------->	
+
+			<div class="card ">
+				  	<div class="card-header" id="headingOne">
+					  	<h5 class="mb-0">
+					    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+					    Employees
+					    </button>
+					    </h5>
+					</div>
+					<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+						 <div class="card-body">
+						 	<table id="empl-table" class="table table-hover table-sm" >
+						 
+							<tr>
+								<th>Name</th>
+								<th>Email</th>
+								<th>Position</th>
+							</tr>
+							</table>
+						</div>
+					</div>
+						
+				</div>
+
+		<br>
+<!-- ---------------------------- Pending Expenses --------------------------------------------->		
+		<div class="card">
+	  		<div class="card-header" id="headingTwo">
+	  			<h5 class="mb-0">
+					 <button value="Pending Expenses" class="btn btn-link" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+					   Pending Expenses</button>
+				    
+				    </h5>
+			</div>
+			<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+			<div class="card-body">
+			<table id="pending-table" class="table table-hover" >
+			
+				<tr>
+				<th></th>
+					<th>Employee ID</th>
+					<th>Expense ID</th>
+					<th>Expense Type</th>
+					<th>Expense Amount</th>
+				</tr>
+			</table>
+		<!-- <input type="button" id="pen" value="View Pending Expenses" class="btn btn-primary"> -->
+ 		<input type="button" id="approve" value="Approve Expense" class="btn btn-primary">
+			<input type="button" id="deny" value="Deny Expense" class="btn btn-primary">
+			</div>
+		</div>
+		</div>
+		
+		<br>
+
+
+<!-- ---------------------------- Resolved Expenses --------------------------------------------->
+		<div class="card">
+	  		<div class="card-header" id="headingThree">
+	  		<h5 class="mb-0">
+				<button  class="btn btn-link" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+				Resolved Expenses</button>		    
+			</h5>
+			</div>
+			<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+			<div class="card-body">
+				<table id="resolved-table" class="table table-hover" >
+					<tr>
+						<th>Employee ID</th>
+						<th>Expense Type</th>
+						<th>Expense Amount</th>
+						<th>Status</th>
+						<th>Manager</th>
+					</tr>
+				</table>
+<!-- 				<input type="button" id="exp" value="View Resolved Expenses" class="btn btn-primary">
+ -->			</div>
+			</div>
+		</div>
+
+		<br>
+<!-- ---------------------------- All Expenses --------------------------------------------->
+		<div class="card">
+	  		<div class="card-header" id="headingFour">
+	  		<h5 class="mb-0">
+				<button  class="btn btn-link" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+				All Expenses</button>		    
+			</h5>
+			</div>
+			<div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+				<div class="card-body">
+				<table id="all-table" class="table table-hover" >
+					<tr>
+						<th>Employee ID</th>
+						<th>Expense Type</th>
+						<th>Expense Amount</th>
+						<th>Status</th>
+						<th>Manager</th>
+					</tr>
+				</table>
+					<!-- <input type="button" id="all" value="View All Expenses" class="btn btn-primary"> -->
+				</div>
+			</div>
+		</div>
+		</div>
+		<br>
+		</div>
+		
+		
+<!-- ------------------------- Regular Employee view --------------------------------------------->
+
+ <div id="emp_only" hidden="true">	
+<!-- ------------------------- Employee Profile info --------------------------------------------->
+
+			<div class="card ">
+				<div class="card-header" id="headingOne">
+					<h5 class="mb-0">
+						<button class="btn btn-link" data-toggle="collapse"
+							data-target="#collapseOne" aria-expanded="true"
+							aria-controls="collapseOne">Employee Information</button>
+					</h5>
+				</div>
+				<div id="collapseOne" class="collapse show"
+					aria-labelledby="headingOne" data-parent="#accordion">
+					<div class="card-body">
+					
+						<table id="empl-table-empview" class="table table-hover table-sm">
+
+							<tr>
+								<th>Name</th>
+								<th>Email</th>
+								<th>Password</th>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+<!-- ------------------------- Employee Update Info --------------------------------------------->
+			
+			
+			
+			<div class="card ">
+				<div class="card-header" id="headingZero">
+					<h5 class="mb-0">
+						<button class="btn btn-link" data-toggle="collapse"
+							data-target="#collapseZero" aria-expanded="false"
+							aria-controls="collapseZero">Update Information</button>
+					</h5>
+				</div>
+				<div id="collapseZero" class="collapse"
+					aria-labelledby="headingZero" data-parent="#accordion">
+					<div class="card-body">
+					<form action="update" method="POST">
+							<label><strong>Name:</strong></label>
+							<input type="text" name="updateName" id="updateName" class="form-control" required/>
+							<br>
+							<label><strong>Email:</strong></label>
+							<input type="email" name="updateEmail" id="updateEmail" class="form-control" required>
+							<br>
+							<label><strong>Password:</strong></label>
+							<input type="password" name="updatePass" id="updatePass" class="form-control" required>
+							<br>
+							<input type="button" id="updateEmpInfo" value="Update" class="btn btn-primary">
+							<label id="success2" hidden="true">Success!</label>
+					</form>
+					</div>
+				</div>
+			</div>
+
+<!-- ------------------------- Create New Expense --------------------------------------------->	
+
+	<div id="accordion">
+ <div class="card">
+  <div class="card-header" id="headingSix">	
+  <h5 class="mb-0">
+				<button  class="btn btn-link" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+				Create a New Reimbursement request</button>		    
+			</h5>
+
+	</div>
+	<div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordion">
+			<div class="card-body">
+		<form id="adding-expenses" action="expenses" method="POST">
+			<label><strong>Expense Type:</strong></label>
+			<input type="text" name="type" id="type" class="form-control">
+			<br>
+			<label><strong>Expense Amount:</strong></label>
+			<input type="number" name="amount" id="amount" class="form-control">
+			<br>
+			<input type="button" id="sub" value="Add" class="btn btn-primary">
+	
+		<label id="success" hidden="true">Success!</label>
+		</form>
+		</div>
+		</div>
+		</div>
+		
+		
+		<br>
+		
+
+<!-- ------------------------- View Expenses --------------------------------------------->	
+	
+	<div class="card">
+	  		<div class="card-header" id="headingSeven">
+	  		<h5 class="mb-0">
+				<button  class="btn btn-link" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+				Resolved Expenses</button>		    
+			</h5>
+			</div>
+			<div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordion">
+			<div class="card-body">
+				<table id="resolved-table-empside" class="table table-hover" >
+					<tr>
+						<th>Expense ID</th>
+						<th>Expense Type</th>
+						<th>Expense Amount</th>
+						<th>Status</th>
+						<th>Manager</th>
+					</tr>
+				</table>
+
+ 			</div>
+			</div>
+	</div>
+	
+	
+	<div class="card">
+	  		<div class="card-header" id="headingEight">
+	  		<h5 class="mb-0">
+				<button  class="btn btn-link" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+				Pending Expenses</button>		    
+			</h5>
+			</div>
+			<div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordion">
+			<div class="card-body">
+				<table id="pending-table-empside" class="table table-hover" >
+					<tr>
+						<th>Expense ID</th>
+						<th>Expense Type</th>
+						<th>Expense Amount</th>
+						<th>Status</th>
+					</tr>
+				</table>
+
+ 			</div>
+			</div>
+	</div>
+	
+		
+		
+</div>
+	
+	
+	
+	
+	
+	
+	<form>
+	<input type="hidden" name="id" id="id" value="">
+	</form>
+	
+	
+	
+	
+	
+	<script src="static/HomeScript.js"></script>
+</body>
+</html>
