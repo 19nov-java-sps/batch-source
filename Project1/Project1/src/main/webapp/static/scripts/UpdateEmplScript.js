@@ -79,7 +79,7 @@ function updateInfo() {
 	if (!/.+@.+\..+/.test(newEmail)) {
 		callAjax = false;
 		document.getElementById("invalid-email-msg").hidden = false;
-		setTimeout(function(){ document.getElementById('invalid-email-msg').hidden = true; }, 3000);
+		setTimeout(function(){ document.getElementById('invalid-email-msg').hidden = true; }, 10000);
 	} else {
 		email = newEmail;
 	}
@@ -89,7 +89,7 @@ function updateInfo() {
 	if (newPhone.length !== 10) {
 		callAjax = false;
 		document.getElementById("invalid-phone-msg").hidden = false;
-		setTimeout(function(){ document.getElementById('invalid-phone-msg').hidden = true; }, 3000);
+		setTimeout(function(){ document.getElementById('invalid-phone-msg').hidden = true; }, 10000);
 	} else {
 		phone = newPhone.replace(/(\d{3})(\d{3})(\d{3})/, "($1) $2-$3");
 	}
@@ -104,10 +104,8 @@ function sendAjaxUpdateEmpl() {
 	xhr.onreadystatechange = function() {
 		if (this.readyState === 4 && this.status === 204) {
 			window.location.reload();
-		}
-		
-		else if (this.readyState === 4 && this.status !== 204){
-			alert('Failed! Please Try Again.');
+		} else if (this.readyState === 4 && this.status !== 204){
+			alert('Something went wrong -- try again in a bit');
 		}
 	}
 	

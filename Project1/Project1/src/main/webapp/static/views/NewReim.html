@@ -13,7 +13,7 @@
   </head>
   <body>
   <div id="title" class="bg-secondary text-light jumbotron">
-      <h1 class="display-5">Request Reimbursement</h1>
+      <h1 class="display-5">Request New Reimbursement</h1>
   </div>
   <form id="new-reim-form" class="border border-white" style="margin-right: 10%; margin-left: 10%">
     <div class="form-group">
@@ -22,13 +22,13 @@
     </div>
     <div class="form-group">
       <label for="description">Description</label>
-      <textarea id="description" rows="4" placeholder="Reason for Reimbursement" class="form-control" required></textarea>
+      <textarea id="description" rows="4" placeholder="Purpose of Expenditure" class="form-control" required></textarea>
     </div>
     <div class="alert alert-success" role="alert" id="reim-success-alert" hidden>
-  	  Success
+  	  Submission successful!
 	</div>
 	<div class="alert alert-danger" role="alert" id="reim-fail-alert" hidden>
-  	  Failed reimbursment -- try again
+  	  Submission failed -- try again in a bit
 	</div>
     <div class="text-center">
 	  <input type="button" id="submit-reim-btn" value="Submit" class="btn btn-dark btn-lg">

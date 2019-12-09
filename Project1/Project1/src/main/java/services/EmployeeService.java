@@ -22,7 +22,7 @@ public class EmployeeService {
 		return employeeDao.emplLogin(email, password);
 	}
 	
-	public int registeEmpl(Employee e) {
+	public int registerEmpl(Employee e) {
 		return employeeDao.createEmpl(e);
 	}
 	

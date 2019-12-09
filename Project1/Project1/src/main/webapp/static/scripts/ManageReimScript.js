@@ -42,7 +42,7 @@ function displayAllReims(xhr, type = 'Pending') {
 	let reims = JSON.parse(xhr.response);
 	
 	if (reims.length === 0) {
-		document.getElementById('main').innerHTML = `<h3>No ${type} Reimbursement Available<h3>`;
+		document.getElementById('main').innerHTML = `<h3>No ${type} Reimbursement<h3>`;
 	} else {
 		
 		let title = document.createElement("h4");
@@ -53,8 +53,8 @@ function displayAllReims(xhr, type = 'Pending') {
 		table.className = "table table-bordered table-hover";
 		document.getElementById("main").appendChild(table);
 		
-		let caption = document.createElement("Caption");
-		table.appendChild(caption);
+//		let caption = document.createElement("Caption");
+//		table.appendChild(caption);
 		
 		if (type === 'Pending') {
 			const tokenArr = token.split(':');
@@ -124,12 +124,12 @@ function displayAllReims(xhr, type = 'Pending') {
 	}
 	
 	let resolvedRows = document.getElementsByClassName("resolved-row");
-	for (let i = 0; i < resolvedRows.length; i++) {
+	for (let i = 0; i < resolvedRows.length; ++i) {
 		resolvedRows[i].onclick = viewSingleResolved(event);
 	}
 	
 	let pendingRows = document.getElementsByClassName("pending-row");
-	for (let i = 0; i < pendingRows.length; i++) {
+	for (let i = 0; i < pendingRows.length; ++i) {
 		pendingRows[i].onclick = viewSinglePending(event);
 	}
 }
@@ -149,7 +149,6 @@ function viewSingleResolved() {
 		if (e.target.cellIndex == 0) {
 			let url = "http://localhost:8080/Project1/api/reimbursements?id=" + e.target.innerText;
 			sendAjaxGetReim(url, displayResolvedById);
-			
 		}
 	}
 }
@@ -168,7 +167,7 @@ function displayResolvedById(xhr) {
 	
 	let title = document.createElement("h4");
 	document.getElementById("main").appendChild(title);
-	title.innerText = `Reimbursement Detail`;
+	title.innerText = `About Reimbursement`;
 	
 	let table = document.createElement("Table");
 	table.className = "table table-bordered table-hover";

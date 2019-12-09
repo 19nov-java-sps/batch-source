@@ -3,45 +3,52 @@ let employeeApi = "http:/localhost:8080/Project1/api/employees"
 
 document.getElementById('logout-btn').addEventListener("click", logout);
 document.getElementById('profile').addEventListener("click", getMyInfo);
-//document.getElementById('contact').addEventListener("click", getMyManager);
+document.getElementById('contact').addEventListener("click", getMyManager);
 document.getElementById('new-reim-option').addEventListener("click", newReimPage);
 document.getElementById('update-info').addEventListener("click", updateInfoPage);
-//document.getElementById('regis-empl').addEventListener("click", registerEmpl);
-document.getElementById('view-empls').addEventListener("click", getEmployees); 
+document.getElementById('regis-empl').addEventListener("click", registerEmpl);
+//document.getElementById('view-empls').addEventListener("click", getEmployees); 
 if(!token){
 	window.location.href="http://localhost:8080/Project1/login";
 } else {
 	let tokenArr = token.split(":");
 
-	if(tokenArr.length === 2){
+	if(tokenArr.length === 3) {
 		
-		if (tokenArr[1]) {
+		//console.log("pop"); 
+		
+		if (tokenArr[1] > 0) {
 			document.getElementById('manager-sidebar').hidden = false;
 			//document.getElementByID('my-reim-option').hidden = true; 
 		} else {
 			document.getElementById('contact').hidden = false;
 		}
-		
+		if (tokenArr[2] == 0) {
+			document.getElementById('my-reim-option').hidden = true; 
+			document.getElementById('new-reim-option').hidden = true; 
+		}
 
 		
-		let baseUrl = "http://localhost:8080/Project1/api/employees?id=";
+		let baseUrl = employeeApi + "?id=";
 		sendAjaxGet(baseUrl+tokenArr[0], displayEmplInfo);
 	} else {
 		window.location.href="http://localhost:8080/Project1/afterifclause";
 	}
 }
 
-function sendAjaxGet(url, callback){
+function sendAjaxGet(url, callback, heading){
 	let xhr = new XMLHttpRequest();
 	xhr.open("GET", url);
 	
 	xhr.onreadystatechange = function(){
 		if(this.readyState === 4 && this.status === 200) {
-			callback(this);
-		} 
+			callback(this, heading);
+		}  else if (this.readyState === 4) {
+			window.location.href = "http://localhost:8080/Project1/afterifclause"; 
+		}
 	}
 
-//	xhr.setRequestHeader("Authorization", token);
+	xhr.setRequestHeader("Authorization", token);
 	xhr.send();
 }
 
@@ -90,39 +97,38 @@ function getMyInfo() {
 	}
 	
 	let tokenArr = token.split(":");
-	let baseUrl = "http://localhost:8080/Project1/api/employees?id=";
+	let baseUrl = employeeApi + "?id="; 
 	sendAjaxGet(baseUrl + tokenArr[0], displayEmplInfo, 'My Profile');
 
 }
 
-function getEmployees(){
-	let xhr = new XMLHttpRequest();
-	xhr.open("GET", "http:/localhost:8080/Project1/api/employees?id=2");
-	
-	xhr.onreadystatechange = function(){
-		if(this.readyState === 4 && this.status === 200) {
-			displayEmployeeList(this);
-		} 
-	}
-
-	xhr.setRequestHeader("Authorization", token);
-	xhr.send();
-}
+//function getEmployees(){
+//	let xhr = new XMLHttpRequest();
+//	xhr.open("GET", "http:/localhost:8080/Project1/api/employees?id=2");
+//	
+//	xhr.onreadystatechange = function(){
+//		if(this.readyState === 4 && this.status === 200) {
+//			displayEmployeeList(this);
+//		} 
+//	}
+//
+//	xhr.setRequestHeader("Authorization", token);
+//	xhr.send();
+//}
 
 function displayEmployeeList(xhr) {
 	let employeeJSON = JSON.parse(xhr.response)
 	console.log(employeeJSON)
 }
 
-//function getMyManager() {
-//	if (document.getElementById("main")) {		
-//		document.getElementById("main").remove();
-//	}
-//	
-//	let tokenArr = token.split(":");
-//	let baseUrl = "http://localhost:8080/Project1/api/employees?id=";
-//	sendAjaxGet(baseUrl + tokenArr[2], displayEmplInfo, 'My Manager');
-//}
+function getMyManager() {
+	if (document.getElementById("main")) {		
+		document.getElementById("main").remove();
+	}
+	
+	let tokenArr = token.split(":");
+	sendAjaxGet(employeeApi + "?id=" + tokenArr[2], displayEmplInfo, 'My Manager');
+}
 
 function newReimPage() {
 	//let xhr
@@ -133,6 +139,6 @@ function updateInfoPage() {
 	window.location.href="http://localhost:8080/Project1/employee/update";
 }
 
-//function registerEmpl() {
-//	window.location.href="http://localhost:8080/Project1/employee/new";
-//}
+function registerEmpl() {
+	window.location.href="http://localhost:8080/Project1/employee/new";
+}

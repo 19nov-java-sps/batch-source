@@ -26,13 +26,13 @@ function createNewReim() {
 			document.getElementById('description').value = '';
 			
 			document.getElementById('reim-success-alert').hidden = false;
-			setTimeout(function(){ document.getElementById('reim-success-alert').hidden = true; }, 3000);
+			setTimeout(function(){ document.getElementById('reim-success-alert').hidden = true; }, 10000);
 		}
 		
 		else if (this.readyState === 4 && this.status !== 201){
 			document.getElementById('reim-fail-alert').hidden = false;
 			//console.log(this.status); 
-			//setTimeout(function(){ document.getElementById('reim-fail-alert').hidden = true; }, 3000);
+			//setTimeout(function(){ document.getElementById('reim-fail-alert').hidden = true; }, 10000);
 		}
 	}
 	

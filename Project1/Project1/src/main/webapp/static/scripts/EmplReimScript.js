@@ -17,7 +17,7 @@ function viewResolved() {
 	sendAjaxGetReims(baseUrl + tokenArr[0], displayEmplReim, 'Resolved');
 }
 
-function sendAjaxGetReims(url, callback, type){
+function sendAjaxGetReims(url, callback, type) {
 	let xhr = new XMLHttpRequest();
 	xhr.open("GET", url);
 	
@@ -46,12 +46,12 @@ function displayEmplReim(xhr, type) {
 	let reims = JSON.parse(xhr.response);
 	
 	if (reims.length === 0) {
-		document.getElementById('main').innerHTML = `<h3>No ${type} Reimbursement Available<h3>`;
+		document.getElementById('main').innerHTML = `<h3>No ${type} Reimbursements<h3>`;
 	} else {
 		
 		let title = document.createElement("h4");
 		document.getElementById("main").appendChild(title);
-		title.innerText = `My ${type} Reimbursement`;
+		title.innerText = `${type} Reimbursements`;
 		
 		let table = document.createElement("Table");
 		table.className = "table table-bordered table-striped";

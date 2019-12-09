@@ -17,11 +17,11 @@ function sendAjaxGetDepts(url, callback){
 	let xhr = new XMLHttpRequest();
 	xhr.open("GET", url);
 	
-	xhr.onreadystatechange = function(){
+	xhr.onreadystatechange = function() {
 		if(this.readyState === 4 && this.status === 200) {
 			callback(this);
 		} else if (this.readyState === 4 && this.status !== 200){
-			alert('Loading Failed! Please try again');
+			alert('Could not load -- try again in a bit');
 		}
 	}
 
@@ -57,13 +57,13 @@ function createNewEmpl() {
 
 	if (firstname === '' || lastname === '' || email === '' || phone === '' || position === '') {
 		document.getElementById("invalid-input-msg").hidden = false;
-		setTimeout(function(){ document.getElementById('invalid-input-msg').hidden = true; }, 3000);
+		setTimeout(function(){ document.getElementById('invalid-input-msg').hidden = true; }, 10000);
 	} else if (!/.+@.+\..+/.test(email)) {
 		document.getElementById("invalid-email-msg").hidden = false;
-		setTimeout(function(){ document.getElementById('invalid-email-msg').hidden = true; }, 3000);
+		setTimeout(function(){ document.getElementById('invalid-email-msg').hidden = true; }, 10000);
 	} else if (phone.length !== 10) {
 		document.getElementById("invalid-phone-msg").hidden = false;
-		setTimeout(function(){ document.getElementById('invalid-phone-msg').hidden = true; }, 3000);
+		setTimeout(function(){ document.getElementById('invalid-phone-msg').hidden = true; }, 10000);
 	} else {
 		phone = phone.replace(/(\d{3})(\d{3})(\d{3})/, "($1) $2-$3");
 		
@@ -76,12 +76,12 @@ function createNewEmpl() {
 				
 				document.getElementById('empl-success-alert').hidden = false;
 				document.getElementById("submit-empl-btn").disabled = 'disabled';
-				setTimeout(function(){ window.location.reload(); }, 3000);
+				setTimeout(function(){ window.location.reload(); }, 10000);
 			}
 			
 			else if (this.readyState === 4 && this.status !== 201){
 				document.getElementById('empl-fail-alert').hidden = false;
-				setTimeout(function(){ document.getElementById('empl-fail-alert').hidden = true; }, 3000);
+				setTimeout(function(){ document.getElementById('empl-fail-alert').hidden = true; }, 10000);
 			}
 		}
 		

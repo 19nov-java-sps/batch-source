@@ -19,10 +19,10 @@ public class RequestHelper {
 	public void processGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		String path = request.getServletPath();
 		if(path.startsWith("/api/")) {
-//			if(!authDelegate.isAuthorized(request)) {
-//				response.sendError(401);
-//				return;
-//			}
+			if(!authDelegate.isAuthorized(request)) {
+				response.sendError(401);
+				return;
+			}
 			
 			String record = path.substring(5);
 			switch(record) {		
@@ -42,13 +42,11 @@ public class RequestHelper {
 				departmentDelegate.getDepartments(request, response);
 				break;
 			default:
-				response.sendError(404, "Request Record(s) Not Found");
+				response.sendError(404, "Not Found");
 			}
-			
 		} else {
 			viewDelegate.returnView(request, response);
 		}
-		
 	}
 
 	
@@ -60,10 +58,10 @@ public class RequestHelper {
 			authDelegate.authenticate(request, response);
 			break;
 		case "/reimbursement/new":
-//			reimbursementDelegate.submitReimbursement(request, response);
+			reimbursementDelegate.submitReimbursement(request, response);
 			break;
 		case "/employee/new":
-//			emplDelegate.registeEmpl(request, response);
+			emplDelegate.registerEmpl(request, response);
 			break;
 		default:
 			response.sendError(405);

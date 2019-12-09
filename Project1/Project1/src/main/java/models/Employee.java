@@ -13,7 +13,7 @@ private static final long serialVersionUID = 1L;
 	private String phone;
 	private String password;
 	private int managerId;
-	private boolean isManager;
+	private int isManager;
 	private Department department;
 	private String position;
 	
@@ -22,7 +22,7 @@ private static final long serialVersionUID = 1L;
 	}
 
 	public Employee(int emplId, String firstName, String lastName, String email, String phone, String password,
-			int managerId, boolean isManager, Department department, String position) {
+			int managerId, int isManager, Department department, String position) {
 		super();
 		this.emplId = emplId;
 		this.firstName = firstName;
@@ -51,7 +51,7 @@ private static final long serialVersionUID = 1L;
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + emplId;
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
-		result = prime * result + (isManager ? 1231 : 1237);
+		result = prime * result + isManager;
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + managerId;
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
@@ -169,11 +169,11 @@ private static final long serialVersionUID = 1L;
 		this.managerId = managerId;
 	}
 
-	public boolean isManager() {
+	public int isManager() {
 		return isManager;
 	}
 
-	public void setManager(boolean isManager) {
+	public void setManager(int isManager) {
 		this.isManager = isManager;
 	}
 

@@ -238,7 +238,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
         	ps.setInt(1, reimId);
         	ResultSet rs = ps.executeQuery();
         	
-        	if (rs.next()) {
+        	while (rs.next()) {
 				double amount = rs.getDouble("amount");
 				String status = rs.getString("status");
 				String result = rs.getString("resolvedResult");
@@ -253,7 +253,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 				Employee manager = es.getEmplById(resolvedById);
 				
 				Reimbursement r = new Reimbursement(reimId, amount, status, result, empl, manager, submitDate, resolvedDate, description, reason);
-				return r;
+				return r; 
         	}
         	
 		} catch (SQLException e) {

@@ -45,7 +45,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 				String phone = rs.getString("phone");
 				String password = rs.getString("pass");
 				int managerId = rs.getInt("managerId");
-				boolean isManager = rs.getBoolean("isManager");
+				int isManager = rs.getInt("isManager");
 				int deptId = rs.getInt("deptId");
 				String position = rs.getString("emplPosition");
 				
@@ -66,7 +66,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	public Employee emplLogin(String email, String password) {
 		
 		String sql = "select * from Employee where email = ? and pass = ?";
-		Employee employee = null;
+		//Employee employee = null;
 		
 		try(Connection c = ConnectionUtil.getConnection();
         		PreparedStatement ps = c.prepareStatement(sql)) {
@@ -80,19 +80,20 @@ public class EmployeeDaoImpl implements EmployeeDao {
 				String lastName = rs.getString("lastName");
 				String phone = rs.getString("phone");
 				int managerId = rs.getInt("managerId");
-				boolean isManager = rs.getBoolean("isManager");
+				int isManager = rs.getInt("isManager");
 				int deptId = rs.getInt("deptId");
 				String position = rs.getString("emplPosition");
 				
 				Department department = ds.getDeptById(deptId);
 				
-				employee  = new Employee(emplId, firstName, lastName, email, phone, password, managerId, isManager, department, position);
+				Employee employee  = new Employee(emplId, firstName, lastName, email, phone, password, managerId, isManager, department, position);
+				return employee;
         	}
         	
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return employee;
+		return null;
 	}
 
 	@Override
@@ -114,7 +115,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 				String email = rs.getString("email");
 				String password = rs.getString("pass");
 				int managerId = rs.getInt("managerId");
-				boolean isManager = rs.getBoolean("isManager");
+				int isManager = rs.getInt("isManager");
 				int deptId = rs.getInt("deptId");
 				String position = rs.getString("emplPosition");
 				
@@ -144,7 +145,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			ps.setString(4, e.getPhone());
 			ps.setString(5, e.getPassword());
 			ps.setInt(6, e.getManagerId());
-			ps.setBoolean(7, e.isManager());
+			ps.setInt(7, e.isManager());
 			ps.setInt(8, e.getDepartment().getDeptId());
 			ps.setString(9, e.getPosition());
 

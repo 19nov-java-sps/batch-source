@@ -18,11 +18,11 @@ function returnHome() {
 	window.location.href="http://localhost:8080/Project1/home";
 }
 
-function sendAjaxGetPendingReim(url, callback){
+function sendAjaxGetPendingReim(url, callback) {
 	let xhr = new XMLHttpRequest();
 	xhr.open("GET", url);
 	
-	xhr.onreadystatechange = function(){
+	xhr.onreadystatechange = function() {
 		if(this.readyState === 4 && this.status === 200) {
 			callback(this);
 		} else if (this.readyState === 4){
@@ -52,14 +52,14 @@ function displayPendingById(xhr) {
 }
 
 function approveReq() {
-	if (window.confirm("Approve the request")) { 
+	if (window.confirm("Approve request")) { 
 		sendAjaxUpdateReim('approved');
 	}
 }
 
 function denyReq() {
-	if (window.confirm("Deny the request")) { 
-		sendAjaxUpdateReim('denial');
+	if (window.confirm("Deny request")) { 
+		sendAjaxUpdateReim('denied');
 	}
 }
 
@@ -75,7 +75,7 @@ function sendAjaxUpdateReim(result) {
 		}
 		
 		else if (this.readyState === 4 && this.status !== 204){
-			alert('Failed! Please Try Again.');
+			alert('Something went wrong -- try again in a bit');
 		}
 	}
 	

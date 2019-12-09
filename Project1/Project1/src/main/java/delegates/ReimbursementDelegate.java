@@ -23,7 +23,7 @@ public class ReimbursementDelegate {
 		if (idStr == null) {
 			List<Reimbursement> reimbursements = rs.viewPendingReim();
 			
-			try(PrintWriter pw = response.getWriter();){
+			try(PrintWriter pw = response.getWriter();) {
 				pw.write(new ObjectMapper().writeValueAsString(reimbursements));
 			}
 		} else {
@@ -33,7 +33,7 @@ public class ReimbursementDelegate {
 					pw.write(new ObjectMapper().writeValueAsString(reimbursements));
 				}
 			} else {
-				response.sendError(400, "Invalid ID param");
+				response.sendError(400, "Invalid ID");
 			}
 		}
 
@@ -56,10 +56,9 @@ public class ReimbursementDelegate {
 					pw.write(new ObjectMapper().writeValueAsString(reimbursements));
 				}
 			} else {
-				response.sendError(400, "Invalid ID param");
+				response.sendError(400, "Invalid ID");
 			}
-		}
-		
+		}	
 	}
 	
 	public void getReimbursements(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -77,7 +76,7 @@ public class ReimbursementDelegate {
 				}
 			}
 		} else {
-			response.sendError(400, "Invalid ID param");
+			response.sendError(400, "Invalid ID");
 		}
 	}
 	
@@ -98,9 +97,11 @@ public class ReimbursementDelegate {
 		String reimString = request.getReader().readLine();
 		String[] reimArr = reimString.split("=");
 		String[] parameters = new String[4];
-		for (int i = 1; i < 5; i++) {
-			String aString = reimArr[i].split("&")[0];
-			parameters[i-1] = aString;
+		for (int i = 0; i < 4; ++i) {
+//			String aString = reimArr[i].split("&")[0];
+//			parameters[i-1] = aString;
+			
+			parameters[i] = reimArr[i+1].split("&")[0];
 		}
 
 		int reimId = Integer.parseInt(parameters[0]);

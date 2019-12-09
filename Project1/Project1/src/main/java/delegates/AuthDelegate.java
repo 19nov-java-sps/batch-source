@@ -19,11 +19,14 @@ public class AuthDelegate {
 		if(authToken != null) {
 			String[] tokenArr = authToken.split(":");
 			
-			if (tokenArr.length == 2) {
+			if (tokenArr.length == 3) {
 				String idStr = tokenArr[0];
-				//String isManager = tokenArr[1];
+				String isManagerStr = tokenArr[1];
 				if (idStr.matches("^\\d+$")) {
 					Employee e = employeeService.getEmplById(Integer.parseInt(idStr));
+					if (e != null && e.isManager() == Integer.parseInt(isManagerStr)) {
+						return true; 
+					}
 				}
 			}
 		}
@@ -37,10 +40,10 @@ public class AuthDelegate {
 		System.out.println("password is : " + pass); 
 		
 		Employee empl = employeeService.getLogin(email, pass); 
-		System.out.println("pooop:" + empl);
+		//System.out.println("pooop:" + empl);
 
 		if (empl != null) {
-			String token = empl.getEmplId()+ ":" + empl.isManager();
+			String token = empl.getEmplId()+ ":" + empl.isManager() + ":" + empl.getManagerId();
 			response.setStatus(200);
 			response.setHeader("Authorization", token);
 		} else {
