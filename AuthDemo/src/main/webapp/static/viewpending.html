@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h2>You are viewing pending reimbursements</h2>
+<body>
+
+<p>Current Role: <span id="role"></span></p>
+
+<p><button onclick="refresh()">Refresh Pending Info</button></p>
+
+<table id="pendinglist" border="1">
+<tr><th>Username</th><th>requestid</th><th>reason</th><th>amount</th></tr>
+</table>
+<script src="static/HomeScript.js"></script>
+<script>
+function loadXMLDoc( url, callback) {
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", url );
+  xhr.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+    	callback(this);
+    }
+  };
+  xhr.setRequestHeader("Authorization", sessionStorage.getItem("token"));
+  xhr.send();
+}
+
+function approve(requestId) {
+	loadXMLDoc( "http://localhost:8080/AuthDemo/api/reimbursement/approve?id=" + requestId, function() {
+		refresh();
+	})
+}
+
+function deny(requestId) {
+	loadXMLDoc( "http://localhost:8080/AuthDemo/api/reimbursement/deny?id=" + requestId, function() {
+		refresh();
+	})
+}
+function populateTable(xhr) {
+	let pending = JSON.parse(xhr.response);
+    table = "<tr><th>username</th><th>requestid</th><th>reason</th><th>amount</th>";
+    if(document.getElementById("role").innerHTML == "manager")
+    	table += "<th>actions</th>";
+    table += "</tr>";
+    for (i = 0; i < pending.length; i++) { 
+        table += "<tr><td>" + 
+        pending[i].username +
+        "</td><td>" +
+        pending[i].id +
+        "</td><td>" +
+        pending[i].reason +
+        "</td><td>" +
+        pending[i].amount +
+        '</td>';
+        if(document.getElementById("role").innerHTML == "manager")
+       		table += '<td>' +
+        		'<input type="button" value="Approve" onclick="approve(' + pending[i].id + ')">' +
+        		'<input type="button" value="Deny" onclick="deny(' + pending[i].id + ')">' +
+        		"</td>"
+        table += "</tr>";
+     }
+     document.getElementById("pendinglist").innerHTML = table;
+}
+function refresh() {
+	loadXMLDoc( "http://localhost:8080/AuthDemo/api/reimbursement/getpending", populateTable );
+}
+refresh();
+</script>
+</body>
+</html>

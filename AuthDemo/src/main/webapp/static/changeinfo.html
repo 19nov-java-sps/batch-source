@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h2>Update Information here</h2><br>
+	<h3>Currently your Information is<br>
+	Username: <span id="user"></span><br>
+	Password: <span id="password"></span><br>
+	Role: <span id="role"></span><br>
+	Id: <span id="user_id"></span></h3>
+ <script src="static/HomeScript.js"></script>
+<form action="/AuthDemo/api/updateinfo/new">
+<input type="hidden" id="auth" name="auth">
+Password: <input name="newpassword"><br>
+<input type="submit" value="Update Info">
+</form>
+<script src="static/setauth.js"></script>
+</body>
+</html>
