@@ -1,0 +1,13 @@
+<div class="container text-center">
+  <label>Color Select:</label>
+  <select class="form-control" [(ngModel)]='selectedColor'>
+    <option *ngFor='let color of colors' [value]='color' >{{color}}</option>
+  </select>
+  <p [ngClass]='selectedColor'>
+    Highlight Component<br>
+    Highlight Component<br>
+    Highlight Component<br>
+    Highlight Component<br>
+    Highlight Component<br>
+  </p>
+</div>

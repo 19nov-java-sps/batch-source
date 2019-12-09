@@ -1,0 +1,12 @@
+<div class="container text-center">
+  <button class='btn btn-primary' (click)='changeVisibility()'>
+    <p *ngIf='visibility'>Show Profile</p>
+    <p *ngIf='!visibility'>Hide Profile</p>
+  </button>
+  <br><br>
+  <p [hidden]='!visibility'>
+    My Profile<br>
+    Id: {{myProfile.id}}<br>
+    Name: {{myProfile.name}}<br>
+  </p>
+</div>
