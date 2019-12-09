@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Expense Reimbursement System (ERS)</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+    <section id=log-in>
+            <div class="modal fade" id="loginmodal" tabindex="-1" role="dialog" aria-labelledby="loginmodal" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="loginmodal">Log In</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form>
+                      <div class="form-group">
+                        <label for="user-name" class="col-form-label">User Name</label>
+                        <input type="text" class="form-control" id="username">
+                      </div>
+                      <div class="form-group">
+                        <label for="user-pass" class="col-form-label">Password</label>
+                        <input type="password" class="form-control" id="password">
+                      </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="login-btn">Submit</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+    </section>
+    <section id="log-out">
+            <div class="modal fade" id="logoutmodal" tabindex="-1" role="dialog" aria-labelledby="logoutmodal" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="logoutmodal">Log Out</h5>
+                                <div class="log-out-confirm">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal" >Cancel</button>
+                                        <button type="button" class="btn btn-primary" id="logout-btn">Submit</button>
+                                 </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+    </section>
+    <section id="new-reimb">
+            <div class="modal fade" id="newreimb" tabindex="-1" role="dialog" aria-labelledby="newreimb" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="newreimb">New reimbersment</h5>
+                  </div>
+                  <div class="modal-body">
+                    <form>
+                      <div class="form-group">
+                      <label for="reimb-descr" class="col-form-label">ID</label>
+                        <input type="text" class="form-control" id="ureimb-id">
+                      
+                        <label for="reimb-descr" class="col-form-label">Description</label>
+                        <input type="text" class="form-control" id="ureimb-descr">
+                        <label for="reimb-summ" class="col-form-label">Summ</label>
+                        <input type="number" class="form-control" id="reimb-summ">
+                        <label for="user-name" class="col-form-label">Upload picture</label>
+                            <div>
+                                 <button type="button" class="btn btn-primary">Upload</button>
+                                 <img src="static/picImage.jpg" alt="empty" class="img-thumbnail float-right">
+                            </div>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="new-reimb-btn" data-dismiss="modal">Submit</button>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+    </section>
+
+    <section id="edit-prof">
+            <div class="modal fade" id="editprof" tabindex="-1" role="dialog" aria-labelledby="editprof" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="editprof">Edit profile</h5>
+                  </div>
+                  <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <div class="row" id="name">
+                                <div class="col">
+                                        <label for="reimb-descr" class="col-form-label">First Name</label>
+                                        <input type="text" class="form-control" id="ureimb-fname">
+                                </div>
+                                <div class="col">
+                                    <label for="reimb-descr" class="col-form-label">Last Name</label>
+                                    <input type="text" class="form-control" id="ureimb-lname">
+                                </div>
+                            </div>
+                            <div class="row" if="adress-street">
+                                    <div class="col">
+                                            <label for="reimb-descr" class="col-form-label">Number</label>
+                                            <input type="text" class="form-control" id="ureimb-number">
+                                    </div>
+                                    <div class="col">
+                                            <label for="reimb-descr" class="col-form-label">Stret</label>
+                                            <input type="text" class="form-control" id="ureimb-street">
+                                    </div>
+                            </div>
+                            <div class="row" if="adress-city">
+                                    <div class="col">
+                                            <label for="reimb-descr" class="col-form-label">City</label>
+                                            <input type="text" class="form-control" id="ureimb-city">
+                                    </div>
+                                    <div class="col">
+                                            <label for="reimb-descr" class="col-form-label">State</label>
+                                            <input type="text" class="form-control" id="ureimb-state">
+                                    </div>
+                                    <div class="col">
+                                            <label for="reimb-descr" class="col-form-label">Zip</label>
+                                            <input type="text" class="form-control" id="ureimb-zip">
+                                    </div>
+                            </div>
+                            <div class="row" if="contact">
+                                    <div class="col">
+                                            <label for="reimb-descr" class="col-form-label">Phone</label>
+                                            <input type="tel" class="form-control" id="ureimb-phone">
+                                    </div>
+                                    <div class="col">
+                                            <label for="reimb-descr" class="col-form-label">E-mail</label>
+                                            <input type="email" class="form-control" id="ureimb-email">
+                                    </div>
+                            </div>
+                            <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                    <button type="button" class="btn btn-primary">Submit</button>
+                                  </div>
+                            </div>
+                        </div>
+                    </form>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+    </section>
+
+
+    <section id="header">
+          <div class="container-fluid  mt-4" id="top">
+            <div class="row">
+                <div class="col">
+                        <div class="logo">
+                            <img src="static/logo.png" alt="logo"></a>
+                        </div>
+                </div>
+                <div class="col">
+                    <h1>Good day <span id="empl"></span>!</h1>
+                </div>
+                <div class="col" >
+                        <div class="btn btn float-right" role="group" >
+                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#loginmodal">LogIn</button>
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#logoutmodal">LogOut</button>
+                         </div>
+                </div>
+
+            </div>
+        </div>
+        <br>
+        <hr>
+    </section>
+    <section id="body">
+        <div class="container-fluid" id="middle">
+            <div class="row">
+                <div class="col-3" id="midle-left">
+                    
+                        <ul class="list-group">
+                                <h5>Employee profile</h5>
+                                <li class="list-group-item py-2 font-weight-bold">First name:<span class="font-weight-normal" id="empl-f-name"></span></li>
+                                <li class="list-group-item py-2 font-weight-bold">Last name:<span class="font-weight-normal" id="empl-l-name"></span></li>
+                                <li class="list-group-item py-2 font-weight-bold">Manager:<span class="font-weight-normal" id="empl-manager"></span></li>
+                                <li class="list-group-item py-2 font-weight-bold">Department:<span class="font-weight-normal" id="empl-depart"></span></li>
+                                <h5>Address</h5>
+                                <li class="list-group-item py-2 font-weight-bold">Number:<span class="font-weight-normal" id="empl-number"></span></li>
+                                <li class="list-group-item py-2 font-weight-bold">Street:<span class="font-weight-normal" id="empl-street"></span></li>
+                                <li class="list-group-item py-2 font-weight-bold">City:<span class="font-weight-normal" id="empl-city"></span></li>
+                                <li class="list-group-item py-2 font-weight-bold">State:<span class="font-weight-normal" id="empl-state"></span></li>
+                                <li class="list-group-item py-2 font-weight-bold">Zip:<span class="font-weight-normal" id="empl-zip"></span></li>
+                                <li class="list-group-item py-2 font-weight-bold">Phone:<span class="font-weight-normal" id="empl-phone"></span></li>
+                              </ul>
+                             <div class="btn" role="group" aria-label="Basic example" >
+                                    <button type="button" class="btn btn-link align-bottom" data-toggle="modal" data-target="#editprof">Edit</button>
+                            </div>
+
+                </div>
+                <div class="col-9" id="middle-right">
+                    <div class="row">
+                        <div class="col">
+                                <h2>Reimbursement table</h2>
+                        </div>
+                        <div class="col">
+                                <div class="btn " role="group" aria-label="Basic example" >
+                                        <button type="button" class="btn btn-danger align-bottom" data-toggle="modal" data-target="#newreimb" id="new-reimb-btn" >New reimbursement</button>
+                                </div>
+                        </div>
+                        <div class="col">
+                            <div class="dropdown">
+                                <br>
+                                    <button class="btn btn dropdown-toggle float-right"  type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Status Filter
+                                    </button>
+                                   
+                                        <div class="dropdown-menu mb-5" aria-labelledby="dropdownMenuButton" >
+                                            <a class="dropdown-item" value="Approved" href="#app">Approved</a>
+                                            <a class="dropdown-item" value="Denied"href="#denn">Denied</a>
+                                            <a class="dropdown-item" value="Pending"href="#pend">Pending</a>
+                                        </div>
+                                        
+                            
+
+                            </div>
+                         </div>
+                    </div>
+                        <table class="table table-hover table-boarded" id="reimb-table">
+                            <tr>
+                                <th>ID </th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Submitted</th>
+                                <th>Status</th>
+                                <th>Description</th>
+                                <th>Sum</th>
+                                <th>Picture</th>
+                                <th>Options</th>
+                            </tr>
+                
+                        </table>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <section id="bottom">
+        <div class="container">
+            <hr>
+            <p>Equal EmploymentPrivacy PolicyTerms & ServiceFAQ 2019 All rights reserved.</p>
+        </div>
+    </section>
+    <script src="static/login.js"></script>
+   <script src="static/index.js"></script>  
+</body>
+</html>
