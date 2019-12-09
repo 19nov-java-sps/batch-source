@@ -17,6 +17,7 @@
 		<!-- include our mapping resources (hbm files) or classes (where we have annotations) -->
 		
 		<mapping class="com.revature.model.Employees"/>
+		<mapping class="com.revature.model.Reimbursements"/>
 		
 	</session-factory>
 </hibernate-configuration>

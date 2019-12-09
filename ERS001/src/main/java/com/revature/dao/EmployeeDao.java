@@ -16,6 +16,7 @@ public interface EmployeeDao {
 	
 	public List<Employees> getEmployees();
 	public Employees getEmployeeById(int id);
+	public String getEmployeeById1(int id);
 	public boolean createEmployee(Employees e) throws SQLException;
 	//public boolean updateEmployee(Employee e);
 	public int deleteEmployee(int id);

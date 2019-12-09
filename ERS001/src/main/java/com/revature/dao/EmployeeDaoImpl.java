@@ -49,17 +49,18 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		}
 		return employee;
 	}
-
-	@Override
-	public Employees getEmployeeById(int id) {
 	
-			try(Session s = HibernateUtil.getSession()){
-				Employees b = s.get(Employees.class, id);
-				log.info("Getting Employee"+b);
-				return b;
-			}
+	public Employees getEmployeeById(int id) {
+		
+		try(Session s= HibernateUtil.getSession()){
+			Query q=s.createQuery("from Employees where id=id");
+			List<Employees> employee =q.list();
+			return employee.get(0);
 		}
 	
+	}
+
+
 		
 		
 		
@@ -206,7 +207,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		
 		*/
 
-
+/*
 
 	@Override
 	public boolean createEmployee(Employees e) throws SQLException {
@@ -234,7 +235,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		
 		
 		
-		
+	*/	
 		
 		
 	}
