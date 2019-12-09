@@ -110,7 +110,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	}
 
 	public int updateEmployee(Employee e) throws SQLException {
-		String sql = "update employee set full_name =?, user_name =?, pass_word =?, isManager =? where employee.emp_id =?";
+		String sql = "update employee set full_name =?, user_name =?, pass_word =?, isManager =? where emp_id =?";
 		int employeeUpdated = 0;
 
 		try (Connection con = ConnectionUtil.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {

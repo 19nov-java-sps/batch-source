@@ -14,32 +14,6 @@ import com.revature.util.ConnectionUtil;
 
 public class ReimbursementDaoImpl implements ReimbursementDao {
 
-//	@Override
-//	public Reimbursement getReimbursementById(int id) {
-//		String sql = "select * from reimbursement where reim_id = ?";
-//		Reimbursement r = null;
-//
-//		try (Connection con = ConnectionUtil.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
-//			ps.setInt(1, id);
-//			ResultSet rs = ps.executeQuery();
-//
-//			while (rs.next()) {
-//				int reimbursementID = rs.getInt("reim_id");
-//				int employeeID = rs.getInt("emp_id");
-//				double amount = rs.getDouble("amount");
-//				String description = rs.getString("description");
-//				String dateSubmission = rs.getString("date_submission");
-//				String dateApproval = rs.getString("date_approval");
-//				boolean rejected = rs.getBoolean("rejected");
-//				r = new Reimbursement(reimbursementID, employeeID, amount, description, dateSubmission, dateApproval,
-//						rejected);
-//			}
-//		} catch (SQLException error) {
-//			error.printStackTrace();
-//		}
-//		return r;
-//	}
-
 	@Override
 	public int createReimbursement(Reimbursement r) {
 		String sql = "insert into reimbursement (emp_id, amount, reason, pending, approved, denied, resolved) values (?,?,?,?,?,?,?)";
@@ -56,7 +30,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 			ps.setBoolean(7, r.isResolved());
 
 			reimbursementCreated = ps.executeUpdate();
-
+			System.out.println(reimbursementCreated);
 		} catch (SQLException error) {
 			error.printStackTrace();
 		}
@@ -65,19 +39,16 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 
 	@Override
 	public int updateReimbursement(Reimbursement r) {
-		String sql = "insert into reimbursement (reim_id, emp_id, amount, reason, pending, approved, denied, resolved) values (?,?,?,?,?,?,?,?)";
+		String sql = "update employee set pending=?, approved=?, denied=?, resolved=? where reim_id =?";
 		int reimbursementUpdated = 0;
 
 		try (Connection con = ConnectionUtil.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
 
-			ps.setInt(1, r.getReimbursementID());
-			ps.setInt(2, r.getEmployeeID());
-			ps.setDouble(3, r.getAmount());
-			ps.setString(4, r.getReason());
-			ps.setBoolean(5, r.isPending());
-			ps.setBoolean(6, r.isApproved());
-			ps.setBoolean(7, r.isDenied());
-			ps.setBoolean(8, r.isResolved());
+			ps.setBoolean(1, r.isPending());
+			ps.setBoolean(2, r.isApproved());
+			ps.setBoolean(3, r.isDenied());
+			ps.setBoolean(4, r.isResolved());
+			ps.setInt(5, r.getReimbursementID());
 
 			reimbursementUpdated = ps.executeUpdate();
 
@@ -105,7 +76,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 	@Override
 	public List<Reimbursement> getPendingReimbursements() {
 
-		String sql = "select * from reimbursement where pending=?";
+		String sql = "select * from reimbursement where pending=?"; 
 		List<Reimbursement> reim = new ArrayList<>();
 		try (Connection c = ConnectionUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
 
@@ -115,9 +86,8 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 
 			while (rs.next()) {
 
-//				int id = rs.getInt("id");
 				int userID = rs.getInt("emp_id");
-				int invoiceID = rs.getInt("reim_id");
+				int reimbursementID = rs.getInt("reim_id");
 				double amount = rs.getDouble("amount");
 				String reason = rs.getString("reason");
 				boolean pending = rs.getBoolean("pending");
@@ -125,7 +95,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 				boolean denied = rs.getBoolean("denied");
 				boolean resolved = rs.getBoolean("resolved");
 
-				Reimbursement d = new Reimbursement(userID, invoiceID, amount, reason, pending, approved, denied,
+				Reimbursement d = new Reimbursement(userID, reimbursementID, amount, reason, pending, approved, denied,
 						resolved);
 				reim.add(d);
 			}
@@ -150,7 +120,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 			while (rs.next()) {
 
 				int userID = rs.getInt("emp_id");
-				int invoiceID = rs.getInt("reim_id");
+				int reimbursementID = rs.getInt("reim_id");
 				double amount = rs.getDouble("amount");
 				String reason = rs.getString("reason");
 				boolean pending = rs.getBoolean("pending");
@@ -158,7 +128,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 				boolean denied = rs.getBoolean("denied");
 				boolean resolved = rs.getBoolean("resolved");
 
-				Reimbursement d = new Reimbursement(userID, invoiceID, amount, reason, pending, approved, denied,
+				Reimbursement d = new Reimbursement(userID, reimbursementID, amount, reason, pending, approved, denied,
 						resolved);
 				reim.add(d);
 			}
@@ -184,7 +154,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 
 //				int id = rs.getInt("id");
 				int userID = rs.getInt("emp_id");
-				int invoiceID = rs.getInt("reim_id");
+				int reimbursementID = rs.getInt("reim_id");
 				double amount = rs.getDouble("amount");
 				String reason = rs.getString("reason");
 				boolean pending = rs.getBoolean("pending");
@@ -192,7 +162,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 				boolean denied = rs.getBoolean("denied");
 				boolean resolved = rs.getBoolean("resolved");
 
-				Reimbursement d = new Reimbursement(userID, invoiceID, amount, reason, pending, approved, denied,
+				Reimbursement d = new Reimbursement(userID, reimbursementID, amount, reason, pending, approved, denied,
 						resolved);
 				reim.add(d);
 			}
@@ -211,8 +181,51 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 	}
 
 	@Override
-	public void resolveReimbursement(int i) {
-		// TODO Auto-generated method stub
+	public int approved(boolean pending, boolean approved, boolean denied, boolean resolved, int reimbursementID) {
+		int reimResolved = 0;
+		String sql = "update reimbursement set pending = ?, approved = ?, denied = ?, resolved = ? where reim_id = ?";
+
+		try (Connection c = ConnectionUtil.getConnection();
+
+				PreparedStatement ps = c.prepareStatement(sql)) {
+
+			ps.setBoolean(1, pending);
+			ps.setBoolean(2, approved);
+			ps.setBoolean(3, denied);
+			ps.setBoolean(4, resolved);
+			ps.setInt(5, reimbursementID);
+
+			reimResolved = ps.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return reimResolved;
+	}
+
+	@Override
+	public int denied(boolean pending, boolean approved, boolean denied, boolean resolved, int reimbursementID) {
+		int reimResolved = 0;
+		String sql = "update reimbursement set pending = ?, approved = ?, denied = ?, resolved = ? where reim_id = ?";
+
+		try (Connection c = ConnectionUtil.getConnection();
+
+				PreparedStatement ps = c.prepareStatement(sql)) {
+
+			ps.setBoolean(1, pending);
+			ps.setBoolean(2, approved);
+			ps.setBoolean(3, denied);
+			ps.setBoolean(4, resolved);
+			ps.setInt(5, reimbursementID);
+
+			reimResolved = ps.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return reimResolved;
 
 	}
 

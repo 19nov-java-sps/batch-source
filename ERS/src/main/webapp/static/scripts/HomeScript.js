@@ -4,7 +4,7 @@ document.getElementById("logout-btn").addEventListener("click", getAjaxLogOut);
 let token = sessionStorage.getItem("token");
 let loginURL = "http://localhost:8080/ERS/login";
 
-// checking of token is null, valid, or neither
+// checking if token is null, valid, or neither
 if (!token) {
 	window.location.href = "http://localhost:8080/ERS/TokenIsNull";
 } else {
@@ -35,6 +35,7 @@ function sendAjaxGet(url, callback) {
 function editView(xhr) {
 	console.log(xhr.response);
 	let empl = JSON.parse(xhr.response);
+	console.log(empl)
 	if (empl.isManager == true) {
 		document.getElementById("view-employees").hidden = false;
 		document.getElementById("employee-requests").hidden = false;

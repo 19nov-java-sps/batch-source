@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.dao.ReimbursementDao;
 import com.revature.daoimpl.ReimbursementDaoImpl;
+import com.revature.models.Employee;
 import com.revature.models.Reimbursement;
 import com.revature.servicelayer.ReimbursementService;
 
@@ -21,10 +22,7 @@ public class ReimbursementDelegate {
 
 	// gets all pending reimbursements
 	public void getPendingReimbursement(HttpServletRequest request, HttpServletResponse response) throws IOException {
-//		String idString = request.getParameter("employeeID");
-		
-//		System.out.println(idString);
-		
+
 		List<Reimbursement> reim = reimbursementDao.getPendingReimbursements();
 //				getPendingReimbursementById(Integer.parseInt(idString));
 //				reimbursementDao.getPendingReimbursements()
@@ -63,24 +61,30 @@ public class ReimbursementDelegate {
 
 	}
 
-	// grabs all pending requests based on employee id
-//	public void viewPendingById(HttpServletRequest request, HttpServletResponse response)
-//			throws IOException, SQLException {
-//		String path = request.getServletPath();
-//		System.out.println("I am in viewPendingById" + " Servlet path i;s " + path);
-//		String employeeid = request.getParameter("employeeID");
-//		String reimbursementid = request.getParameter("reimbursementID");
-//		String amount = request.getParameter("reason");
-//		double parseAmount = Double.parseDouble(amount);
-//		String reason = request.getParameter("reason");
-//		
-//
-//
-//	}
-
-	// approve or deny request
-	public void resolveReimbursement(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
+	public void approved(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String pending = request.getParameter("pending");
+		String approved = request.getParameter("approved");
+		String denied = request.getParameter("denied");
+		String resolved = request.getParameter("resolved");
+		String reimbursementID = request.getParameter("reimbursementID");
+		
+		int convertedBooleans;
+		convertedBooleans = reimbursementDao.approved(Boolean.parseBoolean(pending), Boolean.parseBoolean(approved),
+				Boolean.parseBoolean(denied), Boolean.parseBoolean(resolved), Integer.parseInt(reimbursementID));
 
 	}
+
+	public void denied(HttpServletRequest request, HttpServletResponse response) throws IOException{
+		String pending = request.getParameter("pending");
+		String approved = request.getParameter("approved");
+		String denied = request.getParameter("denied");
+		String resolved = request.getParameter("resolved");
+		String reimbursementID = request.getParameter("reimbursementID");
+
+		int convertedBooleans;
+		convertedBooleans = reimbursementDao.denied(Boolean.parseBoolean(pending), Boolean.parseBoolean(approved),
+				Boolean.parseBoolean(denied), Boolean.parseBoolean(resolved), Integer.parseInt(reimbursementID));
+
+	}
+
 }

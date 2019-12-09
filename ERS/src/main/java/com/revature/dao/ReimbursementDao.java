@@ -20,6 +20,8 @@ public interface ReimbursementDao {
 
 	public List<Reimbursement> getResolvedReimbursementById(int id);
 
-	public void resolveReimbursement(int i);
+	public int approved(boolean pending, boolean approved, boolean denied, boolean resolved,
+			int reimbursementID);
 
+	public int denied(boolean pending, boolean approved, boolean denied, boolean resolved, int reimbursementID);
 }

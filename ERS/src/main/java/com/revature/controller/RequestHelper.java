@@ -15,9 +15,9 @@ import com.revature.delegates.ViewDelegate;
 public class RequestHelper {
 
 	private ViewDelegate viewDelegate = new ViewDelegate();
+	private AuthDelegate authDelegate = new AuthDelegate();
 	private EmployeeDelegate employeeDelegate = new EmployeeDelegate();
 	private ReimbursementDelegate reimDelegate = new ReimbursementDelegate();
-	private AuthDelegate authDelegate = new AuthDelegate();
 
 	public RequestHelper() {
 		super();
@@ -50,10 +50,6 @@ public class RequestHelper {
 				break;
 			case "allresolved":
 				reimDelegate.getResolvedReimbursement(request, response);
-				break;
-//			case "viewpendingbyid":
-//				reimDelegate.viewPendingById(request, response);
-//				break;
 			default:
 				response.sendError(404, "Request Record(s) Not Found");
 			}
@@ -78,9 +74,11 @@ public class RequestHelper {
 		case "/createreimbursement":
 			reimDelegate.createReimbursement(request, response);
 			break;
-		case "/approveordeny":
-			reimDelegate.resolveReimbursement(request, response);
+		case "/approved":
+			reimDelegate.approved(request, response);
 			break;
+		case "/denied":
+			reimDelegate.denied(request, response);
 		default:
 			response.sendError(405);
 		}
