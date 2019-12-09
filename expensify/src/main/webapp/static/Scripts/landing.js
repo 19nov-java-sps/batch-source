@@ -208,18 +208,21 @@ function fetchEmployees(){
 			console.log("error")
 		}
 	}).then(data => {
-		document.getElementById("employeeDirectory").hidden = false
-		let list = document.getElementById("employeeDirectory")
+		let carousel = document.getElementById("myCarousel")
+		carousel.hidden="false"
+			
+		let carouselInner = document.getElementById("myCarousel")
 		for (let employee of data){
 			console.log(employee)
-			let li = document.createElement("li")
-			list.appendChild(li)
 			let image = document.createElement("img")
-			list.appendChild(image)
 			image.src = `https://mdbootstrap.com/img/Photos/Avatars/img%20(${employee.userId}).jpg`
+			image.alt = `${employee.fullname}`
+
 			let name = document.createElement("h4")
 			name.innerText = `${employee.fullname}`
-			li.appendChild(name)
+		
+			
+	
 			
 		}})}
 

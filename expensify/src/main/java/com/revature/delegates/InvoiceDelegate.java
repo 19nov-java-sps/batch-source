@@ -81,7 +81,8 @@ public class InvoiceDelegate {
 		String invoiceId = request.getParameter("invoiceId");
 		
 		invoiceDao.putApprovedCallable(Integer.parseInt(invoiceId));
-
+		
+		response.sendRedirect("/landing");
 		
 	}
 	
@@ -91,6 +92,9 @@ public class InvoiceDelegate {
 			String invoiceId = request.getParameter("invoiceId");
 			
 			invoiceDao.putDenyCallable(Integer.parseInt(invoiceId));
+			
+			response.sendRedirect("/landing");
+			
 			
 		
 		}

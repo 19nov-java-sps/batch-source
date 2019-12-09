@@ -1,18 +1,34 @@
 package com.revauture.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
-import org.hibernate.annotations.Entity;
 
 @Entity
+@Table(name="employee_table")
 public class Employee {
 	
 	@Id
+	@Column(name="userId")
+	@GeneratedValue(generator = "incrementor")
 	private int userId;
+	
+	
 	private String username;
+	
+	
 	private String password;
+	
+	
 	private String fullname;
+	
+	
 	private boolean isManager;
+	
+	
 	private Invoice invoice;
 	
 	

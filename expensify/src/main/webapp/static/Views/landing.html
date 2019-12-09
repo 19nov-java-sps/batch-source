@@ -28,7 +28,9 @@
 </nav>
 <div>
   <div>
-  <div class="card testimonial-card bg-warning"  id="employeeInfo">
+  
+  <!--  Here the employee Profile Card    -->
+  	<div class="card testimonial-card bg-warning"  id="employeeInfo">
   
         <div class="card-up info-color"></div>
      
@@ -53,37 +55,37 @@
       </div>
       </div>
 		
-	<div class="table table" id="invoiceList"  hidden="true">
-
-	</div>
+	 <!--  Here the invoice list    -->
+		<div class="table table" id="invoiceList"  hidden="true"></div>
 			
-	<ul class="list-unstyled mt-3" id="employeeDirectory" hidden>
+	 <!--  Here the employee list    -->		
+		<ul class="list-unstyled mt-3" id="employeeDirectory" hidden></ul>
 
-	</ul>
-
-  	</div>
+	 <!--  Here the result of invoice search    -->
+  		<div class="container" id="locatedInvoice" hidden></div>
   	
-  	<div class="container" id="locatedInvoice">
-  	</div>
-  <div class="container" id="createInvoice">
-  <form class="border border-white">
-    <div class="form-group">
-      <label for="amount">Amount</label>
-      <input id="amount" type="number" placeholder="Amount" class="form-control" required autofocus autocomplete="off">
-    </div>
-    <div class="form-group">
-      <label for="description">Description</label>
-      <textarea id="description" rows="4" placeholder="Reason for Reimbursement" class="form-control" required></textarea>
-    </div>
-    <div class="text-center">
-	  <input type="button" id="submit-btn" value="Submit" class="btn btn-dark btn-lg">
-	</div>
-  </form>
-  </div>
-  <div class="container" id="listOfMyPendingInvoices" style="display:none">
-  </div>
-
-<div class="container" id="approveOrDeny">
+  	 <!--  Here the create invoice    -->
+	  	<div class="container" id="createInvoice" hidden>
+	  		<form class="border border-white">
+	    		<div class="form-group">
+	      		<label for="amount">Amount</label>
+	      		<input id="amount" type="number" placeholder="Amount" class="form-control" required autofocus autocomplete="off">
+	    		</div>
+	    		<div class="form-group">
+	      		<label for="description">Description</label>
+	      		<textarea id="description" rows="4" placeholder="Reason for Reimbursement" class="form-control" required></textarea>
+	    		</div>
+	    		<div class="text-center">
+		  		<input type="button" id="submit-btn" value="Submit" class="btn btn-dark btn-lg">
+				</div>
+	  		</form>
+	  	</div>
+  	
+  	 <!--  Here the list of pending invoice    -->
+  		<div class="container" id="listOfMyPendingInvoices" style="display:none"></div>
+  
+ 	 <!-- approved or deny invoices -->
+		<div class="container" id="approveOrDeny" hidden>
   <form class="border border-white">
     <div class="form-group">
       <label for="invoice">Enter Invoice Id</label>
@@ -97,6 +99,35 @@
   </form>
   </div>
   
+  
+   <!--  Here the emp list/carousel featurette    -->
+		<div id="myCarousel" class="carousel slide" data-interval="3000" data-ride="carousel" hidden>
+		    <!-- Wrapper for carousel items -->
+		    <div class="carousel-inner" id="carouselInner">
+		        <div class="carousel-item active" id="active">
+		            <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(${employee.id}).jpg" class="d-block w-100 h-100" alt="First Slide">
+		            <div class="carousel-caption d-none d-md-block">
+		                <h5>Employee name<h5>
+		         
+		            </div>
+		        </div>
+		       <!--   Need to loop carousel-items -->
+		        <div class="carousel-item" id="carouselItem">
+		            <img src="" class="d-block w-100 h-100" alt="Second Slide">
+		            <div class="carousel-caption d-none d-md-block">
+		                <h5>Second slide label</h5>
+		          
+		            </div>
+		        </div>
+		    </div>
+		    <!-- Carousel controls -->
+		    <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+		        <span class="carousel-control-prev-icon"></span>
+		    </a>
+		    <a class="carousel-control-next" href="#myCarousel" data-slide="next">
+		        <span class="carousel-control-next-icon"></span>
+		    </a>
+		</div>
 
 </body>
 <script src="static/Scripts/landing.js"></script>
