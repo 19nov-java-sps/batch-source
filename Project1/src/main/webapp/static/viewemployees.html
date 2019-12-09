@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<p><button onclick="loadXMLDoc()">Refresh User Info</button></p>
+
+<table id="userlist" border="1">
+<tr><th>User_id</th><th>Username</th><th>Role</th><th>Password</th></tr>
+</table>
+
+<script>
+function loadXMLDoc() {
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "http://localhost:8080/AuthDemo/api/getallusers");
+  xhr.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      myFunction(this);
+    }
+  };
+  xhr.setRequestHeader("Authorization", sessionStorage.getItem("token"));
+  xhr.send();
+}
+
+function myFunction(xhr) {
+	let users = JSON.parse(xhr.response);
+    table = "<tr><th>User_id</th><th>Username</th><th>Role</th></tr>";
+    for (i = 0; i < users.length; i++) { 
+        table += "<tr><td>" + 
+        users[i].id +
+        "</td><td>" +
+        users[i].username +
+        "</td><td>" +
+        users[i].userRole +
+        "</td></tr>";
+     }
+     document.getElementById("userlist").innerHTML = table;
+}
+loadXMLDoc();
+</script>
+</body>
+</html>

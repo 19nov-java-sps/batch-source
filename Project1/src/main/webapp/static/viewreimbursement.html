@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h2>View Reimbursements here</h2>
+<script>
+function loadXMLDoc() {
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "http://localhost:8080/AuthDemo/api/getallreimbursements");
+  xhr.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      myFunction(this);
+    }
+  };
+  xhr.setRequestHeader("Authorization", sessionStorage.getItem("token"));
+  xhr.send();
+}
+
+function myFunction(xhr) {
+	let resolved = JSON.parse(xhr.response);
+    table = "<tr><th>username</th><th>requestid</th><th>reason</th><th>amount</th><th>status</th></tr>";
+    for (i = 0; i < resolved.length; i++) { 
+        table += "<tr><td>" + 
+        resolved[i].username +
+        "</td><td>" +
+        resolved[i].requestid +
+        "</td><td>" +
+        resolved[i].reason +
+        "</td><td>" +
+        resolved[i].amount +
+        "</td><td>" +
+        resolved[i].status +
+        "</td></tr>";
+     }
+     document.getElementById("resolvedlist").innerHTML = table;
+}
+loadXMLDoc();
+</script>
+</body>
+</html>
