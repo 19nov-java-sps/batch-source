@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,13 +65,15 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	public Employee emplLogin(String email, String password) {
 		
 		String sql = "select * from Employee where email = ? and pass = ?";
+		Employee employee = null;
+		
 		try(Connection c = ConnectionUtil.getConnection();
         		PreparedStatement ps = c.prepareStatement(sql)) {
         	ps.setString(1, email);
         	ps.setString(2, password);
         	ResultSet rs = ps.executeQuery();
         	
-        	if (rs.next()) {
+        	while (rs.next()) {
         		int emplId = rs.getInt("emplId");
 				String firstName = rs.getString("firstName");
 				String lastName = rs.getString("lastName");
@@ -84,20 +85,19 @@ public class EmployeeDaoImpl implements EmployeeDao {
 				
 				Department department = ds.getDeptById(deptId);
 				
-				Employee e = new Employee(emplId, firstName, lastName, email, phone, password, managerId, isManager, department, position);
-				return e;
+				employee  = new Employee(emplId, firstName, lastName, email, phone, password, managerId, isManager, department, position);
         	}
         	
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		return null;
+		return employee;
 	}
 
 	@Override
 	public Employee getEmplById(int id) {
 		String sql = "select * from Employee where emplId = ?";
+		Employee employee = null; 
 		
 		try(Connection c = ConnectionUtil.getConnection();
         		PreparedStatement ps = c.prepareStatement(sql)) {
@@ -119,15 +119,14 @@ public class EmployeeDaoImpl implements EmployeeDao {
 				
 				Department department = ds.getDeptById(deptId);
 				
-				Employee e = new Employee(emplId, firstName, lastName, email, phone, password, managerId, isManager, department, position);
-				return e;
+				employee = new Employee(emplId, firstName, lastName, email, phone, password, managerId, isManager, department, position);
         	}
         	
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
-		return null;
+		return employee;
 	}
 
 	@Override

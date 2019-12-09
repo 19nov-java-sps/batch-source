@@ -33,8 +33,11 @@ public class AuthDelegate {
 	public void authenticate(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String email = request.getParameter("email");
 		String pass = request.getParameter("password");
+		System.out.println("email is " +  email); 
+		System.out.println("password is : " + pass); 
 		
-		Employee empl = employeeService.getLogin(email, pass);
+		Employee empl = employeeService.getLogin(email, pass); 
+		System.out.println("pooop:" + empl);
 
 		if (empl != null) {
 			String token = empl.getEmplId()+ ":" + empl.isManager();
