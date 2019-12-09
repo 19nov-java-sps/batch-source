@@ -31,7 +31,8 @@ function createNewReim() {
 		
 		else if (this.readyState === 4 && this.status !== 201){
 			document.getElementById('reim-fail-alert').hidden = false;
-			setTimeout(function(){ document.getElementById('reim-fail-alert').hidden = true; }, 3000);
+			//console.log(this.status); 
+			//setTimeout(function(){ document.getElementById('reim-fail-alert').hidden = true; }, 3000);
 		}
 	}
 	

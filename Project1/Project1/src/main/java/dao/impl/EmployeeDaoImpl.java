@@ -30,7 +30,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	public List<Employee> getAllEmpl() {
 		
 		List<Employee> employees = new ArrayList<>();
-		String sql = "select * from Employee order by isManager desc";
+		//String sql = "select * from Employee order by isManager desc";
+		String sql = "select * from Employee"; 
 
 		try (Connection c = ConnectionUtil.getConnection();
 				Statement s = c.createStatement();

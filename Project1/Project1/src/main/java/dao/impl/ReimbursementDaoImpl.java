@@ -5,8 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.Timestamp;
+
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -204,7 +204,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 	public int createReim(double amount, int emplId, String description) {
 		
 		int reimCreated = 0;
-		String sql = "insert into Reimbursement(amount, status, submitBy, submitDate, description) values(?, ?, ?, ?, ?)";
+		String sql = "insert into Reimbursement(amount, status, submitBy, submitDate, description) values (?, ?, ?, ?, ?)";
 		
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 		
@@ -217,12 +217,14 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 			ps.setString(5, description);
 			
 			reimCreated = ps.executeUpdate();
+			//System.out.println("reimCreated = " + reimCreated); 
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
 		return reimCreated;
+		//return 1;
 	}
 
 	@Override

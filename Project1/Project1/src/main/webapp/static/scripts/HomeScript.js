@@ -125,7 +125,7 @@ function displayEmployeeList(xhr) {
 //}
 
 function newReimPage() {
-	let xhr
+	//let xhr
 	window.location.href="http://localhost:8080/Project1/reimbursement/new";
 }
 
