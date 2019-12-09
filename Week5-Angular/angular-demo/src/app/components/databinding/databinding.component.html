@@ -1,0 +1,33 @@
+<h3>Data Binding</h3>
+<h4>One Way Data Binding</h4>
+
+<form>
+    <label>Name</label>
+    <input value='{{person1.name}}'>
+    <br>
+    <label>Age</label>
+    <input value='{{person1.age}}'>
+    <br>
+    <label>Email</label>
+    <input value='{{person1.email}}'>
+</form>
+
+<p>{{person1.name}}</p>
+<p>{{person1.age}}</p>
+<p>{{person1.email}}</p>
+
+<h4>Two Way Data Binding</h4>
+<form>
+    <label>Name</label>
+    <input [(ngModel)]='person2.name' name='person2.name'>
+    <br>
+    <label>Age</label>
+    <input [(ngModel)]='person2.age' name='person2.age'>
+    <br>
+    <label>Email</label>
+    <input [(ngModel)]='person2.email' name='person2.email'>
+</form>
+
+<p>{{person2.name}}</p>
+<p>{{person2.age}}</p>
+<p>{{person2.email}}</p>
