@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Employee | Home</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <span class="navbar-brand">Expense Reimbursement System</span>
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link">Reimbursements</a>
+                </li>    
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost:8080/Project1Hib/profile">View Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="logout-link">Logout</a>
+                </li>
+            </ul>  
+        </nav>
+        <h2 class="pb-5 pt-3">Welcome <span id="name"></span></h2>
+        <button id="create-reim-btn" class="btn btn-success" data-toggle="modal" data-target="#create-reim-modal">Create Reimbursement</button>
+        <div class="modal fade" id="create-reim-modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="title">Create A Reimbursement</h5>
+                        <button type="button" class="close" data-dismiss="modal">
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group row justify-content-center">
+                            <div class="col-xs-4">
+                                <input id="amount" type="number" placeholder="Amount" class="form-control"><br>
+                            </div>
+                            <textarea id="description" cols="20" rows="10" maxlength="120" placeholder="Description" class="form-control mx-2"></textarea><br>
+                        </div>
+                        <div id="fill-inputs-text" class="text-danger text-center" hidden>Please fill in the inputs!</div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="close-btn" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button id="submit-btn" type="button" class="btn btn-success">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h4 class="pt-3 text-warning">Pending Reimbursements</h4>
+        <table id="pending-reim" class="table" hidden>
+            <tr>
+                <th>Reimbursement Id</th>
+                <th>Amount</th>
+                <th>Description</th>
+                <th>Status</th>
+            </tr>
+        </table>
+        <h4 class="pt-5 text-success">Resolved Reimbursements</h4>
+        <table id="resolved-reim" class="table">
+            <tr>
+                <th>Reimbursement Id</th>
+                <th>Amount</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Manager</th>
+            </tr>
+        </table>
+        <h4 class="pt-5 text-danger">Denied Reimbursements</h4>
+        <table id="denied-reim" class="table">
+            <tr>
+                <th>Reimbursement Id</th>
+                <th>Amount</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Manager</th>
+            </tr>
+        </table>
+    </div>
+
+    <script src="static/Scripts/employeeHome.js"></script>
+</body>
+</html>
