@@ -529,7 +529,7 @@ function sendAjaxUpdate(){
 	let firstName = document.getElementById("firstName").value;
 	let lastName = document.getElementById("lastName").value;
 	
-	
+		
 	xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
 	let requestBody = `firstName=${firstName}&lastName=${lastName}&userId=${universalID}`;
 	xhr.send(requestBody);
