@@ -11,6 +11,8 @@ export class SelectComponent implements OnInit {
   colors: string[] = ['red', 'green', 'blue'];
   days: string[] = ['Monday', 'Wednesday', 'Friday'];
 
+  selected: string;
+
   constructor() { }
 
   ngOnInit() {

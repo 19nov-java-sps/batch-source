@@ -9,6 +9,8 @@ export class HighlightComponent implements OnInit {
 
   colors: string[] = ['red', 'green', 'blue'];
 
+  selectedColor: string;
+
   constructor() { }
 
   ngOnInit() {
