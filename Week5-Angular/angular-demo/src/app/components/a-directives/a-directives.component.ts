@@ -10,6 +10,8 @@ export class ADirectivesComponent implements OnInit {
   colors: string[] = ['blue', 'red', 'green'];
   formats: string[] = ['highlight', 'bold', 'italic'];
   selectedFormats: string[] = [];
+  selectedColor: string;
+  selectEnabled: false;
 
   constructor() { }
 
