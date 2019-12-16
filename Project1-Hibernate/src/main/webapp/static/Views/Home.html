@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Home Page</title>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</head>
+<body>
+	
+	
+	<div class="container" id="menu" style="display: none"> 
+		<h1 class="text-center" id="welcome" style="display: none"> &#127749 Welcome <span id="user"> </span></h1>
+		<div class="jumbotron">
+			<div class="form-group form-inline justify-content-center">
+				
+				<div>
+					<button type="submit" id="viewProfile" style="display: none" class="btn btn-warning btn-lg btn-block">View Profile</button>
+					<button type="submit" id="update-profile" style="display: none" class="btn btn-primary btn-lg btn-block"> Update Profile</button>
+					<button type="submit" id="submit-invoice" style="display: none" class="btn btn-danger btn-lg btn-block">Submit Reimbursement Request</button>
+					<button type="submit" id="pendingRequests" style="display: none" class="btn btn-success btn-lg btn-block">View Pending Reimbursement Requests</button>
+					<button type="submit" id="resolvedRequests" style="display: none" class="btn btn-light btn-lg btn-block">View Resolved Reimbursement Requests</button>
+					<button type="submit" id="viewAllEmployees" style="display: none" class="btn btn-warning btn-lg btn-block">View All Employees</button>
+					<button type="submit" id="approveOrDeny" style="display: none" class="btn btn-danger btn-lg btn-block">Approve or Deny Employee Reimbursement Requests</button>
+					<button type="submit" id="viewAllPendingRequests" style="display: none" class="btn btn-success btn-lg btn-block">View All Pending Employee Reimbursement Requests</button>
+					<button type="submit" id="viewAllResolvedRequests" style="display: none" class="btn btn-light btn-lg btn-block">View All Resolved Employee Reimbursement Requests</button>
+					<button type="submit" id="viewRequestsOfASingleEmployee" style="display: none" class="btn btn-primary btn-lg btn-block style=">View Reimbursement Requests From A Single Employee</button>
+					<button type="submit" id="logout-btn" style="display: none" class="btn btn-dark btn-lg btn-block">Log Out</button>
+					
+					<div class="form-group form-inline justify-content-center" id="updateForm" style="display:none">
+		            	<input type="text" id="firstName" placeholder="First Name" required class="form-control">
+		            	<br>
+		       			<input type="text" id="lastName" placeholder="Last Name" required class="form-control">
+		       			<br>
+		       			<button type="submit" id="update-User" class="btn btn-warning btn-lg btn-block">Submit</button>
+       				</div>
+       				
+       				<div class="form-group form-inline justify-content-center" id="new-invoice-form" style="display:none">
+		            	<input type="text" id="amount" placeholder="Amount" required class="form-control">
+		            	<br>
+		       			<input type="text" id="description" placeholder="Description" required class="form-control">
+		       			<br>
+		       			<button type="submit" id="send-invoice" class="btn btn-warning btn-lg btn-block">Submit</button>
+       				</div>
+       				
+       				<div class="form-group form-inline justify-content-center" id="employee-request-lookup" style="display:none">
+		            	<input type="text" id="employeeId" placeholder="Employee ID" required class="form-control">
+		       			<br>
+		       			<button type="submit" id="lookup-invoice" class="btn btn-warning btn-lg btn-block">Search</button>
+       				</div>
+       				
+       				
+       				<div>
+       					<table class="table table-hover table-dark" id="pendingTable" style="display:none">
+								  <thead>
+								    <tr>
+								      <th scope="col">Employee</th>
+								      <th scope="col">Reimbursement Request</th>
+								      <th scope="col">Amount</th>
+								    </tr>
+								  </thead>
+								  <tbody>
+								    
+								  </tbody>
+						</table>
+       				</div>
+       				
+       				<div>
+       					<table class="table table-hover table-dark" id="resolvedTable" style="display:none">
+								  <thead>
+								    <tr>
+								      <th scope="col">Employee</th>
+								      <th scope="col">Reimbursement Request</th>
+								      <th scope="col">Amount</th>
+								      <th scope="col">Resolved By</th>
+								    </tr>
+								  </thead>
+								  <tbody>
+								    
+								  </tbody>
+					  	</table>
+       				</div>
+       				
+       				<div>
+       					<table class="table table-hover table-dark" id="employeeRequestTable" style="display:none">
+								  <thead>
+								    <tr>
+								      <th scope="col">Employee</th>
+								      <th scope="col">Reimbursement Request</th>
+								      <th scope="col">Amount</th>
+								    </tr>
+								  </thead>
+								  <tbody>
+								    
+								  </tbody>
+					  	</table>
+       				</div>
+       				<small id="bad-request" class="form-text text-danger" style="display:none">
+							That employee does not exist. Please try again. 
+					</small>
+       				
+       				<div>
+       					<table class="table table-hover table-dark" id="toBeResolvedTable" style="display:none">
+								  <thead>
+								    <tr>
+								      <th scope="col">Employee</th>
+								      <th scope="col">Reimbursement ID</th>
+								      <th scope="col">Reimbursement Request</th>
+								      <th scope="col">Amount</th>
+								      <th scope="col">Approve</th>
+								      <th scope="col">Deny</th>
+								    </tr>
+								  </thead>
+								  <tbody>
+								    
+								  </tbody>
+					  	</table>
+       				</div>
+       				
+       				
+					<button type="button" id="back-btn" style="display: none" class="btn btn-primary btn-light">Back</button>
+					
+				</div>		
+			</div>
+		</div>
+	</div>
+	
+	
+
+</body>
+	
+	<script defer src="static/Script/HomeScript.js"></script>
+</html>
