@@ -4,6 +4,9 @@ import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
 import org.springframework.stereotype.Component;
 
@@ -14,10 +17,17 @@ public class Garment implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@Positive
 	private int id;
+	
 	private Size size;
+	
+	@javax.validation.constraints.Size(min=3, max=20)
 	private String brand;
+	
 	private GarmentType type;
+	
+	@NotBlank
 	private String color;
 
 	public Garment() {
