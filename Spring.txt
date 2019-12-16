@@ -125,3 +125,101 @@ What are the important Spring MVC annotations?
 How can we handle exceptions in Spring MVC?
 
 Use @ExceptionHandler
+
+What is Spring ORM? 
+
+Spring ORM is a module used to integrate data access code with spring (object relational mapping)
+allows us to combine hibernate and spring, as well as JPA Benefits:
+easier testing
+less boiler plate code
+
+What are the three beans required for configuring Spring ORM?
+
+DataSource
+where we configure our database credentials and driver class name
+SessionFactory
+where we configure hibernate specific properties, such as hibernate.dialect, hibernate.hbm2ddl.auto, hibernate.show_sql
+TransactionManager
+our DataSource is injected into our SessionFactory
+our SessionFactory is injected into the TransactionManager
+our SessionFactory is injected into our DAOs
+
+What is the use of the @Transactional annotation?
+
+To state what kind of transaction is needed
+
+What is meant by transaction propagation and how is it handled with Spring ORM?
+
+REQUIRED (default)
+
+same transaction will be used if one already exists
+otherwise a new transaction will be opened
+REQUIRES_NEW
+
+a new physical transaction will be created
+inner transaction can commit or rollback independently of the outer transaction
+NESTED
+
+inner and outer use the same transaction, but are separated by savepoints
+inner can roll back or commit with the second
+MANDATORY
+
+existing transaction must already be open or container will throw an IllegalTransactionException
+NEVER
+
+an existing cannot already be open; exception will be thrown if one is
+must execute non-transactionally
+SUPPORTS
+
+executes within the scope of existing transaction, otherwise will execute non-transactionally
+NOT_SUPPORTED
+
+executes outside any existing transaction, existing transaction will be paused
+
+What is Spring Boot?
+
+Spring Boot takes an opinionated view of building Spring applications
+in order to get an application up and running as quickly as possible
+
+What are the benefits of Spring Boot?
+
+makes it easy to create stand-alone, production-grade Spring based Applications that you can "just run"
+
+What is meant by convention over configuration?
+
+is a software design paradigm used by software frameworks that attempts to decrease the number
+of decisions that a developer using the framework is required to make
+without necessarily losing flexibility.
+
+e.g. spring boot
+
+What does @SpringBootApplication provide?
+
+is used to mark a configuration class that declares one or more @Bean methods
+and also triggers auto-configuration and component scanning. It's same as declaring
+a class with @Configuration, @EnableAutoConfiguration and @ComponentScan annotations.
+
+Where can we provide additional configuration for a spring boot app?
+
+@Configuration
+
+What is JSR 303?
+
+JSR 303 (Bean Validation) is the specification of the Java API for JavaBean validation in Java EE and Java SE.
+Simply put it provides an easy way of ensuring that the properties of your JavaBean(s) have the right values in them.
+
+How can you expose a RESTful web service using Spring?
+
+means that you enable objects to be accessed through some means
+
+How can you consume a RESTful web service using Spring?
+
+creating a client which can send requests to the API that you build. 
+It appears that you need to create and API which can handle Create, 
+retrieve, update and delete (CRUD) of a resource
+
+What is Spring Data JPA? 
+
+Spring Data JPA is a Spring Boot project which abstracts away our data persistence layer
+provides repository support for the Java Persistence API (JPA)
+
