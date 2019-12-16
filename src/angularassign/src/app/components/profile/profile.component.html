@@ -1,0 +1,10 @@
+<div class="container text-center">
+  <button class='btn btn-primary' (click)='showhide()'>
+    <p *ngIf='show'>Show Profile</p>
+    <p *ngIf='!show'>Hide Profile</p>
+  </button>
+  <br><br>
+  <p [hidden]='!show'>
+  My Employee id is {{profile.id}}, my name is {{profile.name}} and my job tile is {{profile.jobtitle}}!
+  </p>
+</div>

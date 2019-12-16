@@ -1,0 +1,13 @@
+<h1>Employees:</h1>
+<table class="table table-hover" *ngIf='employees.length>0'>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Birthday</th>
+  </tr>
+  <tr *ngFor='let employees of employees; let i=index'>
+    <td>{{employees.fname | titlecase}} {{employees.lname | titlecase}}</td>
+    <td>{{employees.email}}</td>
+    <td>{{employees.birthday | date:'MM/dd/yyyy'}}</td>
+  </tr>
+</table>

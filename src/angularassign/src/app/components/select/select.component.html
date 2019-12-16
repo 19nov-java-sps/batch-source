@@ -1,0 +1,25 @@
+<div class="container text-center">
+  <input type="radio" name="select" value="animals" [(ngModel)]='selected'> Animals<br>
+  <input type="radio" name="select" value="colors" [(ngModel)]='selected'> Colors<br>
+  <input type="radio" name="select" value="days" [(ngModel)]='selected'> Days<br>
+  <br>
+  <div [ngSwitch]='selected'>
+    
+    <div *ngSwitchCase="'animals'">
+      <ul *ngFor='let animal of animals'>
+          <li>{{animal}}</li>
+      </ul>
+    </div>
+    <div *ngSwitchCase="'colors'">
+      <ul *ngFor='let color of colors'>
+        <li>{{color}}</li>
+      </ul>
+    </div>
+    <div *ngSwitchCase="'days'">
+      <ul *ngFor='let day of days'>
+        <li>{{day}}</li>
+      </ul>
+    </div>
+    <div *ngSwitchDefault></div>
+  </div>
+</div>

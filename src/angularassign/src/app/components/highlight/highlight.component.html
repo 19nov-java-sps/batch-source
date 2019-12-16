@@ -1,0 +1,7 @@
+<label>Color Select:</label>
+<select [(ngModel)]='selectedColor'>
+  <option *ngFor='let color of colors' [value]='color' >{{color}}</option>
+</select>
+<div >
+  <p [ngClass]='selectedColor' >Some colored text</p>
+</div>
