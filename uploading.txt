@@ -1,0 +1,164 @@
+What is DevOps?
+
+an integration of writing code and maintaining the infrastructure hosting the application
+
+What is Jenkins?
+
+build automation server
+
+Jenkins is a free and open source automation server. Jenkins helps to automate the non-human part of the software development process, 
+with continuous integration and facilitating technical aspects of continuous delivery. 
+It is a server-based system that runs in servlet containers such as Apache Tomcat.
+
+
+What is Continuous Integration?
+
+Continous Intergration is checking your code into a centralized repo to see if it integrates properly
+
+
+What's the difference between continuous delivery and continuous deployment?
+
+Delivery is manual Deployment is automated
+
+Explain the flow of your DevOps pipeline.
+
+Make changes to code
+push to git
+run application tests
+integration tests
+acceptance testing
+built artifact
+
+What is S3?
+
+Simple object storage service
+5000 +TB
+secure, durable, highly available
+11 9's of durability
+
+can be used for static web hosting
+ng build
+makes a new dist folder in your project
+
+
+What is EC2? AMI?
+
+EC2 provides a scalable virtual computing environment
+
+Amazon Machine Image is a template of software which is configured on your EC2 instance
+
+What is IAM?
+
+Identity and Access Management - IAM, you can create and manage AWS users and groups, and use permissions to allow and deny their access to AWS resources
+
+What is EBS?
+
+Elastic Block Storage provides addional storage to EC2
+
+What is Elastic Load Balancing?
+
+Distributes network traffic automatically
+
+What is the difference between vertical and horizontal scaling?
+
+Vertical adds more resources to existing servers
+Horizontal allows more requests
+
+What are Availablity Zones?
+
+AWS provides zones that host networks around the world
+
+Explain the different Cloud Computing Models.
+
+IaaS - Infrastructure as a Service (Built up need to import Application, Data, Runtime, Middleware and half of operating system) Ex. EC2, AWS
+
+PaaS - Platform as a Service (Built up need to import Application and Data) Ex. Elastic BeanStalk
+
+SaaS - Software as a Service (Built up nothing to change) Ex. Browser games?
+
+What is Maven? 
+
+Maven is a build automation tool used primarily for Java projects.
+
+What are Maven's three life cycles?
+
+clean - cleans up artifacts created by prior builds
+
+default - builds artifacts
+
+site -generates site documentation for this project
+
+What are the build phases of the default maven life cycle?
+
+Validate
+
+Compile
+
+Test
+
+Package
+
+Verify
+
+Install
+
+Deploy
+
+What is Scrum?
+
+Complementation of Agile where development is broken down in 2-4 week sprints
+
+functionality is broken down into user stories
+
+product owner manages product backlog and parts which to develop first
+
+sprint retrospective meeting after sprint
+
+Daily Standups
+
+What is Agile?
+
+iterative process which focuses on developing better code
+build up project in parts known as sprints
+
+
+What is Sonar?
+
+Sonar is a real-time protection that detects potentially malicious applications when they run on your computers
+
+What is static code analysis?
+
+Scans our packages evaluating code quality
+
+code smells
+	unused imports, generated todo comments, etc
+
+vulnerabilities
+	hardcoded credentials
+bugs
+	not closing resource
+	code that can throw exception
+
+Know linux commands and their use
+
+ls - a
+ls - la
+
+mv [source][destination] - Move or rename files
+
+pwd print working directory
+
+mkdir make directory
+rmdir remove directory
+
+echo > file.txt creates file.txt
+
+sudo - super user do
+
+ng install - ng = angular
+
+npm = node package manager
+
+nano/vim - editting tools
+
+chmod - edits file permissions

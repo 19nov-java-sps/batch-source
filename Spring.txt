@@ -1,0 +1,127 @@
+What is Spring? What is a module? What is a project?
+
+Spring is the framework for Spring projects which leverages IOC through DI
+
+IOC - Inversion of Control
+
+Design where behavior is injected into your program controls application flow and manages object creation
+
+DI - dependency injection
+
+A module is encapsulated code that implements a particular functionality and is part of a project
+some examples are MVC, JDBC, ORM, AOP -> Aspect Oriented Programming (manages cross cutting concerns)
+
+A project is composed of modules and is used to solve issues faced by enterprise applications
+
+Spring Boot
+Spring Data
+Spring Cloud projects
+
+What is dependency injection? Which types of dependency injection does Spring support?
+
+DI is a process whereby objects define their dependencies
+
+Constructor Injection -statically defining the list of required Dependencies by
+specifying them as parameters to the class's constructor.
+
+Setter Injection - Injection in Spring is a type of dependency injection in 
+which the framework injects the dependent objects into the client using a setter method.
+
+Setter better for alot alot Constructor is better for when you can go back and check
+
+What are the different ways we can wire together beans?
+
+bean wiring is the process of configuring our IOC container to inject beans into another
+
+- Manually declare the bean and use DI
+
+- Autowiring implicitily enables you to inject object dependency. Used Constructor or Setter Injection doesnt work with primitive and ints works with reference only
+
+What are the differences between a BeanFactory and an ApplicationContext?
+
+BeanFactory: Older, lazy, we create and provide our own beans
+
+ApplicationContext: Newer, eager, autocreate, autoprovide
+
+What is a Spring Bean? How can I configure a class to be a Spring Bean? (3 ways)
+
+beans - objects that form the backbone of your application and that are managed by the Spring IoC container
+A bean is an object that is instantiated, assembled, and otherwise managed by a Spring IoC container.
+
+XML Configuration is the most popular configuration. The bean element tag is
+used in xml context file to configure a Spring Bean.
+
+Using Java Based Configuration, you can configure a Spring bean using @Bean 
+annotation. This annotation is used with @Configuration classes to configure a spring bean.
+
+Annotation Based Configuration facilitates @Component, @Service, @Repository and @Controller annotations
+with classes to configure them to be as spring bean. For these, we would need to provide base 
+package location to scan for these classes
+
+What is the Spring Bean life cycle?
+
+When a bean is instantiated, it may be required to perform some initialization to get it into a usable state. 
+Similarly, when the bean is no longer required and is removed from the container, some cleanup may be required.
+
+What are the different scopes of a Spring bean? What is the default?
+
+singleton
+
+This scopes the bean definition to a single instance per Spring IoC container (default).
+
+2	
+prototype
+
+This scopes a single bean definition to have any number of object instances.
+
+3	
+request
+
+This scopes a bean definition to an HTTP request. Only valid in the context of a web-aware Spring ApplicationContext.
+
+4	
+session
+
+This scopes a bean definition to an HTTP session. Only valid in the context of a web-aware Spring ApplicationContext.
+5	
+global-session
+
+This scopes a bean definition to a global HTTP session. Only valid in the context of a web-aware Spring ApplicationContext.
+
+What are the stereotype annotations?
+
+| @Component | generic stereotype for any Spring-managed component |
+| @Repository| stereotype for persistence layer                    |
+| @Service   | stereotype for service layer                        |
+| @Controller| stereotype for presentation layer (spring-mvc) 	   |
+
+What is Spring MVC?
+
+Advantages: Light-weight and Flexible Mapping
+
+Spring MVC is a java framework that implements IOC and DI and provides an elegant solution to use MVC in spring framework
+by the help of DispatcherServlet. 
+Here, DispatcherServlet is a class that receives the incoming request and maps it to the right resource 
+such as controllers, models, and views.
+
+Explain the flow of a request and response in Spring MVC?
+
+As displayed in the figure, all the incoming request is intercepted by the DispatcherServlet that works as the front controller.
+The DispatcherServlet gets an entry of handler mapping from the XML file and forwards the request to the controller.
+The controller returns an object of ModelAndView.
+The DispatcherServlet checks the entry of view resolver in the XML file and invokes the specified view component.
+
+
+What are the important Spring MVC annotations?
+
+@Controller.
+@RequestMapping.
+@PathVariable.
+@RequestParam.
+@ModelAttribute.
+@RequestBody and @ResponseBody.
+@RequestHeader and @ResponseHeader.
+
+How can we handle exceptions in Spring MVC?
+
+Use @ExceptionHandler
