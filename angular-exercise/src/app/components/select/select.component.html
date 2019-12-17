@@ -1,0 +1,24 @@
+<div class="text-center">
+  <label class="p-2" for="animals">Animals</label>
+  <input type="radio" name="animals" (input)="selectedAnimals = true">
+  <div class="row justify-content-center" *ngIf="selectedAnimals">
+    <ul>
+        <li *ngFor="let animal of animals">{{ animal }}</li>
+    </ul>
+  </div>
+  <label class="p-2" for="colors">Colors</label>
+  <input type="radio" name="colors" (input)="selectedColors = true">
+  <div class="row justify-content-center" *ngIf="selectedColors">
+    <ul>
+        <li *ngFor="let color of colors">{{ color }}</li>
+    </ul>
+  </div>
+  <label class="p-2" for="days">Days</label>
+  <input type="radio" name="days" (input)="selectedDays = true">
+  <div class="row justify-content-center" *ngIf="selectedDays">
+    <ul>
+      <li *ngFor="let day of days">{{ day }}</li>
+    </ul>
+  </div>
+</div>
+

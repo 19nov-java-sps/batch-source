@@ -1,0 +1,15 @@
+<div [ngClass]="isStyled ? 'container' : ''">
+  <button [ngClass]="isStyled ? 'btn btn-primary my-3' : ''" (click)="changeStyle()">{{ buttonText }}</button>
+  <table [ngClass]="isStyled ? 'table' : ''">
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Birthday</th>
+    </tr>
+    <tr *ngFor="let person of people">
+      <td>{{ person.name | titlecase }}</td>
+      <td>{{ person.email }}</td>
+      <td>{{ person.birthday | date: "MM/dd/yy" }}</td>
+    </tr>
+  </table>
+</div>

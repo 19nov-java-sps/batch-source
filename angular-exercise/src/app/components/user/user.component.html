@@ -1,0 +1,21 @@
+<div class="container">
+  <table class="table" *ngIf="users.length > 0">
+    <tr>
+        <td>Name</td>
+        <td>Email</td>
+        <td>Phone</td>
+        <td>Address</td>
+    </tr>
+    <tr *ngFor="let user of users">
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.phone }}</td>
+        <td>
+            {{ user.address.street }}
+            {{ user.address.suite }}
+            {{ user.address.city }}
+            {{ user.address.zipcode }}
+        </td>
+    </tr>
+  </table>
+</div>

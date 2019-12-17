@@ -1,0 +1,11 @@
+<div class="text-center">
+  <h2>Profile Component</h2>
+  <button class="btn btn-primary" (click)="display()">{{ text }}</button>
+  <div class="row justify-content-center pt-3">
+    <ul *ngIf="text === 'Hide'">
+      <li>{{ user.id }}</li>
+      <li>{{ user.name }}</li>
+      <li>{{ user.age }}</li>
+    </ul>
+  </div>
+</div>

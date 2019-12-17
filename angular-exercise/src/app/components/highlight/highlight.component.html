@@ -1,0 +1,4 @@
+<div class="text-center">
+  <h2>Highlight Component</h2>
+  <h3 [ngClass]="isHovered ? 'hovered' : ''" (mouseenter)="isHovered=true" (mouseout)="isHovered=false">{{ text }}</h3>
+</div>
