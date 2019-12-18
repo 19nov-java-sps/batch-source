@@ -11,6 +11,9 @@ public class Driver {
 		ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
 		Bear b = (Bear) ac.getBean("bear");
 		b.isFull();
+//		b.bearHibernates();
+		b.setFull(false);
+		b.setAwake(false);
 
 	}
 

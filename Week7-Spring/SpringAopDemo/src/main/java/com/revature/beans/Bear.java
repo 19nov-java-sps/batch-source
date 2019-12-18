@@ -46,6 +46,14 @@ public class Bear implements Serializable{
 	public void setAwake(boolean isAwake) {
 		this.isAwake = isAwake;
 	}
+	
+	public void bearHibernates() {
+		if(isWinter) {
+			System.out.println("zzz");
+		} else {
+			throw new RuntimeException("Bears hibernate in the winter");
+		}
+	}
 
 	@Override
 	public int hashCode() {
