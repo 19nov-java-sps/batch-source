@@ -1,0 +1,10 @@
+2019-12-18 12:03:57 INFO  ClassPathXmlApplicationContext:578 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@573fd745: startup date [Wed Dec 18 12:03:57 EST 2019]; root of context hierarchy
+2019-12-18 12:03:57 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [beans.xml]
+2019-12-18 12:03:58 INFO  root:29 - method invoked
+2019-12-18 13:20:00 ERROR root:37 - bearHibernates threw an exception: java.lang.RuntimeException: Bears hibernate in the winter
+2019-12-18 13:23:24 ERROR root:38 - bearHibernates threw an exception: java.lang.RuntimeException: Bears hibernate in the winter
+2019-12-18 13:25:47 WARN  ClassPathXmlApplicationContext:546 - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'bear' defined in file [C:\Users\Revature\Documents\19nov-java-sps\batch-source\Week7-Spring\SpringAopDemo\target\classes\com\revature\beans\Bear.class]: Initialization of bean failed; nested exception is java.lang.IllegalArgumentException: Pointcut is not well-formed: expecting ')' at character position 14
+exection(void set*(..))
+              ^^^
+
+2019-12-18 13:26:08 ERROR root:38 - bearHibernates threw an exception: java.lang.RuntimeException: Bears hibernate in the winter
