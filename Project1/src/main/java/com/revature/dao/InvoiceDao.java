@@ -7,7 +7,7 @@ import com.revature.model.Invoice;
 public interface InvoiceDao {
 	
 	public List<Invoice> getInvoiceTable();
-	public Invoice getInvoiceById(int userId);
+	public Invoice getInvoiceById(int invoiceId);
 	public int createInvoice(Invoice i);
 	public int updateInvoice(Invoice i);
 	public int deleteInvoice(int userId);	
