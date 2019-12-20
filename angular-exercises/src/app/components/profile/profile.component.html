@@ -1,0 +1,21 @@
+<div class="text-center">
+    <h1 >{{ title | uppercase }}</h1>
+
+    <button class="btn btn-primary" (click)="display()">
+        {{ text }}
+    </button>
+
+
+    <div class="row justify-content-center pt-3">
+        <ul *ngIf="text === 'HIDE'">
+            <b align="left" style="font-size: larger">
+                <div>NAME: {{ id.name  }}</div>
+                <div>AGE: {{ id.age }} YEARS OLD</div>
+                <div>GENDER: {{ id.gender }}</div>
+                <div>HOMETOWN: {{ id.country }}</div>
+                <div>JOB: {{ id.job  }}</div>
+                <div>COMPANY: {{ id.company }}</div>
+            </b>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+<h1 class="text-center">{{ title | uppercase }}</h1>
+
+<div class="container">
+    <table class="table" *ngIf="users.length > 0">
+        <b>
+            <tr>
+                <td>Name</td>
+                <td>Email</td>
+                <td>Phone</td>
+                <td>Address</td>
+            </tr>
+            <tr *ngFor="let user of users">
+                <td>{{ user.name | uppercase }}</td>
+                <td>{{ user.email | uppercase }}</td>
+                <td>{{ user.phone | uppercase }}</td>
+                <td>
+                    {{ user.address.street | uppercase }}
+                    {{ user.address.suite | uppercase }}
+                    {{ user.address.city | uppercase }}
+                    {{ user.address.zipcode | uppercase }}
+                </td>
+            </tr>
+        </b>
+    </table>
+  </div>

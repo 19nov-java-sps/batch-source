@@ -1,0 +1,28 @@
+<h1 class="text-center">{{ title | uppercase }}</h1>
+
+<div align="center" [ngClass]="isStyled ? 'container' : ''">
+    <button [ngClass]="isStyled ? 'btn btn-primary my-3' : ''" (click)="changeStyle()">
+        {{ buttonName }}
+    </button>
+
+    <br>
+    <br>
+
+        <b style="font-size: larger">
+            <table align="center" [ngClass]="isStyled ? 'table' : ''">
+                <tr>
+                    <th>FULL NAME</th>
+                    <th>EMAIL</th>
+                    <th>BIRTHDAY</th>
+                </tr>
+                <tr *ngFor='let employee of employees'>
+                    <td>{{ employee.firstName + " " + employee.lastName | uppercase }}</td>
+                    <td>{{ employee.email | uppercase }}</td>
+                    <td>{{ employee.birthday | uppercase | date:'MM/dd/yyyy' }}</td>
+                </tr>
+            </table>
+    </b>
+</div>
+
+
+

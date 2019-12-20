@@ -1,0 +1,28 @@
+<h1 class="text-center">{{ title | uppercase }}</h1>
+<h5 class="text-center"> SELECT A CATEGORY BELOW TO SEE A LIST OF MY FAVORITES:</h5>
+
+<div class="text-center">
+    <b>
+        <label class="p-2" for="animals">ANIMALS</label>
+        <input type="radio" name="animals" (input)="selectedAnimals = true">
+        <div class="row justify-content-center" *ngIf="selectedAnimals">
+        <ul>
+            <li align="left" *ngFor="let animal of animals">{{ animal }}</li>
+        </ul>
+        </div>
+        <label class="p-2" for="colors">COLORS</label>
+        <input type="radio" name="colors" (input)="selectedColors = true">
+        <div class="row justify-content-center" *ngIf="selectedColors">
+        <ul>
+            <li align="left" *ngFor="let color of colors">{{ color }}</li>
+        </ul>
+        </div>
+        <label class="p-2" for="days">DAYS</label>
+        <input type="radio" name="days" (input)="selectedDays = true">
+        <div class="row justify-content-center" *ngIf="selectedDays">
+        <ul>
+            <li align="left" *ngFor="let day of days">{{ day }}</li>
+        </ul>
+        </div>
+    </b>
+  </div>

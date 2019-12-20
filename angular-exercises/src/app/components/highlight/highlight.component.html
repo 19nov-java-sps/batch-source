@@ -1,0 +1,5 @@
+<div class="text-center">
+    <h1>{{ title | uppercase }}</h1>
+    <h3 [ngClass]="isHovered ? 'hovered' : ''" (mouseenter)="isHovered=true" (mouseout)="isHovered=false">{{ text | uppercase }}</h3>
+</div>
+
